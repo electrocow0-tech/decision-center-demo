@@ -478,14 +478,20 @@ table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-
 .rnp td.cm{text-align:left}
 .rnp .c-sku{position:sticky;left:0;z-index:2;width:var(--w1);min-width:var(--w1);color:var(--ink-3)}
 .rnp .c-met{position:sticky;left:var(--w1);z-index:2;width:var(--w2);min-width:var(--w2);color:var(--ink-2)}
-.rnp .c-plan{position:sticky;left:calc(var(--w1) + var(--w2));z-index:2;width:var(--w3);min-width:var(--w3);border-right:1px solid var(--line);text-align:right}
+.rnp .c-plan{position:sticky;left:calc(var(--w1) + var(--w2));z-index:2;background:#F3EFE6!important;width:var(--w3);min-width:var(--w3);border-right:1px solid var(--line);text-align:right}
 .rnp thead .c-sku,.rnp thead .c-met,.rnp thead .c-plan{z-index:4}
+.rnp thead .c-plan{color:var(--ink);font-weight:600}
+.rnp .c-met .lk{display:none;font-size:12px;color:var(--ink-3);line-height:1.2;white-space:normal}
+.rnp tr:hover .c-met .lk{display:block}
 .rnp .c-plan input{width:76px;height:22px;border:1px solid transparent;background:transparent;font:inherit;text-align:right;padding:0 4px;border-radius:5px;color:var(--ink);-moz-appearance:textfield}
 .rnp .c-plan input::-webkit-outer-spin-button,.rnp .c-plan input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .rnp .c-plan input:hover,.rnp .c-plan input:focus{border-color:var(--line);background:var(--surface-2);outline:none}
 .rnp tr.g td{border-top:1px solid #D5D2C8}
 .rnp tr.rnp-head td{background:var(--surface-2);height:34px;border-top:2px solid var(--line)}
 .rnp tr.rnp-head td.c-sku{color:var(--ink);z-index:2}
+.rnp tr.rnp-head td.hd{padding:8px 10px}
+.rnp tr.rnp-head .rh{position:sticky;left:10px;width:min(980px,calc(100vw - 360px));color:var(--ink)}
+.rnp tr.rnp-head .rh .pstrip{display:inline-flex;margin:0 10px 0 0}
 .rnp tr.rnp-head a{color:var(--brand);font-size:13px}
 .rnp tr.hl td{font-weight:600;color:var(--ink)}
 .rnp tr.hl .c-met{color:var(--ink)}
@@ -533,7 +539,7 @@ table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-
 .rnp-vn{font-size:13px}
 .rnp tr.pin .c-met{box-shadow:inset 3px 0 0 var(--accent)}
 .lim{font-size:12px;color:var(--ink-3);margin-right:2px}
-.pcalc{font-style:italic;color:var(--ink-3)}
+.pcalc{font-style:italic;color:var(--ink-2)}
 .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px}
 .tabs button{border:0;background:none;padding:9px 14px;font-size:14px;color:var(--ink-2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:center}
 .tabs button.on{color:var(--ink);border-bottom-color:var(--brand);font-weight:500}
@@ -608,7 +614,7 @@ table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-
 .stot td{font-weight:500;background:var(--surface-2);border-top:1px solid var(--line)}
 .stk-tip{font-size:13px;color:var(--brand);text-decoration:underline;font-weight:500}
 @media (max-width:1180px){ .stk-tiles{grid-template-columns:1fr 1fr} .stk-money{grid-column:1/-1} }
-@media (max-width:900px){ .sexp .sdet{max-width:calc(100vw - 60px)} }
+@media (max-width:900px){ .sexp .sdet{max-width:calc(100vw - 60px)} .rnp tr.rnp-head .rh{width:calc(100vw - 70px)} }
 @media (max-width:640px){ .stk-tiles{grid-template-columns:1fr} .stk-money ul{grid-template-columns:1fr} .sdet{grid-template-columns:1fr} }
 /* ---------- chain ---------- */
 .chain .card-b{display:flex;flex-direction:column;gap:12px;overflow-x:auto}
@@ -2080,18 +2086,18 @@ function renderRnp(){
     (M ? '' : '<div class="seg">' + [['all','Все'],['WB','WB'],['Ozon','Ozon']].map(function(x){ return '<button data-act="rnp-ch" data-c="' + x[0] + '" class="' + (R.ch === x[0] ? 'on' : '') + '">' + x[1] + '</button>'; }).join('') + '</div>') +
     '<div class="rnp-chips">' + list.map(function(c){ return '<button class="chip' + (R.off[c.sku] ? '' : ' on') + '" data-act="rnp-sku" data-s="' + c.sku + '">' + c.short + '</button>'; }).join('') + '</div>' +
     '<label class="rnp-tg"><input type="checkbox" data-act="rnp-ads"' + (R.adsOff ? ' checked' : '') + '> Свернуть рекламу</label></div>';
-  h += '<div class="card rnp-wrap"><table class="rnp"><thead><tr><th class="c-sku">Артикул</th><th class="c-met">Показатель</th><th class="c-plan">План</th>' +
+  h += '<div class="card rnp-wrap"><table class="rnp"><thead><tr><th class="c-sku">Артикул</th><th class="c-met">Показатель</th><th class="c-plan">План, ' + (weeks ? 'нед' : 'день') + '</th>' +
     order.map(function(i){ return '<th class="n">' + cols[i] + (!weeks && i === cols.length - 1 ? '<small>вчера</small>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>';
   if (!shown.length) h += '<tr><td colspan="' + (cols.length + 3) + '" class="muted" style="padding:16px">Выберите артикулы</td></tr>';
   shown.forEach(function(c){
     var D = rnpCalc(c, n), V = weeks ? rnpWeeks(D) : D, prevG = null, first = true, PD = rnpPlanDaily(c.sku);
     var canOpen = c.case && (!M || CASES[c.case].mgr === 'olga');
-    h += '<tr class="rnp-head"><td class="c-sku" colspan="3"><div class="rh">' + ph(c.sku, 'rnp') + '<div><b>' + c.name + '</b> ' + chTag(c.ch) + ' <span class="muted">' + c.sku + '</span>' + (canOpen ? ' <a href="#" data-act="' + (CHAINS[c.case] ? 'to-chain' : 'open') + '" data-case="' + c.case + '">почему? → разбор</a>' : '') + planStrip(c.sku) + '</div></div></td><td colspan="' + cols.length + '"></td></tr>';
+    h += '<tr class="rnp-head"><td class="hd" colspan="' + (cols.length + 3) + '"><div class="rh">' + ph(c.sku, 'rnp') + '<div><b>' + c.name + '</b> ' + chTag(c.ch) + ' <span class="muted">' + c.sku + '</span>' + (canOpen ? ' <a href="#" data-act="' + (CHAINS[c.case] ? 'to-chain' : 'open') + '" data-case="' + c.case + '">почему? → разбор</a>' : '') + planStrip(c.sku) + '<a href="#" class="why-l" data-act="to-plan" data-sku="' + c.sku + '">план месяца →</a></div></div></td></tr>';
     rows.forEach(function(it){
       var r = it.r, g = it.g !== prevG; prevG = it.g;
       var key = c.sku + '|' + r[1], pl = PD[r[1]], foc = S.rnpFocus && S.rnpFocus.sku === c.sku && S.rnpFocus.row === r[1];
       var plV = pl != null && weeks && RNP_WEEKPLAN[r[1]] ? pl * 7 : pl;
-      h += '<tr class="' + (g ? 'g ' : '') + (r[1] === 'orders' ? 'hl ' : '') + (it.g === 'pin' ? 'pin ' : '') + (r[1] === 'com' ? 'com ' : '') + (foc ? 'frow' : '') + '"><td class="c-sku">' + (first ? c.sku : '') + '</td><td class="c-met"' + (c.case && CHAINS[c.case] && RNP_LINKS[r[1]] ? ' title="связан с: ' + RNP_LINKS[r[1]] + '"' : '') + '>' + r[2] + (r[1] === 'cro' ? ex('CRO — доля переходов в карточку, которые закончились заказом.') : '') + '</td>';
+      h += '<tr class="' + (g ? 'g ' : '') + (r[1] === 'orders' ? 'hl ' : '') + (it.g === 'pin' ? 'pin ' : '') + (r[1] === 'com' ? 'com ' : '') + (foc ? 'frow' : '') + '"><td class="c-sku">' + (first ? c.sku : '') + '</td><td class="c-met">' + r[2] + (r[1] === 'cro' ? ex('CRO — доля переходов в карточку, которые закончились заказом.') : '') + (c.case && CHAINS[c.case] && RNP_LINKS[r[1]] ? '<span class="lk">связан с: ' + RNP_LINKS[r[1]] + '</span>' : '') + '</td>';
       first = false;
       if (r[1] === 'com'){
         h += '<td class="c-plan"></td>' + order.map(function(j){ var o = V[j]; if (weeks) return '<td class="cm"></td>'; var ck = c.sku + (o.i14 >= 0 ? o.i14 : 'x' + o.i14); var t = R.com[ck] != null ? R.com[ck] : (o.i14 >= 0 ? (c.com[o.i14] || '') : ''); return '<td class="cm' + (S.rnpFocus && S.rnpFocus.sku === c.sku && S.rnpFocus.row === 'com' && o.i14 >= S.rnpFocus.from && o.i14 <= S.rnpFocus.from ? ' fcell' : '') + '"><span contenteditable="true" title="' + esc(t) + '" data-com="' + ck + '">' + esc(t) + '</span></td>'; }).join('') + '</tr>';
@@ -2101,7 +2107,9 @@ function renderRnp(){
       h += '<td class="c-plan">' + (pl == null ? '' : (RNP_PLAN_INPUT[r[1]] ? (r[1] === 'cost' ? '<span class="lim">до</span>' : '') + '<input type="text" inputmode="decimal" data-act="rnp-plan" data-k="' + key + '" value="' + nf(pl, pdec) + '" aria-label="План: ' + r[2] + '">' : '<span class="pcalc" title="' + (RNP_PLAN_TIP[r[1]] || 'расчётное') + '">' + nf(pl, pdec) + (r[3] === '%' ? '%' : '') + '</span>')) + '</td>';
       order.forEach(function(j){
         var o = V[j], v = o[r[1]], cls = '';
-        if (plV != null && v != null){ var dv = (v - plV) / plV; if (r[4]) dv = -dv; if (r[1] === 'days') dv = v < plV * .5 ? -1 : 0; if (r[1] === 'cost') dv = v > plV ? -1 : 0; cls = dv < -.1 ? 'bad' : (dv > .1 ? 'good' : ''); }
+        var dir = RNP_DIR[r[1]];
+        if (r[1] === 'days') cls = v < 14 ? 'bad' : '';
+        else if (dir && plV != null && v != null){ var dv = (v - plV) / plV * dir; cls = dv < -.1 ? 'bad' : (dv > .05 ? 'good' : ''); }
         var an = !weeks && o.i14 != null && o.i14 >= 0 && c.anom[r[1] + '|' + o.i14];
         var fc2 = foc && o.i14 != null && o.i14 >= S.rnpFocus.from ? ' fcell' : '';
         h += '<td class="n ' + cls + fc2 + '">' + (an ? '<span class="anm" tabindex="0" role="button" data-tip="' + esc(an + (canOpen ? ' <a href="#" data-act="to-chain" data-case="' + c.case + '" data-node="' + (ANOM_NODE[c.sku + '|' + r[1]] || '') + '">почему? → разбор</a>' : '')) + '">⚠</span>' : '') + rnpFmt(v, r[3]) + '</td>';
@@ -2223,21 +2231,22 @@ function planStrip(sku){
   return '<span class="pstrip ' + fcCls(f) + '"><span>Выручка <b>' + nf(fact / 1e6, 2) + '</b> / ' + nf(P.oct.rev / 1e6, 2) + ' млн ₽</span><span class="pbar"><i style="width:' + Math.min(pr, 100) + '%"></i><em style="left:' + passed + '%"></em></span><span>' + pr + '% при ' + passed + '% месяца · <b>прогноз ' + f + '%</b>' + (f >= 100 ? ' ✓' : '') + '</span></span>';
 }
 /* daily plan for RNP column: inputs vs computed */
-var RNP_PLAN_INPUT = {rev:1, ctr:1, cConv:1, oConv:1, ctrArk:1, ctrMan:1, price:1, cost:1, buy:1, margin:1, days:1, drr:1};
+var RNP_PLAN_INPUT = {rev:1, ctr:1, cConv:1, oConv:1, ctrArk:1, ctrMan:1, price:1, cost:1, buy:1, margin:1, days:1};
 function rnpPlanDaily(sku){
   var P = PLAN[sku].oct, ov = S.rnp.plan, g = function(k, d){ var v = ov[sku + '|' + k]; return v != null ? v : d; };
   var o = {};
   o.rev = g('rev', P.rev / MONTH_DAYS); o.price = g('price', P.price); o.buy = g('buy', P.buy); o.oConv = g('oConv', P.oConv); o.cConv = g('cConv', P.cConv); o.ctr = g('ctr', P.ctr);
-  o.ctrArk = g('ctrArk', Math.round(o.ctr * 1.08 * 10) / 10); o.ctrMan = g('ctrMan', Math.round(o.ctr * 1.15 * 10) / 10);
-  o.margin = g('margin', P.margin); o.drr = g('drr', P.drr); o.days = g('days', sku === 'NP-2210' ? 14 : 30);
+  var A = PLAN[sku].ads || {adShare:.7, arkShare:.4, ctrArk:o.ctr * 1.08, ctrMan:o.ctr * 1.15, bid:8};
+  o.ctrArk = g('ctrArk', A.ctrArk); o.ctrMan = g('ctrMan', A.ctrMan);
+  o.margin = g('margin', P.margin); o.days = g('days', 14);
   o.orders = o.rev / o.price / (o.buy / 100); o.carts = o.orders / (o.oConv / 100); o.clicks = o.carts / (o.cConv / 100); o.shows = o.clicks / (o.ctr / 100);
   o.cro = Math.round(o.cConv * o.oConv / 10) / 10;
-  var ad = o.clicks * .7; o.arkClicks = ad * .4; o.manClicks = ad * .6; o.arkShows = o.arkClicks / (o.ctrArk / 100); o.manShows = o.manClicks / (o.ctrMan / 100);
-  o.cost = g('cost', Math.round(o.rev * o.drr / 100 / 1000) * 1000); o.bid = o.cost / ad;
+  var ad = o.clicks * A.adShare; o.arkClicks = ad * A.arkShare; o.manClicks = ad - o.arkClicks; o.arkShows = o.arkClicks / (o.ctrArk / 100); o.manShows = o.manClicks / (o.ctrMan / 100);
+  o.cost = g('cost', Math.round(ad * A.bid / 100) * 100); o.bid = o.cost / ad; o.drr = Math.round(o.cost / o.rev * 1000) / 10;
   ['orders','carts','clicks','shows','arkClicks','manClicks','arkShows','manShows'].forEach(function(k){ o[k] = Math.round(o[k]); }); o.rev = Math.round(o.rev); o.bid = Math.round(o.bid * 10) / 10;
   return o;
 }
-var RNP_PLAN_TIP = {cro:'= конверсия в корзину × конверсия в заказ', orders:'= выручка / цена с СПП / % выкупа', carts:'= заказы / конверсия в заказ', clicks:'= корзины / конверсия в корзину', shows:'= переходы / CTR', arkClicks:'= клики РК × доля АРК', manClicks:'= клики РК × доля ручной', arkShows:'= клики АРК / CTR РК (АРК)', manShows:'= клики ручн. / CTR РК (ручн.)', bid:'= лимит рекламы / клики РК'};
+var RNP_PLAN_TIP = {drr:'= лимит рекламы / выручка', cro:'= конверсия в корзину × конверсия в заказ', orders:'= выручка / цена с СПП / % выкупа', carts:'= заказы / конверсия в заказ', clicks:'= корзины / конверсия в корзину', shows:'= переходы / CTR', arkClicks:'= клики РК × доля АРК', manClicks:'= клики РК × доля ручной', arkShows:'= клики АРК / CTR РК (АРК)', manShows:'= клики ручн. / CTR РК (ручн.)', bid:'= лимит рекламы / клики РК'};
 
 /* plan tab */
 function renderPlanTab(){
@@ -2256,7 +2265,7 @@ function renderPlanTab(){
   h += '<div class="card"><div class="tbl-wrap"><table class="tbl plan-t" style="min-width:1180px"><thead><tr><th>Товар</th>' + PLAN_IN.map(function(x){ return '<th class="n">' + x[1] + '</th>'; }).join('') + PLAN_CALC.map(function(x){ return '<th class="n calc">' + x[1] + '</th>'; }).join('') + '<th class="n">' + (mo === 'sep' ? 'Факт, %' : (mo === 'oct' ? 'Прогноз, %' : '')) + '</th>' + (M && mo === 'oct' ? '<th></th>' : '') + '</tr></thead><tbody>';
   list.forEach(function(p){
     var pl = PLAN[p.sku][mo], r = planCalc(pl);
-    h += '<tr><td class="pn-name">' + ph(p.sku, 'mkt') + '<span>' + p.n + '<small>' + p.sku + '</small></span></td>';
+    h += '<tr id="pl-' + p.sku + '"' + (S.planHl === p.sku ? ' class="new"' : '') + '><td class="pn-name">' + ph(p.sku, 'mkt') + '<span>' + p.n + '<small>' + p.sku + '</small></span></td>';
     PLAN_IN.forEach(function(x){
       var v = pl[x[0]], dec = x[0] === 'price' ? 0 : (x[0] === 'rev' ? 2 : 1); if (x[0] === 'rev') v = v / 1e6;
       h += '<td class="n">' + (editable && (!M || mo === 'oct') ? '<input class="pin" data-act="plan-in" data-s="' + p.sku + '" data-k="' + x[0] + '" value="' + nf(v, dec) + '" inputmode="decimal" aria-label="' + x[1] + '">' : nf(v, dec)) + '</td>';
@@ -2272,6 +2281,23 @@ function renderPlanTab(){
 }
 
 initPlans();
+var RNP_DIR = {shows:1, clicks:1, ctr:1, cConv:1, carts:1, oConv:1, cro:1, orders:1, rev:1, buy:1, margin:1, bid:-1, cost:-1, drr:-1};
+var RNP_PRE = {'NP-1405':7, 'NP-3103':6, 'NP-2210':5, 'NP-1412':10};
+function rnpBaseline(c){
+  var D = rnpCalc(c, 14).slice(0, RNP_PRE[c.sku] || 7), n = D.length, sum = function(k){ return D.reduce(function(s, o){ return s + o[k]; }, 0); }, avg = function(k){ return sum(k) / n; };
+  var ad = sum('arkClicks') + sum('manClicks');
+  return {rev:avg('rev'), price:Math.round(avg('price')), buy:Math.round(avg('buy') * 10) / 10, oConv:Math.round(sum('orders') / sum('carts') * 1000) / 10, cConv:Math.round(sum('carts') / sum('clicks') * 1000) / 10,
+    ctr:Math.round(sum('clicks') / sum('shows') * 1000) / 10, margin:Math.round(avg('margin') * 10) / 10, adShare:ad / sum('clicks'), arkShare:sum('arkClicks') / ad,
+    ctrArk:Math.round(sum('arkClicks') / sum('arkShows') * 1000) / 10, ctrMan:Math.round(sum('manClicks') / sum('manShows') * 1000) / 10, bid:Math.round(sum('cost') / ad * 10) / 10};
+}
+RNP_SKU.forEach(function(c){
+  var b = rnpBaseline(c), P = PLAN[c.sku], o = P.oct;
+  o.rev = Math.round(b.rev * 1.02 * MONTH_DAYS / 10000) * 10000; o.price = b.price; o.buy = b.buy; o.oConv = b.oConv; o.cConv = b.cConv; o.ctr = b.ctr; o.margin = b.margin;
+  o.drr = Math.round(b.adShare * b.bid / (b.price * b.buy / 100 * b.cConv / 100 * b.oConv / 100) * 1000) / 10;
+  P.ads = {adShare:b.adShare, arkShare:b.arkShare, ctrArk:b.ctrArk, ctrMan:b.ctrMan, bid:b.bid};
+  P.sep.rev = Math.round(o.rev * .97 / 10000) * 10000; P.sep.fact = Math.round(P.sep.rev * (c.sku === 'NP-2210' ? 1.06 : (c.sku === 'NP-1412' ? 1.01 : .98)) / 1000) * 1000;
+  P.nov.rev = Math.round(o.rev * PLAN_BASE[c.sku].nov / 10000) * 10000;
+});
 
 /* ---------------- stock & restock ---------------- */
 var STOCK_X = {
@@ -2858,6 +2884,7 @@ document.addEventListener('click', function(e){
   if (a === 'plan-prop'){ var sk = t.dataset.s, nv = S.planDraft && S.planDraft[sk + '|rev'], pr = PLAN[sk].oct.rev, pn = PRODUCTS.filter(function(x){ return x.sku === sk; })[0].n; if (nv == null) nv = Math.round(pr * .85 / 10000) * 10000; S.planProp.push({sku:sk, name:pn, from:pr, to:nv}); renderRnp(); return toast('Передано Андрею Викторовичу на согласование'); }
   if (a === 'plan-ok'){ var pp = S.planProp.splice(+t.dataset.i, 1)[0]; PLAN[pp.sku].oct.rev = pp.to; DECISIONS.unshift({d:'09.10', prod:pp.name, ch:'WB', prob:'Корректировка плана месяца', act:'План выручки ' + nf(pp.from / 1e6, 2) + ' → ' + nf(pp.to / 1e6, 2) + ' млн ₽', who:'А. Морозов', task:'—', ts:'none', fc:0, fact:null, v:'pending', owner:'mp', mine:1, check:'план обновлён', isNew:true}); renderAll(); return toast('План обновлён'); }
   if (a === 'plan-no'){ S.planProp.splice(+t.dataset.i, 1); renderRnp(); return toast('Предложение отклонено'); }
+  if (a === 'to-plan'){ e.preventDefault(); S.rnpTab = 'plan'; S.planMonth = 'oct'; S.planHl = t.dataset.sku; renderRnp(); setTimeout(function(){ var r = document.getElementById('pl-' + S.planHl); if (r) r.scrollIntoView({block:'center'}); }, 50); return; }
   if (a === 'to-rnp'){ e.preventDefault(); return toRnp(t.dataset.sku, t.dataset.row, t.dataset.from, t.dataset.label); }
   if (a === 'to-chain'){ e.preventDefault(); return toChain(t.dataset.case, t.dataset.node); }
   if (a === 'crumb-x'){ S.rnpFocus = null; RNP_SKU.forEach(function(x){ S.rnp.off[x.sku] = false; }); return renderRnp(); }
