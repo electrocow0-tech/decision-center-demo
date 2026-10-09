@@ -300,6 +300,20 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
 .toast.on{opacity:1;transform:translateX(-50%)}
 .demo{position:fixed;right:14px;bottom:14px;background:rgba(22,32,28,.88);color:#E6ECE8;font-size:11.5px;padding:5px 10px;border-radius:6px;z-index:90;letter-spacing:.01em;pointer-events:none}
 
+/* ---------- roles / tasks ---------- */
+.perm{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3)}
+.perm .pill{flex:none}
+.perm span.why{flex:1 1 200px}
+.prop-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.prop-act .btn{white-space:normal;text-align:left;line-height:1.3}
+.case.wait::before{background:var(--accent)}
+.tasks li{flex-wrap:wrap;align-items:center}
+.tasks .tt{flex:1 1 260px;min-width:0}
+.tasks .tt b{font-weight:500;display:block}
+.tasks .tt small{color:var(--ink-3)}
+.tasks .tr{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tasks li.done .tt b{text-decoration:line-through;color:var(--ink-3)}
+
 /* ---------- explanations ---------- */
 .ex{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:var(--ink-3);margin:0 0 12px;max-width:860px}
 .ex i{flex:none;width:16px;height:16px;border-radius:50%;background:var(--accent-bg);color:#8A5517;font-style:normal;font-weight:700;font-size:10.5px;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
@@ -394,10 +408,10 @@ body.no-ex .ex, body.no-ex .intro, body.no-ex .tip{display:none!important}
       <div class="top-right">
         <button class="ex-tog on" id="exTog" data-act="extog" aria-pressed="true"><span class="sw"></span><span>Пояснения: <b id="exTogL">вкл</b></span></button>
         <label>Роль</label>
-        <span class="tip" tabindex="0">?<span>Разграничение доступа. Руководитель видит всю компанию и финансовые итоги; руководитель отдела маркетплейсов — только товары и задачи своего отдела, без выручки и маржи компании в рублях.</span></span>
+        <span class="tip" tabindex="0">?<span>Роли различаются данными и правами: руководитель видит финансы компании и согласует крупные решения (цена, бюджет, закупка). Менеджер видит свои товары и задачи и сам применяет действия в пределах полномочий, остальное передаёт на согласование. Полномочия настраиваются под компанию.</span></span>
         <div class="seg" id="roleSeg">
           <button data-act="role" data-role="ceo" class="on">Руководитель</button>
-          <button data-act="role" data-role="mp">Руководитель отдела маркетплейсов</button>
+          <button data-act="role" data-role="mp">Менеджер маркетплейса</button>
         </div>
       </div>
     </header>
@@ -428,7 +442,7 @@ function $(s){ return document.querySelector(s); }
 /* ---------------- people & roles ---------------- */
 var ROLES = {
   ceo: { name:'Андрей Викторович', short:'А. Морозов', full:'Андрей Морозов', pos:'Генеральный директор' },
-  mp:  { name:'Дмитрий',           short:'Д. Орлов',   full:'Дмитрий Орлов',  pos:'Руководитель отдела маркетплейсов' }
+  mp:  { name:'Ольга',             short:'О. Ковалёва', full:'Ольга Ковалёва', pos:'Менеджер маркетплейса WB' }
 };
 
 /* ---------------- KPI ---------------- */
@@ -436,7 +450,6 @@ var KPI = {
   week: { cmp:'к пр. неделе', tiles:[
     {k:'rev', fin:1, l:'Выручка после выкупа', v:'18,4', u:'млн ₽', sub:'2–8 октября', dp:'+3,1%', dpc:'pos', dy:'+24%', dyc:'pos', s:[15.1,15.6,15.9,16.4,16.2,16.8,17.1,17.4,17.9,17.6,17.85,18.4]},
     {k:'mar', fin:1, l:'Маржа после выкупа', v:'3,86', u:'млн ₽', sub:'21,0% от выручки (было 22,6%)', dp:MINUS+'4,2%', dpc:'neg', dy:'+11%', dyc:'pos', s:[3.4,3.5,3.55,3.62,3.6,3.71,3.8,3.86,3.95,4.0,4.03,3.86]},
-    {k:'marp', mp:1, l:'Маржа после выкупа · ваши товары', v:'20,6', u:'%', sub:'11 артикулов отдела', dp:MINUS+'1,5 п.п.', dpc:'neg', dy:'+0,8 п.п.', dyc:'pos', s:[21.4,21.6,21.5,21.9,21.7,21.8,22.0,22.1,22.3,22.0,22.1,20.6]},
     {k:'ord', l:'Заказы', v:'21 840', u:'шт', sub:'средний чек 1 034 ₽', dp:'+2,4%', dpc:'pos', dy:'+19%', dyc:'pos', s:[17.9,18.3,18.8,19.2,19.1,19.6,20.1,20.4,21.0,21.1,21.33,21.84]},
     {k:'drr', l:'ДРР', v:'12,8', u:'%', sub:'реклама 2,36 млн ₽', dp:'+1,9 п.п.', dpc:'neg', dy:'+2,6 п.п.', dyc:'neg', s:[10.4,10.6,10.5,10.9,11.0,10.8,10.7,10.9,11.1,10.8,10.9,12.8], inv:1},
     {k:'buy', l:'Процент выкупа', v:'82,4', u:'%', sub:'WB 81,1% · Ozon 85,0%', dp:MINUS+'2,1 п.п.', dpc:'neg', dy:MINUS+'1,0 п.п.', dyc:'neg', s:[83.9,84.2,84.0,83.8,84.1,84.6,84.3,84.5,84.2,84.6,84.5,82.4]},
@@ -445,13 +458,34 @@ var KPI = {
   day: { cmp:'к 7 октября', tiles:[
     {k:'rev', fin:1, l:'Выручка после выкупа', v:'2,58', u:'млн ₽', sub:'8 октября, четверг', dp:MINUS+'1,8%', dpc:'neg', dy:'+22%', dyc:'pos', s:[2.41,2.55,2.62,2.49,2.38,2.6,2.66,2.52,2.61,2.7,2.44,2.57,2.63,2.58]},
     {k:'mar', fin:1, l:'Маржа после выкупа', v:'0,53', u:'млн ₽', sub:'20,5% от выручки', dp:MINUS+'6,1%', dpc:'neg', dy:'+9%', dyc:'pos', s:[.55,.58,.6,.56,.53,.59,.61,.57,.58,.6,.52,.55,.56,.53]},
-    {k:'marp', mp:1, l:'Маржа после выкупа · ваши товары', v:'20,1', u:'%', sub:'11 артикулов отдела', dp:MINUS+'0,9 п.п.', dpc:'neg', dy:'+0,4 п.п.', dyc:'pos', s:[22.1,22.4,22.0,21.8,22.2,22.3,21.9,21.6,21.5,21.2,21.0,20.9,21.0,20.1]},
     {k:'ord', l:'Заказы', v:'3 060', u:'шт', sub:'средний чек 1 029 ₽', dp:MINUS+'0,9%', dpc:'neg', dy:'+17%', dyc:'pos', s:[2.9,3.0,3.1,3.0,2.95,3.05,3.12,3.02,3.08,3.15,3.0,3.07,3.09,3.06]},
     {k:'drr', l:'ДРР', v:'13,1', u:'%', sub:'реклама 338 тыс ₽', dp:'+0,4 п.п.', dpc:'neg', dy:'+2,9 п.п.', dyc:'neg', s:[10.8,10.9,11.0,10.7,11.2,11.4,11.9,12.3,12.6,12.9,12.5,12.8,12.7,13.1]},
     {k:'buy', l:'Процент выкупа', v:'82,1', u:'%', sub:'WB 80,6% · Ozon 85,2%', dp:MINUS+'0,3 п.п.', dpc:'neg', dy:MINUS+'1,3 п.п.', dyc:'neg', s:[84.6,84.4,84.5,84.1,83.9,83.6,83.2,83.0,82.8,82.7,82.6,82.5,82.4,82.1]},
     {k:'stk', l:'Остатки', v:'46', u:'дней', sub:'2 артикула < 10 дней', dp:MINUS+'1 дн', dpc:'', dy:'+5 дн', dyc:'', s:[50,50,49,49,49,48,48,48,47,47,47,47,47,46]}
   ]}
 };
+
+var KPI_MGR = {
+  week: { cmp:'к пр. неделе', tiles:[
+    {l:'Маржа после выкупа · мои товары', v:'15,9', u:'%', sub:'6 товаров WB', dp:MINUS+'3,4 п.п.', dpc:'neg', dy:MINUS+'1,2 п.п.', dyc:'neg', s:[19.6,19.8,19.5,19.9,19.7,19.8,20.0,19.6,19.8,19.5,19.3,15.9]},
+    {l:'Заказы · мои товары', v:'6 240', u:'шт', sub:'канал WB', dp:'+1,2%', dpc:'pos', dy:'+14%', dyc:'pos', s:[5.2,5.3,5.5,5.6,5.5,5.7,5.9,6.0,6.1,6.2,6.17,6.24]},
+    {l:'ДРР · мои товары', v:'17,4', u:'%', sub:'цель 12%', dp:'+3,8 п.п.', dpc:'neg', dy:'+4,1 п.п.', dyc:'neg', s:[12.9,13.1,13.0,13.4,13.2,13.1,13.3,13.5,13.4,13.6,13.6,17.4]},
+    {l:'Процент выкупа', v:'79,6', u:'%', sub:'мои товары, WB', dp:MINUS+'3,9 п.п.', dpc:'neg', dy:MINUS+'2,4 п.п.', dyc:'neg', s:[83.1,83.4,83.2,83.0,83.5,83.6,83.3,83.4,83.2,83.6,83.5,79.6]},
+    {l:'Остатки', v:'37', u:'дней', sub:'все товары > 25 дней', dp:MINUS+'2 дн', dpc:'', dy:'+3 дн', dyc:'', s:[42,41,40,41,40,39,40,39,39,40,39,37]}
+  ]},
+  day: { cmp:'к 7 октября', tiles:[
+    {l:'Маржа после выкупа · мои товары', v:'15,2', u:'%', sub:'6 товаров WB', dp:MINUS+'0,8 п.п.', dpc:'neg', dy:MINUS+'1,9 п.п.', dyc:'neg', s:[19.8,19.6,19.9,19.4,19.1,18.6,18.0,17.4,17.1,16.6,16.3,16.0,16.0,15.2]},
+    {l:'Заказы · мои товары', v:'884', u:'шт', sub:'канал WB', dp:MINUS+'1,1%', dpc:'neg', dy:'+12%', dyc:'pos', s:[860,872,881,869,890,902,878,884,895,901,887,893,894,884]},
+    {l:'ДРР · мои товары', v:'18,1', u:'%', sub:'цель 12%', dp:'+0,6 п.п.', dpc:'neg', dy:'+4,6 п.п.', dyc:'neg', s:[13.2,13.4,13.6,13.9,14.5,15.1,15.8,16.2,16.6,17.0,17.2,17.4,17.5,18.1]},
+    {l:'Процент выкупа', v:'79,1', u:'%', sub:'мои товары, WB', dp:MINUS+'0,5 п.п.', dpc:'neg', dy:MINUS+'2,9 п.п.', dyc:'neg', s:[83.4,83.2,83.0,82.6,82.1,81.6,81.0,80.6,80.3,80.0,79.8,79.7,79.6,79.1]},
+    {l:'Остатки', v:'37', u:'дней', sub:'все товары > 25 дней', dp:MINUS+'1 дн', dpc:'', dy:'+3 дн', dyc:'', s:[40,40,39,39,39,38,38,38,38,38,37,37,37,37]}
+  ]}
+};
+var TASKS = [
+  {no:48102, title:'Подставка для обуви, WB: снизить ставки по 4 запросам', due:'06.10', dueTxt:'просрочено на 3 дня', late:true, from:'А. Морозов'},
+  {no:48140, title:'Ящик для игрушек 30 л: проверить приёмку остатков в Казани', due:'10.10', dueTxt:'срок завтра', from:'система'},
+  {no:48166, title:'Сушилка для посуды: ответить на 12 отзывов о сколах', due:'13.10', dueTxt:'срок 13.10', from:'система'}
+];
 
 /* ---------------- cases ---------------- */
 function scaleFactors(base, vals){
@@ -485,7 +519,7 @@ var A_BASE = [
 ];
 var CASES = {
   a: {
-    id:'a', kind:'risk', owner:'mp', title:'Контейнер для хранения 5 л', ch:'WB', sku:'NP-1405',
+    id:'a', kind:'risk', owner:'mp', mgr:'olga', title:'Контейнер для хранения 5 л', ch:'WB', sku:'NP-1405',
     headline:'Маржа после выкупа 22% → 9% за неделю', impact:-184, unit:'тыс ₽/нед',
     reason:'Реклама подорожала при тех же заказах, выкуп упал до 71% — покупатели ждут больший объём.',
     found:'Обнаружено 06:58 · 4 источника',
@@ -511,15 +545,16 @@ var CASES = {
       {id:'a1', title:'Снизить ставку по запросу «контейнер для хранения» до 11 ₽ и перенести 40% бюджета на «контейнер с крышкой 5 л»', base:58, conf:78,
        detail:'Ожидаемо: CPC 16,4 → ~11,5 ₽, ДРР 30,9% → ~21%. Запрос «с крышкой 5 л» дешевле в 2 раза и конвертирует в заказ лучше (6,1% против 5,1%).',
        hist:'<b>В 4 из 5 похожих случаев</b> снижение ставки вернуло маржу за 2 недели. Последний: Кашпо 5 л, 02.10 — +38 тыс ₽/нед.',
-       edit:{label:'Ставка по основному запросу', unit:'₽', v:11, min:8, max:16, step:0.5},
+       edit:{label:'Ставка по основному запросу', unit:'₽', v:11, min:8, max:16, step:0.5, cur:15.5, limit:10.85},
+       perm:'self', selfWhy:'Ставка 15,5 → 11 ₽ (−29%), бюджет перераспределяется без увеличения — в пределах полномочий менеджера (ставки ±30%).',
        check:['Снизить ставку по «контейнер для хранения» 16,4 → 11 ₽','Перенести 40% дневного бюджета на «контейнер с крышкой 5 л»','Через 3 дня сверить позицию (цель — не ниже 25)']},
-      {id:'a2', title:'Исправить объём в карточке (4,3 л полезного), заменить главное фото и добавить сравнение размеров', base:34, conf:64,
+      {id:'a2', perm:'up', upWhy:'Меняется карточка, бюджет на фотосъёмку и инфографику 45 тыс ₽ — выше лимита менеджера 20 тыс ₽.', title:'Исправить объём в карточке (4,3 л полезного), заменить главное фото и добавить сравнение размеров', base:34, conf:64,
        detail:'Ожидаемо: выкуп 71% → ~80% через 2–3 недели, доля возвратов «не соответствует размеру» — примерно вдвое ниже.',
        hist:'<b>В 3 из 4 похожих случаев</b> инфографика размеров подняла выкуп на 6–9 п.п. Последний: Набор банок, Ozon, 30.09 — +25 тыс ₽/нед.',
        check:['Указать полезный объём 4,3 л и габариты в карточке','Главное фото — с предметом для масштаба','Добавить слайд «сравнение размеров 3 / 5 / 8 л»']}
     ],
     propNote:'Вместе +92 тыс ₽/нед — половина просадки. Себестоимость (−20 тыс) и тариф логистики (−15 тыс) передаю как информацию в закупки и логистику: на них отдел маркетплейсов напрямую не влияет.',
-    resp:'Ирина Ковалёва', respPos:'менеджер маркетплейса WB', due:'12.10.2026', taskTitle:'Контейнер 5 л, WB: вернуть маржу — ставки и карточка'
+    resp:'Ольга Ковалёва', respPos:'менеджер маркетплейса WB', due:'12.10.2026', taskTitle:'Контейнер 5 л, WB: вернуть маржу — ставки и карточка'
   },
   b: {
     id:'b', kind:'opp', owner:'supply', title:'Органайзер для ящика, 6 секций', ch:'Ozon', sku:'NP-2210',
@@ -549,7 +584,7 @@ var CASES = {
     resp:'Олег Сафин', respPos:'менеджер маркетплейса Ozon', due:'10.10.2026', taskTitle:'Органайзер 6 секций, Ozon: поставка 2 400 шт'
   },
   c: {
-    id:'c', kind:'risk', owner:'mp', title:'Кашпо 3 л с поддоном', ch:'WB', sku:'NP-3103',
+    id:'c', kind:'risk', owner:'mp', mgr:'olga', title:'Кашпо 3 л с поддоном', ch:'WB', sku:'NP-3103',
     headline:'CTR упал на 38% после смены главного фото', impact:-62, unit:'тыс ₽/нед',
     reason:'Новое фото с 1 октября: CTR 3,9% → 2,4%, заказы −27% при тех же показах.',
     found:'Обнаружено 06:47 · 2 источника',
@@ -572,13 +607,13 @@ var CASES = {
       {m:'sum', t:'06:47', tx:'Похожий случай в базе решений: Контейнер 1,2 л, 25.09 — возврат фото поднял CTR на 21%.', src:['база решений']}
     ],
     props:[
-      {id:'c1', title:'Вернуть прежнее главное фото; новое — в A/B-тест на 20% трафика', base:55, conf:82,
+      {id:'c1', perm:'self', selfWhy:'Возврат прежнего фото и A/B-тест без бюджета — в пределах полномочий менеджера.', title:'Вернуть прежнее главное фото; новое — в A/B-тест на 20% трафика', base:55, conf:82,
        detail:'Ожидаемо: CTR вернётся к ~3,8% за 3–5 дней, ставки автобиддера снизятся.',
        hist:'<b>В 2 из 2 похожих случаев</b> возврат фото восстановил CTR за 3–5 дней.',
        check:['Вернуть прежнее главное фото','Запустить A/B-тест нового фото на 20% трафика','Через 5 дней сравнить CTR']}
     ],
     propNote:'Решение по новому фото — после A/B-теста, а не по ощущениям.',
-    resp:'Ирина Ковалёва', respPos:'менеджер маркетплейса WB', due:'10.10.2026', taskTitle:'Кашпо 3 л, WB: вернуть главное фото, A/B-тест нового'
+    resp:'Ольга Ковалёва', respPos:'менеджер маркетплейса WB', due:'10.10.2026', taskTitle:'Кашпо 3 л, WB: вернуть главное фото, A/B-тест нового'
   },
   d: {
     id:'d', kind:'task', owner:'mp', title:'Задача по снижению ставок не выполнена 3 дня', ch:'WB', sku:'NP-4203', sub:'Подставка для обуви, 3 яруса',
@@ -587,7 +622,7 @@ var CASES = {
     found:'Обнаружено 07:05 · Битрикс24 + WB',
     metrics:[['Просрочка','3 дня','срок был 06.10'],['ДРР по товару','18,2%','цель 12%'],['Цена задержки','−4 тыс ₽/день','накоплено −12 тыс ₽'],['Нагрузка ответственного','7 задач','2 просрочены']],
     log:[
-      {m:'ok', t:'07:01', tx:'Задача #48102 «Снизить ставки: Подставка для обуви» создана 03.10, срок 06.10, ответственный — И. Ковалёва.', src:['Битрикс24 · задачи']},
+      {m:'ok', t:'07:01', tx:'Задача #48102 «Снизить ставки: Подставка для обуви» создана 03.10, срок 06.10, ответственный — О. Ковалёва.', src:['Битрикс24 · задачи']},
       {m:'find', t:'07:02', tx:'Статус «Ждёт выполнения», комментариев нет.', src:['Битрикс24 · задачи']},
       {m:'find', t:'07:03', tx:'Ставки в рекламном кабинете WB не менялись с 01.10.', src:['WB API · реклама']},
       {m:'next', t:'07:04', tx:'ДРР по товару 18,2% при цели 12% — каждый день ≈ −4 тыс ₽ маржи.', src:['факторная модель']},
@@ -598,7 +633,7 @@ var CASES = {
        detail:'Эффект прежний, но ещё 1 день задержки.', hist:'<b>Из 6 просроченных задач</b> после напоминания 5 выполнены в течение суток.',
        check:['Комментарий в задаче с текущими цифрами ДРР','Новый срок 10.10']},
       {id:'d2', title:'Переназначить задачу на О. Сафина (загрузка 3 задачи)', base:29, conf:74,
-       detail:'Ставки будут снижены сегодня; И. Ковалёва остаётся наблюдателем.', hist:'<b>2 из 2</b> переназначенных задач выполнены в срок.',
+       detail:'Ставки будут снижены сегодня; О. Ковалёва остаётся наблюдателем.', hist:'<b>2 из 2</b> переназначенных задач выполнены в срок.',
        check:['Сменить ответственного на О. Сафина','Снизить ставки по 4 запросам сегодня']}
     ],
     propNote:'Варианты взаимоисключающие — выберите один.', exclusive:true,
@@ -609,39 +644,39 @@ var CASE_ORDER = ['a','b','c','d'];
 
 /* ---------------- decisions ---------------- */
 var DECISIONS = [
-  {d:'03.10', prod:'Подставка для обуви, 3 яруса', ch:'WB', prob:'ДРР 18% при цели 12%', act:'Снизить ставки по 4 запросам', who:'Д. Орлов', task:'#48102 · просрочена 3 дня', ts:'late', fc:29, fact:null, v:'pending', owner:'mp', check:'проверка 13.10'},
-  {d:'02.10', prod:'Кашпо 5 л', ch:'WB', prob:'ДРР 19%, маржа 14%', act:'Снижены ставки по 3 запросам, бюджет → «кашпо для цветов»', who:'А. Морозов', task:'#48090 · выполнена', ts:'done', fc:41, fact:38, v:'ok', owner:'mp'},
-  {d:'30.09', prod:'Набор банок для сыпучих', ch:'Ozon', prob:'Выкуп 76%', act:'Инфографика размеров в карточке', who:'Д. Орлов', task:'#48051 · выполнена', ts:'done', fc:22, fact:25, v:'ok', owner:'mp'},
+  {d:'03.10', prod:'Подставка для обуви, 3 яруса', ch:'WB', prob:'ДРР 18% при цели 12%', act:'Снизить ставки по 4 запросам', who:'А. Морозов', task:'#48102 · просрочена 3 дня', ts:'late', fc:29, fact:null, v:'pending', owner:'mp', mine:1, check:'проверка 13.10'},
+  {d:'02.10', prod:'Кашпо 5 л', ch:'WB', prob:'ДРР 19%, маржа 14%', act:'Снижены ставки по 3 запросам, бюджет → «кашпо для цветов»', who:'А. Морозов', task:'#48090 · выполнена', ts:'done', fc:41, fact:38, v:'ok', owner:'mp', mine:1},
+  {d:'30.09', prod:'Набор банок для сыпучих', ch:'Ozon', prob:'Выкуп 76%', act:'Инфографика размеров в карточке', who:'А. Морозов', task:'#48051 · выполнена', ts:'done', fc:22, fact:25, v:'ok', owner:'mp'},
   {d:'27.09', prod:'Таз 12 л', ch:'Ozon', prob:'Остаток на 110 дней', act:'Акция −10% на 2 недели', who:'А. Морозов', task:'#48012 · выполнена', ts:'done', fc:30, fact:12, v:'part', owner:'mp', note:'остаток снизился, но акция съела маржу'},
-  {d:'25.09', prod:'Контейнер 1,2 л, набор 3 шт', ch:'WB', prob:'CTR −24% после смены фото', act:'Возврат прежнего главного фото', who:'Д. Орлов', task:'#47988 · выполнена', ts:'done', fc:18, fact:21, v:'ok', owner:'mp'},
+  {d:'25.09', prod:'Контейнер 1,2 л, набор 3 шт', ch:'WB', prob:'CTR −24% после смены фото', act:'Возврат прежнего главного фото', who:'О. Ковалёва · сама', task:'#47988 · выполнена', ts:'done', fc:18, fact:21, v:'ok', owner:'mp', mine:1},
   {d:'23.09', prod:'Корзина для белья 45 л', ch:'Ozon', prob:'Комиссия +3 п.п.', act:'Повышение цены на 4%', who:'А. Морозов', task:'#47960 · выполнена', ts:'done', fc:27, fact:-6, v:'fail', owner:'mp', note:'заказы −14%: цена выше порога 1 500 ₽'},
   {d:'20.09', prod:'Хлебница с крышкой', ch:'WB', prob:'Остаток на 5 дней', act:'Ускоренная поставка 1 200 шт', who:'А. Морозов', task:'#47931 · выполнена', ts:'done', fc:64, fact:58, v:'ok', owner:'supply'},
-  {d:'18.09', prod:'Ящик для игрушек 30 л', ch:'WB', prob:'Логистика +18%', act:'Перераспределение остатков Коледино → Казань', who:'Д. Орлов', task:'#47902 · выполнена', ts:'done', fc:15, fact:9, v:'part', owner:'mp'},
-  {d:'16.09', prod:'Сушилка для посуды', ch:'WB', prob:'ДРР 16%', act:'Предложено снижение ставок', who:'А. Морозов', task:'—', ts:'none', fc:20, fact:null, v:'rej', owner:'mp', note:'отклонено: распродажа у конкурентов, ждём'},
-  {d:'13.09', prod:'Органайзер для холодильника', ch:'Ozon', prob:'CPC +35%', act:'Снижение ставок, минус-фразы', who:'Д. Орлов', task:'#47860 · выполнена', ts:'done', fc:12, fact:14, v:'ok', owner:'mp'}
+  {d:'18.09', prod:'Ящик для игрушек 30 л', ch:'WB', prob:'Логистика +18%', act:'Перераспределение остатков Коледино → Казань', who:'А. Морозов', task:'#47902 · выполнена', ts:'done', fc:15, fact:9, v:'part', owner:'mp', mine:1},
+  {d:'16.09', prod:'Сушилка для посуды', ch:'WB', prob:'ДРР 16%', act:'Предложено снижение ставок', who:'А. Морозов', task:'—', ts:'none', fc:20, fact:null, v:'rej', owner:'mp', mine:1, note:'отклонено: распродажа у конкурентов, ждём'},
+  {d:'13.09', prod:'Органайзер для холодильника', ch:'Ozon', prob:'CPC +35%', act:'Снижение ставок, минус-фразы', who:'А. Морозов', task:'#47860 · выполнена', ts:'done', fc:12, fact:14, v:'ok', owner:'mp'}
 ];
 
 /* ---------------- products ---------------- */
 var PRODUCTS = [
-  {n:'Контейнер для хранения 5 л', sku:'NP-1405', rev:1492, wb:9.0, oz:19.4, drr:26.1, buy:73, stk:34, t:[22,23,22,22,23,22,15,9], mgr:'Ковалёва И.'},
+  {n:'Контейнер для хранения 5 л', sku:'NP-1405', rev:1492, wb:9.0, oz:19.4, drr:26.1, buy:73, stk:34, t:[22,23,22,22,23,22,15,9], mgr:'Ковалёва О.'},
   {n:'Органайзер для ящика, 6 секций', sku:'NP-2210', rev:1380, wb:24.2, oz:23.1, drr:9.2, buy:88, stk:6, t:[19,20,20,21,22,22,23,23], mgr:'Сафин О.'},
   {n:'Органайзер для холодильника', sku:'NP-6301', rev:1240, wb:28.4, oz:26.2, drr:9.9, buy:90, stk:15, t:[24,25,25,26,26,27,27,28], mgr:'Белова А.'},
   {n:'Корзина для белья 45 л', sku:'NP-4045', rev:1120, wb:18.2, oz:16.8, drr:11.2, buy:82, stk:63, t:[19,18,19,18,18,17,18,17], mgr:'Сафин О.'},
-  {n:'Сушилка для посуды', sku:'NP-6210', rev:1010, wb:16.3, oz:19.0, drr:13.6, buy:84, stk:37, t:[17,17,18,17,17,18,17,17], mgr:'Ковалёва И.'},
-  {n:'Подставка для обуви, 3 яруса', sku:'NP-4203', rev:960, wb:14.2, oz:22.0, drr:18.2, buy:77, stk:31, t:[19,19,18,18,17,17,16,15], mgr:'Ковалёва И.'},
-  {n:'Контейнер 1,2 л, набор 3 шт', sku:'NP-1412', rev:940, wb:25.3, oz:23.0, drr:8.4, buy:90, stk:52, t:[23,22,24,21,22,24,24,24], mgr:'Ковалёва И.'},
-  {n:'Ящик для игрушек на колёсах 30 л', sku:'NP-4130', rev:870, wb:21.0, oz:17.3, drr:12.8, buy:79, stk:28, t:[16,17,17,18,18,19,19,20], mgr:'Ковалёва И.'},
+  {n:'Сушилка для посуды', sku:'NP-6210', rev:1010, wb:16.3, oz:19.0, drr:13.6, buy:84, stk:37, t:[17,17,18,17,17,18,17,17], mgr:'Ковалёва О.'},
+  {n:'Подставка для обуви, 3 яруса', sku:'NP-4203', rev:960, wb:14.2, oz:22.0, drr:18.2, buy:77, stk:31, t:[19,19,18,18,17,17,16,15], mgr:'Ковалёва О.'},
+  {n:'Контейнер 1,2 л, набор 3 шт', sku:'NP-1412', rev:940, wb:25.3, oz:23.0, drr:8.4, buy:90, stk:52, t:[23,22,24,21,22,24,24,24], mgr:'Ковалёва О.'},
+  {n:'Ящик для игрушек на колёсах 30 л', sku:'NP-4130', rev:870, wb:21.0, oz:17.3, drr:12.8, buy:79, stk:28, t:[16,17,17,18,18,19,19,20], mgr:'Ковалёва О.'},
   {n:'Набор банок для сыпучих, 4 шт', sku:'NP-6104', rev:820, wb:23.2, oz:25.4, drr:10.4, buy:87, stk:19, t:[19,19,20,21,22,23,24,24], mgr:'Сафин О.'},
-  {n:'Кашпо 3 л с поддоном', sku:'NP-3103', rev:760, wb:15.1, oz:21.4, drr:14.1, buy:86, stk:41, t:[21,22,21,22,21,21,17,15], mgr:'Ковалёва И.'},
+  {n:'Кашпо 3 л с поддоном', sku:'NP-3103', rev:760, wb:15.1, oz:21.4, drr:14.1, buy:86, stk:41, t:[21,22,21,22,21,21,17,15], mgr:'Ковалёва О.'},
   {n:'Хлебница с крышкой', sku:'NP-6020', rev:690, wb:26.1, oz:24.0, drr:7.9, buy:91, stk:22, t:[22,23,23,24,24,25,25,25], mgr:'Белова А.'},
   {n:'Ведро 10 л с крышкой', sku:'NP-5110', rev:530, wb:19.4, oz:18.1, drr:7.0, buy:92, stk:44, t:[19,18,19,19,18,19,19,19], mgr:'Сафин О.'},
   {n:'Таз 12 л', sku:'NP-5012', rev:410, wb:12.4, oz:14.1, drr:6.1, buy:93, stk:95, t:[16,16,15,15,14,10,12,13], mgr:'Сафин О.'},
   {n:'Горшки для рассады, 10 шт', sku:'NP-7010', rev:180, wb:11.0, oz:12.6, drr:15.2, buy:89, stk:120, t:[19,18,17,16,15,13,12,11], mgr:'Белова А.'}
 ];
-var MP_TEAM = ['Ковалёва И.','Сафин О.'];
+var MP_TEAM = ['Ковалёва О.'];
 
 /* ---------------- state ---------------- */
-var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true };
+var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{} };
 try { if (localStorage.getItem('np-demo-ex') === '0') S.ex = false; if (localStorage.getItem('np-demo-intro') === '0') S.intro = false; } catch(e) {}
 CASE_ORDER.forEach(function(id){ var c = CASES[id]; S.sel[id] = {}; c.props.forEach(function(p, i){ S.sel[id][p.id] = c.exclusive ? i === 1 : true; }); });
 try { var saved = localStorage.getItem('np-demo-view'); if (saved && document.getElementById('v-' + saved)) S.view = saved; } catch(e) {}
@@ -657,12 +692,23 @@ function spark(arr, color, w, h, minR){
   return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" aria-hidden="true"><polyline points="'+pts.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/><circle cx="'+last[0]+'" cy="'+last[1]+'" r="2.2" fill="'+color+'"/></svg>';
 }
 function chTag(ch){ return '<span class="ch'+(ch==='Ozon'?' oz':'')+'">'+ch+'</span>'; }
-function visibleCases(){ return CASE_ORDER.filter(function(id){ return S.role === 'ceo' || CASES[id].owner === 'mp'; }); }
+function visibleCases(){ return CASE_ORDER.filter(function(id){ return S.role === 'ceo' || CASES[id].mgr === 'olga'; }); }
+function canSelf(p){ if (p.perm !== 'self') return false; if (p.edit){ var v = S.edits[p.id] != null ? S.edits[p.id] : p.edit.v; return v >= p.edit.limit; } return true; }
+function isOpen(id){
+  var st = caseStatus(id);
+  if (st !== 'new') return false;
+  if (S.role === 'ceo') return true;
+  return CASES[id].props.some(function(p){ return !S.pst[p.id]; });
+}
 function caseStatus(id){ return S.status[id] || 'new'; }
 function statusPill(id){
   var st = caseStatus(id);
   if (st === 'work') return '<span class="pill brand">В работе · задача #' + S.status[id + '_task'] + '</span>';
   if (st === 'rej') return '<span class="pill">Отклонено</span>';
+  if (st === 'done') return '<span class="pill pos">Выполнено · О. Ковалёва</span>';
+  if (S.pending[id]) return S.role === 'ceo' ? '<span class="pill accent">Ждёт вашего решения · от Ольги</span>' : '<span class="pill accent">На согласовании у руководителя</span>';
+  var ap = CASES[id].props.filter(function(p){ return S.pst[p.id] === 'applied'; }).length;
+  if (ap) return '<span class="pill brand">' + (ap === CASES[id].props.length ? 'Применено менеджером' : 'Частично применено менеджером') + '</span>';
   return CASES[id].kind === 'opp' ? '<span class="pill pos">Возможность</span>' : (CASES[id].kind === 'task' ? '<span class="pill warn">Контроль задачи</span>' : '<span class="pill neg">Риск</span>');
 }
 function propEffect(c, p){
@@ -676,17 +722,22 @@ function toast(msg){ var t = $('#toast'); t.textContent = msg; t.classList.add('
 function renderOverview(){
   var R = ROLES[S.role], K = KPI[S.kpi];
   var vc = visibleCases();
-  var open = vc.filter(function(id){ return caseStatus(id) === 'new'; });
+  var open = vc.filter(isOpen);
+  var M = S.role === 'mp';
   var risk = open.filter(function(id){ return CASES[id].impact < 0; }).reduce(function(s, id){ return s + CASES[id].impact; }, 0);
   var opp = open.filter(function(id){ return CASES[id].impact > 0; }).reduce(function(s, id){ return s + CASES[id].impact; }, 0);
-  var tiles = K.tiles.filter(function(t){ return S.role === 'ceo' ? !t.mp : !t.fin; });
+  if (M) K = KPI_MGR[S.kpi];
+  var tiles = K.tiles;
   var h = '';
-  if (S.intro) h += '<div class="intro"><button class="x" data-act="intro-x" aria-label="Скрыть">×</button><p><b>Центр решений</b> — система каждую ночь собирает данные WB, Ozon и 1С, находит отклонения и возможности, раскладывает причину в рублях и предлагает действие. Руководитель согласует — задача уходит в Битрикс24 — через 7 дней система проверяет эффект.</p><p class="hint2">→ Нажмите «Разобрать» на первой карточке, чтобы пройти весь сценарий.</p><p class="fine">* Тестовый вариант: данные условные, набор показателей, источников и экранов расширяется по ТЗ.</p></div>';
-  h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1><p>За ночь система проверила 318 артикулов в двух каналах. ' +
+  if (S.intro) h += '<div class="intro"><button class="x" data-act="intro-x" aria-label="Скрыть">×</button><p><b>Центр решений</b> — система каждую ночь собирает данные WB, Ozon и 1С, находит отклонения и возможности, раскладывает причину в рублях и предлагает действие. Руководитель согласует — задача уходит в Битрикс24 — через 7 дней система проверяет эффект.</p><p class="hint2">→ Нажмите «Разобрать» на первой карточке, чтобы пройти весь сценарий. Переключите роль вверху, чтобы увидеть экран менеджера.</p><p>Роли различаются данными и правами: руководитель видит финансы компании и согласует крупные решения (цена, бюджет, закупка). Менеджер видит свои товары и задачи и сам применяет действия в пределах полномочий, остальное передаёт на согласование. Полномочия настраиваются под компанию.</p><p class="fine">* Тестовый вариант: данные условные, набор показателей, источников и экранов расширяется по ТЗ.</p></div>';
+  var lateN = TASKS.filter(function(t){ return t.late && !t.done; }).length, openT = TASKS.filter(function(t){ return !t.done; }).length;
+  var waitN = vc.filter(function(id){ return S.pending[id] && caseStatus(id) === 'new'; }).length;
+  if (M) h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1><p>Мой день · менеджер маркетплейса WB, 6 товаров. ' + (open.length ? open.length + ' ' + plural(open.length, 'отклонение', 'отклонения', 'отклонений') + ' по вашим товарам' : 'Новых отклонений по вашим товарам нет') + ', ' + openT + ' ' + plural(openT, 'задача', 'задачи', 'задач') + (lateN ? ', из них ' + lateN + ' просрочена' : '') + '.</p></div>';
+  else h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1><p>' + (waitN ? '<b style="color:#8A5517">' + waitN + ' ' + plural(waitN, 'решение ждёт', 'решения ждут', 'решений ждут') + ' вашего согласования от Ольги.</b> ' : '') + 'За ночь система проверила 318 артикулов в двух каналах. ' +
        (open.length ? open.length + ' ' + plural(open.length, 'вопрос требует', 'вопроса требуют', 'вопросов требуют') + ' решения' +
-       (risk ? ': риски ' + sg(risk) + ' тыс ₽/нед к марже' : '') + (opp ? (risk ? ', возможность +' : ': возможность +') + opp + ' тыс ₽' : '') + '.' : 'Все вопросы разобраны — новых отклонений нет.') + '</p></div>' +
-       '<div class="seg" id="kpiSeg"><button data-act="kpi" data-k="day" class="' + (S.kpi==='day'?'on':'') + '">Вчера</button><button data-act="kpi" data-k="week" class="' + (S.kpi==='week'?'on':'') + '">Неделя</button></div></div>';
-  if (S.role === 'mp') h += '<div class="banner role">Показаны товары и задачи отдела маркетплейсов. Финансовые итоги компании скрыты для этой роли.</div>';
+       (risk ? ': риски ' + sg(risk) + ' тыс ₽/нед к марже' : '') + (opp ? (risk ? ', возможность +' : ': возможность +') + opp + ' тыс ₽' : '') + '.' : 'Все вопросы разобраны — новых отклонений нет.') + '</p></div>';
+  h += '<div class="seg" id="kpiSeg"><button data-act="kpi" data-k="day" class="' + (S.kpi==='day'?'on':'') + '">Вчера</button><button data-act="kpi" data-k="week" class="' + (S.kpi==='week'?'on':'') + '">Неделя</button></div></div>';
+  if (M) h += '<div class="banner role">Экран менеджера: только ваши товары WB и задачи. Выручка и маржа компании в рублях для этой роли скрыты.</div>';
   h += ex('<b>Ключевые показатели</b> за вчера или неделю с изменением к прошлому периоду и году. <b>Маржа после выкупа</b> — что остаётся с выкупленных заказов после комиссии, логистики, рекламы и себестоимости. <b>ДРР</b> — доля рекламных расходов в выручке. <b>Процент выкупа</b> — какая доля заказов выкуплена, а не возвращена.');
   h += '<div class="kpis">';
   tiles.forEach(function(t){
@@ -695,16 +746,23 @@ function renderOverview(){
       '<div class="kpi-d"><b class="' + t.dpc + '">' + t.dp + '</b> ' + K.cmp + '</div><div class="kpi-d"><b class="' + t.dyc + '">' + t.dy + '</b> г/г</div>' + spark(t.s, col) + '</div>';
   });
   h += '</div>';
-  h += '<div class="sec-h"><h2>Требует решения</h2><span class="hint">отсортировано по влиянию на маржу, ₽</span></div>' + ex('Вопросы, где нужно решение руководителя. Сортировка по рублям, а не по процентам: сначала то, что больше всего влияет на деньги. <b>Риск</b> — маржа теряется, <b>возможность</b> — можно заработать больше, <b>контроль задачи</b> — согласованное действие не выполнено вовремя.') + '<div class="cases">';
-  vc.slice().sort(function(x, y){ return Math.abs(CASES[y].impact) - Math.abs(CASES[x].impact); }).forEach(function(id){
-    var c = CASES[id], st = caseStatus(id);
-    var cls = st !== 'new' ? 'done' : c.kind;
+  if (M){
+    h += '<div class="sec-h"><h2>Мои задачи</h2><span class="hint">из Битрикс24 · ' + openT + ' открыто</span></div>' + ex('Задачи из Битрикс24, где вы ответственная: и поставленные руководителем, и созданные системой. Отметка о выполнении уходит в Битрикс24, руководитель видит её в своём обзоре.');
+    h += '<div class="card"><div class="card-b" style="padding-top:6px;padding-bottom:6px"><ul class="list tasks">' + TASKS.map(function(t){
+      return '<li class="' + (t.done ? 'done' : '') + '"><span class="tt"><b>#' + t.no + ' · ' + t.title + '</b><small>поставил: ' + t.from + ' · срок ' + t.due + '</small></span><span class="tr">' +
+        (t.done ? '<span class="pill pos">Выполнено сегодня</span>' : '<span class="pill ' + (t.late ? 'neg' : (t.isNew ? 'brand' : '')) + '">' + t.dueTxt + '</span><button class="btn" data-act="taskdone" data-t="' + t.no + '">Отметить выполненной</button>') + '</span></li>';
+    }).join('') + '</ul></div></div>';
+  }
+  h += '<div class="sec-h"><h2>' + (M ? 'Отклонения по моим товарам' : 'Требует решения') + '</h2><span class="hint">отсортировано по влиянию на маржу, ₽</span></div>' + ex(M ? 'Что изменилось по вашим товарам и почему. В разборе видно, какие действия вы можете применить сами, а какие уходят руководителю на согласование.' : 'Вопросы, где нужно решение руководителя. Сортировка по рублям, а не по процентам: сначала то, что больше всего влияет на деньги. <b>Риск</b> — маржа теряется, <b>возможность</b> — можно заработать больше, <b>контроль задачи</b> — согласованное действие не выполнено вовремя. Карточки, переданные менеджером наверх, помечены «Ждёт вашего решения».') + '<div class="cases">';
+  vc.slice().sort(function(x, y){ var wx = S.role === 'ceo' && S.pending[x] && caseStatus(x) === 'new' ? 1 : 0, wy = S.role === 'ceo' && S.pending[y] && caseStatus(y) === 'new' ? 1 : 0; return (wy - wx) || (Math.abs(CASES[y].impact) - Math.abs(CASES[x].impact)); }).forEach(function(id){
+    var c = CASES[id], st = caseStatus(id), op = isOpen(id), wait = S.role === 'ceo' && S.pending[id] && st === 'new';
+    var cls = wait ? 'wait' : (!op ? 'done' : c.kind);
     h += '<article class="card case ' + cls + '"><div class="case-top"><span>' + chTag(c.ch) + ' <span class="muted" style="font-size:12px">' + c.sku + '</span></span>' + statusPill(id) + '</div>' +
       '<h3>' + c.title + '</h3><div class="headline">' + c.headline + '</div>' +
       '<div class="impact ' + (c.impact < 0 ? 'neg' : 'pos') + '">' + sg(c.impact) + '<small>' + c.unit + '</small></div>' +
       (c.extra ? '<div class="headline" style="margin-top:-6px;font-size:13px">' + c.extra + '</div>' : '') +
       '<p class="reason">' + c.reason + '</p>' +
-      '<div class="case-foot"><span class="meta">' + (st === 'work' ? 'Проверка эффекта через 7 дней' : c.found) + '</span><button class="btn ' + (st === 'new' ? 'primary' : '') + '" data-act="open" data-case="' + id + '">' + (st === 'new' ? 'Разобрать' : 'Открыть разбор') + ' →</button></div></article>';
+      '<div class="case-foot"><span class="meta">' + (wait ? 'Передано Ольгой сегодня в ' + S.sentAt[id] : (st === 'work' ? 'Проверка эффекта через 7 дней' : (st === 'done' ? 'Задача закрыта сегодня' : c.found))) + '</span><button class="btn ' + (op ? 'primary' : '') + '" data-act="open" data-case="' + id + '">' + (wait ? 'Решить' : (op ? 'Разобрать' : 'Открыть разбор')) + ' →</button></div></article>';
   });
   h += '</div>';
   h += '<div class="sec-h"><h2>Сегодня система также</h2></div>' + ex('Фоновая работа: сверка факта с прогнозом по прошлым решениям и проверка полноты данных перед расчётами.') + '<div class="two">' +
@@ -799,6 +857,8 @@ function renderAnalysis(){
     h += '<div><div class="seg">' + [['day','День'],['week','Неделя'],['month','Месяц'],['quarter','Квартал']].map(function(p){ return '<button data-act="period" data-p="' + p[0] + '" class="' + (S.period === p[0] ? 'on' : '') + '">' + p[1] + '</button>'; }).join('') + '</div><div class="muted" style="font-size:12px;margin-top:6px;text-align:right">' + P.label + '</div></div>';
   }
   h += '</div>';
+  if (st === 'done') h += '<div class="banner ok"><b>Задача выполнена.</b> О. Ковалёва закрыла задачу #48102 сегодня; эффект система проверит через 7 дней.</div>';
+  if (st === 'new' && S.pending[c.id]) h += S.role === 'ceo' ? '<div class="banner role"><b>Ольга передала на согласование</b> в ' + S.sentAt[c.id] + ': действия вне её полномочий отмечены ниже. То, что в её полномочиях, она уже применила сама.</div>' : '<div class="banner role"><b>Передано Андрею Викторовичу.</b> Решение по действиям вне ваших полномочий принимает руководитель — вы увидите задачу в «Моих задачах».</div>';
   if (st === 'work') h += '<div class="banner ok"><b>Решение согласовано.</b> Задача #' + S.status[c.id + '_task'] + ' в Битрикс24 · ответственный ' + c.resp + ' · проверка эффекта 16.10.2026</div>';
   if (st === 'rej') h += '<div class="banner rej"><b>Предложение отклонено.</b> Причина: ' + esc(S.status[c.id + '_why']) + '. Система учтёт это при следующих похожих случаях.</div>';
 
@@ -832,29 +892,47 @@ function renderAnalysis(){
     '</ol></div></div></div>';
 
   // proposals
-  var sum = 0;
-  h += '<div class="sec-h"><h2>Предложение</h2><span class="hint">' + (c.exclusive ? 'выберите один вариант' : 'отметьте действия, которые согласуете') + '</span></div>' + ex('Варианты действий: <b>прогноз эффекта</b> в рублях, <b>уверенность</b> системы и чем закончились <b>похожие случаи</b> из базы решений компании. Руководитель согласует, меняет параметры или отклоняет с причиной.') + '<div class="props">';
+  var M = S.role === 'mp', sum = 0, sumSelf = 0, sumUp = 0, U = c.kind === 'opp' ? '' : '/нед';
+  h += '<div class="sec-h"><h2>Предложение</h2><span class="hint">' + (M ? 'действия с отметкой о полномочиях' : (c.exclusive ? 'выберите один вариант' : 'отметьте действия, которые согласуете')) + '</span></div>' +
+    ex(M ? 'Варианты действий с прогнозом эффекта, уверенностью и похожими случаями. Действия в пределах ваших полномочий (ставки рекламы ±30%, без изменения цены) можно применить сразу; изменения цены, карточки с бюджетом выше лимита и закупки уходят руководителю на согласование.' : 'Варианты действий: <b>прогноз эффекта</b> в рублях, <b>уверенность</b> системы и чем закончились <b>похожие случаи</b> из базы решений компании. Руководитель согласует, меняет параметры или отклоняет с причиной.') + '<div class="props">';
   c.props.forEach(function(p){
-    var on = !!S.sel[c.id][p.id], eff = propEffect(c, p);
-    if (on) sum += eff;
+    var ps = S.pst[p.id], eff = propEffect(c, p), self = canSelf(p);
+    var on = M ? !ps : (!!S.sel[c.id][p.id] && ps !== 'applied');
+    if (M){ if (!ps){ if (self) sumSelf += eff; else sumUp += eff; } }
+    else if (on) sum += eff;
     var editing = S.edits['_open_' + p.id];
-    h += '<div class="prop' + (on ? ' sel' : '') + (st !== 'new' && !on ? ' off' : '') + '"><label class="prop-h"><input type="' + (c.exclusive ? 'radio' : 'checkbox') + '" name="pr-' + c.id + '" data-act="sel" data-p="' + p.id + '"' + (on ? ' checked' : '') + (st !== 'new' ? ' disabled' : '') + '><b>' + p.title + '</b></label>' +
-      '<div class="eff"><span class="big">+' + eff + ' тыс ₽' + (c.kind === 'opp' ? '' : '/нед') + '</span><span class="conf">уверенность <span class="m"><i style="width:' + p.conf + '%"></i></span>' + p.conf + '%</span></div>' +
+    h += '<div class="prop' + (on && !M ? ' sel' : '') + ((st !== 'new' && !on) || ps === 'applied' ? ' off' : '') + '">';
+    if (M) h += '<div class="prop-h"><b>' + p.title + '</b></div>';
+    else h += '<label class="prop-h"><input type="' + (c.exclusive ? 'radio' : 'checkbox') + '" name="pr-' + c.id + '" data-act="sel" data-p="' + p.id + '"' + (on ? ' checked' : '') + (st !== 'new' || ps === 'applied' ? ' disabled' : '') + '><b>' + p.title + '</b></label>';
+    h += '<div class="eff"><span class="big">+' + eff + ' тыс ₽' + U + '</span><span class="conf">уверенность <span class="m"><i style="width:' + p.conf + '%"></i></span>' + p.conf + '%</span></div>' +
       '<p>' + p.detail + '</p>';
     if (p.edit && editing){
       var v = S.edits[p.id] != null ? S.edits[p.id] : p.edit.v;
-      h += '<div class="edit-row"><span>' + p.edit.label + ':</span><input type="range" data-act="edit" data-p="' + p.id + '" min="' + p.edit.min + '" max="' + p.edit.max + '" step="' + p.edit.step + '" value="' + v + '"><b>' + nf(v, 1) + ' ' + p.edit.unit + '</b><span class="muted">эффект пересчитан</span></div>';
+      h += '<div class="edit-row"><span>' + p.edit.label + ':</span><input type="range" data-act="edit" data-p="' + p.id + '" min="' + p.edit.min + '" max="' + p.edit.max + '" step="' + p.edit.step + '" value="' + v + '"><b>' + nf(v, 1) + ' ' + p.edit.unit + '</b><span class="muted">эффект пересчитан' + (p.edit.cur ? ' · ' + sg(Math.round((v / p.edit.cur - 1) * 100)) + '% к текущей ставке' : '') + '</span></div>';
     }
-    h += '<div class="hist">' + p.hist + '</div></div>';
+    h += '<div class="hist">' + p.hist + '</div>';
+    if (c.mgr === 'olga'){
+      var why = self ? (p.selfWhy || '') : (p.upWhy || (p.edit ? 'Снижение ставки больше чем на 30% — вне полномочий менеджера.' : ''));
+      if (p.edit && !self && p.perm === 'self') why = 'Снижение ставки больше чем на 30% — вне полномочий менеджера, нужно согласование руководителя.';
+      h += '<div class="perm">' + (self ? '<span class="pill pos">В полномочиях менеджера</span>' : '<span class="pill warn">Нужно согласование руководителя</span>') + '<span class="why">' + why + '</span></div>';
+    }
+    if (ps === 'applied') h += '<div class="prop-act"><span class="pill brand">Применено ' + (M ? '' : 'менеджером ') + '· задача #' + S.pst[p.id + '_task'] + ' · проверка эффекта 16.10</span></div>';
+    else if (ps === 'sent' && st === 'new') h += '<div class="prop-act"><span class="pill accent">' + (M ? 'Отправлено руководителю · ждёт решения' : 'Передано Ольгой на согласование') + '</span></div>';
+    else if (M && st === 'new' && !ps) h += '<div class="prop-act">' + (self ? '<button class="btn primary" data-act="apply" data-p="' + p.id + '">Применить сам</button>' : '<button class="btn" data-act="sendup" data-p="' + p.id + '">Отправить руководителю на согласование</button>') + '</div>';
+    h += '</div>';
   });
   h += '</div>';
   h += '<p class="note">' + c.propNote + '</p>';
-  if (st === 'new'){
-    h += '<div class="actions"><div class="sum">Итого к согласованию: <b class="pos">+' + sum + ' тыс ₽' + (c.kind === 'opp' ? '' : '/нед') + '</b></div><div style="display:flex;gap:8px;flex-wrap:wrap">' +
+  if (st === 'new' && !M){
+    h += '<div class="actions"><div class="sum">Итого к согласованию: <b class="pos">+' + sum + ' тыс ₽' + U + '</b></div><div style="display:flex;gap:8px;flex-wrap:wrap">' +
       '<button class="btn danger" data-act="reject">Отклонить</button><button class="btn" data-act="editp">Изменить</button><button class="btn primary" data-act="approve"' + (sum ? '' : ' disabled') + '>Согласовать</button></div></div>';
-    if (S.rejectOpen){
-      h += '<div class="reject-box"><span class="muted">Причина отклонения:</span>' + ['Не согласен с причиной','Нет ресурса на этой неделе','Есть другое решение','Ждём рынок'].map(function(r){ return '<button class="chip" data-act="rejwhy" data-why="' + r + '">' + r + '</button>'; }).join('') + '</div>';
-    }
+  }
+  if (st === 'new' && M && (sumSelf || sumUp)){
+    h += '<div class="actions"><div class="sum">' + (sumSelf ? 'Можно применить самой: <b class="pos">+' + sumSelf + ' тыс ₽' + U + '</b>' : '') + (sumSelf && sumUp ? ' · ' : '') + (sumUp ? 'на согласование: <b>+' + sumUp + ' тыс ₽' + U + '</b>' : '') + '</div><div style="display:flex;gap:8px;flex-wrap:wrap">' +
+      '<button class="btn danger" data-act="reject">Не согласна с разбором</button><button class="btn" data-act="editp">Изменить</button></div></div>';
+  }
+  if (st === 'new' && S.rejectOpen){
+    h += '<div class="reject-box"><span class="muted">Причина:</span>' + ['Не согласен с причиной','Нет ресурса на этой неделе','Есть другое решение','Ждём рынок'].map(function(r){ return '<button class="chip" data-act="rejwhy" data-why="' + r + '">' + r + '</button>'; }).join('') + '</div>';
   }
   $('#v-analysis').innerHTML = h;
 }
@@ -862,7 +940,7 @@ function renderAnalysis(){
 /* ---------------- approve modal ---------------- */
 function approve(){
   var c = CASES[S.caseId], R = ROLES[S.role];
-  var chosen = c.props.filter(function(p){ return S.sel[c.id][p.id]; });
+  var chosen = c.props.filter(function(p){ return S.sel[c.id][p.id] && S.pst[p.id] !== 'applied'; });
   if (!chosen.length) return;
   var no = S.taskNo++;
   var eff = chosen.reduce(function(s, p){ return s + propEffect(c, p); }, 0);
@@ -875,27 +953,50 @@ function approve(){
   var h = '<div class="modal-h"><div class="ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><h3>Задача создана в Битрикс24</h3><p>Ответственный получил уведомление. Карточка в «Обзоре дня» переведена в статус «В работе».</p></div></div>' +
     ex('Так задача выглядит в Битрикс24: ответственный, срок, чек-лист и ссылка на разбор. Дата проверки эффекта ставится автоматически.', 1) + '<div class="tcard"><div class="tcard-top"><span>Задача #' + no + ' · проект «Маркетплейсы»</span><span>создана 09.10.2026, ' + new Date().toTimeString().slice(0,5) + '</span></div><div class="tcard-b"><h4>' + c.taskTitle + '</h4>' +
     '<dl class="task-grid"><dt>Ответственный</dt><dd>' + c.resp + ', ' + c.respPos + '</dd><dt>Постановщик</dt><dd>' + R.full + ', ' + R.pos.toLowerCase() + '</dd>' +
-    (S.role === 'ceo' ? '<dt>Наблюдатель</dt><dd>Дмитрий Орлов, руководитель отдела маркетплейсов</dd>' : '') +
     '<dt>Срок</dt><dd>' + c.due + '</dd><dt>Прогноз эффекта</dt><dd class="pos"><b>+' + eff + ' тыс ₽' + (c.kind === 'opp' ? '' : '/нед') + '</b></dd><dt>Проверка эффекта</dt><dd>16.10.2026, автоматически</dd><dt>Разбор</dt><dd><a href="#" data-act="closemodal" style="color:var(--brand)">Разбор «' + c.title + '» →</a></dd></dl>' +
     '<ul>' + checks.map(function(x){ return '<li><i></i><span>' + x + '</span></li>'; }).join('') + '</ul></div></div>' +
     '<div class="modal-f"><button class="btn" data-act="go-dec">К решениям</button><button class="btn primary" data-act="closemodal-ov">В обзор дня</button></div>';
   $('#modalBody').innerHTML = h;
   $('#modal').classList.add('on');
-  S.status[c.id] = 'work'; S.status[c.id + '_task'] = no;
-  DECISIONS.unshift({d:'09.10', prod:c.title.indexOf('Задача') === 0 ? c.sub : c.title, ch:c.ch, prob:c.headline.replace(/ · задача.*/, ''), act:chosen.map(function(p){ return p.title; }).join('; '), who:R.short, task:'#' + no + ' · в работе', ts:'work', fc:eff, fact:null, v:'pending', owner:c.owner, check:'проверка 16.10', isNew:true});
+  S.status[c.id] = 'work'; S.status[c.id + '_task'] = no; S.pending[c.id] = false;
+  chosen.forEach(function(p){ if (S.pst[p.id] === 'sent') S.pst[p.id] = 'approved'; });
+  if (c.resp === 'Ольга Ковалёва') TASKS.unshift({no:no, title:c.taskTitle, due:c.due.slice(0,5), dueTxt:'новая · срок ' + c.due.slice(0,5), from:R.short, isNew:true});
+  DECISIONS.unshift({d:'09.10', prod:c.title.indexOf('Задача') === 0 ? c.sub : c.title, ch:c.ch, prob:c.headline.replace(/ · задача.*/, ''), act:chosen.map(function(p){ return p.title; }).join('; '), who:R.short, task:'#' + no + ' · в работе', ts:'work', fc:eff, fact:null, v:'pending', owner:c.owner, mine:c.mgr === 'olga' ? 1 : 0, check:'проверка 16.10', isNew:true});
+  renderAll();
+}
+function applySelf(pid){
+  var c = CASES[S.caseId], p = c.props.filter(function(x){ return x.id === pid; })[0];
+  var no = S.taskNo++, eff = propEffect(c, p);
+  S.pst[pid] = 'applied'; S.pst[pid + '_task'] = no;
+  DECISIONS.unshift({d:'09.10', prod:c.title, ch:c.ch, prob:c.headline, act:p.title, who:'О. Ковалёва · сама', task:'#' + no + ' · выполнена', ts:'done', fc:eff, fact:null, v:'pending', owner:c.owner, mine:1, check:'проверка 16.10', isNew:true});
+  toast(p.edit ? 'Применено: ставка ' + nfm(S.edits[pid] != null ? S.edits[pid] : p.edit.v) + ' ₽ в кабинете WB. Проверка эффекта 16.10' : 'Применено. Задача #' + no + ' закрыта, проверка эффекта 16.10');
+  renderAll();
+}
+function sendUp(pid){
+  var c = CASES[S.caseId];
+  S.pst[pid] = 'sent'; S.pending[c.id] = true; S.sentAt[c.id] = new Date().toTimeString().slice(0,5);
+  c.props.forEach(function(p){ S.sel[c.id][p.id] = S.pst[p.id] === 'sent'; });
+  toast('Передано Андрею Викторовичу');
+  renderAll();
+}
+function taskDone(no){
+  TASKS.forEach(function(t){ if (t.no === no) t.done = true; });
+  if (no === 48102){ S.status.d = 'done'; DECISIONS.forEach(function(d){ if (d.task && d.task.indexOf('#48102') === 0){ d.task = '#48102 · выполнена 09.10'; d.ts = 'done'; } }); }
+  DECISIONS.forEach(function(d){ if (d.task && d.task.indexOf('#' + no + ' · в работе') === 0){ d.task = '#' + no + ' · выполнена'; d.ts = 'done'; } });
+  toast('Задача #' + no + ' закрыта в Битрикс24');
   renderAll();
 }
 function reject(why){
   var c = CASES[S.caseId], R = ROLES[S.role];
-  S.status[c.id] = 'rej'; S.status[c.id + '_why'] = why; S.rejectOpen = false;
-  DECISIONS.unshift({d:'09.10', prod:c.title.indexOf('Задача') === 0 ? c.sub : c.title, ch:c.ch, prob:c.headline.replace(/ · задача.*/, ''), act:'Предложено: ' + c.props[0].title, who:R.short, task:'—', ts:'none', fc:c.props[0].base, fact:null, v:'rej', owner:c.owner, note:'отклонено: ' + why.toLowerCase(), isNew:true});
+  S.status[c.id] = 'rej'; S.status[c.id + '_why'] = why; S.rejectOpen = false; S.pending[c.id] = false;
+  DECISIONS.unshift({d:'09.10', prod:c.title.indexOf('Задача') === 0 ? c.sub : c.title, ch:c.ch, prob:c.headline.replace(/ · задача.*/, ''), act:'Предложено: ' + c.props[0].title, who:R.short, task:'—', ts:'none', fc:c.props[0].base, fact:null, v:'rej', owner:c.owner, mine:c.mgr === 'olga' ? 1 : 0, note:'отклонено: ' + why.toLowerCase(), isNew:true});
   toast('Отклонено. Причина сохранена в базе решений');
   renderAll();
 }
 
 /* ---------------- decisions ---------------- */
 function renderDecisions(){
-  var rows = DECISIONS.filter(function(d){ return S.role === 'ceo' || d.owner === 'mp'; });
+  var rows = DECISIONS.filter(function(d){ return S.role === 'ceo' || d.mine; });
   var acc = rows.filter(function(d){ return d.v !== 'rej'; }).length;
   var checked = rows.filter(function(d){ return d.fact != null; });
   var factSum = checked.reduce(function(s, d){ return s + d.fact; }, 0);
@@ -903,6 +1004,7 @@ function renderDecisions(){
   var V = {ok:['pos','Сработало'], part:['warn','Частично'], fail:['neg','Не сработало'], pending:['','Ждём 7 дней'], rej:['','Отклонено']};
   var TS = {done:'pos', late:'neg', work:'brand', none:''};
   var h = '<div class="page-h"><div><h1>Решения и эффект</h1><p>Каждое согласованное действие становится задачей, а через 7 дней система сравнивает факт с прогнозом. Так видно, какие решения действительно возвращают деньги.</p></div></div>';
+  if (S.role === 'mp') h += '<div class="banner role">Показаны только ваши решения: по товарам, где вы ответственная.</div>';
   h += ex('<b>База решений</b>: каждое предложение, решение и его фактический результат. Из неё система берёт «похожие случаи» и учится, какие действия работают именно у этой компании.');
   h += '<div class="stats">' +
     '<div class="card stat"><div class="l">Принято предложений</div><div class="v">' + acc + ' из ' + rows.length + '</div><div class="s">с 13 сентября</div></div>' +
@@ -941,7 +1043,7 @@ function renderProducts(){
   var tot = rows.reduce(function(s, p){ return s + p.rev; }, 0);
   var cols = [['n','Товар',''],['rev','Выручка, тыс ₽/нед','n'],['wb','Маржа WB','n'],['oz','Маржа Ozon','n'],['drr','ДРР','n'],['buy','Выкуп','n'],['stk','Остаток, дн','n'],['t','Тренд маржи, 8 нед',''],['mgr','Ответственный','']];
   var h = '<div class="page-h"><div><h1>Товары</h1><p>' + rows.length + ' ключевых артикулов — ' + nf(tot/18400*100, 0) + '% выручки недели (' + nf(tot/1000, 1) + ' из 18,4 млн ₽). Маржа — после выкупа, с учётом рекламы, логистики, хранения и себестоимости из 1С.</p></div></div>';
-  if (S.role === 'mp') h = h.replace(/ \(.*? млн ₽\)/, '') + '<div class="banner role">Показаны только товары вашего отдела: И. Ковалёва и О. Сафин.</div>';
+  if (S.role === 'mp'){ cols = cols.filter(function(c){ return c[0] !== 'oz' && c[0] !== 'mgr'; }); h = '<div class="page-h"><div><h1>Мои товары</h1><p>' + rows.length + ' товаров, где вы ответственная. Маржа — после выкупа, канал WB.</p></div></div><div class="banner role">Товары других менеджеров и показатели Ozon для этой роли скрыты.</div>'; }
   h += ex('Основные артикулы с маржой по каналам, рекламой, выкупом и запасом. Цветом выделено то, что требует внимания; нажмите на заголовок столбца, чтобы отсортировать.');
   h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:900px"><thead><tr>' + cols.map(function(c){
     var on = S.sort.k === c[0];
@@ -952,10 +1054,10 @@ function renderProducts(){
     var arrow = dt <= -3 ? '↘' : (dt >= 3 ? '↗' : '→');
     function c(v, kind, suf){ var f = flag(v, kind); return '<td class="n">' + (f ? '<span class="cell-flag ' + f + '">' + nf(v, 1) + suf + '</span>' : nf(v, kind === 'stk' ? 0 : 1) + suf) + '</td>'; }
     h += '<tr><td style="min-width:270px"><div class="prod-name">' + p.n + '</div><div class="prod-sku">' + p.sku + '</div></td><td class="n">' + nf(p.rev) + '</td>' +
-      c(p.wb, 'm', '%') + c(p.oz, 'm', '%') + c(p.drr, 'drr', '%') +
+      c(p.wb, 'm', '%') + (S.role === 'mp' ? '' : c(p.oz, 'm', '%')) + c(p.drr, 'drr', '%') +
       '<td class="n">' + (flag(p.buy, 'buy') ? '<span class="cell-flag ' + flag(p.buy, 'buy') + '">' + p.buy + '%</span>' : p.buy + '%') + '</td>' +
       '<td class="n">' + (flag(p.stk, 'stk') ? '<span class="cell-flag ' + flag(p.stk, 'stk') + '">' + p.stk + '</span>' : p.stk) + '</td>' +
-      '<td><span class="trend">' + spark(p.t, col, 64, 20, 12) + '<span style="color:' + col + ';font-weight:600">' + arrow + '</span></span></td><td class="muted" style="white-space:nowrap">' + p.mgr + '</td></tr>';
+      '<td><span class="trend">' + spark(p.t, col, 64, 20, 12) + '<span style="color:' + col + ';font-weight:600">' + arrow + '</span></span></td>' + (S.role === 'mp' ? '' : '<td class="muted" style="white-space:nowrap">' + p.mgr + '</td>') + '</tr>';
   });
   h += '</tbody></table></div></div>';
   h += '<div class="legend"><span><i style="background:var(--neg-bg);border:1px solid var(--neg)"></i>маржа &lt; 12%, ДРР &gt; 15%, выкуп &lt; 78%, остаток &lt; 10 дней</span><span><i style="background:var(--warn-bg);border:1px solid var(--warn)"></i>зона внимания / остаток &gt; 90 дней</span><span>Нажмите на заголовок столбца для сортировки</span></div>';
@@ -982,6 +1084,7 @@ function renderSources(){
     '<li><span class="ic warn">!</span><span style="flex:1">Себестоимость: у 4 артикулов нет партии за 60 дней — используется последняя известная</span><span class="r warn">4 шт</span></li>' +
     '<li><span class="ic pos">✓</span><span style="flex:1">Отзывы за неделю загружены и размечены по причинам</span><span class="r">1 284 из 1 284</span></li></ul></div></div>';
   var cloud = S.where === 'cloud';
+  if (S.role === 'mp'){ h += '<p class="note">Где работают модели (облако или сервер компании) — настройка руководителя.</p>'; $('#v-sources').innerHTML = h; return; }
   h += '<div class="sec-h"><h2>Где работают модели</h2></div>' + ex('Модели, которые ведут расследование, могут работать в облаке или на сервере компании — тогда данные не покидают её контур.') + '<div class="card"><div class="card-b"><div class="seg"><button data-act="where" data-w="cloud" class="' + (cloud ? 'on' : '') + '">Облако</button><button data-act="where" data-w="local" class="' + (!cloud ? 'on' : '') + '">Сервер компании</button></div>' +
     '<div class="where"><div class="' + (cloud ? 'on' : '') + '"><b>Облако</b>Модель вызывается по API. Наружу уходят только агрегаты и тексты отзывов — без персональных данных покупателей и без себестоимости по партиям. Быстрый старт, оплата за использование.</div>' +
     '<div class="' + (!cloud ? 'on' : '') + '"><b>Сервер компании</b>Открытая модель на собственном сервере с GPU: данные не покидают контур компании. Выше стоимость владения, расследование идёт медленнее (≈ 2–3 мин вместо 40 сек).</div></div>' +
@@ -1004,7 +1107,10 @@ document.addEventListener('click', function(e){
   var t = e.target.closest('[data-act]'); if (!t) return;
   var a = t.dataset.act;
   if (a === 'go') return go(t.dataset.view);
-  if (a === 'role'){ S.role = t.dataset.role; S.rejectOpen = false; renderAll(); return toast(S.role === 'ceo' ? 'Роль: руководитель — все товары и финансы' : 'Роль: руководитель отдела маркетплейсов'); }
+  if (a === 'role'){ S.role = t.dataset.role; S.rejectOpen = false; renderAll(); return toast(S.role === 'ceo' ? 'Роль: руководитель — вся компания, согласование решений' : 'Роль: Ольга, менеджер WB — свои товары и задачи'); }
+  if (a === 'apply') return applySelf(t.dataset.p);
+  if (a === 'sendup') return sendUp(t.dataset.p);
+  if (a === 'taskdone') return taskDone(parseInt(t.dataset.t, 10));
   if (a === 'extog'){ S.ex = !S.ex; if (S.ex) S.intro = true; try { localStorage.setItem('np-demo-ex', S.ex ? '1' : '0'); localStorage.setItem('np-demo-intro', '1'); } catch(e) {} return renderAll(); }
   if (a === 'intro-x'){ S.intro = false; try { localStorage.setItem('np-demo-intro', '0'); } catch(e) {} return renderOverview(); }
   if (a === 'kpi'){ S.kpi = t.dataset.k; return renderOverview(); }
