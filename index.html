@@ -506,6 +506,182 @@ table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-
   .rnp tr.rnp-head td.c-sku{width:auto;min-width:0}
 }
 
+/* ---------- RNP settings drawer ---------- */
+.cfg{position:fixed;top:0;right:0;bottom:0;width:400px;max-width:100%;background:var(--surface);border-left:1px solid var(--line);box-shadow:-12px 0 40px rgba(0,0,0,.14);z-index:130;display:flex;flex-direction:column;transform:translateX(105%);transition:transform .2s ease}
+.cfg.on{transform:none}
+.cfg-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.cfg-h b{font-size:15px;font-weight:600}
+.cfg-h small{display:block;color:var(--ink-3);font-size:12px;margin-top:2px}
+.cfg-h .x{border:0;background:none;font-size:22px;line-height:1;cursor:pointer;color:var(--ink-3);padding:4px 8px}
+.cfg-b{flex:1;overflow-y:auto;padding:6px 16px 16px}
+.cfg-l{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);margin:14px 0 6px}
+.cfg-row{display:flex;gap:8px;flex-wrap:wrap}
+.cfg-f{display:flex;justify-content:space-between;gap:8px;padding:12px 16px;border-top:1px solid var(--line)}
+.dl{list-style:none;margin:0;padding:0}
+.dg{border:1px solid var(--line);border-radius:9px;margin-bottom:8px;background:var(--surface)}
+.dg-h{display:flex;align-items:center;gap:8px;padding:7px 8px;background:var(--surface-2);border-radius:9px 9px 0 0}
+.dg-h b{font-weight:600;font-size:13px;flex:1}
+.dr{display:flex;align-items:center;gap:8px;padding:4px 8px;border-top:1px solid var(--line-2);font-size:13px}
+.dr label{flex:1;display:flex;gap:6px;align-items:center;cursor:pointer}
+.dr input{accent-color:var(--brand)}
+.dh{cursor:grab;color:var(--ink-3);touch-action:none;user-select:none;padding:2px 3px;font-size:14px}
+.dragging{opacity:.55;background:var(--accent-bg)}
+.mv{display:inline-flex;gap:2px}
+.mv button{border:1px solid var(--line);background:var(--surface);border-radius:5px;width:24px;height:22px;cursor:pointer;font-size:12px;color:var(--ink-2);padding:0}
+.mv button[disabled]{opacity:.3;cursor:default}
+.mv .pn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.rnp-vn{font-size:13px}
+.rnp tr.pin .c-met{box-shadow:inset 3px 0 0 var(--accent)}
+.lim{font-size:12px;color:var(--ink-3);margin-right:2px}
+.pcalc{font-style:italic;color:var(--ink-3)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.tabs button{border:0;background:none;padding:9px 14px;font-size:14px;color:var(--ink-2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:center}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--brand);font-weight:500}
+/* ---------- photos ---------- */
+.ph{display:inline-block;flex:none;border-radius:8px;overflow:hidden;border:1px solid var(--line-2);background:#F6F4F0;vertical-align:middle;cursor:zoom-in}
+.ph svg{width:100%;height:100%;display:block}
+.ph.miss{border:1.5px dashed #D9B98F;background:var(--accent-bg);display:inline-flex;align-items:center;justify-content:center;color:#8A5517;font-size:20px;cursor:default}
+.rh{display:flex;gap:12px;align-items:center;white-space:normal}
+.case-t{display:flex;gap:12px;align-items:flex-start}
+.case-t > div{min-width:0}
+.zoom{padding:16px 18px 20px}
+.zoom-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
+.zoom-h .x{margin-left:auto;border:0;background:none;font-size:22px;cursor:pointer;color:var(--ink-3)}
+.zoom-img{width:min(420px,100%);aspect-ratio:1;margin:0 auto;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.zoom-img svg{width:100%;height:100%;display:block}
+.ba{display:flex;gap:16px;flex-wrap:wrap}
+.ba figure{margin:0;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-2)}
+.ba figure b{color:var(--ink)}
+.thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.thumbs figure{margin:0;width:78px;font-size:12px;color:var(--ink-2);line-height:1.25;text-align:center}
+.thumbs figure .ph{width:78px;height:78px;cursor:default}
+.thumbs figure b{display:block;font-weight:600}
+.thumbs .ok{color:var(--pos)} .thumbs .no{color:var(--neg)}
+.pn-name{display:flex;gap:10px;align-items:center;min-width:240px}
+.pn-name small{display:block;color:var(--ink-3);font-size:12px}
+/* ---------- plan ---------- */
+.pfl{font-size:13px;color:var(--ink-3)}
+.pstrip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-top:4px;font-weight:400}
+.pstrip b{font-weight:600;color:var(--ink)}
+.pstrip.neg span:last-child b{color:var(--neg)} .pstrip.warn span:last-child b{color:var(--warn)} .pstrip.pos span:last-child b{color:var(--pos)}
+.pbar{position:relative;width:110px;height:6px;border-radius:3px;background:var(--line-2);overflow:visible;display:inline-block}
+.pbar i{display:block;height:100%;border-radius:3px;background:var(--brand)}
+.pbar em{position:absolute;top:-3px;width:2px;height:12px;background:var(--ink-3)}
+.plan-t td,.plan-t th{white-space:nowrap}
+.plan-t th.calc,.plan-t td.calc{color:var(--ink-3);font-style:italic}
+.plan-t td.calc{cursor:help}
+.pin{width:86px;border:1px solid var(--line);border-radius:6px;padding:3px 6px;font:inherit;font-weight:600;text-align:right;background:var(--surface)}
+.pin:focus{outline:2px solid #C9D8D0;border-color:var(--brand)}
+.plan-tot{grid-template-columns:repeat(3,minmax(0,1fr))}
+.banner.role .btn{padding:5px 10px;font-size:13px}
+@media (max-width:640px){ .cfg{width:100%} .pbar{width:70px} .plan-tot{grid-template-columns:1fr 1fr} }
+
+/* ---------- stock ---------- */
+.stk-tiles{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.stk-money{padding:16px 18px}
+.stk-money .l{font-size:13px;color:var(--ink-2)}
+.stk-money .v{font-size:26px;font-weight:600;letter-spacing:-.02em;margin:2px 0 8px}
+.stk-money ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:3px 16px;font-size:13px}
+.stk-money li{display:flex;justify-content:space-between;gap:8px;color:var(--ink-2)}
+.stk-money li b{font-weight:600;color:var(--ink);white-space:nowrap}
+.stk-money li.ov{grid-column:1/-1;border-top:1px solid var(--line-2);padding-top:4px;margin-top:2px}
+.stk-money li.ov b{color:#47627A}
+.stk-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin:4px 0 10px}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.lg::before{content:"";width:10px;height:10px;border-radius:3px}
+.lg.red::before{background:#C9584B} .lg.yellow::before{background:#D9A23A} .lg.green::before{background:#4E9A72} .lg.over::before{background:#7D93A8}
+.stk td{white-space:nowrap;vertical-align:middle}
+.stk td small{display:block;font-size:12px;color:var(--ink-3)}
+.srow.red td{background:#FBEDEA} .srow.yellow td{background:#FCF4E2} .srow.green td{background:#FFFFFF} .srow.over td{background:#EEF2F6}
+.srow td:first-child{box-shadow:inset 3px 0 0 transparent}
+.srow.red td:first-child{box-shadow:inset 3px 0 0 #C9584B} .srow.yellow td:first-child{box-shadow:inset 3px 0 0 #D9A23A} .srow.green td:first-child{box-shadow:inset 3px 0 0 #4E9A72} .srow.over td:first-child{box-shadow:inset 3px 0 0 #7D93A8}
+.sbadge{display:inline-block;font-size:12px;font-weight:600;border-radius:12px;padding:2px 9px}
+.sbadge.red{background:#C9584B;color:#fff} .sbadge.yellow{background:#F2D08A;color:#5B3D06} .sbadge.green{background:#DCEFE4;color:#22603F} .sbadge.over{background:#DCE4EC;color:#3E566C}
+.exp-b{border:0;background:none;padding:0;font:inherit;font-weight:500;cursor:pointer;text-align:left;color:var(--ink)}
+.sexp td{background:var(--surface-2)!important;white-space:normal}
+.sexp .sdet{position:sticky;left:0;max-width:min(1060px,calc(100vw - 360px));display:block}
+.sexp .sdet-t{overflow-x:auto}
+.sexp .sdet-c{max-width:440px;margin-top:12px}
+.sdet{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;padding:6px 0}
+.tbl.sub th,.tbl.sub td{padding:6px 8px;font-size:13px}
+.stk-ch{width:100%;height:auto;display:block}
+.stot td{font-weight:500;background:var(--surface-2);border-top:1px solid var(--line)}
+.stk-tip{font-size:13px;color:var(--brand);text-decoration:underline;font-weight:500}
+@media (max-width:1180px){ .stk-tiles{grid-template-columns:1fr 1fr} .stk-money{grid-column:1/-1} }
+@media (max-width:900px){ .sexp .sdet{max-width:calc(100vw - 60px)} }
+@media (max-width:640px){ .stk-tiles{grid-template-columns:1fr} .stk-money ul{grid-template-columns:1fr} .sdet{grid-template-columns:1fr} }
+/* ---------- chain ---------- */
+.chain .card-b{display:flex;flex-direction:column;gap:12px;overflow-x:auto}
+.cbr{display:flex;align-items:stretch;gap:6px;min-width:max-content}
+.cnode{border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--surface);width:132px;display:flex;flex-direction:column;gap:2px;font-size:13px}
+.cnode.loss{border-color:#E3B3AC;background:#FBF1EF}
+.cn-t{color:var(--ink-2);font-size:12px;line-height:1.25;min-height:30px}
+.cn-v b{font-weight:600}
+.cn-d{font-size:12px;color:var(--ink-3)}
+.cnode svg{width:100%;height:18px}
+.cn-l a{font-size:12px;color:var(--brand)}
+.carr{align-self:center;color:var(--accent);font-weight:700}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(196,130,58,0)}50%{box-shadow:0 0 0 4px rgba(196,130,58,.55)}}
+.cnode.focus{border-color:var(--accent);animation:pulse 1s ease 2}
+.rnp td.fcell{outline:2px solid var(--accent);outline-offset:-2px;animation:pulse 1s ease 2}
+.rnp tr.frow .c-met{font-weight:600;color:var(--ink);box-shadow:inset 3px 0 0 var(--accent)}
+.crumb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--accent-bg);color:#6E4512;border-radius:9px;padding:9px 14px;font-size:13px;margin-bottom:12px}
+.crumb a{color:var(--brand);font-weight:500}
+.crumb .x{margin-left:auto;border:0;background:none;cursor:pointer;color:#6E4512;font-size:16px}
+.why-l{font-size:12px;color:var(--brand);margin-left:6px}
+@media (max-width:640px){ .cbr{flex-direction:column;min-width:0} .cnode{width:auto} .carr{transform:rotate(90deg)} }
+
+/* ---------- finance / season / funnel plan ---------- */
+.fin-k{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));margin-bottom:6px}
+.pl tr.pls td{font-weight:600;background:var(--surface-2)}
+.pl tr.opx td:first-child{padding-left:22px}
+.pl tr[data-act]{cursor:pointer}
+.pl tr[data-act]:hover td{background:#FBFAF7}
+.devb{border:0;border-radius:6px;padding:2px 8px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;background:var(--surface-2)}
+.devb.neg{background:var(--neg-bg);color:var(--neg)} .devb.warn{background:var(--warn-bg);color:var(--warn)} .devb.pos{background:var(--pos-bg);color:var(--pos)}
+.pin.nrm{width:58px;font-weight:500}
+.whyr td{background:#FBF7F0!important;white-space:normal}
+.why-h{margin-bottom:8px}
+.why-g{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
+.why-c{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13px;display:flex;flex-direction:column;gap:4px}
+.why-c a{color:var(--brand)}
+.why-v{font-size:18px;font-weight:600;color:var(--neg)}
+.cbr.mini .cnode{width:auto;min-width:100px}
+.bars{list-style:none;margin:0;padding:0}
+.bars li{display:grid;grid-template-columns:130px minmax(0,1fr) 120px;gap:10px;align-items:center;padding:5px 0;cursor:pointer;font-size:13px}
+.bars .bb{height:8px;background:var(--line-2);border-radius:4px;overflow:hidden}
+.bars .bb i{display:block;height:100%;background:var(--brand)}
+.bars .bb i.neg{background:var(--neg)}
+.bars .bv{text-align:right;font-weight:600}
+.bars .bv small{display:block;font-weight:400;color:var(--ink-3);font-size:12px}
+.ddsf-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;align-items:end}
+.ddsf-g label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink-3)}
+.ddsf-g input,.ddsf-g select{border:1px solid var(--line);border-radius:7px;padding:7px 9px;font:inherit;font-size:14px;background:var(--surface);color:var(--ink);min-width:0}
+.ddsf-g .wide{grid-column:span 2}
+.ddsw{margin-top:8px;font-size:13px;font-weight:500;min-height:18px}
+tr.new td{background:#F3F8F5}
+table.heat{border-collapse:separate;border-spacing:3px;width:100%;min-width:900px;font-size:13px;table-layout:fixed}
+.heat th:first-child{width:220px}
+.heat th{font-weight:500;color:var(--ink-3);font-size:12px;text-align:center;padding:4px}
+.heat th:first-child{text-align:left}
+.heat th.now{color:var(--accent);font-weight:700}
+.heat th small{display:block;font-size:12px}
+.heat .hn{white-space:nowrap;padding:6px 8px;cursor:pointer;font-weight:500}
+.heat .hc{text-align:center;border-radius:6px;padding:6px 2px;position:relative;font-variant-numeric:tabular-nums;cursor:pointer}
+.heat .hc.now{outline:2px solid var(--accent);outline-offset:-1px}
+.heat .hc i{display:block;font-style:normal;font-size:12px;color:#fff;border-radius:4px;margin-top:3px;padding:0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.heat tr.hx td{background:var(--surface-2);border-radius:8px;padding:10px}
+.fp{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px;align-items:start}
+.fpt td.gapc{background:var(--neg-bg)}
+.lev{margin-bottom:10px;font-size:13px}
+.lev label{display:block;margin-bottom:2px}
+.lev input{width:100%;accent-color:var(--brand)}
+.whyline{font-size:14px;color:var(--ink-2);margin:4px 0 0;max-width:860px}
+.whyline b{color:var(--ink);font-weight:600}
+body.no-ex .whyline{display:none}
+@media (max-width:900px){ .fp,.why-g{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:640px){ .bars li{grid-template-columns:100px minmax(0,1fr) 90px} .ddsf-g .wide{grid-column:auto} }
+
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .side{padding-right:58px}
@@ -580,11 +756,14 @@ table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-
       <div class="nav-cap">Работа</div>
       <button data-act="go" data-view="overview" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Обзор дня<span class="cnt" id="navCnt">4</span></button>
       <button data-act="go" data-view="rnp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg>РНП</button>
+      <button data-act="go" data-view="stock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9l9-5 9 5v11H3z"/><path d="M8 20v-6h8v6M8 14h8"/></svg>Остатки и подсорт</button>
       <button data-act="go" data-view="analysis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>Разбор</button>
       <button data-act="go" data-view="decisions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.3l2.7 2.7L16.2 9.5"/></svg>Решения и эффект</button>
       <button data-act="go" data-view="products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5L12 12l8.5-4.5M12 12v9"/></svg>Товары</button>
       <button data-act="go" data-view="market"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3.5 20.5h17"/><path d="M5 16l4.5-5 3.5 3 6-7"/><path d="M15 7h4v4"/></svg>Рынок</button>
+      <button data-act="go" data-view="season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Сезонность</button>
       <button data-act="go" data-view="departments" id="navDep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="11" width="5" height="9" rx="1"/><rect x="9.5" y="6" width="5" height="14" rx="1"/><rect x="16" y="3" width="5" height="17" rx="1"/></svg>Отделы</button>
+      <button data-act="go" data-view="finance" id="navFin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V9M10 19V5M16 19v-7M21 19H3"/></svg>Финансы</button>
       <button data-act="go" data-view="sources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></svg>Источники данных</button>
     </nav>
     <div class="side-foot"><span class="dot"></span>Данные актуальны на 07:20<br>Следующая загрузка в 13:00<br><a href="https://github.com/electrocow0-tech/decision-center-demo" target="_blank" rel="noopener" style="color:#C4823A">Концепция →</a></div>
@@ -596,6 +775,7 @@ table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-
       <div class="top-right">
         <a class="concept" href="https://github.com/electrocow0-tech/decision-center-demo" target="_blank" rel="noopener">Концепция →</a>
         <button class="ex-tog on" id="exTog" data-act="extog" aria-pressed="true"><span class="sw"></span><span>Пояснения: <b id="exTogL">вкл</b></span></button>
+        <span class="ph-top"><span class="muted" style="font-size:12px">Фото</span><span id="phTop"></span></span>
         <label>Роль</label>
         <span class="qt" tabindex="0" role="button" aria-label="Пояснение" data-tip="Роли различаются данными и правами. Руководитель видит финансы и согласует крупные решения; менеджер — свои товары и задачи и действует в пределах полномочий.">?</span>
         <div class="seg" id="roleSeg">
@@ -607,11 +787,14 @@ table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-
 
     <section class="view on" id="v-overview"></section>
     <section class="view" id="v-rnp"></section>
+    <section class="view" id="v-stock"></section>
     <section class="view" id="v-analysis"></section>
     <section class="view" id="v-decisions"></section>
     <section class="view" id="v-products"></section>
     <section class="view" id="v-market"></section>
     <section class="view" id="v-departments"></section>
+    <section class="view" id="v-season"></section>
+    <section class="view" id="v-finance"></section>
     <section class="view" id="v-sources"></section>
   </main>
 </div>
@@ -620,11 +803,12 @@ table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-
 <div class="toast" id="toast"></div>
 <button class="ask-tab" data-act="chat-open" aria-label="Ассистент" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 5.5h16v10H9l-5 4z" stroke-linejoin="round"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-linecap="round" stroke-width="2.6"/></svg><span>Ассистент</span></button>
 <aside class="chat" id="chat" aria-hidden="true" aria-label="Ассистент">
-  <div class="chat-h"><div><b>Ассистент</b><small id="chatSub"></small><br><button class="lnk" id="chatHowBtn" data-act="chat-how">Как это работает</button></div><button class="x" data-act="chat-close" aria-label="Закрыть">×</button></div>
+  <div class="chat-h"><div><b>Ассистент</b><small id="chatSub"></small><p class="whyline" style="font-size:13px;margin:2px 0"><b>Зачем:</b> ответ по данным за секунды, без аналитика и выгрузок</p><br><button class="lnk" id="chatHowBtn" data-act="chat-how">Как это работает</button></div><button class="x" data-act="chat-close" aria-label="Закрыть">×</button></div>
   <div class="chat-b" id="chatBody"></div>
   <div class="chips" id="chatChips"></div>
   <form class="chat-f" id="chatForm" autocomplete="off"><input id="chatInput" type="text" placeholder="Спросите о товаре, складе, задаче…" aria-label="Вопрос"><button class="btn primary" type="submit">Спросить</button></form>
 </aside>
+<aside class="cfg" id="rnpCfg" aria-label="Настроить вид"></aside>
 <div class="demo">Демо-прототип · данные условные · состав расширяется по ТЗ</div>
 
 <script>
@@ -681,9 +865,9 @@ var KPI_MGR = {
   ]}
 };
 var TASKS = [
-  {no:48102, title:'Подставка для обуви, WB: снизить ставки по 4 запросам', due:'06.10', dueTxt:'просрочено на 3 дня', late:true, from:'А. Морозов'},
-  {no:48140, title:'Ящик для игрушек 30 л: проверить приёмку остатков в Казани', due:'10.10', dueTxt:'срок завтра', from:'система'},
-  {no:48166, title:'Сушилка для посуды: ответить на 12 отзывов о сколах', due:'13.10', dueTxt:'срок 13.10', from:'система'}
+  {no:48102, sku:'NP-4203', title:'Подставка для обуви, WB: снизить ставки по 4 запросам', due:'06.10', dueTxt:'просрочено на 3 дня', late:true, from:'А. Морозов'},
+  {no:48140, sku:'NP-4130', title:'Ящик для игрушек 30 л: проверить приёмку остатков в Казани', due:'10.10', dueTxt:'срок завтра', from:'система'},
+  {no:48166, sku:'NP-6210', title:'Сушилка для посуды: ответить на 12 отзывов о сколах', due:'13.10', dueTxt:'срок 13.10', from:'система'}
 ];
 
 /* ---------------- cases ---------------- */
@@ -859,15 +1043,15 @@ var DECISIONS = [
 var PRODUCTS = [
   {n:'Контейнер для хранения 5 л', sku:'NP-1405', rev:1492, wb:9.0, oz:19.4, drr:26.1, buy:73, stk:34, t:[22,23,22,22,23,22,15,9], mgr:'Ковалёва О.'},
   {n:'Органайзер для ящика, 6 секций', sku:'NP-2210', rev:1380, wb:24.2, oz:23.1, drr:9.2, buy:88, stk:6, t:[19,20,20,21,22,22,23,23], mgr:'Сафин О.'},
-  {n:'Органайзер для холодильника', sku:'NP-6301', rev:1240, wb:28.4, oz:26.2, drr:9.9, buy:90, stk:15, t:[24,25,25,26,26,27,27,28], mgr:'Белова А.'},
+  {n:'Органайзер для холодильника', sku:'NP-6301', rev:1240, wb:28.4, oz:26.2, drr:9.9, buy:90, stk:12, t:[24,25,25,26,26,27,27,28], mgr:'Белова А.'},
   {n:'Корзина для белья 45 л', sku:'NP-4045', rev:1120, wb:18.2, oz:16.8, drr:11.2, buy:82, stk:63, t:[19,18,19,18,18,17,18,17], mgr:'Сафин О.'},
   {n:'Сушилка для посуды', sku:'NP-6210', rev:1010, wb:16.3, oz:19.0, drr:13.6, buy:84, stk:37, t:[17,17,18,17,17,18,17,17], mgr:'Ковалёва О.'},
   {n:'Подставка для обуви, 3 яруса', sku:'NP-4203', rev:960, wb:14.2, oz:22.0, drr:18.2, buy:77, stk:31, t:[19,19,18,18,17,17,16,15], mgr:'Ковалёва О.'},
   {n:'Контейнер 1,2 л, набор 3 шт', sku:'NP-1412', rev:940, wb:25.3, oz:23.0, drr:8.4, buy:90, stk:52, t:[23,22,24,21,22,24,24,24], mgr:'Ковалёва О.'},
   {n:'Ящик для игрушек на колёсах 30 л', sku:'NP-4130', rev:870, wb:21.0, oz:17.3, drr:12.8, buy:79, stk:28, t:[16,17,17,18,18,19,19,20], mgr:'Ковалёва О.'},
   {n:'Набор банок для сыпучих, 4 шт', sku:'NP-6104', rev:820, wb:23.2, oz:25.4, drr:10.4, buy:87, stk:19, t:[19,19,20,21,22,23,24,24], mgr:'Сафин О.'},
-  {n:'Кашпо 3 л с поддоном', sku:'NP-3103', rev:760, wb:15.1, oz:21.4, drr:14.1, buy:86, stk:41, t:[21,22,21,22,21,21,17,15], mgr:'Ковалёва О.'},
-  {n:'Хлебница с крышкой', sku:'NP-6020', rev:690, wb:26.1, oz:24.0, drr:7.9, buy:91, stk:22, t:[22,23,23,24,24,25,25,25], mgr:'Белова А.'},
+  {n:'Кашпо 3 л с поддоном', sku:'NP-3103', rev:760, wb:15.1, oz:21.4, drr:14.1, buy:86, stk:26, t:[21,22,21,22,21,21,17,15], mgr:'Ковалёва О.'},
+  {n:'Хлебница с крышкой', sku:'NP-6020', rev:690, wb:26.1, oz:24.0, drr:7.9, buy:91, stk:11, t:[22,23,23,24,24,25,25,25], mgr:'Белова А.'},
   {n:'Ведро 10 л с крышкой', sku:'NP-5110', rev:530, wb:19.4, oz:18.1, drr:7.0, buy:92, stk:44, t:[19,18,19,19,18,19,19,19], mgr:'Сафин О.'},
   {n:'Таз 12 л', sku:'NP-5012', rev:410, wb:12.4, oz:14.1, drr:6.1, buy:93, stk:95, t:[16,16,15,15,14,10,12,13], mgr:'Сафин О.'},
   {n:'Горшки для рассады, 10 шт', sku:'NP-7010', rev:180, wb:11.0, oz:12.6, drr:15.2, buy:89, stk:120, t:[19,18,17,16,15,13,12,11], mgr:'Белова А.'}
@@ -875,7 +1059,8 @@ var PRODUCTS = [
 var MP_TEAM = ['Ковалёва О.'];
 
 /* ---------------- state ---------------- */
-var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
+var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, rnpPanel:false, rnpTab:'days', rnpFocus:null, chainFocus:null, stk:{f:'all', k:'urg', d:1, open:{}, sel:{}, done:{}, by:{}}, fin:{tab:'pl', mo:'oct', seg:'all', why:null, art:'', added:[], norm:{}, sk:'marR', sd:-1}, season:{mode:'mkt', open:null}, fp:{sku:'NP-1405', lev:{}}, planMonth:'oct', planProp:[], photo:{ceo:'big', mp:'big'}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
+try { ['ceo','mp'].forEach(function(r){ var v = localStorage.getItem('np-photo-' + r); if (v) S.photo[r] = v; }); } catch(e) {}
 try { if (localStorage.getItem('np-demo-ex') === '0') S.ex = false; if (localStorage.getItem('np-demo-intro') === '0') S.intro = false; } catch(e) {}
 CASE_ORDER.forEach(function(id){ var c = CASES[id]; S.sel[id] = {}; c.props.forEach(function(p, i){ S.sel[id][p.id] = c.exclusive ? i === 1 : true; }); });
 try { var saved = localStorage.getItem('np-demo-view'); if (saved && document.getElementById('v-' + saved)) S.view = saved; } catch(e) {}
@@ -938,8 +1123,8 @@ function renderOverview(){
     (S.introSteps ? '<ol class="steps"><li>Нажмите «Разобрать» на первой карточке.</li><li>Согласуйте предложение — задача уйдёт в Битрикс24.</li><li>Переключите роль вверху — увидите экран менеджера и её права.</li><li>Откройте «Ассистент» справа или раздел «Отделы».</li></ol>' : '') + '</div>';
   var lateN = TASKS.filter(function(t){ return t.late && !t.done; }).length, openT = TASKS.filter(function(t){ return !t.done; }).length;
   var waitN = vc.filter(function(id){ return S.pending[id] && caseStatus(id) === 'new'; }).length;
-  if (M) h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1><p>Мой день · менеджер маркетплейса WB, 6 товаров. ' + (open.length ? open.length + ' ' + plural(open.length, 'отклонение', 'отклонения', 'отклонений') + ' по вашим товарам' : 'Новых отклонений по вашим товарам нет') + ', ' + openT + ' ' + plural(openT, 'задача', 'задачи', 'задач') + (lateN ? ', из них ' + lateN + ' просрочена' : '') + '.</p></div>';
-  else h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1><p>' + (waitN ? '<b style="color:#8A5517">' + waitN + ' ' + plural(waitN, 'решение ждёт', 'решения ждут', 'решений ждут') + ' вашего согласования от Ольги.</b> ' : '') + 'За ночь система проверила 318 артикулов в двух каналах. ' +
+  if (M) h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1>' + why('начать день с того, что требует действий по вашим товарам и задачам') + '<p>Мой день · менеджер маркетплейса WB, 6 товаров. ' + (open.length ? open.length + ' ' + plural(open.length, 'отклонение', 'отклонения', 'отклонений') + ' по вашим товарам' : 'Новых отклонений по вашим товарам нет') + ', ' + openT + ' ' + plural(openT, 'задача', 'задачи', 'задач') + (lateN ? ', из них ' + lateN + ' просрочена' : '') + '.</p></div>';
+  else h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1>' + why('за 5 минут увидеть, где компания теряет деньги и что решить сегодня') + '<p>' + (waitN ? '<b style="color:#8A5517">' + waitN + ' ' + plural(waitN, 'решение ждёт', 'решения ждут', 'решений ждут') + ' вашего согласования от Ольги.</b> ' : '') + 'За ночь система проверила 318 артикулов в двух каналах. ' +
        (open.length ? open.length + ' ' + plural(open.length, 'вопрос требует', 'вопроса требуют', 'вопросов требуют') + ' решения' +
        (risk ? ': риски ' + sg(risk) + ' тыс ₽/нед к марже' : '') + (opp ? (risk ? ', возможность +' : ': возможность +') + opp + ' тыс ₽' : '') + '.' : 'Все вопросы разобраны — новых отклонений нет.') + '</p></div>';
   h += '<div class="kpi-sw">' + ex('<b>Маржа после выкупа</b> — что остаётся после комиссии, логистики, рекламы и себестоимости. <b>ДРР</b> — доля рекламы в выручке.') + '<div class="seg" id="kpiSeg"><button data-act="kpi" data-k="day" class="' + (S.kpi==='day'?'on':'') + '">Вчера</button><button data-act="kpi" data-k="week" class="' + (S.kpi==='week'?'on':'') + '">Неделя</button></div></div></div>';
@@ -954,7 +1139,7 @@ function renderOverview(){
   if (M){
     h += '<div class="sec-h"><h2>Мои задачи</h2><span class="hint">из Битрикс24 · ' + openT + ' открыто</span></div>' + ex('Задачи из Битрикс24, где вы ответственная. Отметка о выполнении сразу уходит в Битрикс24.');
     h += '<div class="card"><div class="card-b" style="padding-top:6px;padding-bottom:6px"><ul class="list tasks">' + TASKS.map(function(t){
-      return '<li class="' + (t.done ? 'done' : '') + '"><span class="tt"><b>#' + t.no + ' · ' + t.title + '</b><small>поставил: ' + t.from + ' · срок ' + t.due + '</small></span><span class="tr">' +
+      return '<li class="' + (t.done ? 'done' : '') + '">' + (t.sku ? ph(t.sku, 'task') : '') + '<span class="tt"><b>#' + t.no + ' · ' + t.title + '</b><small>поставил: ' + t.from + ' · срок ' + t.due + (t.sku && PLAN[t.sku] ? ' · прогноз плана месяца ' + planFc(t.sku) + '%' : '') + '</small></span><span class="tr">' +
         (t.done ? '<span class="pill pos">Выполнено сегодня</span>' : '<span class="pill ' + (t.late ? 'neg' : (t.isNew ? 'brand' : '')) + '">' + t.dueTxt + '</span><button class="btn" data-act="taskdone" data-t="' + t.no + '">Отметить выполненной</button>') + '</span></li>';
     }).join('') + '</ul></div></div>';
   }
@@ -964,9 +1149,15 @@ function renderOverview(){
     var cls = wait ? 'wait' : (!op ? 'done' : c.kind);
     var tipTxt = c.reason + (c.extra ? ' · ' + c.extra : '') + ' · ' + (wait ? 'передано Ольгой в ' + S.sentAt[id] : c.found);
     h += '<article class="card case ' + cls + '" title="' + esc(tipTxt) + '"><div class="case-top"><span>' + chTag(c.ch) + '</span>' + statusPill(id) + '</div>' +
-      '<h3>' + c.title + '</h3><div class="headline">' + c.headline + '</div>' +
+      '<div class="case-t">' + ph(c.sku, 'card') + '<div><h3>' + c.title + '</h3><div class="headline">' + c.headline + '</div>' + planLine(c.sku) + '</div></div>' +
       '<div class="case-foot"><span class="impact ' + (c.impact < 0 ? 'neg' : 'pos') + '">' + sg(c.impact) + '<small>' + c.unit + '</small></span><button class="btn ' + (op ? 'primary' : '') + '" data-act="open" data-case="' + id + '">' + (wait ? 'Решить' : (op ? 'Разобрать' : 'Открыть разбор')) + ' →</button></div></article>';
   });
+  if (!M){
+    var cfx = cashForecast(), mi = 0; cfx.arr.forEach(function(v, i){ if (v < cfx.arr[mi]) mi = i; });
+    var fv = finCalc('oct', 'all'), fs = Math.abs(fv.fot) / fv.rev * 100;
+    h += '<article class="card case task"><div class="case-top"><span class="pill">Финансы</span><span class="pill warn">Контроль</span></div><div class="case-t"><div><h3>Кассовый разрыв через ' + (mi + 1) + ' дней</h3><div class="headline">' + stkDate(mi + 1) + ': оплата производства кашпо и ФОТ до выплаты WB</div></div></div><div class="case-foot"><span class="impact neg">' + MINUS + nf(Math.round(Math.abs(cfx.arr[mi]) * 1000)) + '<small>тыс ₽</small></span><button class="btn primary" data-act="go-fin" data-t="dds">Открыть ДДС →</button></div></article>';
+    h += '<article class="card case task"><div class="case-top"><span class="pill">Финансы</span><span class="pill warn">Контроль</span></div><div class="case-t"><div><h3>ФОТ ' + nf(fs, 1) + '% выручки при норме ' + nf(S.fin.norm.fot, 0) + '%</h3><div class="headline">выручка ниже плана на 11% + премии и сезонный персонал</div></div></div><div class="case-foot"><span class="impact neg">+' + nf(Math.abs(fv.fot) - fv.rev * S.fin.norm.fot / 100, 1) + '<small>млн ₽/мес сверх нормы</small></span><button class="btn primary" data-act="go-fin" data-t="pl" data-w="fot">Почему →</button></div></article>';
+  }
   h += '</div>';
   h += '<div class="sec-h" data-fold="closed"><h2>Что ещё сделала система</h2><span class="hint">2 решения проверены · 1 предупреждение</span></div>' + ex('Сверка эффекта прошлых решений и ночная проверка данных.') + '<div class="two">' +
     '<div class="card"><div class="card-h"><h3>Проверила эффект решений</h3><span class="pill pos">2 сработали</span></div><div class="card-b"><ul class="list">' +
@@ -1055,7 +1246,7 @@ function renderAnalysis(){
   var h = '<button class="back" data-act="go" data-view="overview">← Обзор дня</button><div class="case-tabs">';
   vc.forEach(function(id){ var k = CASES[id]; h += '<button class="case-tab ' + k.kind + (id === c.id ? ' on' : '') + '" data-act="open" data-case="' + id + '"><i></i>' + k.title.replace('Задача по снижению ставок не выполнена 3 дня', 'Просроченная задача') + '</button>'; });
   h += '</div>';
-  h += '<div class="an-head"><div><h1>' + c.title + '</h1><div class="sub">' + chTag(c.ch) + '<span>' + c.sku + (c.sub ? ' · ' + c.sub : '') + '</span>' + statusPill(c.id) + '<span class="muted">' + c.found + '</span></div></div>';
+  h += '<div class="an-head"><div class="case-t">' + ph(c.sku, 'head') + '<div><h1>' + c.title + '</h1>' + why('за минуты понять причину и принять решение, проверив каждое звено') + '<div class="sub">' + chTag(c.ch) + '<span>' + c.sku + (c.sub ? ' · ' + c.sub : '') + '</span>' + statusPill(c.id) + '<span class="muted">' + c.found + '</span></div>' + planLine(c.sku) + '</div></div>';
   if (hasP && pKeys.length > 1){
     h += '<div><div class="seg">' + [['day','День'],['week','Неделя'],['month','Месяц'],['quarter','Квартал']].map(function(p){ return '<button data-act="period" data-p="' + p[0] + '" class="' + (S.period === p[0] ? 'on' : '') + '">' + p[1] + '</button>'; }).join('') + '</div><div class="muted" style="font-size:12px;margin-top:6px;text-align:right">' + P.label + '</div></div>';
   }
@@ -1077,6 +1268,7 @@ function renderAnalysis(){
   } else ms = c.metrics;
   h += '<div class="card metrics">' + ms.map(function(m){ return '<div class="metric"><div class="l">' + m[0] + '</div><div class="v">' + m[1] + '</div><div class="s">' + m[2] + '</div></div>'; }).join('') + '</div>';
 
+  h += chainHtml(c);
   h += '<div class="an-grid"><div class="an-main">';
   if (P){
     h += '<div class="card"><div class="card-h"><h3>Дерево факторов маржи, тыс ₽</h3></div>' + ex('Сумма вкладов факторов равна изменению маржи. Считает код по данным маркетплейса и 1С, а не языковая модель.', 1) + waterfall(c, P, dec) + '</div>';
@@ -1085,12 +1277,17 @@ function renderAnalysis(){
   } else {
     h += '<div class="card"><div class="card-h"><h3>Цена задержки</h3></div>' + ex('Сколько маржи теряется за каждый день просрочки.', 1) + '<div class="card-b"><ul class="list"><li><span>06.10 — срок задачи</span><span class="r">0</span></li><li><span>07.10</span><span class="r neg">' + MINUS + '4 тыс ₽</span></li><li><span>08.10</span><span class="r neg">' + MINUS + '8 тыс ₽</span></li><li><span>09.10 — сегодня</span><span class="r neg"><b>' + MINUS + '12 тыс ₽</b></span></li><li><span>При выполнении 10.10</span><span class="r neg">' + MINUS + '16 тыс ₽ всего</span></li></ul></div></div>';
   }
+  if (c.id === 'c'){
+    h += '<div class="card"><div class="card-h"><h3>Главное фото: было / стало' + ex('Причина падения CTR: на новом главном фото не видно поддон и товар теряется в интерьере.') + '</h3></div><div class="card-b"><div class="ba">' +
+      '<figure>' + phRaw('pot', '#C9734E', 132, {}) + '<span><b>до 01.10</b> · CTR 3,9%</span></figure>' +
+      '<figure>' + phRaw('pot', '#C9734E', 132, {scene:'interior', noSaucer:true}) + '<span><b>после</b> · CTR <b class="neg">2,4%</b></span></figure></div></div></div>';
+  }
   if (c.funnel){
     h += '<div class="card"><div class="card-h"><h3>Воронка за период</h3><span class="muted" style="font-size:13px">' + P.label + '</span></div>' + ex('Путь от показа до выкупа: на каком шаге теряются покупатели.', 1) + '<div class="card-b">' + funnel(c, P) + '</div></div>';
   }
   h += '</div>';
   h += '<div class="card"><div class="card-h"><h3>Ход расследования</h3></div>' + ex('Шаги проверки с источником данных — любой вывод можно перепроверить.', 1) + '<div class="card-b"><ol class="log">' +
-    (S.logAll[c.id] ? c.log : keyLog(c.log)).map(function(l){ return '<li><span class="mk ' + l.m + '"></span><span class="tm">' + l.t + '</span><div class="tx">' + l.tx + (l.link ? ' <a href="#" data-act="go-market" data-n="' + l.link + '" style="color:var(--brand)">Открыть в разделе «Рынок» →</a>' : '') + '</div><div class="lsrc">' + l.src.map(function(s){ return '<span>' + s + '</span>'; }).join('') + '</div></li>'; }).join('') +
+    (S.logAll[c.id] ? c.log : keyLog(c.log)).map(function(l){ return '<li><span class="mk ' + l.m + '"></span><span class="tm">' + l.t + '</span><div class="tx">' + l.tx + (l.link ? ' <a href="#" data-act="go-market" data-n="' + l.link + '" style="color:var(--brand)">Открыть в разделе «Рынок» →</a>' : '') + (l.rnp ? ' <a href="#" data-act="to-rnp" data-sku="' + c.sku + '" data-row="' + l.rnp + '" data-from="' + (c.id === 'c' ? 6 : 7) + '" data-label="' + esc(RNP_ROWMAP[l.rnp][2]) + '" class="why-l">в РНП ↗</a>' : '') + '</div><div class="lsrc">' + l.src.map(function(s){ return '<span>' + s + '</span>'; }).join('') + '</div></li>'; }).join('') +
     '</ol>' + (c.log.length > 3 ? '<button class="log-more" data-act="logall">' + (S.logAll[c.id] ? 'Свернуть' : 'Показать все ' + c.log.length + ' шагов') + '</button>' : '') + '</div></div></div>';
 
   // proposals
@@ -1161,7 +1358,7 @@ function approve(){
   $('#modal').classList.add('on');
   S.status[c.id] = 'work'; S.status[c.id + '_task'] = no; S.pending[c.id] = false;
   chosen.forEach(function(p){ if (S.pst[p.id] === 'sent') S.pst[p.id] = 'approved'; });
-  if (c.resp === 'Ольга Ковалёва') TASKS.unshift({no:no, title:c.taskTitle, due:c.due.slice(0,5), dueTxt:'новая · срок ' + c.due.slice(0,5), from:R.short, isNew:true});
+  if (c.resp === 'Ольга Ковалёва') TASKS.unshift({no:no, sku:c.sku, title:c.taskTitle, due:c.due.slice(0,5), dueTxt:'новая · срок ' + c.due.slice(0,5), from:R.short, isNew:true});
   DECISIONS.unshift({d:'09.10', prod:c.title.indexOf('Задача') === 0 ? c.sub : c.title, ch:c.ch, prob:c.headline.replace(/ · задача.*/, ''), act:chosen.map(function(p){ return p.title; }).join('; '), who:R.short, task:'#' + no + ' · в работе', ts:'work', fc:eff, fact:null, v:'pending', owner:c.owner, mine:c.mgr === 'olga' ? 1 : 0, check:'проверка 16.10', isNew:true});
   renderAll();
 }
@@ -1204,7 +1401,7 @@ function renderDecisions(){
   var okN = rows.filter(function(d){ return d.v === 'ok'; }).length, partN = rows.filter(function(d){ return d.v === 'part'; }).length, failN = rows.filter(function(d){ return d.v === 'fail'; }).length;
   var V = {ok:['pos','Сработало'], part:['warn','Частично'], fail:['neg','Не сработало'], pending:['','Ждём 7 дней'], rej:['','Отклонено']};
   var TS = {done:'pos', late:'neg', work:'brand', none:''};
-  var h = '<div class="page-h"><div><h1>Решения и эффект</h1><p>Каждое согласованное действие становится задачей, а через 7 дней система сравнивает факт с прогнозом. Так видно, какие решения действительно возвращают деньги.</p></div></div>';
+  var h = '<div class="page-h"><div><h1>Решения и эффект</h1>' + why('знать, какие решения действительно вернули деньги, и повторять их') + '<p>Каждое согласованное действие становится задачей, а через 7 дней система сравнивает факт с прогнозом. Так видно, какие решения действительно возвращают деньги.</p></div></div>';
   if (S.role === 'mp') h += '<div class="banner role">Показаны только ваши решения: по товарам, где вы ответственная.</div>';
   h += ex('Прогноз, факт через 7 дней и вердикт по каждому решению. Отсюда система берёт «похожие случаи».');
   h += '<div class="stats">' +
@@ -1236,17 +1433,18 @@ function flag(v, kind){
 }
 function renderProducts(){
   var rows = PRODUCTS.filter(function(p){ return S.role === 'ceo' || MP_TEAM.indexOf(p.mgr) >= 0; });
+  rows.forEach(function(p){ p.cost = COST[p.sku]; p.planM = Math.round(PLAN[p.sku].oct.rev * PLAN[p.sku].oct.margin / 100 / 1000); p.fc = planFc(p.sku); });
   var k = S.sort.k, d = S.sort.d;
   rows = rows.slice().sort(function(a, b){
     var x = k === 't' ? a.t[7] - a.t[0] : a[k], y = k === 't' ? b.t[7] - b.t[0] : b[k];
     return typeof x === 'string' ? x.localeCompare(y, 'ru') * d : (x - y) * d;
   });
   var tot = rows.reduce(function(s, p){ return s + p.rev; }, 0);
-  var cols = [['n','Товар',''],['rev','Выручка, тыс ₽/нед','n'],['wb','Маржа WB','n'],['oz','Маржа Ozon','n'],['drr','ДРР','n'],['buy','Выкуп','n'],['stk','Остаток, дн','n'],['t','Тренд маржи, 8 нед',''],['mgr','Ответственный','']];
-  var h = '<div class="page-h"><div><h1>Товары</h1><p>' + rows.length + ' ключевых артикулов — ' + nf(tot/18400*100, 0) + '% выручки недели (' + nf(tot/1000, 1) + ' из 18,4 млн ₽). Маржа — после выкупа, с учётом рекламы, логистики, хранения и себестоимости из 1С.</p></div></div>';
-  if (S.role === 'mp'){ cols = cols.filter(function(c){ return c[0] !== 'oz' && c[0] !== 'mgr'; }); h = '<div class="page-h"><div><h1>Мои товары</h1><p>' + rows.length + ' товаров, где вы ответственная. Маржа — после выкупа, канал WB.</p></div></div><div class="banner role">Товары других менеджеров и показатели Ozon для этой роли скрыты.</div>'; }
+  var cols = [['n','Товар',''],['rev','Выручка, тыс ₽/нед','n'],['wb','Маржа WB','n'],['oz','Маржа Ozon','n'],['drr','ДРР','n'],['buy','Выкуп','n'],['stk','Остаток, дн','n'],['cost','Себестоимость, ₽/шт','n'],['planM','План месяца, тыс ₽ маржи','n'],['fc','Прогноз плана','n'],['t','Тренд маржи, 8 нед',''],['mgr','Ответственный','']];
+  var h = '<div class="page-h"><div><h1>Товары</h1>' + why('сравнить все карточки по марже, рекламе, выкупу и плану в одной таблице') + '<p>' + rows.length + ' ключевых артикулов — ' + nf(tot/18400*100, 0) + '% выручки недели (' + nf(tot/1000, 1) + ' из 18,4 млн ₽). Маржа — после выкупа, с учётом рекламы, логистики, хранения и себестоимости из 1С.</p></div></div>';
+  if (S.role === 'mp'){ cols = cols.filter(function(c){ return c[0] !== 'oz' && c[0] !== 'mgr'; }); h = '<div class="page-h"><div><h1>Мои товары</h1>' + why('видеть свои карточки по марже, рекламе, выкупу и плану в одной таблице') + '<p>' + rows.length + ' товаров, где вы ответственная. Маржа — после выкупа, канал WB.</p></div></div><div class="banner role">Товары других менеджеров и показатели Ozon для этой роли скрыты.</div>'; }
   h += ex('Цветом — то, что требует внимания. Клик по заголовку сортирует.');
-  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:900px"><thead><tr>' + cols.map(function(c){
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:1180px"><thead><tr>' + cols.map(function(c){
     var on = S.sort.k === c[0];
     return '<th class="sort ' + c[2] + (on ? ' on' : '') + '" data-act="sort" data-k="' + c[0] + '">' + c[1] + '<span class="ar">' + (on ? (d > 0 ? '↑' : '↓') : '') + '</span></th>';
   }).join('') + '</tr></thead><tbody>';
@@ -1254,10 +1452,11 @@ function renderProducts(){
     var dt = p.t[7] - p.t[0], col = dt <= -3 ? '#B1453A' : (dt >= 3 ? '#2C7A55' : '#7A847E');
     var arrow = dt <= -3 ? '↘' : (dt >= 3 ? '↗' : '→');
     function c(v, kind, suf){ var f = flag(v, kind); return '<td class="n">' + (f ? '<span class="cell-flag ' + f + '">' + nf(v, 1) + suf + '</span>' : nf(v, kind === 'stk' ? 0 : 1) + suf) + '</td>'; }
-    h += '<tr><td style="min-width:270px"><div class="prod-name">' + p.n + '</div><div class="prod-sku">' + p.sku + '</div></td><td class="n">' + nf(p.rev) + '</td>' +
+    h += '<tr><td style="min-width:290px"><div class="pn-name">' + ph(p.sku, 'prod') + '<span><span class="prod-name">' + p.n + '</span><small>' + p.sku + '</small></span></div></td><td class="n">' + nf(p.rev) + '</td>' +
       c(p.wb, 'm', '%') + (S.role === 'mp' ? '' : c(p.oz, 'm', '%')) + c(p.drr, 'drr', '%') +
       '<td class="n">' + (flag(p.buy, 'buy') ? '<span class="cell-flag ' + flag(p.buy, 'buy') + '">' + p.buy + '%</span>' : p.buy + '%') + '</td>' +
       '<td class="n">' + (flag(p.stk, 'stk') ? '<span class="cell-flag ' + flag(p.stk, 'stk') + '">' + p.stk + '</span>' : p.stk) + '</td>' +
+      '<td class="n">' + nf(p.cost) + '</td><td class="n">' + nf(p.planM) + '</td><td class="n"><span class="cell-flag ' + ({pos:'g', warn:'a', neg:'r'})[fcCls(p.fc)] + '">' + p.fc + '%</span></td>' +
       '<td><span class="trend">' + spark(p.t, col, 64, 20, 12) + '<span style="color:' + col + ';font-weight:600">' + arrow + '</span></span></td>' + (S.role === 'mp' ? '' : '<td class="muted" style="white-space:nowrap">' + p.mgr + '</td>') + '</tr>';
   });
   h += '</tbody></table></div></div>';
@@ -1274,7 +1473,7 @@ function renderSources(){
     ['Битрикс24','ok','Задачи, ответственные, статусы, протоколы планёрок — в обе стороны','сегодня 07:20','12 открытых задач системы'],
     ['TrueStats','ok','Рынок: ниши, цены и позиции конкурентов, оценки продаж, отзывы','сегодня 06:10','3 ниши · 214 карточек конкурентов']
   ];
-  var h = '<div class="page-h"><div><h1>Источники данных</h1><p>Данные компании, проверка полноты и сверка источников перед каждым расчётом.</p></div></div>' + ex('Откуда данные и когда обновлялись. Если источник не загрузился, это видно сразу.') + '<div class="srcs">';
+  var h = '<div class="page-h"><div><h1>Источники данных</h1>' + why('доверять цифрам: видно, откуда данные и всё ли загрузилось') + '<p>Данные компании, проверка полноты и сверка источников перед каждым расчётом.</p></div></div>' + ex('Откуда данные и когда обновлялись. Если источник не загрузился, это видно сразу.') + '<div class="srcs">';
   src.forEach(function(s){
     h += '<div class="card src"><div class="src-h"><b>' + s[0] + '</b><span class="pill ' + (s[1] === 'ok' ? 'pos' : 'warn') + '">' + (s[1] === 'ok' ? 'Подключено' : 'Требует проверки') + '</span></div><p>' + s[2] + '</p><div class="kv"><span>Загрузка: ' + s[3] + '</span><span>' + s[4] + '</span></div></div>';
   });
@@ -1362,11 +1561,20 @@ function seasChart(N){
   return '<div class="seas-top"><span>2024–25</span><span>2025–26</span></div><svg class="seas" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none" role="img" aria-label="Сезонность ниши, млн ₽ в месяц">' + g + '</svg>' +
     '<div class="seas-m">' + MONTHS.map(function(m){ return '<span>' + m + '</span>'; }).join('') + '</div>';
 }
+function auditThumbs(){
+  var sku = {cont:'NP-1405', kash:'NP-3103', org:'NP-2210'}[S.niche], p = SKU_PH[sku];
+  var miss = {cont:['info','ruler'], kash:['saucer'], org:['ruler']}[S.niche];
+  var items = [['main','Главное',{}],['angle','Ракурс',{}],['interior','В интерьере',{scene:'interior'}],['info','Инфографика с размерами',{scene:'info', v:sku === 'NP-3103' ? '3 л' : (sku === 'NP-2210' ? '6 ячеек' : '4,3 л')}],['ruler','Фото с линейкой',{scene:'ruler'}]];
+  return '<div class="thumbs">' + items.map(function(it, i){
+    var no = miss.indexOf(it[0]) >= 0, warn = it[0] === 'main' && miss.indexOf('saucer') >= 0;
+    return '<figure>' + (no ? '<span class="ph miss" style="width:78px;height:78px">+</span>' : phRaw(p[0], p[1], 78, warn ? {scene:'interior', noSaucer:true} : it[2])) + '<span>фото ' + (i + 1) + '</span><b class="' + (no || warn ? 'no' : 'ok') + '">' + (no ? 'нет: ' : (warn ? '⚠ ' : '✓ ')) + it[1].toLowerCase() + (warn ? ', не виден поддон' : '') + '</b></figure>';
+  }).join('') + '</div>';
+}
 function renderMarket(){
   var M = S.role === 'mp', keys = M ? ['cont','kash'] : ['cont','kash','org'];
   if (keys.indexOf(S.niche) < 0) S.niche = 'cont';
   var N = MARKET[S.niche];
-  var h = '<div class="page-h"><div><h1>Рынок и конкуренты</h1><p>Данные TrueStats (или аналогов) и открытые данные WB/Ozon.</p></div>' +
+  var h = '<div class="page-h"><div><h1>Рынок и конкуренты</h1>' + why('понять, почему меняются ваши позиции, что делают конкуренты и что исправить в карточке') + '<p>Данные TrueStats (или аналогов) и открытые данные WB/Ozon.</p></div>' +
     '<div class="seg">' + keys.map(function(k){ return '<button data-act="niche" data-n="' + k + '" class="' + (S.niche === k ? 'on' : '') + '">' + MARKET[k].label + '</button>'; }).join('') + '</div></div>';
   if (M) h += '<div class="banner role">Показаны ниши ваших товаров. Органайзер (другой менеджер) для этой роли скрыт.</div>';
   h += ex('Растём ли мы вместе с рынком и когда ждать спроса.');
@@ -1380,8 +1588,10 @@ function renderMarket(){
 
   h += '<div class="sec-h"><h2>Конкуренты</h2><span class="hint">топ карточек ниши</span></div>' + ex('Продажи конкурентов — оценка TrueStats. Изменение цены за неделю показывает ценовые атаки.');
   h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:920px"><thead><tr><th>Карточка</th><th class="n">Цена, ₽</th><th class="n">Скидка</th><th class="n">Рейтинг</th><th class="n">Отзывы</th><th class="n">Продажи, шт/мес</th><th class="n">Выручка, млн ₽</th><th class="n">Позиция по главному запросу</th><th class="n">Цена за неделю</th></tr></thead><tbody>';
-  N.comp.forEach(function(c){
-    h += '<tr class="' + (c.us ? 'us' : '') + '"><td style="min-width:260px">' + (c.us ? '<b style="font-weight:600">' + c.n + '</b>' : c.n) + '</td><td class="n">' + nf(c.p) + '</td><td class="n">' + c.d + '%</td><td class="n">' + c.r + '</td><td class="n">' + nf(c.rv) + '</td><td class="n">~' + nf(c.s) + '</td><td class="n">~' + c.rev + '</td><td class="n">' + c.pos + '</td><td class="n">' + (c.dp ? '<b class="' + (c.dp < 0 ? 'neg' : 'pos') + '">' + sg(c.dp) + '%</b>' : '<span class="muted">0%</span>') + '</td></tr>';
+  var ownSku = {cont:'NP-1405', kash:'NP-3103', org:'NP-2210'}[S.niche], ctype = {cont:'box', kash:'pot', org:'organizer'}[S.niche], ccol = ['#BFD6DC','#E9E5DC','#9DB4C6','#D7CEC1','#B9CBB5','#E8D9C4'], pm = photoMode(), psz = pm === 'big' ? 40 : 28;
+  N.comp.forEach(function(c, ci){
+    var pimg = pm === 'off' ? '' : (c.us ? ph(ownSku, 'mkt') : phRaw(/Набор 3/.test(c.n) ? 'box3' : ctype, ccol[ci % ccol.length], psz));
+    h += '<tr class="' + (c.us ? 'us' : '') + '"><td style="min-width:300px"><div class="pn-name" style="min-width:0">' + pimg + '<span>' + (c.us ? '<b style="font-weight:600">' + c.n + '</b>' : c.n) + '</span></div></td><td class="n">' + nf(c.p) + '</td><td class="n">' + c.d + '%</td><td class="n">' + c.r + '</td><td class="n">' + nf(c.rv) + '</td><td class="n">~' + nf(c.s) + '</td><td class="n">~' + c.rev + '</td><td class="n">' + c.pos + '</td><td class="n">' + (c.dp ? '<b class="' + (c.dp < 0 ? 'neg' : 'pos') + '">' + sg(c.dp) + '%</b>' : '<span class="muted">0%</span>') + '</td></tr>';
   });
   h += '</tbody></table></div></div>';
 
@@ -1394,7 +1604,7 @@ function renderMarket(){
 
   var sc = N.audit.reduce(function(s, a){ return s + a[2]; }, 0);
   h += '<div class="sec-h"><h2>Аудит карточки</h2><span class="hint">наша карточка, ' + N.label.toLowerCase() + '</span></div>' + ex('8 критериев, которые влияют на клик и выкуп. Рекомендацию можно сразу сделать задачей.');
-  h += '<div class="audit"><div class="card card-b"><div class="score"><b class="' + (sc < 65 ? 'warn' : 'pos') + '">' + sc + '</b><span class="muted">из 100</span></div><details class="why-d"><summary>Разбивка по 8 критериям</summary>' +
+  h += '<div class="audit"><div class="card card-b"><div class="score"><b class="' + (sc < 65 ? 'warn' : 'pos') + '">' + sc + '</b><span class="muted">из 100</span></div>' + auditThumbs() + '<details class="why-d"><summary>Разбивка по 8 критериям</summary>' +
     N.audit.map(function(a){ var r = a[2] / a[3]; return '<div class="ab"><span>' + a[0] + '</span><span class="n" style="text-align:right">' + a[2] + ' / ' + a[3] + '</span><div class="bar"><i class="' + (r < .4 ? 'lo' : (r < .75 ? 'mid' : '')) + '" style="width:' + (r * 100) + '%"></i></div><small>' + a[1] + '</small></div>'; }).join('') + '</details></div>';
   h += '<div class="card"><div class="card-h"><h3>Рекомендации</h3></div><div class="card-b"><ul class="list reco">' + N.reco.map(function(r, i){
     var key = S.niche + i, no = S.recoTask[key];
@@ -1425,16 +1635,22 @@ function routerHtml(){
     '<table class="cost"><tr><td>Облачные модели по API</td><td>от ~10–30 тыс ₽/мес</td></tr><tr><td>Свой сервер с GPU</td><td>от ~150–250 тыс ₽ разово</td></tr><tr><td>Аренда GPU-сервера</td><td>~40–80 тыс ₽/мес</td></tr></table><p class="note" style="margin-top:6px">Оценка при текущем объёме, уточняется по ТЗ.</p>';
 }
 var CHIPS = {
-  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю']],
-  mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц'],['rnp','РНП по контейнеру за неделю']]
+  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне'],['netsep','Какая чистая прибыль за сентябрь'],['spent','На что ушли деньги в октябре'],['norms','Какие статьи расходов выше нормы и почему']],
+  mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне']]
 };
 function matchQ(t){
   t = t.toLowerCase();
   var mp = S.role === 'mp';
+  if (/чистая прибыль|прибыль за/.test(t)) return mp ? 'deny' : 'netsep';
+  if (/ушли деньги|на что ушл|траты/.test(t)) return mp ? 'deny' : 'spent';
+  if (/выше нормы|норматив|статьи расход/.test(t)) return mp ? 'deny' : 'norms';
+  if (/весн|сезон/.test(t)) return 'spring';
   if (/сафин|белов|морозов|сотрудник|коллег/.test(t)) return mp ? 'deny' : (/сафин/.test(t) ? 'other' : 'olga');
   if (/выручк|финанс|прибыл|маржа компании|оборот/.test(t)) return mp ? 'deny' : 'fin';
   if (/ольг|ковал/.test(t)) return mp ? 'late' : 'olga';
   if (/рнп|пульс/.test(t)) return 'rnp';
+  if (/дозаказ|подсорт|дефицит/.test(t)) return 'restock';
+  if (/денег в товаре|запас|заморож/.test(t)) return 'money';
   if (/планёрк|планерк|протокол|совещан/.test(t)) return mp ? 'deny' : 'plan';
   if (/отдел|отста|план /.test(t)) return mp ? 'deny' : 'dept';
   if (/ноябр|прогноз|терять|будущ/.test(t)) return mp ? 'deny' : 'nov';
@@ -1449,12 +1665,12 @@ function tbl(head, rows){ return '<table><tr>' + head.map(function(x, i){ return
 function answer(id){
   var mp = S.role === 'mp', A;
   if (id === 'fin' && mp) id = 'deny';
-  if ((id === 'olga' || id === 'nov' || id === 'other' || id === 'plan' || id === 'dept') && mp) id = 'deny';
+  if ((id === 'olga' || id === 'nov' || id === 'other' || id === 'plan' || id === 'dept' || id === 'netsep' || id === 'spent' || id === 'norms') && mp) id = 'deny';
   var tasksOpen = TASKS.filter(function(t){ return !t.done; });
   switch (id){
   case 'sku':
     var st = caseStatus('a');
-    A = {tier:'light', text:'<p><b>Контейнер для хранения 5 л</b> (NP-1405) за неделю 2–8 октября: маржа после выкупа на WB упала с 22,0% до 9,0% — основные причины реклама и невыкуп.</p>',
+    A = {sku:'NP-1405', tier:'light', text:'<p><b>Контейнер для хранения 5 л</b> (NP-1405) за неделю 2–8 октября: маржа после выкупа на WB упала с 22,0% до 9,0% — основные причины реклама и невыкуп.</p>',
       body: tbl(['Показатель','WB','Ozon'], [['Выручка, тыс ₽/нед','1 082','410'],['Маржа после выкупа','9,0%','19,4%'],['Заказы, шт','1 524','566'],['Выкуп','71%','84%'],['Остаток, дней','34','41']]) +
         '<p>Открытые задачи: ' + (st === 'work' ? 'задача #' + S.status.a_task + ' (ответственный О. Ковалёва)' : (S.pending.a ? 'действие по карточке ждёт согласования руководителя' : 'нет — предложения ждут решения')) + (S.pst.a1 === 'applied' ? '; ставка уже снижена менеджером' : '') + '.</p>',
       acts:'<button class="btn" data-act="open" data-case="a">Открыть разбор →</button>',
@@ -1472,7 +1688,7 @@ function answer(id){
       tools:['Битрикс24: задачи О. Сафина за 30 дней','База решений: решения по товарам О. Сафина']};
     break;
   case 'stock':
-    A = {tier:'light', text:'<p><b>Кашпо 3 л с поддоном</b> (NP-3103): всего 4 190 шт. На WB Казань остатка хватит на 8 дней — это узкое место.</p>',
+    A = {sku:'NP-3103', tier:'light', text:'<p><b>Кашпо 3 л с поддоном</b> (NP-3103): всего 4 190 шт. На WB Казань остатка хватит на 8 дней — это узкое место.</p>',
       body: tbl(['Склад','шт','дней продаж'], [['Склад компании (1С)','2 150','—'],['WB Коледино','1 240','31'],['WB Казань','190','<b class="neg">8</b>'],['Ozon Хоругвино','610','44'],['Итого на маркетплейсах','2 040','≈ 27']]) +
         '<p>Казань закончится через 8 дней — создать поставку 600 шт со склада компании?</p>',
       acts: S.supplyTask ? '<span class="pill brand">Поставка создана · задача #' + S.supplyTask + '</span>' : '<button class="btn primary" data-act="chat-supply">Создать поставку в Казань · 600 шт</button>',
@@ -1496,7 +1712,7 @@ function answer(id){
       tools:[mp ? 'Битрикс24: задачи О. Ковалёвой со сроком < сегодня' : 'Битрикс24: задачи проекта «Маркетплейсы» со сроком < сегодня']};
     break;
   case 'ctr':
-    A = {tier:'strong', text:'<p>CTR кашпо 3 л упал с 3,9% до 2,4% (−38%) после смены главного фото 1 октября: на новом фото не видно поддон. Показы те же, заказы −27%.</p>', body:'',
+    A = {sku:'NP-3103', tier:'strong', text:'<p>CTR кашпо 3 л упал с 3,9% до 2,4% (−38%) после смены главного фото 1 октября: на новом фото не видно поддон. Показы те же, заказы −27%.</p>', body:'',
       acts:'<button class="btn" data-act="open" data-case="c">Открыть разбор →</button>',
       tools:['WB API: история контента карточки NP-3103','WB API: CTR и показы за 22 дня','Отзывы и вопросы покупателей за 14 дней']};
     break;
@@ -1508,11 +1724,44 @@ function answer(id){
     A = {tier:'light', text:'<p><b>Нет доступа для вашей роли.</b> Ассистент отвечает по вашим товарам и задачам; финансы компании и работа других сотрудников доступны руководителю.</p>', body:'', acts:'',
       tools:['Проверка прав: роль «Менеджер маркетплейса» — запрос отклонён до обращения к данным'], deny:true};
     break;
+  case 'netsep':
+    var vs = finCalc('sep', 'all');
+    A = {tier:'light', text:'<p>Чистая прибыль за сентябрь — <b>' + nf(vs.net, 1) + ' млн ₽</b> (' + nf(vs.net / vs.rev * 100, 1) + '% выручки).</p>', body: tbl(['Шаг','млн ₽'], [['Выручка после скидок', nf(vs.rev, 1)],['Маржинальная прибыль', nf(vs.mp, 1)],['Операционная прибыль', nf(vs.ebitda, 1)],['Чистая прибыль', nf(vs.net, 1)]]),
+      acts:'<button class="btn" data-act="go-fin" data-t="pl">Открыть ОПиУ →</button>', tools:['Хранилище: продажи и расходы маркетплейсов за сентябрь','1С: себестоимость','ДДС: операционные расходы и налоги']};
+    break;
+  case 'spent':
+    var byA = {}; ddsAll().forEach(function(r){ if (r.sum < 0) byA[r.art] = (byA[r.art] || 0) - r.sum; });
+    var ks = Object.keys(byA).sort(function(x, y){ return byA[y] - byA[x]; });
+    A = {tier:'light', text:'<p>С 1 по 9 октября выплачено <b>' + nf(ks.reduce(function(q, k){ return q + byA[k]; }, 0), 1) + ' млн ₽</b>, больше всего — закупка товара и ФОТ.</p>', body: tbl(['Статья','млн ₽'], ks.map(function(k){ return [k, nf(byA[k], 2)]; })),
+      acts:'<button class="btn" data-act="go-fin" data-t="dds">Открыть ДДС →</button>', tools:['ДДС: журнал операций за октябрь (банк, 1С, ручные)']};
+    break;
+  case 'norms':
+    var vn = finCalc('oct', 'all'), ov = FIN_LINES.filter(function(l){ return l[3] != null && Math.abs(vn[l[0]]) / vn.rev * 100 > S.fin.norm[l[0]]; });
+    A = {tier:'strong', text:'<p>Выше нормы в октябре: ' + ov.map(function(l){ return l[1]; }).join(', ') + '. Главная причина общая — выручка ниже плана на 11%, поэтому растёт доля почти всех статей; у ФОТ добавились премии и сезонный персонал.</p>',
+      body: tbl(['Статья','Факт','Норма'], ov.map(function(l){ var fs2 = Math.abs(vn[l[0]]) / vn.rev * 100; return [l[1], '<b class="' + normCls(fs2, S.fin.norm[l[0]]) + '">' + nf(fs2, 1) + '%</b>', nf(S.fin.norm[l[0]], 1) + '%']; })),
+      acts:'<button class="btn" data-act="go-fin" data-t="pl" data-w="fot">Почему ФОТ выше →</button>', tools:['ОПиУ: октябрь, прогноз','ДДС: операционные расходы','План выручки месяца']};
+    break;
+  case 'spring':
+    A = {sku:'NP-3103', tier:'strong', text:'<p>К весне главное — <b>кашпо</b>: рынок начинает расти с середины февраля, а у вас в прошлом году продажи пошли только с конца марта (−1,1 млн ₽). Заказать производство до 15.12, отгрузить на склады до 10.02.</p>', body:'',
+      acts:'<button class="btn" data-act="chat-go" data-view="season">Открыть «Сезонность» →</button>', tools:['TrueStats: история ниши за 3 года','Хранилище: продажи компании за 3 года','1С: сроки производства']};
+    break;
+  case 'restock':
+    var rs = stkVisible().filter(function(it){ return (it.status === 'red' || it.status === 'yellow') && it.rec; }).sort(function(x, y){ return x.days - y.days; });
+    A = {tier:'light', text:'<p>На этой неделе стоит отгрузить ' + rs.length + ' ' + plural(rs.length, 'товар', 'товара', 'товаров') + '. Кашпо 3 л: <b>размер L не грузить</b> (запас 74 дня), подсорт только M и S.</p>',
+      body: tbl(['Товар','Подсорт','До'], rs.map(function(it){ return [it.n + (it.status === 'red' ? ' <b class="neg">срочно</b>' : ''), nf(it.rec) + ' шт · ' + nf(Math.round(it.recCost / 1000)) + ' тыс ₽', stkDate(it.shipBy)]; })),
+      acts:'<button class="btn" data-act="chat-go" data-view="stock">Открыть «Остатки и подсорт» →</button>', tools:['WB API, Ozon API: остатки по складам и размерам','1С: остатки и себестоимость','Прогноз продаж (код) на 4 недели с учётом сезонности']};
+    break;
+  case 'money':
+    var al = stkVisible(), sm = function(f){ return al.reduce(function(q, it){ return q + f(it); }, 0); };
+    A = {tier:'light', text:'<p>' + (mp ? 'В ваших товарах' : 'В товаре') + ' по себестоимости — <b>' + nf(sm(function(it){ return it.value; }) / 1e6, 2) + ' млн ₽</b>.</p>',
+      body: tbl(['Где','тыс ₽'], [['Склады WB', nf(Math.round(sm(function(it){ return it.wb * it.cost; }) / 1000))],['Склады Ozon', nf(Math.round(sm(function(it){ return it.oz * it.cost; }) / 1000))],['Склад компании (1С)', nf(Math.round(sm(function(it){ return it.co * it.cost; }) / 1000))],['У покупателей в пути', nf(Math.round(sm(function(it){ return it.toC * it.cost; }) / 1000))],['Возвраты в пути', nf(Math.round(sm(function(it){ return it.fromC * it.cost; }) / 1000))],['В пути на склады', nf(Math.round(sm(function(it){ return it.transit * it.cost; }) / 1000))]]),
+      acts:'<button class="btn" data-act="chat-go" data-view="stock">Открыть «Остатки и подсорт» →</button>', tools:['1С: себестоимость и остатки','WB API, Ozon API: остатки, в пути к клиенту и от клиента']};
+    break;
   case 'rnp':
     var W = rnpWeeks(rnpCalc(RNP_SKU[0])), a0 = W[0], a1 = W[1];
     function dl(x, y, pct){ var d = pct ? Math.round((y - x) * 10) / 10 : Math.round((y / x - 1) * 100); return '<b class="' + (d < 0 ? 'neg' : (d > 0 ? 'pos' : '')) + '">' + sg(d, pct ? 1 : 0) + (pct ? ' п.п.' : '%') + '</b>'; }
-    A = {tier:'light', text:'<p><b>РНП, контейнер 5 л</b> (WB), неделя 02–08.10 к прошлой: показы выросли за счёт рекламы, но CTR и выкуп упали — заказов столько же, маржа ниже.</p>',
-      body: tbl(['Показатель','Неделя','Изм.'], [['Показы', nf(a1.shows), dl(a0.shows, a1.shows)],['Переходы', nf(a1.clicks), dl(a0.clicks, a1.clicks)],['CTR', nf(a1.ctr, 1) + '%', dl(a0.ctr, a1.ctr, 1)],['Затраты на рекламу, ₽', nf(a1.cost), dl(a0.cost, a1.cost)],['Заказы', nf(a1.orders), dl(a0.orders, a1.orders)],['% выкупа', nf(a1.buy, 1) + '%', dl(a0.buy, a1.buy, 1)],['Маржа после выкупа', nf(a1.margin, 1) + '%', dl(a0.margin, a1.margin, 1)]]),
+    A = {sku:'NP-1405', tier:'light', text:'<p><b>РНП, контейнер 5 л</b> (WB), неделя 02–08.10 к прошлой: показы выросли за счёт рекламы, но CTR и выкуп упали — заказов столько же, маржа ниже.</p>',
+      body: tbl(['Показатель','Неделя','Изм.'], [['Показы', nf(a1.shows), dl(a0.shows, a1.shows)],['Переходы', nf(a1.clicks), dl(a0.clicks, a1.clicks)],['CTR', nf(a1.ctr, 1) + '%', dl(a0.ctr, a1.ctr, 1)],['Затраты на рекламу, ₽', nf(a1.cost), dl(a0.cost, a1.cost)],['CRO (клик → заказ)', nf(a1.cro, 1) + '%', dl(a0.cro, a1.cro, 1)],['Заказы', nf(a1.orders), dl(a0.orders, a1.orders)],['% выкупа', nf(a1.buy, 1) + '%', dl(a0.buy, a1.buy, 1)],['Маржа после выкупа', nf(a1.margin, 1) + '%', dl(a0.margin, a1.margin, 1)]]),
       acts:'<button class="btn" data-act="chat-go" data-view="rnp">Открыть РНП →</button>',
       tools:['РНП: NP-1405 за 14 дней (WB API, рекламный кабинет, 1С)']};
     break;
@@ -1533,6 +1782,7 @@ function answer(id){
     A = {tier:'light', text:'<p>В прототипе доступны примеры запросов ниже — выберите один из них.</p>', body:'', acts:'', tools:[], none:true};
   }
   var how = A.none ? '' : '<details class="how"><summary>Как получен ответ</summary><ul>' + A.tools.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul>' + (A.deny ? '<p style="margin:4px 0 0">Данные не запрашивались.</p>' : '<p style="margin:4px 0 0">Цифры посчитаны запросом к данным, модель только сформулировала ответ.</p>') + '</details>';
+  if (A.sku && photoMode() !== 'off') A.text = '<div class="case-t">' + ph(A.sku, 'chat') + '<div>' + A.text + '</div></div>';
   return A.text + (A.body || '') + (A.acts ? '<div class="acts">' + A.acts + '</div>' : '') + how + (A.none ? '' : mdlBadge(A.tier));
 }
 function chatGreeting(){ return S.role === 'mp' ? '<p>Здравствуйте, Ольга. Спросите о своих товарах, складах и задачах — отвечу по данным платформы.</p>' : '<p>Здравствуйте, Андрей Викторович. Спросите о товарах, складах, задачах, сотрудниках или рынке — отвечу по данным платформы.</p>'; }
@@ -1589,7 +1839,7 @@ var DEP_RECO = [
   ['Карточки, обновлённые по аудиту, дают CTR +0,4 п.п. Маркетинг выполняет план обновлений на 68% — отдать в контент-план шаблон аудита и порядок по выручке товара.','~+45 тыс ₽/мес','Е. Лебедева']
 ];
 function renderDepartments(){
-  var h = '<div class="page-h"><div><h1>Отделы</h1><p>План/факт отделов, проверка отчётов и исполнение решений планёрок.</p></div></div>';
+  var h = '<div class="page-h"><div><h1>Отделы</h1>' + why('видеть, какой отдел отстаёт, где отчёты расходятся с данными и какие практики масштабировать') + '</div></div>';
   if (S.role !== 'ceo'){ $('#v-departments').innerHTML = h + '<div class="banner rej">Нет доступа для вашей роли: раздел доступен руководителю компании.</div>'; return; }
   h += ex('План/факт ключевого показателя месяца и исполнение задач. Красным — отставание больше 5%.');
   h += '<div class="deps">' + DEPTS.map(function(d){
@@ -1667,89 +1917,866 @@ var RNP_ROWS = [
   ['traffic','shows','Общие показы','n',0], ['traffic','clicks','Общие переходы','n',0], ['traffic','ctr','Общий CTR','%',0],
   ['ads','arkShows','Показы АРК','n',0], ['ads','arkClicks','Клики АРК','n',0], ['ads','manShows','Показы ручн.','n',0], ['ads','manClicks','Клики ручн.','n',0],
   ['ads','ctrArk','CTR РК (АРК)','%',0], ['ads','ctrMan','CTR РК (ручн.)','%',0], ['ads','bid','Ставка, ₽','r1',1], ['ads','cost','Затраты на рекламу, ₽','n',1], ['ads','drr','ДРР','%',1],
-  ['conv','cConv','Конверсия в корзину','%',0], ['conv','carts','Корзины','n',0], ['conv','oConv','Конверсия в заказ','%',0], ['conv','orders','Заказы','n',0],
+  ['conv','cConv','Конверсия в корзину','%',0], ['conv','carts','Корзины','n',0], ['conv','oConv','Конверсия в заказ','%',0], ['conv','cro','CRO (из клика в заказ), %','%',0], ['conv','orders','Заказы','n',0], ['conv','rev','Выручка, ₽','n',0],
   ['price','spp','СПП','%',0], ['price','price','Цена с СПП, ₽','n',0],
   ['stock','stWB','Остатки на складах WB','n',0], ['stock','stTot','Итого с учётом склада компании','n',0], ['stock','days','Хватит на дней','n',0],
   ['buy','buy','% выкупа','%',0], ['buy','margin','Маржа после выкупа, %','%',0],
   ['com','com','Комментарий','c',0]
 ];
-function rnpCalc(c){
-  var D = [], i;
-  for (i = 0; i < 14; i++){
-    var o = {}, shows = Math.round(c.shows[i] * 1000), ctr = c.ctr[i];
+/* ---------------- product photos (inline SVG) ---------------- */
+function shade(hex, k){
+  var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255, t = k < 0 ? 0 : 255, a = Math.abs(k);
+  r = Math.round(r + (t - r) * a); g = Math.round(g + (t - g) * a); b = Math.round(b + (t - b) * a);
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+function boxG(c, d, dd, l){ return '<path d="M22 40h56l-4 42H26z" fill="' + c + '"/><rect x="28" y="46" width="44" height="30" rx="3" fill="' + l + '" opacity=".35"/><rect x="18" y="32" width="64" height="10" rx="3" fill="' + d + '"/><rect x="20" y="30" width="60" height="4" rx="2" fill="' + l + '" opacity=".7"/><rect x="15" y="36" width="5" height="9" rx="1.5" fill="' + dd + '"/><rect x="80" y="36" width="5" height="9" rx="1.5" fill="' + dd + '"/>'; }
+var PH_DRAW = {
+  box: boxG,
+  box3: function(c, d, dd, l){ var g = boxG(c, d, dd, l); return '<g transform="translate(4 38) scale(.5)">' + g + '</g><g transform="translate(46 38) scale(.5)">' + g + '</g><g transform="translate(25 6) scale(.5)">' + g + '</g>'; },
+  pot: function(c, d, dd, l, o){ return (o.noSaucer ? '' : '<ellipse cx="50" cy="81" rx="30" ry="5.5" fill="' + d + '"/><rect x="20" y="76" width="60" height="5" fill="' + d + '"/><ellipse cx="50" cy="76" rx="30" ry="4" fill="' + l + '" opacity=".5"/>') +
+    '<path d="M50 44C44 30 34 26 28 22c8 0 18 6 22 18zM50 44c4-16 14-22 24-24-6 6-14 12-24 24zM50 44c0-14 2-24 0-32 4 8 4 20 0 32z" fill="#5E8C5A"/><path d="M50 44C40 36 34 36 26 36c8 4 16 6 24 8zM50 44c8-8 16-10 24-9-8 4-16 6-24 9z" fill="#7FAE6E"/>' +
+    '<path d="M29 47h42l-6 31H35z" fill="' + c + '"/><path d="M33 52h6l-2 22h-3z" fill="' + l + '" opacity=".4"/><rect x="26" y="42" width="48" height="7" rx="3" fill="' + d + '"/><ellipse cx="50" cy="43" rx="21" ry="2.5" fill="#5B4636"/>'; },
+  organizer: function(c, d, dd, l){ return '<path d="M18 52l52-14 16 20-52 16z" fill="' + c + '"/><path d="M18 52l16 22v6L18 58z" fill="' + d + '"/><path d="M34 74l52-16v6L34 80z" fill="' + dd + '"/><path d="M35 49l14 19M52 44l14 19M26 60l52-14M30 66l49-14" stroke="' + d + '" stroke-width="1.6" fill="none"/>'; },
+  fridge: function(c, d, dd, l){ return '<circle cx="38" cy="50" r="9" fill="#E06C5A"/><circle cx="56" cy="48" r="8" fill="#9BC46A"/><circle cx="66" cy="54" r="7" fill="#F0B24A"/><path d="M20 44h60l-4 38H24z" fill="' + c + '" opacity=".75"/><rect x="22" y="40" width="56" height="6" rx="3" fill="' + d + '"/><rect x="42" y="50" width="16" height="4" rx="2" fill="' + dd + '" opacity=".6"/>'; },
+  basket: function(c, d, dd, l){ var h = ''; for (var y = 34; y < 80; y += 9) for (var x = 34; x < 66; x += 8) h += '<rect x="' + x + '" y="' + y + '" width="4" height="5" rx="1" fill="' + d + '"/>'; return '<path d="M28 26h44l-4 58H32z" fill="' + c + '"/>' + h + '<rect x="25" y="21" width="50" height="7" rx="3" fill="' + d + '"/><rect x="44" y="23" width="12" height="3" rx="1.5" fill="' + dd + '"/>'; },
+  dryer: function(c, d, dd, l){ var h = ''; for (var x = 24; x <= 76; x += 6) h += '<line x1="' + x + '" y1="44" x2="' + x + '" y2="70" stroke="' + d + '" stroke-width="2"/>'; return h + '<circle cx="40" cy="52" r="15" fill="#fff" stroke="#D9D5CC" stroke-width="1.5"/><circle cx="56" cy="54" r="13" fill="#F6F4EF" stroke="#D9D5CC" stroke-width="1.5"/><rect x="66" y="46" width="12" height="16" rx="3" fill="#C9D9E3"/><rect x="18" y="68" width="64" height="12" rx="3" fill="' + c + '"/><rect x="20" y="70" width="60" height="3" rx="1.5" fill="' + l + '" opacity=".6"/>'; },
+  shoe: function(c, d, dd, l){ var s = function(x, y, f){ return '<path d="M' + x + ' ' + y + 'h10l2-6h4l8 6v3h-24z" fill="' + f + '"/>'; }; return '<rect x="17" y="26" width="4" height="58" rx="1.5" fill="' + d + '"/><rect x="79" y="26" width="4" height="58" rx="1.5" fill="' + d + '"/>' + s(24, 36, '#8E6E58') + s(52, 36, '#C8C2B8') + s(26, 56, '#B9584A') + s(54, 56, '#56606A') + s(30, 76, '#D2A85E') + '<rect x="17" y="38" width="66" height="4" rx="1.5" fill="' + c + '"/><rect x="17" y="58" width="66" height="4" rx="1.5" fill="' + c + '"/><rect x="17" y="78" width="66" height="4" rx="1.5" fill="' + c + '"/>'; },
+  toybox: function(c, d, dd, l){ return '<circle cx="40" cy="34" r="9" fill="#D65A4A"/><rect x="54" y="28" width="12" height="12" rx="2" fill="#5A8BC9"/><path d="M18 40h64l-3 38H21z" fill="' + c + '"/><ellipse cx="50" cy="50" rx="9" ry="3" fill="' + dd + '" opacity=".5"/><rect x="26" y="56" width="48" height="16" rx="3" fill="' + l + '" opacity=".3"/><circle cx="28" cy="80" r="4" fill="#3A3F3C"/><circle cx="72" cy="80" r="4" fill="#3A3F3C"/>'; },
+  jars: function(c, d, dd, l){ var h = ''; [18, 34, 50, 66].forEach(function(x, i){ var t = 30 + (i % 2) * 8; h += '<rect x="' + x + '" y="' + t + '" width="14" height="' + (78 - t) + '" rx="3" fill="#EEF2F0" stroke="#D7DDDA"/><rect x="' + (x + 1.5) + '" y="' + (t + 14) + '" width="11" height="' + (62 - t) + '" rx="2" fill="' + ['#E8C98E','#C99A62','#F1E3C2','#A9784A'][i] + '"/><rect x="' + (x - 1) + '" y="' + (t - 5) + '" width="16" height="6" rx="2" fill="' + c + '"/>'; }); return h; },
+  bread: function(c, d, dd, l){ return '<path d="M20 80V56c0-14 12-22 30-22s30 8 30 22v24z" fill="' + c + '"/><path d="M26 58c2-10 12-16 24-16s22 6 24 16" stroke="' + d + '" stroke-width="2" fill="none"/><path d="M30 62c3-8 11-12 20-12s17 4 20 12" stroke="' + d + '" stroke-width="2" fill="none"/><rect x="40" y="66" width="20" height="4" rx="2" fill="' + dd + '"/>'; },
+  bucket: function(c, d, dd, l){ return '<path d="M28 40c0-22 44-22 44 0" stroke="' + dd + '" stroke-width="2.5" fill="none"/><path d="M30 42h40l-4 40H34z" fill="' + c + '"/><path d="M36 48h5l-2 28h-3z" fill="' + l + '" opacity=".4"/><ellipse cx="50" cy="42" rx="22" ry="5" fill="' + d + '"/>'; },
+  basin: function(c, d, dd, l){ return '<path d="M14 56h72l-10 24H24z" fill="' + c + '"/><ellipse cx="50" cy="56" rx="38" ry="8" fill="' + d + '"/><ellipse cx="50" cy="56" rx="32" ry="5.5" fill="' + shade(c, -.32) + '"/><path d="M26 62h10l-4 12h-4z" fill="' + l + '" opacity=".35"/>'; },
+  seedling: function(c, d, dd, l){ var h = ''; for (var i = 0; i < 4; i++){ var x = 16 + i * 18; h += '<path d="M' + (x + 8) + ' 52c-4-8-10-8-12-8 4 2 8 5 12 8zM' + (x + 8) + ' 52c3-8 8-10 12-9-4 2-8 5-12 9z" fill="#6E9F5E"/><path d="M' + x + ' 54h16l-2 24h-12z" fill="' + c + '"/><rect x="' + (x - 1) + '" y="52" width="18" height="4" rx="1.5" fill="' + d + '"/>'; } return h; }
+};
+function photoSvg(type, color, o){
+  o = o || {};
+  var c = color, d = shade(c, -.16), dd = shade(c, -.32), l = shade(c, .4);
+  var bg = o.scene === 'interior' ? '<rect width="100" height="100" fill="#E4DCCF"/><rect x="58" y="8" width="30" height="34" rx="2" fill="#F3EEE4" stroke="#D3C8B6"/><rect x="0" y="80" width="100" height="20" fill="#C9AE8B"/>' : '<rect width="100" height="100" fill="#F6F4F0"/><rect y="74" width="100" height="26" fill="#EEEBE5"/>';
+  var extra = '';
+  if (o.scene === 'ruler') extra = '<rect x="12" y="88" width="76" height="8" rx="1" fill="#F2CD5C"/>' + [0,1,2,3,4,5,6,7,8].map(function(i){ return '<line x1="' + (14 + i * 9) + '" y1="88" x2="' + (14 + i * 9) + '" y2="' + (i % 2 ? 91 : 93) + '" stroke="#6B5A2E" stroke-width=".8"/>'; }).join('');
+  if (o.scene === 'info') extra = '<path d="M20 22h60M20 19v6M80 19v6M90 32v50M87 32h6M87 82h6" stroke="#C4823A" stroke-width="1.4" fill="none"/><text x="50" y="17" text-anchor="middle" font-size="8" font-family="Onest,sans-serif" font-weight="700" fill="#8A5517">' + (o.w || '28 см') + '</text><rect x="4" y="4" width="26" height="12" rx="3" fill="#1D3A30"/><text x="17" y="12.5" text-anchor="middle" font-size="7.5" font-family="Onest,sans-serif" font-weight="700" fill="#fff">' + (o.v || '4,3 л') + '</text>';
+  var sh = '<ellipse cx="50" cy="84" rx="36" ry="5" fill="#000" opacity=".08"/><ellipse cx="50" cy="84" rx="26" ry="3.5" fill="#000" opacity=".08"/>';
+  var obj = PH_DRAW[type] ? PH_DRAW[type](c, d, dd, l, o) : '';
+  if (o.scene === 'info') obj = '<g transform="translate(6 8) scale(.84)">' + obj + '</g>';
+  return '<svg viewBox="0 0 100 100" aria-hidden="true">' + bg + sh + obj + extra + '</svg>';
+}
+var SKU_PH = {
+  'NP-1405':['box','#BFD6DC'], 'NP-2210':['organizer','#E3DCCF'], 'NP-6301':['fridge','#CFE6EE'], 'NP-4045':['basket','#8AA39A'],
+  'NP-6210':['dryer','#DADDDC'], 'NP-4203':['shoe','#55605A'], 'NP-1412':['box3','#E2C7A5'], 'NP-4130':['toybox','#E5B44B'],
+  'NP-6104':['jars','#2E5A4C'], 'NP-3103':['pot','#C9734E'], 'NP-6020':['bread','#B7C9A8'], 'NP-5110':['bucket','#5E8FB8'],
+  'NP-5012':['basin','#7FB0A2'], 'NP-7010':['seedling','#3F4B45']
+};
+var COST = {'NP-1405':372,'NP-2210':214,'NP-6301':236,'NP-4045':520,'NP-6210':448,'NP-4203':410,'NP-1412':168,'NP-4130':470,'NP-6104':252,'NP-3103':176,'NP-6020':298,'NP-5110':162,'NP-5012':128,'NP-7010':96};
+var PH_SIZES = {rnp:[68,40], card:[48,34], prod:[44,30], mkt:[40,28], head:[72,44], chat:[48,34], task:[40,30]};
+function photoMode(){ return S.photo[S.role]; }
+function ph(sku, ctx, extraCls){
+  var m = photoMode(); if (m === 'off' || !SKU_PH[sku]) return '';
+  var sz = PH_SIZES[ctx][m === 'big' ? 0 : 1], p = SKU_PH[sku];
+  return '<span class="ph ' + (extraCls || '') + '" style="width:' + sz + 'px;height:' + sz + 'px" data-act="zoom" data-sku="' + sku + '" role="button" tabindex="0" aria-label="Фото товара">' + photoSvg(p[0], p[1]) + '</span>';
+}
+function phRaw(type, color, sz, o, label, cls){ return '<span class="ph ' + (cls || '') + '" style="width:' + sz + 'px;height:' + sz + 'px"' + (label ? ' title="' + esc(label) + '"' : '') + '>' + photoSvg(type, color, o) + '</span>'; }
+function zoomPhoto(sku){
+  var p = SKU_PH[sku], name = (PRODUCTS.filter(function(x){ return x.sku === sku; })[0] || {}).n || sku;
+  $('#modalBody').innerHTML = '<div class="zoom"><div class="zoom-h"><b>' + name + '</b><span class="muted">' + sku + ' · главное фото карточки</span><button class="x" data-act="closemodal" aria-label="Закрыть">×</button></div><div class="zoom-img">' + photoSvg(p[0], p[1]) + '</div></div>';
+  $('#modal').classList.add('on');
+}
+
+function photoSeg(){ var m = photoMode(); return '<div class="seg phseg">' + [['big','Крупно'],['small','Мелко'],['off','Скрыть']].map(function(x){ return '<button data-act="photo" data-v="' + x[0] + '" class="' + (m === x[0] ? 'on' : '') + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
+var RNP_GROUPS = {traffic:'Трафик', ads:'Реклама', conv:'Конверсии', price:'Цена', stock:'Остатки', buy:'Выкуп и маржа', com:'Комментарий'};
+var RNP_ROWMAP = {}; RNP_ROWS.forEach(function(r){ RNP_ROWMAP[r[1]] = r; });
+function rnpPreset(name){
+  var cfg = {preset:name, groups:['traffic','ads','conv','price','stock','buy','com'], rows:{}, hidden:{}, pinned:[], newest:false, period:14};
+  RNP_ROWS.forEach(function(r){ (cfg.rows[r[0]] = cfg.rows[r[0]] || []).push(r[1]); });
+  function hide(keys){ keys.forEach(function(k){ cfg.hidden[k] = true; }); }
+  var G = function(g){ return cfg.rows[g].slice(); };
+  if (name === 'ads'){ cfg.groups = ['ads','traffic','conv','price','stock','buy','com']; hide(['cConv','carts','oConv','cro']); hide(G('price')); hide(G('stock')); hide(G('buy')); cfg.pinned = ['orders','drr']; }
+  if (name === 'funnel'){ hide(G('ads')); hide(G('price')); hide(G('stock')); cfg.pinned = ['orders']; }
+  if (name === 'stock'){ cfg.groups = ['stock','buy','conv','traffic','ads','price','com']; hide(G('traffic')); hide(G('ads')); hide(G('price')); hide(['cConv','carts','oConv','cro']); cfg.pinned = ['orders']; }
+  if (name === 'olga'){ cfg.preset = 'my'; cfg.groups = ['ads','traffic','conv','price','stock','buy','com']; hide(G('stock')); cfg.pinned = ['orders','drr']; }
+  return cfg;
+}
+function rnpNorm(cfg){
+  if (!cfg || !cfg.rows || !cfg.groups) return null;
+  RNP_ROWS.forEach(function(r){ var g = cfg.rows[r[0]] = cfg.rows[r[0]] || []; if (g.indexOf(r[1]) < 0){ var full = rnpPreset('full').rows[r[0]], i = full.indexOf(r[1]); g.splice(Math.min(i, g.length), 0, r[1]); } });
+  Object.keys(RNP_GROUPS).forEach(function(g){ if (cfg.groups.indexOf(g) < 0) cfg.groups.push(g); });
+  cfg.hidden = cfg.hidden || {}; cfg.pinned = (cfg.pinned || []).filter(function(k){ return RNP_ROWMAP[k]; }); cfg.period = cfg.period || 14;
+  return cfg;
+}
+function rnpLoad(role){ try { var v = localStorage.getItem('np-rnp-my-' + role); return v ? rnpNorm(JSON.parse(v)) : null; } catch(e){ return null; } }
+function rnpStore(role, cfg){ try { localStorage.setItem('np-rnp-my-' + role, JSON.stringify(cfg)); } catch(e){} }
+var RNP_MY = {ceo: rnpLoad('ceo'), mp: rnpLoad('mp') || rnpPreset('olga')};
+var RNP_CFG = {ceo: rnpPreset('full'), mp: JSON.parse(JSON.stringify(RNP_MY.mp))};
+function cfgNow(){ return RNP_CFG[S.role]; }
+function rnpDate(k, n){ var d = new Date(2026, 9, 8 - (n - 1 - k)); return ('0' + d.getDate()).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2); }
+function rnpCalc(c, n){
+  n = n || 14;
+  var EXT = 16, F = ['shows','ctr','cConv','oConv','adShare','bid','spp','buy','margin'], cc = {price:c.price, stockEnd:c.stockEnd}, i;
+  F.forEach(function(f){ var pre = []; for (var k = 0; k < EXT; k++){ var v = c[f][k % 7]; if (f === 'shows') v = Math.round(v * (0.86 + 0.009 * k) * 10) / 10; pre.push(v); } cc[f] = pre.concat(c[f]); });
+  var D = [], N = EXT + 14;
+  for (i = 0; i < N; i++){
+    var o = {}, shows = Math.round(cc.shows[i] * 1000), ctr = cc.ctr[i];
     o.shows = shows; o.ctr = ctr; o.clicks = Math.round(shows * ctr / 100);
-    o.cConv = c.cConv[i]; o.carts = Math.round(o.clicks * o.cConv / 100); o.oConv = c.oConv[i]; o.orders = Math.round(o.carts * o.oConv / 100);
-    var ad = Math.round(o.clicks * c.adShare[i]); o.arkClicks = Math.round(ad * .4); o.manClicks = ad - o.arkClicks;
+    o.cConv = cc.cConv[i]; o.carts = Math.round(o.clicks * o.cConv / 100); o.oConv = cc.oConv[i]; o.orders = Math.round(o.carts * o.oConv / 100);
+    var ad = Math.round(o.clicks * cc.adShare[i]); o.arkClicks = Math.round(ad * .4); o.manClicks = ad - o.arkClicks;
     o.ctrArk = Math.round(ctr * 1.08 * 10) / 10; o.ctrMan = Math.round(ctr * 1.15 * 10) / 10;
     o.arkShows = Math.round(o.arkClicks / o.ctrArk * 100); o.manShows = Math.round(o.manClicks / o.ctrMan * 100);
-    o.bid = c.bid[i]; o.cost = Math.round(ad * o.bid); o.spp = c.spp[i]; o.price = Math.round(c.price * (1 - o.spp / 100));
-    o.buy = c.buy[i]; o.margin = c.margin[i];
+    o.bid = cc.bid[i]; o.cost = Math.round(ad * o.bid); o.spp = cc.spp[i]; o.price = Math.round(c.price * (1 - o.spp / 100));
+    o.buy = cc.buy[i]; o.margin = cc.margin[i];
     o.drr = Math.round(o.cost / (o.orders * o.buy / 100 * o.price) * 1000) / 10;
+    o.cro = Math.round(o.orders / o.clicks * 1000) / 10; o.rev = Math.round(o.orders * o.buy / 100 * o.price);
+    o.i14 = i - EXT;
     D.push(o);
   }
-  D[13].stWB = c.stockEnd; for (i = 13; i > 0; i--) D[i - 1].stWB = D[i].stWB + D[i].orders;
-  D.forEach(function(o, k){ o.stTot = o.stWB + c.co; var from = Math.max(0, k - 6), s = 0, n = 0; for (var j = from; j <= k; j++){ s += D[j].orders; n++; } o.days = Math.round(o.stWB / (s / n)); });
-  return D;
+  D[N - 1].stWB = c.stockEnd; for (i = N - 1; i > 0; i--) D[i - 1].stWB = D[i].stWB + D[i].orders;
+  D.forEach(function(o, k){ o.stTot = o.stWB + c.co; var from = Math.max(0, k - 6), s = 0, m = 0; for (var j = from; j <= k; j++){ s += D[j].orders; m++; } o.days = Math.round(o.stWB / (s / m)); });
+  return D.slice(N - n);
 }
 function rnpWeeks(D){
-  return [D.slice(0, 7), D.slice(7)].map(function(W){
+  var W = [], n = Math.floor(D.length / 7), k;
+  for (k = n; k >= 1; k--) W.push(D.slice(D.length - k * 7, D.length - (k - 1) * 7));
+  return W.map(function(W){
     function sum(k){ return W.reduce(function(s, o){ return s + o[k]; }, 0); }
     function avg(k){ return Math.round(sum(k) / W.length * 10) / 10; }
-    var o = {}; ['shows','clicks','arkShows','arkClicks','manShows','manClicks','cost','carts','orders'].forEach(function(k){ o[k] = sum(k); });
+    var o = {}; ['shows','clicks','arkShows','arkClicks','manShows','manClicks','cost','carts','orders','rev'].forEach(function(k){ o[k] = sum(k); }); o.cro = Math.round(o.orders / o.clicks * 1000) / 10;
     o.ctr = Math.round(o.clicks / o.shows * 1000) / 10; o.ctrArk = Math.round(o.arkClicks / o.arkShows * 1000) / 10; o.ctrMan = Math.round(o.manClicks / o.manShows * 1000) / 10;
     o.cConv = Math.round(o.carts / o.clicks * 1000) / 10; o.oConv = Math.round(o.orders / o.carts * 1000) / 10;
     ['bid','spp','price','buy','margin','drr'].forEach(function(k){ o[k] = avg(k); }); o.price = Math.round(o.price);
-    var L = W[W.length - 1]; o.stWB = L.stWB; o.stTot = L.stTot; o.days = L.days;
+    var L = W[W.length - 1]; o.stWB = L.stWB; o.stTot = L.stTot; o.days = L.days; o.i14 = null; o.len = W.length;
     return o;
   });
 }
-var RNP_WEEKPLAN = {shows:7, clicks:7, cost:7, carts:7, orders:7};
+var RNP_WEEKPLAN = {shows:7, clicks:7, cost:7, carts:7, orders:7, rev:7, arkShows:7, arkClicks:7, manShows:7, manClicks:7};
 function rnpFmt(v, f){ if (v == null || v === '') return ''; if (f === '%') return nf(v, 1) + '%'; if (f === 'r1') return nf(v, 1); return nf(v); }
+function rnpRowList(cfg){
+  var out = [];
+  cfg.pinned.forEach(function(k){ if (RNP_ROWMAP[k]) out.push({r:RNP_ROWMAP[k], g:'pin'}); });
+  cfg.groups.forEach(function(g){
+    var F = S.rnpFocus && S.rnpFocus.row;
+    if (g === 'ads' && S.rnp.adsOff && !(F && cfg.rows.ads.indexOf(F) >= 0)) return;
+    cfg.rows[g].forEach(function(k){ if ((!cfg.hidden[k] || k === F) && cfg.pinned.indexOf(k) < 0) out.push({r:RNP_ROWMAP[k], g:g}); });
+  });
+  return out;
+}
 function renderRnp(){
-  var R = S.rnp, M = S.role === 'mp';
+  var R = S.rnp, M = S.role === 'mp', cfg = cfgNow();
   if (M) R.ch = 'all';
   var list = RNP_SKU.filter(function(c){ return !M || c.mgr === 'olga'; });
   var shown = list.filter(function(c){ return (R.ch === 'all' || c.ch === R.ch) && !R.off[c.sku]; });
-  var weeks = R.mode === 'weeks', cols = weeks ? ['25.09–01.10','02.10–08.10'] : RNP_DAYS;
-  var h = '<div class="page-h"><div><h1>РНП — рука на пульсе' + ex('Ежедневный контроль воронки по каждому артикулу: отклонения от плана видны сразу, а аномалии ведут в разбор причины.') + '</h1><p>Заполняется автоматически каждую ночь из WB/Ozon API, 1С и рекламного кабинета — вместо ручной таблицы.</p></div>' +
+  var weeks = R.mode === 'weeks', n = cfg.period;
+  var cols = [];
+  if (weeks){ var nw = Math.floor(n / 7); for (var w = nw; w >= 1; w--) cols.push(rnpDate(n - w * 7, n) + '–' + rnpDate(n - (w - 1) * 7 - 1, n)); }
+  else for (var k = 0; k < n; k++) cols.push(rnpDate(k, n));
+  var order = cols.map(function(x, i){ return i; }); if (cfg.newest) order.reverse();
+  var rows = rnpRowList(cfg);
+  var presetName = {full:'Полный', ads:'Реклама', funnel:'Воронка', stock:'Остатки и выкуп', my:'Мой вид'}[cfg.preset] || 'свой вид, не сохранён';
+  var h = '<div class="page-h"><div><h1>РНП — рука на пульсе' + ex('Ежедневный контроль воронки по каждому артикулу: отклонения от плана видны сразу, а аномалии ведут в разбор причины.') + '</h1>' + why('видеть каждый день по каждой карточке, где воронка отклонилась от плана, без ручных таблиц') + '<p>Заполняется автоматически каждую ночь из WB/Ozon API, 1С и рекламного кабинета — вместо ручной таблицы.</p></div>' +
     '<button class="btn" data-act="rnp-export">Выгрузить в Google Sheets / Excel</button></div>';
-  h += '<div class="rnp-bar"><div class="seg"><button data-act="rnp-mode" data-m="days" class="' + (!weeks ? 'on' : '') + '">Дни</button><button data-act="rnp-mode" data-m="weeks" class="' + (weeks ? 'on' : '') + '">Недели</button></div>' +
+  if (S.rnpFocus) h += '<div class="crumb">Из разбора: <b>' + S.rnpFocus.name + ' · ' + S.rnpFocus.label + '</b><a href="#" data-act="to-chain" data-case="' + S.rnpFocus.caseId + '">← вернуться к разбору</a><button class="x" data-act="crumb-x" aria-label="Закрыть">×</button></div>';
+  h += '<div class="tabs"><button data-act="rnp-tab" data-t="days" class="' + (S.rnpTab === 'days' ? 'on' : '') + '">Таблица по дням</button><button data-act="rnp-tab" data-t="plan" class="' + (S.rnpTab === 'plan' ? 'on' : '') + '">План месяца' + ex('План задаётся по каждой карточке на месяц; система считает темп и прогноз выполнения и предупреждает заранее, а не в конце месяца.') + '</button><button data-act="rnp-tab" data-t="funnel" class="' + (S.rnpTab === 'funnel' ? 'on' : '') + '">План по воронке' + ex('Обычно планируют только выручку и прибыль. Здесь план раскладывается на воронку: показы, CTR, конверсии, выкуп — и видно, какой рычаг дешевле.') + '</button></div>';
+  if (S.rnpTab === 'plan'){ $('#v-rnp').innerHTML = h + why('план по каждой карточке и прогноз выполнения уже в начале месяца, а не по итогам') + renderPlanTab(); if (S.rnpPanel) renderRnpCfg(); return; }
+  if (S.rnpTab === 'funnel'){ $('#v-rnp').innerHTML = h + why('понять не только сколько продать, а за счёт чего — какие показы, CTR и конверсии нужны, и какой рычаг дешевле') + renderFunnelPlan(); return; }
+  h += '<div class="rnp-bar"><button class="btn primary" data-act="rnp-cfg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>Настроить вид</button><span class="muted rnp-vn">Вид: ' + presetName + ' · ' + n + ' дн.</span>' +
+    '<div class="seg"><button data-act="rnp-mode" data-m="days" class="' + (!weeks ? 'on' : '') + '">Дни</button><button data-act="rnp-mode" data-m="weeks" class="' + (weeks ? 'on' : '') + '">Недели</button></div>' +
     (M ? '' : '<div class="seg">' + [['all','Все'],['WB','WB'],['Ozon','Ozon']].map(function(x){ return '<button data-act="rnp-ch" data-c="' + x[0] + '" class="' + (R.ch === x[0] ? 'on' : '') + '">' + x[1] + '</button>'; }).join('') + '</div>') +
     '<div class="rnp-chips">' + list.map(function(c){ return '<button class="chip' + (R.off[c.sku] ? '' : ' on') + '" data-act="rnp-sku" data-s="' + c.sku + '">' + c.short + '</button>'; }).join('') + '</div>' +
     '<label class="rnp-tg"><input type="checkbox" data-act="rnp-ads"' + (R.adsOff ? ' checked' : '') + '> Свернуть рекламу</label></div>';
   h += '<div class="card rnp-wrap"><table class="rnp"><thead><tr><th class="c-sku">Артикул</th><th class="c-met">Показатель</th><th class="c-plan">План</th>' +
-    cols.map(function(d, i){ return '<th class="n">' + d + (!weeks && i === cols.length - 1 ? '<small>вчера</small>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>';
+    order.map(function(i){ return '<th class="n">' + cols[i] + (!weeks && i === cols.length - 1 ? '<small>вчера</small>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>';
   if (!shown.length) h += '<tr><td colspan="' + (cols.length + 3) + '" class="muted" style="padding:16px">Выберите артикулы</td></tr>';
   shown.forEach(function(c){
-    var D = rnpCalc(c), V = weeks ? rnpWeeks(D) : D, prevG = null, first = true;
-    h += '<tr class="rnp-head"><td class="c-sku" colspan="3"><b>' + c.name + '</b> ' + chTag(c.ch) + ' <span class="muted">' + c.sku + '</span>' + (c.case && (!M || CASES[c.case].mgr === 'olga') ? ' <a href="#" data-act="open" data-case="' + c.case + '">разбор →</a>' : '') + '</td><td colspan="' + cols.length + '"></td></tr>';
-    RNP_ROWS.forEach(function(r){
-      if (r[0] === 'ads' && R.adsOff) return;
-      var g = r[0] !== prevG; prevG = r[0];
-      var key = c.sku + '|' + r[1], pl = R.plan[key] != null ? R.plan[key] : c.plan[r[1]];
+    var D = rnpCalc(c, n), V = weeks ? rnpWeeks(D) : D, prevG = null, first = true, PD = rnpPlanDaily(c.sku);
+    var canOpen = c.case && (!M || CASES[c.case].mgr === 'olga');
+    h += '<tr class="rnp-head"><td class="c-sku" colspan="3"><div class="rh">' + ph(c.sku, 'rnp') + '<div><b>' + c.name + '</b> ' + chTag(c.ch) + ' <span class="muted">' + c.sku + '</span>' + (canOpen ? ' <a href="#" data-act="' + (CHAINS[c.case] ? 'to-chain' : 'open') + '" data-case="' + c.case + '">почему? → разбор</a>' : '') + planStrip(c.sku) + '</div></div></td><td colspan="' + cols.length + '"></td></tr>';
+    rows.forEach(function(it){
+      var r = it.r, g = it.g !== prevG; prevG = it.g;
+      var key = c.sku + '|' + r[1], pl = PD[r[1]], foc = S.rnpFocus && S.rnpFocus.sku === c.sku && S.rnpFocus.row === r[1];
       var plV = pl != null && weeks && RNP_WEEKPLAN[r[1]] ? pl * 7 : pl;
-      h += '<tr class="' + (g ? 'g ' : '') + (r[1] === 'orders' ? 'hl ' : '') + (r[1] === 'com' ? 'com' : '') + '"><td class="c-sku">' + (first ? c.sku : '') + '</td><td class="c-met">' + r[2] + '</td>';
+      h += '<tr class="' + (g ? 'g ' : '') + (r[1] === 'orders' ? 'hl ' : '') + (it.g === 'pin' ? 'pin ' : '') + (r[1] === 'com' ? 'com ' : '') + (foc ? 'frow' : '') + '"><td class="c-sku">' + (first ? c.sku : '') + '</td><td class="c-met"' + (c.case && CHAINS[c.case] && RNP_LINKS[r[1]] ? ' title="связан с: ' + RNP_LINKS[r[1]] + '"' : '') + '>' + r[2] + (r[1] === 'cro' ? ex('CRO — доля переходов в карточку, которые закончились заказом.') : '') + '</td>';
       first = false;
       if (r[1] === 'com'){
-        h += '<td class="c-plan"></td>' + V.map(function(o, i){ var t = weeks ? '' : (R.com[c.sku + i] != null ? R.com[c.sku + i] : (c.com[i] || '')); return '<td class="cm">' + (weeks ? '' : '<span contenteditable="true" title="' + esc(t) + '" data-com="' + c.sku + i + '">' + esc(t) + '</span>') + '</td>'; }).join('') + '</tr>';
+        h += '<td class="c-plan"></td>' + order.map(function(j){ var o = V[j]; if (weeks) return '<td class="cm"></td>'; var ck = c.sku + (o.i14 >= 0 ? o.i14 : 'x' + o.i14); var t = R.com[ck] != null ? R.com[ck] : (o.i14 >= 0 ? (c.com[o.i14] || '') : ''); return '<td class="cm' + (S.rnpFocus && S.rnpFocus.sku === c.sku && S.rnpFocus.row === 'com' && o.i14 >= S.rnpFocus.from && o.i14 <= S.rnpFocus.from ? ' fcell' : '') + '"><span contenteditable="true" title="' + esc(t) + '" data-com="' + ck + '">' + esc(t) + '</span></td>'; }).join('') + '</tr>';
         return;
       }
-      h += '<td class="c-plan">' + (c.plan[r[1]] != null ? '<input type="text" inputmode="decimal" data-act="rnp-plan" data-k="' + key + '" value="' + nf(pl, r[3] === '%' || r[3] === 'r1' ? 1 : 0) + '" aria-label="План: ' + r[2] + '">' : '') + '</td>';
-      V.forEach(function(o, i){
-        var v = o[r[1]], cls = '';
-        if (plV != null && v != null){ var dv = (v - plV) / plV; if (r[4]) dv = -dv; if (r[1] === 'days') dv = v < plV * .5 ? -1 : 0; cls = dv < -.1 ? 'bad' : (dv > .1 ? 'good' : ''); }
-        var an = !weeks && c.anom[r[1] + '|' + i];
-        h += '<td class="n ' + cls + '">' + (an ? '<span class="anm" tabindex="0" role="button" data-tip="' + esc(an + (c.case && (!M || CASES[c.case].mgr === 'olga') ? ' <a href="#" data-act="open" data-case="' + c.case + '">Открыть разбор →</a>' : '')) + '">⚠</span>' : '') + rnpFmt(v, r[3]) + '</td>';
+      var pdec = r[3] === '%' || r[3] === 'r1' ? 1 : 0;
+      h += '<td class="c-plan">' + (pl == null ? '' : (RNP_PLAN_INPUT[r[1]] ? (r[1] === 'cost' ? '<span class="lim">до</span>' : '') + '<input type="text" inputmode="decimal" data-act="rnp-plan" data-k="' + key + '" value="' + nf(pl, pdec) + '" aria-label="План: ' + r[2] + '">' : '<span class="pcalc" title="' + (RNP_PLAN_TIP[r[1]] || 'расчётное') + '">' + nf(pl, pdec) + (r[3] === '%' ? '%' : '') + '</span>')) + '</td>';
+      order.forEach(function(j){
+        var o = V[j], v = o[r[1]], cls = '';
+        if (plV != null && v != null){ var dv = (v - plV) / plV; if (r[4]) dv = -dv; if (r[1] === 'days') dv = v < plV * .5 ? -1 : 0; if (r[1] === 'cost') dv = v > plV ? -1 : 0; cls = dv < -.1 ? 'bad' : (dv > .1 ? 'good' : ''); }
+        var an = !weeks && o.i14 != null && o.i14 >= 0 && c.anom[r[1] + '|' + o.i14];
+        var fc2 = foc && o.i14 != null && o.i14 >= S.rnpFocus.from ? ' fcell' : '';
+        h += '<td class="n ' + cls + fc2 + '">' + (an ? '<span class="anm" tabindex="0" role="button" data-tip="' + esc(an + (canOpen ? ' <a href="#" data-act="to-chain" data-case="' + c.case + '" data-node="' + (ANOM_NODE[c.sku + '|' + r[1]] || '') + '">почему? → разбор</a>' : '')) + '">⚠</span>' : '') + rnpFmt(v, r[3]) + '</td>';
       });
       h += '</tr>';
     });
   });
   h += '</tbody></table></div>';
-  h += '<div class="legend"><span><i style="background:#F6E5E2"></i>хуже плана больше чем на 10%</span><span><i style="background:#E4F1E9"></i>лучше плана</span><span>⚠ — аномалия, нажмите для пояснения</span><span>План и комментарии можно редактировать</span></div>';
+  h += '<div class="legend"><span><i style="background:#F8E9E6"></i>хуже плана больше чем на 10%</span><span><i style="background:#E7F2EB"></i>лучше плана</span><span>⚠ — аномалия, нажмите для пояснения</span><span>План и комментарии можно редактировать</span></div>';
   $('#v-rnp').innerHTML = h;
-  var w = $('#v-rnp .rnp-wrap'); if (w && !weeks) w.scrollLeft = w.scrollWidth;
+  var wr = $('#v-rnp .rnp-wrap'); if (wr) wr.scrollLeft = cfg.newest ? 0 : wr.scrollWidth;
+  if (S.rnpPanel) renderRnpCfg();
+}
+function renderRnpCfg(){
+  var cfg = cfgNow(), my = RNP_MY[S.role];
+  var pres = [['full','Полный'],['ads','Реклама'],['funnel','Воронка'],['stock','Остатки и выкуп']];
+  if (my) pres.push(['my','Мой вид']);
+  var h = '<div class="cfg-h"><div><b>Настроить вид</b>' + ex('Каждый сотрудник настраивает порядок и набор показателей под себя; данные и расчёты одни для всех.') + '<small>' + ROLES[S.role].name + ' · вид виден только вам</small></div><button class="x" data-act="rnp-cfg-close" aria-label="Закрыть">×</button></div><div class="cfg-b">';
+  h += '<div class="cfg-l">Пресеты</div><div class="rnp-chips">' + pres.map(function(p){ return '<button class="chip' + (cfg.preset === p[0] ? ' on' : '') + '" data-act="rnp-preset" data-p="' + p[0] + '">' + p[1] + '</button>'; }).join('') + '</div>';
+  h += '<div class="cfg-l">Даты</div><div class="cfg-row"><div class="seg">' + [7,14,30].map(function(p){ return '<button data-act="rnp-period" data-n="' + p + '" class="' + (cfg.period === p ? 'on' : '') + '">' + p + ' дн.</button>'; }).join('') + '</div>' +
+    '<div class="seg"><button data-act="rnp-newest" data-v="0" class="' + (!cfg.newest ? 'on' : '') + '">Сначала старые</button><button data-act="rnp-newest" data-v="1" class="' + (cfg.newest ? 'on' : '') + '">Сначала новые</button></div></div>';
+  h += '<div class="cfg-l">Фото товаров</div>' + photoSeg();
+  h += '<div class="cfg-l">Закреплены наверху <span class="muted">(до 3)</span></div><div class="rnp-chips">' + (cfg.pinned.length ? cfg.pinned.map(function(k){ return '<button class="chip on" data-act="rnp-pin" data-k="' + k + '">' + RNP_ROWMAP[k][2] + ' ×</button>'; }).join('') : '<span class="muted" style="font-size:13px">нет — нажмите ⤒ у показателя</span>') + '</div>';
+  h += '<div class="cfg-l">Порядок и состав <span class="muted">— перетащите за ⠿ или стрелками</span></div><ul class="dl" data-list="groups">';
+  cfg.groups.forEach(function(g, gi){
+    h += '<li class="dg" data-drag-item data-key="' + g + '"><div class="dg-h"><span class="dh" aria-hidden="true">⠿</span><b>' + RNP_GROUPS[g] + '</b><span class="mv"><button data-act="rnp-mv" data-l="groups" data-k="' + g + '" data-d="-1" aria-label="Выше"' + (gi ? '' : ' disabled') + '>↑</button><button data-act="rnp-mv" data-l="groups" data-k="' + g + '" data-d="1" aria-label="Ниже"' + (gi < cfg.groups.length - 1 ? '' : ' disabled') + '>↓</button></span></div><ul class="dl" data-list="' + g + '">';
+    cfg.rows[g].forEach(function(k, ri){
+      var r = RNP_ROWMAP[k], pin = cfg.pinned.indexOf(k) >= 0;
+      h += '<li class="dr" data-drag-item data-key="' + k + '"><span class="dh" aria-hidden="true">⠿</span><label><input type="checkbox" data-act="rnp-vis" data-k="' + k + '"' + (cfg.hidden[k] ? '' : ' checked') + '> ' + r[2] + '</label>' +
+        '<span class="mv"><button class="pn' + (pin ? ' on' : '') + '" data-act="rnp-pin" data-k="' + k + '" title="Закрепить наверху" aria-label="Закрепить наверху">⤒</button><button data-act="rnp-mv" data-l="' + g + '" data-k="' + k + '" data-d="-1" aria-label="Выше"' + (ri ? '' : ' disabled') + '>↑</button><button data-act="rnp-mv" data-l="' + g + '" data-k="' + k + '" data-d="1" aria-label="Ниже"' + (ri < cfg.rows[g].length - 1 ? '' : ' disabled') + '>↓</button></span></li>';
+    });
+    h += '</ul></li>';
+  });
+  h += '</ul></div><div class="cfg-f"><button class="btn" data-act="rnp-reset">Сбросить</button><button class="btn primary" data-act="rnp-save">Сохранить как мой вид</button></div>';
+  $('#rnpCfg').innerHTML = h;
+}
+function rnpChanged(){ cfgNow().preset = 'custom'; renderRnp(); }
+function rnpMove(list, key, d){
+  var cfg = cfgNow(), arr = list === 'groups' ? cfg.groups : cfg.rows[list], i = arr.indexOf(key), j = i + d;
+  if (i < 0 || j < 0 || j >= arr.length) return;
+  arr.splice(i, 1); arr.splice(j, 0, key); rnpChanged();
+}
+/* drag-and-drop: pointer events, mouse + touch */
+(function(){
+  var drag = null;
+  document.addEventListener('pointerdown', function(e){
+    var hd = e.target.closest('#rnpCfg .dh'); if (!hd) return;
+    var it = hd.closest('[data-drag-item]'); drag = {el:it, list:it.parentElement, id:e.pointerId}; it.classList.add('dragging');
+    try { hd.setPointerCapture(e.pointerId); } catch(err){}
+    e.preventDefault();
+  });
+  document.addEventListener('pointermove', function(e){
+    if (!drag || e.pointerId !== drag.id) return;
+    var under = document.elementFromPoint(e.clientX, e.clientY), over = under && under.closest('[data-drag-item]');
+    while (over && over.parentElement !== drag.list) over = over.parentElement && over.parentElement.closest('[data-drag-item]');
+    if (!over || over === drag.el) return;
+    var r = over.getBoundingClientRect();
+    if (e.clientY < r.top + r.height / 2) drag.list.insertBefore(drag.el, over); else drag.list.insertBefore(drag.el, over.nextSibling);
+  });
+  function end(){
+    if (!drag) return;
+    var keys = [].map.call(drag.list.children, function(li){ return li.getAttribute('data-key'); }), name = drag.list.getAttribute('data-list'), cfg = cfgNow();
+    drag.el.classList.remove('dragging'); drag = null;
+    if (name === 'groups') cfg.groups = keys; else cfg.rows[name] = keys;
+    rnpChanged();
+  }
+  document.addEventListener('pointerup', end); document.addEventListener('pointercancel', end);
+})();
+/* ---------------- monthly plan (revenue-based) ---------------- */
+var MONTH_DAYS = 31, DAYS_PASSED = 8;
+var PLAN_BASE = {
+  'NP-1405':{price:993, buy:82, oConv:38, cConv:13, ctr:4.0, drr:18, margin:20, fc:82, nov:1.04},
+  'NP-3103':{price:518, buy:85, oConv:41, cConv:14, ctr:3.8, drr:12, margin:20, fc:71, nov:.78},
+  'NP-2210':{price:600, buy:85, oConv:44, cConv:16, ctr:4.4, drr:10, margin:22, fc:118, nov:1.15},
+  'NP-1412':{price:499, buy:88, oConv:40, cConv:12, ctr:3.6, drr:11, margin:24, fc:101, nov:1.05},
+  'NP-6301':{price:690, buy:89, oConv:40, cConv:12, ctr:3.6, drr:10, margin:27, fc:108, nov:1.06},
+  'NP-4045':{price:1390, buy:82, oConv:36, cConv:10, ctr:3.2, drr:11, margin:18, fc:96, nov:1.02},
+  'NP-6210':{price:1190, buy:84, oConv:37, cConv:11, ctr:3.3, drr:12, margin:17, fc:93, nov:1.08},
+  'NP-4203':{price:1090, buy:79, oConv:36, cConv:11, ctr:3.4, drr:12, margin:16, fc:79, nov:1.03},
+  'NP-4130':{price:1290, buy:80, oConv:35, cConv:10, ctr:3.5, drr:12, margin:20, fc:99, nov:1.22},
+  'NP-6104':{price:740, buy:87, oConv:41, cConv:12, ctr:3.7, drr:10, margin:24, fc:112, nov:1.08},
+  'NP-6020':{price:890, buy:90, oConv:40, cConv:12, ctr:3.6, drr:9, margin:25, fc:104, nov:1.05},
+  'NP-5110':{price:490, buy:91, oConv:42, cConv:13, ctr:3.6, drr:8, margin:19, fc:98, nov:.97},
+  'NP-5012':{price:390, buy:92, oConv:43, cConv:13, ctr:3.5, drr:7, margin:14, fc:74, nov:.92},
+  'NP-7010':{price:290, buy:89, oConv:40, cConv:12, ctr:3.4, drr:12, margin:13, fc:61, nov:.45}
+};
+var PLAN_IN = [['rev','Выручка, млн ₽'],['price','Цена с СПП, ₽'],['buy','Выкуп, %'],['oConv','Конв. в заказ, %'],['cConv','Конв. в корзину, %'],['ctr','CTR, %'],['drr','ДРР, %']];
+var PLAN_CALC = [['orders','Заказы','= выручка / цена с СПП / % выкупа'],['carts','Корзины','= заказы / конверсия в заказ'],['clicks','Переходы','= корзины / конверсия в корзину'],['shows','Показы','= переходы / CTR'],['adLimit','Лимит рекламы, ₽/день','= выручка × ДРР / дни месяца'],['marginRub','Маржа, ₽','= выручка × маржа после выкупа %'],['cro','CRO, %','= конверсия в корзину × конверсия в заказ']];
+var PLAN = {};
+function rnpFactMTD(sku){
+  var c = RNP_SKU.filter(function(x){ return x.sku === sku; })[0];
+  if (!c) return null;
+  var D = rnpCalc(c, 14), s = 0; for (var i = 14 - DAYS_PASSED; i < 14; i++) s += D[i].orders * D[i].buy / 100 * D[i].price;
+  return s;
+}
+function initPlans(){
+  PRODUCTS.forEach(function(p){
+    var b = PLAN_BASE[p.sku], fact = rnpFactMTD(p.sku);
+    if (fact == null) fact = p.rev * 1000 / 7 * DAYS_PASSED;
+    var fcRev = fact / DAYS_PASSED * MONTH_DAYS, rev = Math.round(fcRev / (b.fc / 100) / 10000) * 10000;
+    var o = {}; for (var k in b) o[k] = b[k];
+    o.rev = rev;
+    PLAN[p.sku] = { oct:o, factMTD:fact,
+      sep:(function(){ var s = {}; for (var k in o) s[k] = o[k]; s.rev = Math.round(rev * .94 / 10000) * 10000; s.fact = Math.round(s.rev * ((b.fc + 103) / 2 / 100 + (p.sku === 'NP-7010' ? .2 : 0)) / 1000) * 1000; return s; })(),
+      nov:(function(){ var s = {}; for (var k in o) s[k] = o[k]; s.rev = Math.round(fcRev * b.nov / 10000) * 10000; s.draft = true; return s; })() };
+  });
+}
+function planCalc(pl){
+  var r = {}, days = MONTH_DAYS;
+  r.orders = pl.rev / pl.price / (pl.buy / 100); r.carts = r.orders / (pl.oConv / 100); r.clicks = r.carts / (pl.cConv / 100); r.shows = r.clicks / (pl.ctr / 100);
+  r.adLimit = pl.rev * pl.drr / 100 / days; r.marginRub = pl.rev * pl.margin / 100; r.cro = pl.cConv * pl.oConv / 100;
+  return r;
+}
+function planFc(sku){ var P = PLAN[sku]; return Math.round(P.factMTD / DAYS_PASSED * MONTH_DAYS / P.oct.rev * 100); }
+function fcCls(v){ return v >= 100 ? 'pos' : (v >= 90 ? 'warn' : 'neg'); }
+function planLine(sku){ if (!PLAN[sku]) return ''; var f = planFc(sku); return '<div class="pfl">прогноз выполнения плана месяца: <b class="' + fcCls(f) + '">' + f + '%</b></div>'; }
+function planStrip(sku){
+  var P = PLAN[sku], f = planFc(sku), fact = P.factMTD, pr = Math.round(fact / P.oct.rev * 100), passed = Math.round(DAYS_PASSED / MONTH_DAYS * 100);
+  return '<span class="pstrip ' + fcCls(f) + '"><span>Выручка <b>' + nf(fact / 1e6, 2) + '</b> / ' + nf(P.oct.rev / 1e6, 2) + ' млн ₽</span><span class="pbar"><i style="width:' + Math.min(pr, 100) + '%"></i><em style="left:' + passed + '%"></em></span><span>' + pr + '% при ' + passed + '% месяца · <b>прогноз ' + f + '%</b>' + (f >= 100 ? ' ✓' : '') + '</span></span>';
+}
+/* daily plan for RNP column: inputs vs computed */
+var RNP_PLAN_INPUT = {rev:1, ctr:1, cConv:1, oConv:1, ctrArk:1, ctrMan:1, price:1, cost:1, buy:1, margin:1, days:1, drr:1};
+function rnpPlanDaily(sku){
+  var P = PLAN[sku].oct, ov = S.rnp.plan, g = function(k, d){ var v = ov[sku + '|' + k]; return v != null ? v : d; };
+  var o = {};
+  o.rev = g('rev', P.rev / MONTH_DAYS); o.price = g('price', P.price); o.buy = g('buy', P.buy); o.oConv = g('oConv', P.oConv); o.cConv = g('cConv', P.cConv); o.ctr = g('ctr', P.ctr);
+  o.ctrArk = g('ctrArk', Math.round(o.ctr * 1.08 * 10) / 10); o.ctrMan = g('ctrMan', Math.round(o.ctr * 1.15 * 10) / 10);
+  o.margin = g('margin', P.margin); o.drr = g('drr', P.drr); o.days = g('days', sku === 'NP-2210' ? 14 : 30);
+  o.orders = o.rev / o.price / (o.buy / 100); o.carts = o.orders / (o.oConv / 100); o.clicks = o.carts / (o.cConv / 100); o.shows = o.clicks / (o.ctr / 100);
+  o.cro = Math.round(o.cConv * o.oConv / 10) / 10;
+  var ad = o.clicks * .7; o.arkClicks = ad * .4; o.manClicks = ad * .6; o.arkShows = o.arkClicks / (o.ctrArk / 100); o.manShows = o.manClicks / (o.ctrMan / 100);
+  o.cost = g('cost', Math.round(o.rev * o.drr / 100 / 1000) * 1000); o.bid = o.cost / ad;
+  ['orders','carts','clicks','shows','arkClicks','manClicks','arkShows','manShows'].forEach(function(k){ o[k] = Math.round(o[k]); }); o.rev = Math.round(o.rev); o.bid = Math.round(o.bid * 10) / 10;
+  return o;
+}
+var RNP_PLAN_TIP = {cro:'= конверсия в корзину × конверсия в заказ', orders:'= выручка / цена с СПП / % выкупа', carts:'= заказы / конверсия в заказ', clicks:'= корзины / конверсия в корзину', shows:'= переходы / CTR', arkClicks:'= клики РК × доля АРК', manClicks:'= клики РК × доля ручной', arkShows:'= клики АРК / CTR РК (АРК)', manShows:'= клики ручн. / CTR РК (ручн.)', bid:'= лимит рекламы / клики РК'};
+
+/* plan tab */
+function renderPlanTab(){
+  var M = S.role === 'mp', mo = S.planMonth, list = PRODUCTS.filter(function(p){ return !M || MP_TEAM.indexOf(p.mgr) >= 0; });
+  var tot = 0, totFc = 0;
+  list.forEach(function(p){ var pl = PLAN[p.sku][mo]; tot += pl.rev; totFc += mo === 'sep' ? pl.fact : (mo === 'oct' ? PLAN[p.sku].factMTD / DAYS_PASSED * MONTH_DAYS : pl.rev); });
+  var pct = Math.round(totFc / tot * 100);
+  var h = '<div class="rnp-bar"><div class="seg">' + [['sep','Сентябрь'],['oct','Октябрь'],['nov','Ноябрь']].map(function(m){ return '<button data-act="plan-month" data-m="' + m[0] + '" class="' + (mo === m[0] ? 'on' : '') + '">' + m[1] + '</button>'; }).join('') + '</div>' +
+    (mo === 'nov' ? '<span class="pill accent">черновик: предложено системой по прогнозу спроса и сезонности — проверьте</span>' : '') + (mo === 'sep' ? '<span class="pill">месяц закрыт</span>' : '') + '</div>';
+  h += '<div class="card metrics plan-tot"><div class="metric"><div class="l">План выручки · ' + (M ? 'ваши ' + list.length + ' товаров на МП' : list.length + ' товаров на МП') + '</div><div class="v">' + nf(tot / 1e6, 1) + ' млн ₽</div></div>' +
+    (mo === 'nov' ? '<div class="metric"><div class="l">К октябрю</div><div class="v">' + sg(Math.round((tot / list.reduce(function(s, p){ return s + PLAN[p.sku].oct.rev; }, 0) - 1) * 100)) + '%</div></div>' :
+    '<div class="metric"><div class="l">' + (mo === 'sep' ? 'Факт' : 'Прогноз на конец месяца') + ' · ' + list.length + ' товаров</div><div class="v">' + nf(totFc / 1e6, 1) + ' млн ₽</div></div><div class="metric"><div class="l">' + (mo === 'sep' ? 'Выполнение' : 'Прогноз выполнения') + '</div><div class="v ' + fcCls(pct) + '">' + pct + '%</div></div>') + '</div>';
+  if (S.planProp.length && !M) h += S.planProp.map(function(pp, i){ return '<div class="banner role"><b>Ольга предлагает изменить план октября:</b> ' + pp.name + ', выручка ' + nf(pp.from / 1e6, 2) + ' → ' + nf(pp.to / 1e6, 2) + ' млн ₽. <button class="btn primary" data-act="plan-ok" data-i="' + i + '">Согласовать</button><button class="btn" data-act="plan-no" data-i="' + i + '">Отклонить</button></div>'; }).join('');
+  if (M && S.planProp.length) h += '<div class="banner role">Предложение по плану отправлено Андрею Викторовичу — ждёт решения.</div>';
+  var editable = mo !== 'sep';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl plan-t" style="min-width:1180px"><thead><tr><th>Товар</th>' + PLAN_IN.map(function(x){ return '<th class="n">' + x[1] + '</th>'; }).join('') + PLAN_CALC.map(function(x){ return '<th class="n calc">' + x[1] + '</th>'; }).join('') + '<th class="n">' + (mo === 'sep' ? 'Факт, %' : (mo === 'oct' ? 'Прогноз, %' : '')) + '</th>' + (M && mo === 'oct' ? '<th></th>' : '') + '</tr></thead><tbody>';
+  list.forEach(function(p){
+    var pl = PLAN[p.sku][mo], r = planCalc(pl);
+    h += '<tr><td class="pn-name">' + ph(p.sku, 'mkt') + '<span>' + p.n + '<small>' + p.sku + '</small></span></td>';
+    PLAN_IN.forEach(function(x){
+      var v = pl[x[0]], dec = x[0] === 'price' ? 0 : (x[0] === 'rev' ? 2 : 1); if (x[0] === 'rev') v = v / 1e6;
+      h += '<td class="n">' + (editable && (!M || mo === 'oct') ? '<input class="pin" data-act="plan-in" data-s="' + p.sku + '" data-k="' + x[0] + '" value="' + nf(v, dec) + '" inputmode="decimal" aria-label="' + x[1] + '">' : nf(v, dec)) + '</td>';
+    });
+    PLAN_CALC.forEach(function(x){ h += '<td class="n calc" title="' + x[2] + '">' + (x[0] === 'cro' ? nf(r.cro, 1) + '%' : nf(Math.round(r[x[0]]))) + '</td>'; });
+    var f = mo === 'sep' ? Math.round(pl.fact / pl.rev * 100) : (mo === 'oct' ? planFc(p.sku) : null);
+    h += '<td class="n">' + (f != null ? '<b class="' + fcCls(f) + '">' + f + '%</b>' : '<span class="pill accent">предложено</span>') + '</td>';
+    if (M && mo === 'oct') h += '<td><button class="btn" data-act="plan-prop" data-s="' + p.sku + '">Предложить изменение плана</button></td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table></div></div><p class="note">Жирные — вводимые значения, серые — расчётные (наведите, чтобы увидеть формулу). ' + (M ? 'Менеджер меняет план через «Предложить изменение плана» — решение принимает руководитель.' : 'Изменения пересчитываются сразу.') + '</p>';
+  return h;
 }
 
+initPlans();
+
+/* ---------------- stock & restock ---------------- */
+var STOCK_X = {
+  'NP-1405':{lead:4, target:21, wh:[['WB Коледино','WB',4100,120],['WB Казань','WB',1800,55],['WB Электросталь','WB',1500,43],['Ozon Хоругвино','Ozon',2770,81]], co:5200, transit:0, toC:900, fromC:530, buy:71, fromNote:'Возвратов в пути в 2,4 раза больше нормы — выкуп упал до 71% («не соответствует размеру»).'},
+  'NP-3103':{lead:4, target:30, wh:[['WB Коледино','WB',1240,40],['WB Казань','WB',190,24],['Ozon Хоругвино','Ozon',610,14]], co:2150, transit:0, toC:80, fromC:10, buy:86,
+    sizes:[['S',902,28,800],['M',250,38,1100],['L',888,12,250]], sizeNote:'L не грузить: запас 74 дня. Подсорт только M и S.'},
+  'NP-2210':{lead:5, target:14, wh:[['Ozon Хоругвино','Ozon',760,120],['Ozon Казань','Ozon',380,66]], co:3600, transit:0, toC:520, fromC:40, buy:88,
+    sizes:[['белый',540,90,1800],['серый',380,60,1200],['графит',220,36,600]]},
+  'NP-4130':{transit:300, transitNote:'поставка 300 шт в WB Казань, приёмка 10.10'}
+};
+var STK_WH_WB = [['WB Коледино',.55],['WB Казань',.25],['WB Краснодар',.20]];
+function stockData(){
+  if (stockData.cache) return stockData.cache;
+  var out = PRODUCTS.map(function(p){
+    var x = STOCK_X[p.sku] || {}, b = PLAN_BASE[p.sku], price = b.price, cost = COST[p.sku];
+    var it = {sku:p.sku, n:p.n, mgr:p.mgr, cost:cost, price:price, margin:b.margin, lead:x.lead || 4, target:x.target || 21, transit:x.transit || 0, transitNote:x.transitNote || '', buy:x.buy || p.buy};
+    if (x.wh){ it.wh = x.wh.map(function(w){ return {n:w[0], mp:w[1], st:w[2], s:w[3]}; }); it.co = x.co; it.toC = x.toC; it.fromC = x.fromC; it.fromNote = x.fromNote || ''; }
+    else {
+      var sales = Math.round(p.rev * 1000 / 7 / price / (p.buy / 100)), mpSt = p.stk * sales, wbS = Math.round(sales * .7), ozS = sales - wbS;
+      it.wh = STK_WH_WB.map(function(w, i){ var s = Math.round(wbS * w[1]), st = Math.round(mpSt * .7 * w[1] * (i === 1 ? .9 : (i === 0 ? 1.06 : 1))); return {n:w[0], mp:'WB', st:st, s:s}; });
+      it.wh.push({n:'Ozon Хоругвино', mp:'Ozon', st:Math.round(mpSt * .3), s:ozS});
+      it.co = sales * (p.stk > 60 ? 45 : 22); it.toC = Math.round(sales * 2.6); it.fromC = Math.round(sales * (1 - p.buy / 100) * 4); it.fromNote = '';
+    }
+    it.ch = it.wh.some(function(w){ return w.mp === 'WB'; }) ? (it.wh.some(function(w){ return w.mp === 'Ozon'; }) ? 'WB + Ozon' : 'WB') : 'Ozon';
+    it.wb = it.wh.filter(function(w){ return w.mp === 'WB'; }).reduce(function(s, w){ return s + w.st; }, 0);
+    it.oz = it.wh.filter(function(w){ return w.mp === 'Ozon'; }).reduce(function(s, w){ return s + w.st; }, 0);
+    it.sales = it.wh.reduce(function(s, w){ return s + w.s; }, 0);
+    stkCalc(it);
+    if (x.sizes){
+      var totSt = it.wb + it.oz;
+      it.sizes = x.sizes.map(function(z){
+        var f = z[2] / it.sales, sz = {n:z[0], sales:z[2], co:z[3], lead:it.lead, target:it.target, transit:0, buy:it.buy, cost:cost, price:price, margin:it.margin};
+        sz.wb = Math.round(z[1] * it.wb / totSt); sz.oz = z[1] - sz.wb; sz.toC = Math.round(it.toC * f); sz.fromC = Math.round(it.fromC * f);
+        sz.wh = it.wh.map(function(w){ return {n:w.n, mp:w.mp, st:Math.round(z[1] * w.st / totSt), s:Math.round(z[2] * w.s / it.sales * 10) / 10}; });
+        stkCalc(sz); return sz;
+      });
+      var worst = it.sizes.slice().sort(function(a, b){ return a.days - b.days; })[0];
+      it.days = worst.days; it.worstSize = worst.n; it.status = stkWorst(it.sizes);
+      it.rec = it.sizes.reduce(function(s, z){ return s + z.rec; }, 0); it.recCost = it.rec * cost;
+      it.shipBy = worst.shipBy; it.sizeNote = x.sizeNote || '';
+    }
+    it.whRec = stkWhSplit(it);
+    return it;
+  });
+  stockData.cache = out; return out;
+}
+function stkCalc(it){
+  it.avail = it.wb + it.oz + it.fromC + Math.round(it.toC * (1 - it.buy / 100));
+  it.days = Math.round((it.avail + it.transit) / it.sales * 10) / 10;
+  it.turn = Math.round((it.avail + it.transit + it.co) / it.sales);
+  it.units = it.wb + it.oz + it.transit + it.co + it.toC + it.fromC; it.value = it.units * it.cost;
+  it.status = it.days > 60 ? 'over' : (it.days <= Math.max(7, it.lead + 3) ? 'red' : (it.days <= 14 ? 'yellow' : 'green'));
+  var need = it.sales * (it.target + it.lead) - (it.avail + it.transit);
+  it.rec = it.status === 'over' ? 0 : Math.max(0, Math.min(it.co, Math.round(need / 10) * 10)); it.recCost = it.rec * it.cost;
+  it.shipBy = Math.max(0, Math.floor(it.days - it.lead - 1));
+  it.surplusUnits = it.status === 'over' ? Math.max(0, it.wb + it.oz - it.sales * 60) : 0;
+}
+function stkWorst(arr){ var o = ['red','yellow','green','over']; return arr.map(function(z){ return z.status; }).sort(function(a, b){ return o.indexOf(a) - o.indexOf(b); })[0]; }
+function stkWhSplit(it){
+  if (!it.rec) return [];
+  var need = it.wh.map(function(w){ return Math.max(0, w.s * (it.target + it.lead) - w.st); }), tot = need.reduce(function(s, v){ return s + v; }, 0) || 1;
+  var res = it.wh.map(function(w, i){ return {n:w.n, q:Math.round(it.rec * need[i] / tot / 10) * 10}; }).filter(function(r){ return r.q > 0; });
+  var diff = it.rec - res.reduce(function(s, r){ return s + r.q; }, 0); if (res.length) res[0].q += diff;
+  return res;
+}
+var STK_ST = {red:['Срочно','red'], yellow:['Скоро','yellow'], green:['Норма','green'], over:['Излишек','over']};
+function stkDate(d){ var t = new Date(2026, 9, 9 + Math.round(d)); return ('0' + t.getDate()).slice(-2) + '.' + ('0' + (t.getMonth() + 1)).slice(-2); }
+function stkChart(it){
+  var w = 300, h = 90, n = 28, s0 = it.avail + it.transit, a = [], b = [], v1 = s0, v2 = s0;
+  for (var i = 0; i < n; i++){ a.push(Math.max(0, v1)); b.push(Math.max(0, v2)); v1 -= it.sales; v2 -= it.sales; if (i === it.lead) v2 += it.rec; }
+  var mx = Math.max.apply(null, b.concat(a)) * 1.1 || 1;
+  function pts(arr){ return arr.map(function(v, i){ return (i / (n - 1) * (w - 4) + 2).toFixed(1) + ',' + (h - 12 - v / mx * (h - 20)).toFixed(1); }).join(' '); }
+  return '<svg viewBox="0 0 ' + w + ' ' + h + '" class="stk-ch" role="img" aria-label="Прогноз остатка"><line x1="0" x2="' + w + '" y1="' + (h - 12) + '" y2="' + (h - 12) + '" stroke="#B1453A" stroke-dasharray="3 3"/><text x="2" y="' + (h - 2) + '" font-size="9" fill="#B1453A">0</text>' +
+    '<polyline points="' + pts(a) + '" fill="none" stroke="#B1453A" stroke-width="1.8" stroke-dasharray="4 3"/>' + (it.rec ? '<polyline points="' + pts(b) + '" fill="none" stroke="#2C7A55" stroke-width="2"/>' : '') + '</svg>' +
+    '<div class="legend" style="margin-top:2px"><span><i style="background:#B1453A"></i>без поставки</span>' + (it.rec ? '<span><i style="background:#2C7A55"></i>если отгрузить сейчас</span>' : '') + '</div>';
+}
+function stkVisible(){ var M = S.role === 'mp'; return stockData().filter(function(it){ return !M || MP_TEAM.indexOf(it.mgr) >= 0; }); }
+function renderStock(){
+  var M = S.role === 'mp', all = stkVisible(), F = S.stk;
+  var cnt = {red:0, yellow:0, green:0, over:0}; all.forEach(function(it){ cnt[it.status]++; });
+  var rows = all.filter(function(it){ return F.f === 'all' || it.status === F.f; });
+  var ord = ['red','yellow','green','over'];
+  rows.sort(function(a, b){ if (F.k === 'urg') return (ord.indexOf(a.status) - ord.indexOf(b.status)) || (a.days - b.days); var x = a[F.k], y = b[F.k]; return (typeof x === 'string' ? x.localeCompare(y, 'ru') : x - y) * F.d; });
+  var sum = function(arr, f){ return arr.reduce(function(s, it){ return s + f(it); }, 0); };
+  var vWB = sum(all, function(it){ return it.wb * it.cost; }), vOZ = sum(all, function(it){ return it.oz * it.cost; }), vTr = sum(all, function(it){ return it.transit * it.cost; }), vCo = sum(all, function(it){ return it.co * it.cost; }),
+      vTo = sum(all, function(it){ return it.toC * it.cost; }), vFr = sum(all, function(it){ return it.fromC * it.cost; }), vAll = vWB + vOZ + vTr + vCo + vTo + vFr,
+      vOver = sum(all, function(it){ return it.surplusUnits * it.cost; }) + sum(all, function(it){ return (it.sizes || []).reduce(function(s, z){ return s + (z.status === 'over' ? Math.max(0, z.wb + z.oz - z.sales * 60) * z.cost : 0); }, 0); });
+  var reds = all.filter(function(it){ return it.status === 'red'; }), lost = sum(reds, function(it){ var s = it.sizes ? it.sizes.filter(function(z){ return z.status === 'red'; }).reduce(function(q, z){ return q + z.sales; }, 0) : it.sales; return s * 3 * it.price * 1.25; });
+  var lostM = sum(reds, function(it){ var s = it.sizes ? it.sizes.filter(function(z){ return z.status === 'red'; }).reduce(function(q, z){ return q + z.sales; }, 0) : it.sales; return s * 3 * it.price * 1.25 * it.margin / 100; });
+  var storage = Math.round(sum(all, function(it){ return it.surplusUnits * 0.2 * 30; }));
+  var mln = function(v){ return nf(v / 1e6, 2) + ' млн ₽'; }, tys = function(v){ return nf(Math.round(v / 1000)) + ' тыс ₽'; };
+  var h = '<div class="page-h"><div><h1>Остатки и подсорт' + ex('Остатки по всем складам, скорость продаж и прогноз — система заранее предлагает подсорт, чтобы товар не заканчивался и не лежал лишним. Себестоимость — из 1С.') + '</h1>' + why('не терять продажи из-за дефицита и не держать деньги в лишнем товаре') + '</div>' +
+    '<button class="btn primary" data-act="stk-mass">Сформировать подсорт' + (Object.keys(F.sel).filter(function(k){ return F.sel[k]; }).length ? ' (' + Object.keys(F.sel).filter(function(k){ return F.sel[k]; }).length + ')' : '') + '</button></div>';
+  if (M) h += '<div class="banner role">Ваши товары. Поставку до 150 000 ₽ в себестоимости создаёте сами, выше — на согласование руководителю.</div>';
+  h += '<div class="stk-tiles"><div class="card stk-money"><div class="l">Денег в товаре · по себестоимости</div><div class="v">' + mln(vAll) + '</div><ul>' +
+    [['на складах WB', vWB],['на складах Ozon', vOZ],['в пути на склады', vTr],['склад компании (1С)', vCo],['у покупателей в пути', vTo],['возвраты в пути', vFr]].map(function(r){ return '<li><span>' + r[0] + '</span><b>' + tys(r[1]) + '</b></li>'; }).join('') +
+    '<li class="ov"><span>из них в излишке (>60 дней)</span><b>' + tys(vOver) + '</b></li></ul></div>' +
+    '<div class="card stat"><div class="l">В дефиците</div><div class="v neg">' + cnt.red + ' <span class="muted" style="font-size:15px;font-weight:500">+ ' + cnt.yellow + ' скоро</span></div><div class="s">закончатся раньше, чем доедет поставка</div></div>' +
+    '<div class="card stat"><div class="l">Упущенная выручка из-за дефицита</div><div class="v neg">' + tys(lost) + '</div><div class="s">маржа ~' + tys(lostM) + ', если не отгрузить до срока</div></div>' +
+    '<div class="card stat"><div class="l">Излишек и платное хранение</div><div class="v">' + tys(vOver) + '</div><div class="s">замороженные деньги · хранение ~' + tys(storage) + '/мес</div></div></div>';
+  h += '<div class="stk-legend"><span class="lg red">Срочно — закончится раньше, чем доедет поставка</span><span class="lg yellow">Скоро — 7–14 дней</span><span class="lg green">Норма — больше 14 дней</span><span class="lg over">Излишек — больше 60 дней</span></div>';
+  h += '<div class="rnp-chips" style="margin-bottom:10px">' + [['all','Все', all.length],['red','Срочно', cnt.red],['yellow','Скоро', cnt.yellow],['green','Норма', cnt.green],['over','Излишек', cnt.over]].map(function(c){ return '<button class="chip' + (F.f === c[0] ? ' on' : '') + '" data-act="stk-f" data-f="' + c[0] + '">' + c[1] + ' ' + c[2] + '</button>'; }).join('') + '</div>';
+  var cols = [['', ''],['n','Товар'],['ch','Канал'],['wb','WB, шт'],['oz','Ozon, шт'],['transit','В пути на склад'],['co','Склад компании'],['toC','К клиенту' + ex('К клиенту — заказы в доставке; от клиента — возвраты и невыкупы, которые вернутся на склад.')],['fromC','От клиента'],['avail','Итого доступно'],['sales','Продажи в день'],['turn','Оборачиваемость, дн'],['days','Закончится через'],['urg','Срочность'],['cost','Себест., ₽/шт'],['value','Остаток в себест., ₽'],['rec','Подсорт, шт'],['recCost','Сумма поставки, ₽'],['act','']];
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl stk" style="min-width:1700px"><thead><tr>' + cols.map(function(c, i){
+    var sortable = c[0] && c[0] !== 'act'; var on = F.k === c[0];
+    return '<th class="' + (i > 2 && c[0] !== 'urg' && c[0] !== 'act' ? 'n ' : '') + (sortable ? 'sort' + (on ? ' on' : '') : '') + '"' + (sortable ? ' data-act="stk-sort" data-k="' + c[0] + '"' : '') + '>' + c[1] + (on && c[0] !== 'urg' ? '<span class="ar">' + (F.d > 0 ? '↑' : '↓') + '</span>' : '') + '</th>';
+  }).join('') + '</tr></thead><tbody>';
+  rows.forEach(function(it){
+    var st = STK_ST[it.status], open = F.open[it.sku];
+    var actions = it.status === 'over' ? '<span class="anm stk-tip" tabindex="0" role="button" data-tip="Излишек: снизить цену на 5–7% или включить в акцию; часть остатка вывезти с платного хранения WB на склад компании.">что сделать?</span>' : (it.rec ? (F.done[it.sku] ? '<span class="pill brand">' + F.done[it.sku] + '</span>' : '<button class="btn" data-act="stk-one" data-s="' + it.sku + '">Создать поставку</button>') : '');
+    h += '<tr class="srow ' + st[1] + (open ? ' open' : '') + '"><td><input type="checkbox" data-act="stk-sel" data-s="' + it.sku + '"' + (F.sel[it.sku] ? ' checked' : '') + (it.rec ? '' : ' disabled') + ' aria-label="Выбрать"></td>' +
+      '<td><div class="pn-name" style="min-width:250px">' + ph(it.sku, 'mkt') + '<span><button class="exp-b" data-act="stk-exp" data-s="' + it.sku + '">' + (open ? '▾' : '▸') + ' ' + it.n + '</button><small>' + it.sku + (it.sizes ? ' · ' + it.sizes.length + ' ' + (it.sku === 'NP-2210' ? 'цвета' : 'размера') : '') + '</small></span></div></td>' +
+      '<td>' + it.ch + '</td><td class="n">' + nf(it.wb) + '</td><td class="n">' + nf(it.oz) + '</td><td class="n">' + (it.transit ? '<span title="' + esc(it.transitNote) + '">' + nf(it.transit) + '</span>' : '<span class="muted">—</span>') + '</td><td class="n">' + nf(it.co) + '</td>' +
+      '<td class="n">' + nf(it.toC) + '</td><td class="n">' + (it.fromNote ? '<span class="anm" tabindex="0" role="button" data-tip="' + esc(it.fromNote) + '">⚠</span><b class="neg">' + nf(it.fromC) + '</b>' : nf(it.fromC)) + '</td><td class="n">' + nf(it.avail) + '</td>' +
+      '<td class="n">' + nf(it.sales) + '</td><td class="n">' + it.turn + '</td><td class="n">' + nf(Math.round(it.days)) + ' дн<small>' + stkDate(it.days) + (it.worstSize ? ' · ' + it.worstSize : '') + '</small></td>' +
+      '<td><span class="sbadge ' + st[1] + '">' + st[0] + '</span></td><td class="n">' + nf(it.cost) + '</td><td class="n">' + nf(it.value) + '</td>' +
+      '<td class="n">' + (it.rec ? '<b>' + nf(it.rec) + '</b><small>до ' + stkDate(it.shipBy) + '</small>' : '<span class="muted">—</span>') + '</td><td class="n">' + (it.rec ? nf(it.recCost) : '<span class="muted">—</span>') + '</td><td>' + actions + '</td></tr>';
+    if (open) h += '<tr class="sexp"><td></td><td colspan="' + (cols.length - 1) + '">' + stkDetail(it) + '</td></tr>';
+  });
+  h += '<tr class="stot"><td></td><td><b>Итого товарный запас</b></td><td></td>' + ['wb','oz','transit','co','toC','fromC','avail'].map(function(k){ return '<td class="n">' + nf(sum(rows, function(it){ return it[k]; })) + '</td>'; }).join('') + '<td></td><td></td><td></td><td></td><td></td><td class="n"><b>' + nf(sum(rows, function(it){ return it.value; })) + '</b></td><td class="n"><b>' + nf(sum(rows, function(it){ return it.rec; })) + '</b></td><td class="n"><b>' + nf(sum(rows, function(it){ return it.recCost; })) + '</b></td><td></td></tr>';
+  h += '</tbody></table></div></div>';
+  $('#v-stock').innerHTML = h;
+}
+function stkDetail(it){
+  var mode = it.sizes && S.stk.by[it.sku] !== 'wh' ? 'size' : 'wh';
+  var h = '<div class="sdet"><div class="sdet-t">';
+  if (it.sizes) h += '<div class="seg" style="margin-bottom:8px"><button data-act="stk-by" data-s="' + it.sku + '" data-v="size" class="' + (mode === 'size' ? 'on' : '') + '">По ' + (it.sku === 'NP-2210' ? 'цветам' : 'размерам') + '</button><button data-act="stk-by" data-s="' + it.sku + '" data-v="wh" class="' + (mode === 'wh' ? 'on' : '') + '">По складам</button></div>';
+  if (mode === 'size'){
+    h += '<table class="tbl sub"><thead><tr><th>' + (it.sku === 'NP-2210' ? 'Цвет' : 'Размер') + '</th><th class="n">WB</th><th class="n">Ozon</th><th class="n">Склад компании</th><th class="n">К клиенту</th><th class="n">От клиента</th><th class="n">Продажи в день</th><th class="n">Оборач., дн</th><th class="n">Закончится</th><th>Срочность</th><th class="n">Подсорт</th><th class="n">Сумма, ₽</th></tr></thead><tbody>' +
+      it.sizes.map(function(z){ var st = STK_ST[z.status]; return '<tr class="srow ' + st[1] + '"><td><b>' + z.n + '</b></td><td class="n">' + nf(z.wb) + '</td><td class="n">' + nf(z.oz) + '</td><td class="n">' + nf(z.co) + '</td><td class="n">' + nf(z.toC) + '</td><td class="n">' + nf(z.fromC) + '</td><td class="n">' + nf(z.sales) + '</td><td class="n">' + z.turn + '</td><td class="n">' + nf(Math.round(z.days)) + ' дн</td><td><span class="sbadge ' + st[1] + '">' + st[0] + '</span></td><td class="n">' + (z.rec ? '<b>' + nf(z.rec) + '</b>' : (z.status === 'over' ? '<b class="neg">не грузить</b>' : '—')) + '</td><td class="n">' + (z.rec ? nf(z.recCost) : '—') + '</td></tr>'; }).join('') + '</tbody></table>';
+    if (it.sizeNote) h += '<p class="note" style="margin-top:6px"><b>' + it.sizeNote + '</b> Сумма поставки пересчитана: ' + nf(it.recCost) + ' ₽.</p>';
+  } else {
+    h += '<table class="tbl sub"><thead><tr><th>Склад</th><th class="n">Остаток</th><th class="n">Продажи в день</th><th class="n">Дней хватит</th><th class="n">Подсорт сюда</th></tr></thead><tbody>' +
+      it.wh.map(function(w){ var d = w.st / w.s, st = d <= Math.max(7, it.lead + 3) ? 'red' : (d <= 14 ? 'yellow' : (d > 60 ? 'over' : 'green')), r = (it.whRec.filter(function(x){ return x.n === w.n; })[0] || {}).q; return '<tr class="srow ' + st + '"><td>' + w.n + '</td><td class="n">' + nf(w.st) + '</td><td class="n">' + nf(w.s, w.s % 1 ? 1 : 0) + '</td><td class="n">' + nf(Math.round(d)) + '</td><td class="n">' + (r ? '<b>' + nf(r) + '</b>' : '—') + '</td></tr>'; }).join('') + '</tbody></table>' +
+      '<p class="note" style="margin-top:6px">Распределение — по доле заказов, которые идут с каждого склада (локализация).</p>';
+  }
+  h += '</div><div class="sdet-c"><div class="muted" style="font-size:13px;margin-bottom:4px">Прогноз остатка на 4 недели</div>' + stkChart(it) + '</div></div>';
+  return h;
+}
+function stkSupply(skus){
+  var items = stockData().filter(function(it){ return skus.indexOf(it.sku) >= 0 && it.rec; });
+  if (!items.length) return toast('Нечего отгружать: рекомендованный подсорт 0');
+  var M = S.role === 'mp', total = items.reduce(function(s, it){ return s + it.recCost; }, 0), qty = items.reduce(function(s, it){ return s + it.rec; }, 0), up = M && total > 150000, no = S.taskNo++;
+  var dl = items.map(function(it){ return stkDate(it.shipBy); }).sort()[0];
+  var body = items.map(function(it){
+    return '<li><i></i><span><b>' + it.n + '</b> — ' + nf(it.rec) + ' шт, ' + nf(it.recCost) + ' ₽, отгрузить до ' + stkDate(it.shipBy) + ': ' + it.whRec.map(function(w){ return w.n + ' ' + nf(w.q); }).join(', ') +
+      (it.sizes ? '<br><span class="muted">по ' + (it.sku === 'NP-2210' ? 'цветам' : 'размерам') + ': ' + it.sizes.map(function(z){ return z.n + ' — ' + (z.rec ? nf(z.rec) + ' шт' : 'не грузить'); }).join(', ') + '</span>' : '') + '</span></li>';
+  }).join('');
+  $('#modalBody').innerHTML = '<div class="modal-h"><div class="ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><h3>' + (up ? 'Передано руководителю на согласование' : 'Задача создана в Битрикс24') + '</h3><p>' + (up ? 'Сумма поставки ' + nf(total) + ' ₽ выше лимита менеджера 150 000 ₽ — решение за Андреем Викторовичем.' : 'Собрать поставку ' + nf(qty) + ' шт до ' + dl + '.') + '</p></div></div>' +
+    '<div class="tcard"><div class="tcard-top"><span>Задача #' + no + ' · склад компании</span><span>' + nf(qty) + ' шт · ' + nf(total) + ' ₽ в себестоимости</span></div><div class="tcard-b"><h4>Собрать поставку на склады маркетплейсов</h4><ul>' + body + '</ul></div></div>' +
+    '<div class="modal-f"><button class="btn primary" data-act="closemodal">Готово</button></div>';
+  $('#modal').classList.add('on');
+  items.forEach(function(it){ S.stk.done[it.sku] = (up ? 'на согласовании' : 'задача #' + no); delete S.stk.sel[it.sku]; });
+  renderStock();
+}
+
+/* ---------------- cause chain (analysis <-> RNP) ---------------- */
+var CHAINS = {
+  a: [
+    [{id:'n1', t:'Конкурент Б: цена', f:'1 290', to:'1 135 ₽', d:'03.10', s:[1290,1290,1290,1290,1290,1135,1135,1135], mkt:'cont'},
+     {id:'n2', t:'Позиция по запросу', f:'6', to:'19', d:'03.10', s:[6,6,6,7,6,11,16,19], mkt:'cont', inv:1},
+     {id:'n3', t:'CTR', f:'4,1%', to:'2,3%', d:'02.10', row:'ctr', from:7, s:[4.1,4.1,4.1,3.6,2.9,2.6,2.4,2.3]},
+     {id:'n4', t:'Ставка (CPC)', f:'9,8', to:'17,6 ₽', d:'02.10', row:'bid', from:7, s:[9.8,9.8,9.8,12.6,15.1,16.4,17.3,17.6], inv:1},
+     {id:'n5', t:'ДРР', f:'18%', to:'35%', d:'02.10', row:'drr', from:7, s:[18,18,18,25,30,32,34,35], inv:1},
+     {id:'n6', t:'Маржа: реклама', f:'', to:'−97 тыс ₽', d:'неделя', row:'margin', from:7, s:[22,22,22,19,14,10,6,3], loss:1}],
+    [{id:'m1', t:'Объём в карточке', f:'5 л', to:'4,3 л', d:'с запуска', s:[5,5,5,5,5,5,5,5], mkt:'cont'},
+     {id:'m2', t:'Возвраты «не тот размер»', f:'31%', to:'63%', d:'02.10', s:[31,30,32,40,48,55,60,63], mkt:'cont', inv:1},
+     {id:'m3', t:'Выкуп', f:'84%', to:'71%', d:'02.10', row:'buy', from:7, s:[84,84,84,79,75,72,69,66]},
+     {id:'m4', t:'Маржа: невыкуп', f:'', to:'−51 тыс ₽', d:'неделя', row:'margin', from:7, s:[22,22,22,19,14,10,6,3], loss:1}]
+  ],
+  c: [
+    [{id:'k1', t:'Смена главного фото', f:'', to:'01.10', d:'01.10', row:'com', from:6, s:[0,0,0,0,1,1,1,1]},
+     {id:'k2', t:'CTR', f:'3,9%', to:'2,4%', d:'01.10', row:'ctr', from:6, s:[3.9,3.9,3.9,2.6,2.4,2.4,2.4,2.4]},
+     {id:'k3', t:'Заказы', f:'612', to:'447 / нед', d:'01.10', row:'orders', from:6, s:[88,89,87,60,62,63,64,64]},
+     {id:'k4', t:'Маржа', f:'', to:'−62 тыс ₽/нед', d:'неделя', row:'margin', from:6, s:[21,21,21,18,16,15,15,15], loss:1}]
+  ]
+};
+var RNP_LINKS = {ctr:'позиция в поиске, цена конкурента, ставка', bid:'CTR, позиция в поиске', drr:'ставка, CTR, выкуп', buy:'возвраты «не тот размер», объём в карточке', margin:'реклама, выкуп, себестоимость', orders:'CTR, конверсии', cost:'ставка, CTR'};
+var ANOM_NODE = {'NP-1405|ctr':'n3', 'NP-1405|drr':'n5', 'NP-1405|buy':'m3', 'NP-3103|ctr':'k2'};
+function chainHtml(c){
+  var ch = CHAINS[c.id]; if (!ch) return '';
+  var h = '<div class="card chain"><div class="card-h"><h3>Цепочка причин' + ex('Система показывает всю логику: от первопричины до потери в рублях. Каждое звено можно проверить в РНП на исходных цифрах — решение принимается за минуты, а не после часа сверки таблиц.') + '</h3></div><div class="card-b">';
+  ch.forEach(function(br){
+    h += '<div class="cbr">' + br.map(function(nd, i){
+      var col = nd.loss ? '#B1453A' : (nd.inv ? '#B1453A' : '#B1453A');
+      var link = nd.row ? '<a href="#" data-act="to-rnp" data-sku="' + c.sku + '" data-row="' + nd.row + '" data-from="' + nd.from + '" data-label="' + esc(nd.t) + '">в РНП ↗</a>' : (nd.mkt ? '<a href="#" data-act="go-market" data-n="' + nd.mkt + '">в Рынок ↗</a>' : '');
+      return (i ? '<span class="carr">→</span>' : '') + '<div class="cnode' + (nd.loss ? ' loss' : '') + (S.chainFocus === nd.id ? ' focus' : '') + '" id="node-' + nd.id + '"><div class="cn-t">' + nd.t + '</div><div class="cn-v">' + (nd.f ? '<span class="muted">' + nd.f + ' →</span> ' : '') + '<b>' + nd.to + '</b></div><div class="cn-d">с ' + nd.d + '</div>' + spark(nd.s, col, 90, 18) + '<div class="cn-l">' + link + '</div></div>';
+    }).join('') + '</div>';
+  });
+  return h + '</div></div>';
+}
+function toRnp(sku, row, from, label){
+  var c = RNP_SKU.filter(function(x){ return x.sku === sku; })[0];
+  S.rnpFocus = {sku:sku, row:row, from:+from, label:label, caseId:S.caseId, name:c ? c.short : sku};
+  S.rnpTab = 'days'; S.rnp.mode = 'days'; S.rnp.ch = 'all';
+  RNP_SKU.forEach(function(x){ S.rnp.off[x.sku] = x.sku !== sku; });
+  go('rnp');
+  setTimeout(function(){
+    var cell = document.querySelector('#v-rnp td.fcell'), tr = document.querySelector('#v-rnp tr.frow'), wr = $('#v-rnp .rnp-wrap');
+    if (tr && wr){ wr.scrollTop = Math.max(0, tr.offsetTop - 80); }
+    if (cell && wr){ wr.scrollLeft = Math.max(0, cell.offsetLeft - 330); }
+    var bc = $('#v-rnp .crumb'); if (bc) bc.scrollIntoView({block:'start'});
+  }, 60);
+}
+function toChain(caseId, node){
+  S.caseId = caseId; S.chainFocus = node || null; S.period = 'week';
+  go('analysis');
+  setTimeout(function(){ var el = node && document.getElementById('node-' + node); if (el) el.scrollIntoView({block:'center', inline:'center'}); }, 60);
+  setTimeout(function(){ S.chainFocus = null; var el = document.querySelector('.cnode.focus'); if (el) el.classList.remove('focus'); }, 2600);
+}
+
+var LOG_RNP = {a:['price','cost','ctr',null,'buy','buy',null,null,'margin'], c:['price','orders','com','ctr',null]};
+['a','c'].forEach(function(id){ CASES[id].log.forEach(function(l, i){ l.rnp = LOG_RNP[id][i]; }); });
+
+function why(t){ return '<p class="whyline"><b>Зачем:</b> ' + t + '</p>'; }
+/* ---------------- finance ---------------- */
+var FIN_LINES = [
+  // key, label, type, norm %, sep, oct(forecast), seg weights [WB,Ozon,Opt], dds article
+  ['gross','Выручка по цене продавца','rev',null,92.4,87.6,[.68,.27,.05]],
+  ['spp','СПП и скидки','exp',null,-13.5,-12.8,[.75,.25,0]],
+  ['rev','Выручка после скидок','sub',null,78.9,74.8,[.66,.26,.08]],
+  ['comm','Комиссия маркетплейсов','exp',20,-15.8,-15.0,[.74,.26,0]],
+  ['log','Логистика','exp',9,-7.1,-7.4,[.70,.25,.05]],
+  ['stor','Хранение','exp',2,-1.4,-1.6,[.72,.28,0]],
+  ['ads','Реклама','exp',15,-10.2,-10.9,[.75,.25,0]],
+  ['ret','Невыкуп и возвраты','exp',3,-2.3,-2.6,[.8,.2,0]],
+  ['cogs','Себестоимость','exp',32,-25.1,-22.9,[.66,.26,.08]],
+  ['mp','Маржинальная прибыль','sub',null,null,null],
+  ['fot','ФОТ','opex',10,-8.2,-9.0,null,'ФОТ'],
+  ['rent','Аренда склада','opex',3,-1.8,-1.8,null,'Аренда'],
+  ['pack','Упаковка','opex',1.5,-0.9,-0.9,null,'Упаковка'],
+  ['svc','Сервисы и подписки','opex',.5,-0.3,-0.3,null,'Сервисы'],
+  ['acc','Бухгалтерия','opex',.4,-0.2,-0.2,null,'Бухгалтерия'],
+  ['oth','Прочее','opex',.8,-0.4,-0.4,null,'Прочее'],
+  ['ebitda','Операционная прибыль (EBITDA)','sub',null,null,null],
+  ['tax','Налоги','exp',1.5,-1.3,-1.1,null,'Налоги'],
+  ['net','Чистая прибыль','sub',null,null,null]
+];
+var FIN_PLAN_REV = {sep:80.0, oct:84.0};
+var FIN_WHY = {
+  fot:{rev:1.2, cost:0.8, txt:'Расходы выросли на 0,6 млн ₽: премии отдела продаж +180 тыс ₽ (ДДС, 03.10) и 2 сотрудника склада на сезон +420 тыс ₽.', chainCase:'a'},
+  ads:{rev:1.6, cost:-1.1, txt:'Расход на рекламу почти не вырос, но ДРР контейнера 18 → 35%: ставка растёт, заказы те же.', chainCase:'a'},
+  log:{rev:1.0, cost:-0.1, txt:'Коэффициент склада Коледино 1,35 → 1,60 и рост обратной логистики (невыкуп контейнера).', chainCase:'a'},
+  ret:{rev:0.4, cost:0.1, txt:'Выкуп контейнера 84 → 71%: возвраты «не тот размер».', chainCase:'a'},
+  rent:{rev:0.3, cost:0, txt:'Аренда не менялась — доля выросла только из-за выручки ниже плана.'}
+};
+var DDS_ART = {ops:['ФОТ','Аренда','Упаковка','Сервисы','Маркетинг вне МП','Транспорт','Бухгалтерия','Прочее'], buy:['Закупка товара'], tax:['Налоги'], inc:['Выплаты WB','Выплаты Ozon','Оплата от оптовых клиентов']};
+var DDS_BUDGET = {'ФОТ':8.4, 'Аренда':1.8, 'Упаковка':1.0, 'Сервисы':.35, 'Маркетинг вне МП':.3, 'Транспорт':.5, 'Бухгалтерия':.2, 'Прочее':.4, 'Закупка товара':18.0, 'Налоги':1.3};
+var DDS = [
+  ['09.10','Выплаты WB',12.4,'р/с Сбер','Wildberries','отчёт 29.09–05.10','auto'],
+  ['08.10','Закупка товара',-4.8,'р/с Сбер','ООО «Полимер-Трейд»','полипропилен, партия 10.10','auto'],
+  ['07.10','ФОТ',-3.1,'р/с Сбер','сотрудники','аванс за октябрь','manual'],
+  ['07.10','Выплаты Ozon',4.9,'р/с Точка','Ozon','выплата за 2 недели','auto'],
+  ['06.10','Аренда',-1.8,'р/с Сбер','ООО «Складской комплекс»','склад, октябрь','manual'],
+  ['06.10','Оплата от оптовых клиентов',2.1,'р/с Сбер','ООО «Дом и сад»','счёт 1184','auto'],
+  ['05.10','Упаковка',-0.32,'р/с Точка','ООО «Тара-Профи»','короба, стрейч','auto'],
+  ['04.10','Транспорт',-0.26,'р/с Точка','ТК «Деловые линии»','доставка на WB Коледино','manual'],
+  ['03.10','ФОТ',-0.18,'р/с Сбер','отдел продаж','премии за сентябрь','manual'],
+  ['03.10','Закупка товара',-2.6,'р/с Сбер','ООО «ПластФорм»','литьё контейнеров','auto'],
+  ['02.10','Выплаты WB',11.8,'р/с Сбер','Wildberries','отчёт 22.09–28.09','auto'],
+  ['02.10','Сервисы',-0.12,'р/с Точка','TrueStats, Битрикс24','подписки','auto'],
+  ['01.10','Налоги',-1.3,'р/с Сбер','ФНС','аванс УСН','manual'],
+  ['01.10','Маркетинг вне МП',-0.15,'р/с Точка','блогеры','интеграции, кашпо','manual'],
+  ['01.10','ФОТ',-0.42,'р/с Сбер','склад','2 сотрудника на сезон','manual']
+].map(function(r){ return {d:r[0], art:r[1], sum:r[2], acc:r[3], cp:r[4], com:r[5], src:r[6]}; });
+var FIN_ACC = {'р/с Сбер':6.84, 'р/с Точка':1.12, 'Касса':0.09};
+function finOpexAdd(key){ var art = (FIN_LINES.filter(function(l){ return l[0] === key; })[0] || [])[7]; if (!art) return 0; return S.fin.added.filter(function(r){ return r.art === art; }).reduce(function(s, r){ return s + r.sum; }, 0); }
+function finCalc(mo, seg){
+  var v = {}, revCo = null;
+  FIN_LINES.forEach(function(l){
+    if (l[2] === 'sub' && l[4] == null) return;
+    var x = mo === 'sep' ? l[4] : l[5];
+    if (mo === 'oct' && l[2] === 'opex') x += finOpexAdd(l[0]);
+    if (seg !== 'all'){ var wi = {WB:0, Ozon:1, Opt:2}[seg]; x = x * (l[6] ? l[6][wi] : [.66,.26,.08][wi]); }
+    v[l[0]] = x;
+  });
+  v.mp = v.rev + v.comm + v.log + v.stor + v.ads + v.ret + v.cogs;
+  v.ebitda = v.mp + v.fot + v.rent + v.pack + v.svc + v.acc + v.oth;
+  v.net = v.ebitda + v.tax;
+  return v;
+}
+function finPlan(mo, key, v){
+  var pr = FIN_PLAN_REV[mo], l = FIN_LINES.filter(function(x){ return x[0] === key; })[0];
+  if (key === 'rev') return pr; if (key === 'gross') return pr * 92.4 / 78.9; if (key === 'spp') return -pr * 13.5 / 78.9;
+  if (l && l[3] != null) return -pr * S.fin.norm[key] / 100;
+  return null;
+}
+function normCls(fact, norm){ return fact > norm + 1 ? 'neg' : (fact > norm ? 'warn' : 'pos'); }
+function renderFinance(){
+  var h = '<div class="page-h"><div><h1>Финансы' + ex('ОПиУ — прибыль по шагам от выручки до чистой; ДДС — движение денег по счетам. Операционные расходы из ДДС попадают в ОПиУ автоматически.') + '</h1>' + why('видеть реальную прибыль и какие расходы выходят за норму и почему') + '</div></div>';
+  if (S.role !== 'ceo'){ $('#v-finance').innerHTML = h + '<div class="banner rej">Нет доступа для вашей роли: раздел доступен руководителю компании.</div>'; return; }
+  h += '<div class="tabs"><button data-act="fin-tab" data-t="pl" class="' + (S.fin.tab === 'pl' ? 'on' : '') + '">ОПиУ</button><button data-act="fin-tab" data-t="dds" class="' + (S.fin.tab === 'dds' ? 'on' : '') + '">ДДС</button></div>';
+  h += S.fin.tab === 'pl' ? finPL() : finDDS();
+  $('#v-finance').innerHTML = h;
+}
+function finPL(){
+  var F = S.fin, mo = F.mo, v = finCalc(mo, F.seg), pr = function(x){ return nf(Math.abs(x), 1); }, pct = function(x){ return nf(Math.abs(x) / v.rev * 100, 1); };
+  var stockVal = stockData().reduce(function(s, it){ return s + it.value; }, 0) / 1e6;
+  var h = '<div class="rnp-bar"><div class="seg"><button data-act="fin-mo" data-m="sep" class="' + (mo === 'sep' ? 'on' : '') + '">Сентябрь</button><button data-act="fin-mo" data-m="oct" class="' + (mo === 'oct' ? 'on' : '') + '">Октябрь · прогноз</button></div><div class="seg">' +
+    [['all','Компания'],['WB','WB'],['Ozon','Ozon'],['Opt','Опт']].map(function(s){ return '<button data-act="fin-seg" data-s="' + s[0] + '" class="' + (F.seg === s[0] ? 'on' : '') + '">' + s[1] + '</button>'; }).join('') + '</div></div>';
+  h += '<div class="kpis fin-k">' + [
+    ['Выручка', nf(v.rev, 1) + ' млн ₽', mo === 'oct' ? 'план ' + nf(FIN_PLAN_REV.oct, 1) + ' · ' + sg(Math.round((v.rev / FIN_PLAN_REV.oct - 1) * 100)) + '%' : 'план ' + nf(FIN_PLAN_REV.sep, 1)],
+    ['Маржинальная прибыль', nf(v.mp, 1) + ' млн ₽', nf(v.mp / v.rev * 100, 1) + '% от выручки'],
+    ['Чистая прибыль', nf(v.net, 1) + ' млн ₽', nf(v.net / v.rev * 100, 1) + '% от выручки'],
+    ['ROI', nf(v.net / stockVal * 100, 1) + '% за месяц', '~' + nf(v.net / stockVal * 1200, 0) + '% годовых · прибыль / деньги в товаре ' + nf(stockVal, 1) + ' млн'],
+    ['ROMI', nf(.7 * v.rev / Math.abs(v.ads) * 100, 0) + '%', 'доход от рекламы / затраты'],
+    ['ДРР', nf(Math.abs(v.ads) / v.rev * 100, 1) + '%', 'норма ' + nf(F.norm.ads, 0) + '%']
+  ].map(function(k){ return '<div class="card kpi"><div class="kpi-l">' + k[0] + '</div><div class="kpi-v" style="font-size:21px">' + k[1] + '</div><div class="kpi-d">' + k[2] + '</div></div>'; }).join('') + '</div>';
+  h += '<div class="sec-h"><h2>ОПиУ · ' + (mo === 'sep' ? 'сентябрь' : 'октябрь, прогноз на конец месяца') + ex('Доля расхода может вырасти, потому что выросли расходы или потому что упала выручка — система показывает, что именно, и ведёт к причине. Норму задаёт руководитель.') + '</h2><span class="hint">нажмите на отклонение — «почему»</span></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl pl" style="min-width:860px"><thead><tr><th>Статья</th><th class="n">млн ₽</th><th class="n">% выручки</th><th class="n">Норма, %</th><th class="n">Откл., п.п.</th><th class="n">План, млн ₽</th><th class="n">Откл. от плана</th></tr></thead><tbody>';
+  FIN_LINES.forEach(function(l){
+    var k = l[0], x = v[k], isSub = l[2] === 'sub' || l[2] === 'rev', p = finPlan(mo, k, v), fp = x / v.rev * 100;
+    var nrm = l[3] != null ? F.norm[k] : null, dev = nrm != null ? Math.abs(fp) - nrm : null, cls = nrm != null ? normCls(Math.abs(fp), nrm) : '';
+    if (isSub && p == null && (k === 'mp' || k === 'ebitda' || k === 'net')){ var pv = finCalcPlan(mo); p = pv[k]; }
+    var open = F.why === k;
+    h += '<tr class="' + (isSub ? 'pls ' : '') + (l[2] === 'opex' ? 'opx ' : '') + (open ? 'open' : '') + '"' + (l[7] ? ' data-act="fin-dds" data-a="' + l[7] + '" title="Открыть операции в ДДС"' : '') + '><td>' + (x < 0 && !isSub ? '<span class="muted">− </span>' : '') + l[1] + (l[7] ? ' <span class="muted" style="font-size:12px">ДДС ↗</span>' : '') + '</td><td class="n">' + (x < 0 && isSub ? MINUS : '') + pr(x) + '</td><td class="n">' + pct(x) + '%</td>' +
+      '<td class="n">' + (nrm != null ? '<input class="pin nrm" data-act="fin-norm" data-k="' + k + '" value="' + nf(nrm, 1) + '" aria-label="Норма">' : '') + '</td>' +
+      '<td class="n">' + (dev != null ? '<button class="devb ' + cls + '" data-act="fin-why" data-k="' + k + '">' + sg(Math.round(dev * 10) / 10, 1) + '</button>' : '') + '</td>' +
+      '<td class="n">' + (p != null ? (p < 0 ? '' : '') + pr(p) : '') + '</td><td class="n">' + (p != null ? '<span class="' + ((x - p) >= 0 ? 'pos' : 'neg') + '">' + sg(Math.round((x - p) * 10) / 10, 1) + '</span>' : '') + '</td></tr>';
+    if (open) h += '<tr class="whyr"><td colspan="7">' + finWhy(k, v, mo) + '</td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+  h += '<div class="sec-h" data-fold="open"><h2>По товарам</h2><span class="hint">маржа, ROI, ROMI, оборачиваемость</span></div>' + finProducts();
+  return h;
+}
+function finCalcPlan(mo){
+  var pr = FIN_PLAN_REV[mo], n = S.fin.norm, out = {};
+  out.mp = pr * (1 - (n.comm + n.log + n.stor + n.ads + n.ret + n.cogs) / 100);
+  out.ebitda = out.mp - pr * (n.fot + n.rent + n.pack + n.svc + n.acc + n.oth) / 100; out.net = out.ebitda - pr * n.tax / 100;
+  return out;
+}
+function finWhy(k, v, mo){
+  var w = FIN_WHY[k], nrm = S.fin.norm[k], fact = Math.abs(v[k]) / v.rev * 100;
+  if (!w || mo !== 'oct') return '<div class="why"><b>' + (fact > nrm ? 'Выше нормы на ' + nf(fact - nrm, 1) + ' п.п.' : 'В пределах нормы') + '</b> — существенных изменений к прошлому месяцу нет.</div>';
+  var revGap = Math.round((1 - v.rev / FIN_PLAN_REV.oct) * 100);
+  return '<div class="why"><div class="why-h"><b>Почему доля ' + FIN_LINES.filter(function(l){ return l[0] === k; })[0][1] + ' — ' + nf(fact, 1) + '% при норме ' + nf(nrm, 1) + '%</b></div>' +
+    '<div class="why-g"><div class="why-c"><div class="why-v">' + sg(w.rev, 1) + ' п.п.</div><div>выручка октября ниже плана на ' + revGap + '% (WB: контейнер и кашпо)</div><a href="#" data-act="to-chain" data-case="a">цепочка причин →</a> <a href="#" data-act="go" data-view="rnp">РНП →</a></div>' +
+    '<div class="why-c"><div class="why-v">' + sg(w.cost, 1) + ' п.п.</div><div>' + w.txt + '</div>' + (FIN_LINES.filter(function(l){ return l[0] === k; })[0][7] ? '<a href="#" data-act="fin-dds" data-a="' + FIN_LINES.filter(function(l){ return l[0] === k; })[0][7] + '">операции в ДДС →</a>' : '') + '</div></div>' +
+    '<div class="cbr mini"><div class="cnode"><div class="cn-t">Выручка</div><b class="neg">' + MINUS + revGap + '%</b></div><span class="carr">→</span><div class="cnode"><div class="cn-t">Доля статьи</div><b class="neg">' + sg(w.rev, 1) + ' п.п.</b></div><span class="carr">+</span><div class="cnode"><div class="cn-t">Рост расходов</div><b>' + sg(w.cost, 1) + ' п.п.</b></div><span class="carr">=</span><div class="cnode loss"><div class="cn-t">Отклонение</div><b>' + sg(Math.round((fact - nrm) * 10) / 10, 1) + ' п.п.</b></div></div></div>';
+}
+function finProducts(){
+  var rows = stockData().map(function(it){
+    var p = PRODUCTS.filter(function(x){ return x.sku === it.sku; })[0], revM = p.rev * 4.33, mar = revM * p.wb / 100, ad = revM * p.drr / 100;
+    return {sku:it.sku, n:it.n, mar:p.wb, marR:Math.round(mar), roi:Math.round(mar / (it.value / 1000) * 100), romi:Math.round(.7 * revM / ad * 100), turn:it.turn};
+  });
+  var k = S.fin.sk, d = S.fin.sd; rows.sort(function(a, b){ return (typeof a[k] === 'string' ? a[k].localeCompare(b[k], 'ru') : a[k] - b[k]) * d; });
+  var cols = [['n','Товар'],['marR','Маржа, тыс ₽/мес'],['mar','Маржа, %'],['roi','ROI, %/мес'],['romi','ROMI, %'],['turn','Оборачиваемость, дн']];
+  return '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:760px"><thead><tr>' + cols.map(function(c, i){ return '<th class="sort ' + (i ? 'n' : '') + (k === c[0] ? ' on' : '') + '" data-act="fin-sort" data-k="' + c[0] + '">' + c[1] + (k === c[0] ? '<span class="ar">' + (d > 0 ? '↑' : '↓') + '</span>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>' +
+    rows.map(function(r){ return '<tr><td><div class="pn-name">' + ph(r.sku, 'mkt') + '<span>' + r.n + '<small>' + r.sku + '</small></span></div></td><td class="n">' + nf(r.marR) + '</td><td class="n"><span class="cell-flag ' + flag(r.mar, 'm') + '">' + nf(r.mar, 1) + '%</span></td><td class="n">' + r.roi + '%</td><td class="n">' + r.romi + '%</td><td class="n">' + r.turn + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
+}
+function ddsAll(){ return S.fin.added.concat(DDS); }
+function cashForecast(){
+  var bal = Object.keys(FIN_ACC).reduce(function(s, k){ return s + FIN_ACC[k]; }, 0) + S.fin.added.reduce(function(s, r){ return s + r.sum; }, 0);
+  var base = Object.keys(FIN_ACC).reduce(function(s, k){ return s + FIN_ACC[k]; }, 0), add = bal - base;
+  var ev = {2:4.6, 4:-2.6, 6:-4.2, 7:11.9, 9:-1.8, 10:-2.4, 11:-4.9, 13:-3.2, 14:12.2, 16:-1.4, 18:4.8, 21:11.6, 23:-1.1, 25:-4.9, 28:12.6}, arr = [], b = base;
+  for (var i = 0; i < 30; i++){ b += (ev[i] || 0) - 0.12; arr.push(b); }
+  var adj = arr[17] + 0.64; for (var j = 17; j < 30; j++) arr[j] -= adj;
+  arr = arr.map(function(v){ return v + add; });
+  return {start:bal, arr:arr, adj:adj};
+}
+function finDDS(){
+  var F = S.fin, rows = ddsAll(), flt = F.art;
+  var inc = rows.filter(function(r){ return r.sum > 0; }).reduce(function(s, r){ return s + r.sum; }, 0), out = rows.filter(function(r){ return r.sum < 0; }).reduce(function(s, r){ return s + r.sum; }, 0);
+  var bal = Object.keys(FIN_ACC).reduce(function(s, k){ return s + FIN_ACC[k]; }, 0) + F.added.reduce(function(s, r){ return s + r.sum; }, 0);
+  var cf = cashForecast(), minI = 0; cf.arr.forEach(function(v, i){ if (v < cf.arr[minI]) minI = i; });
+  var h = '<div class="kpis fin-k">' + [['На счетах', nf(bal, 2) + ' млн ₽', 'Сбер, Точка, касса'],['Поступления, октябрь', '+' + nf(inc, 1) + ' млн ₽', 'выплаты WB, Ozon, опт'],['Выплаты, октябрь', MINUS + nf(Math.abs(out), 1) + ' млн ₽', 'закупка, ФОТ, аренда…'],['Прогноз на 30 дней', cf.arr[minI] < 0 ? '<span class="neg">разрыв ' + MINUS + nf(Math.abs(cf.arr[minI]) * 1000, 0) + ' тыс ₽</span>' : 'без разрыва', cf.arr[minI] < 0 ? 'через ' + (minI + 1) + ' дн, ' + stkDate(minI + 1) : '']].map(function(k){ return '<div class="card kpi"><div class="kpi-l">' + k[0] + '</div><div class="kpi-v" style="font-size:21px">' + k[1] + '</div><div class="kpi-d">' + k[2] + '</div></div>'; }).join('') + '</div>';
+  // cash forecast chart
+  var w = 600, hh = 130, mx = Math.max.apply(null, cf.arr.concat([cf.start])) * 1.1, mn = Math.min(0, Math.min.apply(null, cf.arr)) * 1.3;
+  var y = function(v){ return 10 + (mx - v) / (mx - mn) * (hh - 26); };
+  var pts = cf.arr.map(function(v, i){ return (30 + i / 29 * (w - 40)).toFixed(1) + ',' + y(v).toFixed(1); }).join(' ');
+  h += '<div class="two"><div class="card"><div class="card-h"><h3>Кассовый прогноз на 30 дней' + ex('Остаток на счетах по дням: ожидаемые выплаты маркетплейсов минус плановые платежи. Красным — дни с минусом.') + '</h3></div><div class="card-b"><svg viewBox="0 0 ' + w + ' ' + hh + '" style="width:100%;height:auto;display:block"><line x1="30" x2="' + (w - 10) + '" y1="' + y(0) + '" y2="' + y(0) + '" stroke="#B1453A" stroke-dasharray="4 3"/><text x="2" y="' + (y(0) + 4) + '" font-size="10" fill="#B1453A">0</text><polyline points="' + pts + '" fill="none" stroke="#1D3A30" stroke-width="2"/>' +
+    (cf.arr[minI] < 0 ? '<circle cx="' + (30 + minI / 29 * (w - 40)) + '" cy="' + y(cf.arr[minI]) + '" r="4" fill="#B1453A"/>' : '') + '<text x="30" y="' + (hh - 2) + '" font-size="10" fill="#7A847E">10.10</text><text x="' + (w - 10) + '" y="' + (hh - 2) + '" font-size="10" fill="#7A847E" text-anchor="end">08.11</text></svg>' +
+    (cf.arr[minI] < 0 ? '<div class="alert" style="margin:8px 0 0"><span><b>Кассовый разрыв ' + stkDate(minI + 1) + ' — ' + MINUS + nf(Math.abs(cf.arr[minI]) * 1000, 0) + ' тыс ₽.</b> Причина: оплата производства кашпо к сезону и ФОТ до выплаты WB. Варианты: перенести оплату поставщику на 3 дня или включить досрочный вывод WB.</span></div>' : '') + '</div></div>';
+  // opex by article with budget
+  var arts = DDS_ART.ops.concat(DDS_ART.buy, DDS_ART.tax), byArt = {};
+  rows.forEach(function(r){ if (r.sum < 0) byArt[r.art] = (byArt[r.art] || 0) - r.sum; });
+  var mxA = Math.max.apply(null, arts.map(function(a){ return byArt[a] || 0; }));
+  var totOut = arts.reduce(function(s, a){ return s + (byArt[a] || 0); }, 0);
+  h += '<div class="card"><div class="card-h"><h3>Расходы по статьям и бюджет месяца' + ex('Факт с начала месяца против бюджета; перерасход — красным. Клик по статье фильтрует журнал.') + '</h3></div><div class="card-b"><ul class="bars">' + arts.filter(function(a){ return byArt[a]; }).sort(function(a, b){ return byArt[b] - byArt[a]; }).map(function(a){
+    var f = byArt[a], b = DDS_BUDGET[a], over = b && f > b * (9 / 31) * 1.6;
+    return '<li data-act="fin-art" data-a="' + a + '"><span class="bn">' + a + '</span><span class="bb"><i class="' + (over ? 'neg' : '') + '" style="width:' + (f / mxA * 100) + '%"></i></span><span class="bv">' + nf(f, 2) + '<small>' + Math.round(f / totOut * 100) + '% · бюджет ' + nf(b, 1) + '</small></span></li>';
+  }).join('') + '</ul></div></div></div>';
+  // add form
+  var allArts = DDS_ART.ops.concat(DDS_ART.buy, DDS_ART.tax, DDS_ART.inc);
+  h += '<div class="sec-h"><h2>Журнал операций' + ex('Выплаты маркетплейсов и оплаты поставщикам приходят автоматически из банка и 1С («авто»), остальное вносится вручную.') + '</h2><span class="hint">' + (flt ? 'статья: ' + flt + ' <a href="#" data-act="fin-art" data-a="">сбросить</a>' : 'октябрь') + '</span></div>';
+  h += '<div class="card ddsf"><div class="card-b"><div class="ddsf-g"><label>Дата<input id="ddsD" value="09.10"></label><label>Тип<select id="ddsT"><option value="-1">Расход</option><option value="1">Поступление</option></select></label><label>Статья<select id="ddsA" data-act="dds-live">' + allArts.map(function(a){ return '<option' + (a === (flt || 'ФОТ') ? ' selected' : '') + '>' + a + '</option>'; }).join('') + '</select></label><label>Сумма, ₽<input id="ddsS" inputmode="decimal" placeholder="150 000" data-act="dds-live"></label><label>Счёт<select id="ddsC">' + Object.keys(FIN_ACC).map(function(a){ return '<option>' + a + '</option>'; }).join('') + '</select></label><label>Контрагент<input id="ddsP" placeholder="ООО …"></label><label class="wide">Комментарий<input id="ddsM" placeholder="за что"></label><button class="btn primary" data-act="dds-add">Добавить</button></div><div id="ddsWarn" class="ddsw"></div></div></div>';
+  var list = rows.filter(function(r){ return !flt || r.art === flt; });
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:820px"><thead><tr><th>Дата</th><th>Статья</th><th class="n">Сумма, млн ₽</th><th>Счёт</th><th>Контрагент</th><th>Комментарий</th><th>Источник</th></tr></thead><tbody>' +
+    list.map(function(r){ return '<tr' + (r.isNew ? ' class="new"' : '') + '><td class="muted">' + r.d + '</td><td>' + r.art + '</td><td class="n"><b class="' + (r.sum > 0 ? 'pos' : '') + '">' + sg(r.sum, 2) + '</b></td><td>' + r.acc + '</td><td>' + esc(r.cp) + '</td><td class="muted">' + esc(r.com) + '</td><td><span class="pill ' + (r.src === 'auto' ? 'brand' : '') + '">' + (r.src === 'auto' ? 'авто' : 'вручную') + '</span></td></tr>'; }).join('') + '</tbody></table></div></div>';
+  return h;
+}
+function ddsLive(){
+  var a = $('#ddsA'), sEl = $('#ddsS'), w = $('#ddsWarn'); if (!a || !w) return;
+  var sum = parseFloat(String(sEl.value).replace(/[\s ]/g, '').replace(',', '.')) || 0, map = {}; FIN_LINES.forEach(function(l){ if (l[7]) map[l[7]] = l[0]; });
+  var k = map[a.value]; if (!k || $('#ddsT').value === '1' || !sum){ w.innerHTML = ''; return; }
+  var v = finCalc('oct', 'all'), share = (Math.abs(v[k]) + sum / 1e6) / v.rev * 100, nrm = S.fin.norm[k];
+  w.innerHTML = share > nrm ? '<span class="' + normCls(share, nrm) + '">⚠ После этой операции ' + a.value + ' — ' + nf(share, 1) + '% выручки при норме ' + nf(nrm, 1) + '%.</span>' : '<span class="pos">В пределах нормы: ' + a.value + ' — ' + nf(share, 1) + '% при норме ' + nf(nrm, 1) + '%.</span>';
+}
+
+/* ---------------- seasonality ---------------- */
+var MON12 = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'], NOW_M = 9;
+var SEASON = [
+  {k:'kash', n:'Кашпо и садовое', skus:['NP-3103','NP-7010'], mine:1, lead:8,
+   mkt:[55,80,140,175,160,105,80,70,75,70,55,45], co:[50,58,95,170,165,110,82,72,74,68,50,40],
+   ph:['buy','ship','peak','peak','peak','sale','off','off','off','off','off','buy'],
+   gap:'Рынок растёт с середины февраля, ваши продажи — только с конца марта: опоздание ~5 недель из-за поздней отгрузки (в прошлом году поставка приехала 24.03) → упущено ~1,1 млн ₽ выручки в начале сезона.', lost:[1,2], warn:'Если заказать производство позже 15.12 — к старту рынка (середина февраля) товар не успеет на склады.'},
+  {k:'cont', n:'Контейнеры для хранения и заготовок', skus:['NP-1405','NP-1412'], mine:1, lead:6,
+   mkt:[120,90,85,80,80,85,105,140,135,100,85,95], co:[118,88,82,78,80,92,130,150,118,95,82,92],
+   ph:['peak','sale','off','off','off','buy','ship','peak','peak','sale','off','ship'],
+   gap:'Ваш пик на 2 недели раньше рынка — сильные позиции в августе: рекламу можно начинать раньше и раньше выходить из сезона.', lost:[], warn:''},
+  {k:'org', n:'Органайзеры', skus:['NP-2210','NP-6301'], mine:0, lead:6,
+   mkt:[140,125,95,85,80,80,90,110,125,100,85,90], co:[138,122,96,84,80,80,92,112,128,102,84,88],
+   ph:['peak','peak','sale','off','off','off','buy','ship','peak','sale','buy','ship'],
+   gap:'Сезон совпадает с рынком. Растущий спрос на органайзер для ящика — следить за остатками (см. «Остатки и подсорт»).', lost:[], warn:''},
+  {k:'toy', n:'Ящики для игрушек', skus:['NP-4130'], mine:1, lead:6,
+   mkt:[70,75,80,85,85,85,85,90,95,110,150,190], co:[72,74,80,86,84,84,86,92,96,112,148,140],
+   ph:['sale','off','off','off','off','off','off','off','buy','ship','peak','peak'],
+   gap:'Ваш сезон короче рыночного: в прошлом году товар закончился 12.12 (дефицит), рынок продавал до 28.12 → упущено ~0,6 млн ₽.', lost:[11], warn:'Отгрузить на склады WB до 10.11, иначе к пику декабря снова не хватит.'},
+  {k:'dry', n:'Сушилки для посуды', skus:['NP-6210'], mine:1, lead:6,
+   mkt:[100,98,102,100,98,96,98,102,104,102,100,100], co:[99,97,101,100,97,95,97,101,103,101,99,100],
+   ph:['off','off','off','off','off','off','off','off','off','off','off','off'], gap:'Спрос ровный весь год — держать запас 21–30 дней без сезонных закупок.', lost:[], warn:''},
+  {k:'shoe', n:'Подставки для обуви', skus:['NP-4203'], mine:1, lead:6,
+   mkt:[85,80,80,90,95,90,85,95,110,140,135,105], co:[84,80,79,88,94,90,84,94,108,136,132,104],
+   ph:['off','off','off','off','off','off','off','buy','ship','peak','peak','sale'], gap:'Сезон совпадает с рынком — пик сейчас.', lost:[], warn:''}
+];
+var PH_LBL = {buy:['Закупка','#8A6A3A'], ship:['Отгрузка','#C4823A'], peak:['Пик','#1D3A30'], sale:['Распродажа','#B1453A'], off:['','']};
+var SEASON_TODO = [
+  {k:'kash', t:'Кашпо: заказать производство до 15.12 — рынок стартует в середине февраля, lead time 8 недель; отгрузить на склады до 10.02.', due:'15.12'},
+  {k:'shoe', t:'Подставки для обуви: пик сейчас — держать остатки ≥ 30 дней (сейчас 33), не снижать цену.', due:'—'},
+  {k:'cont', t:'Контейнеры: сезон заготовок прошёл — распродать излишек ~2 300 шт до ноября, иначе платное хранение ~48 тыс ₽/мес.', due:'30.10'},
+  {k:'toy', t:'Ящики для игрушек: отгрузить на склады WB до 10.11 к пику декабря — в прошлом году товар закончился 12.12.', due:'10.11'},
+  {k:'org', t:'Органайзеры: закупка к январскому пику — до 20.11.', due:'20.11'}
+];
+function heatColor(v, mode){
+  if (mode === 'diff'){ var d = Math.max(-40, Math.min(40, v)); return d >= 0 ? 'rgba(44,122,85,' + (d / 40 * .55 + .05) + ')' : 'rgba(177,69,58,' + (-d / 40 * .55 + .05) + ')'; }
+  var t = Math.max(0, Math.min(1, (v - 60) / 130)); return 'rgba(29,58,48,' + (0.04 + t * 0.86).toFixed(2) + ')';
+}
+function renderSeason(){
+  var M = S.role === 'mp', mode = S.season.mode, rows = SEASON.filter(function(r){ return !M || r.mine; });
+  var h = '<div class="page-h"><div><h1>Сезонность' + ex('Сезонность по истории продаж за несколько лет: когда закупать и грузить, когда пик, когда распродавать. Рынок — TrueStats/MPStats (история ниши), компания — ваши продажи; разница показывает, где вы опаздываете или упускаете сезон.') + '</h1>' + why('закупать и грузить к началу сезона рынка, а не опаздывать') + '</div>' +
+    '<div class="seg">' + [['mkt','Рынок'],['co','Компания'],['diff','Разница']].map(function(m){ return '<button data-act="sea-mode" data-m="' + m[0] + '" class="' + (mode === m[0] ? 'on' : '') + '">' + m[1] + '</button>'; }).join('') + '</div></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="heat"><thead><tr><th>Категория</th>' + MON12.map(function(m, i){ return '<th class="' + (i === NOW_M ? 'now' : '') + '">' + m + (i === NOW_M ? '<small>сейчас</small>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>';
+  rows.forEach(function(r){
+    var open = S.season.open === r.k;
+    h += '<tr class="hr' + (open ? ' open' : '') + '" data-act="sea-row" data-k="' + r.k + '"><td class="hn">' + (open ? '▾ ' : '▸ ') + r.n + '</td>' + r.mkt.map(function(v, i){
+      var x = mode === 'mkt' ? v : (mode === 'co' ? r.co[i] : r.co[i] - v), p = PH_LBL[r.ph[i]];
+      return '<td class="hc' + (i === NOW_M ? ' now' : '') + '" style="background:' + heatColor(x, mode) + ';color:' + ((mode !== 'diff' && x > 115) ? '#fff' : 'var(--ink)') + '" title="' + MON12[i] + ': рынок ' + v + ', компания ' + r.co[i] + '">' + (mode === 'diff' ? sg(x) : x) + (p[0] ? '<i style="background:' + p[1] + '">' + p[0] + '</i>' : '') + '</td>';
+    }).join('') + '</tr>';
+    if (open) h += '<tr class="hx"><td colspan="13">' + seasonDetail(r) + '</td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+  h += '<div class="legend"><span>Индекс: 100 = средний месяц</span>' + ['buy','ship','peak','sale'].map(function(k){ return '<span><i style="background:' + PH_LBL[k][1] + '"></i>' + PH_LBL[k][0] + '</span>'; }).join('') + '<span>фазы считаются от старта сезона рынка минус ваш срок поставки</span></div>';
+  h += '<div class="sec-h"><h2>Расхождение с рынком' + ex('Где ваш сезон начинается позже рынка или заканчивается раньше — это и есть упущенная выручка.') + '</h2></div><div class="card"><div class="card-b"><ul class="list">' + rows.filter(function(r){ return r.k !== 'dry'; }).map(function(r){ return '<li><span><b>' + r.n + ':</b> ' + r.gap + '</span></li>'; }).join('') + '</ul></div></div>';
+  h += '<div class="sec-h"><h2>Что делать сейчас' + ex('Действия по текущей дате: от старта сезона рынка отнимается ваш срок производства и поставки.') + '</h2><span class="hint">на 9 октября</span></div><div class="card"><div class="card-b"><ul class="list reco">' +
+    SEASON_TODO.filter(function(t){ return rows.some(function(r){ return r.k === t.k; }); }).map(function(t, i){ var no = S.recoTask['sea' + t.k]; return '<li><span class="tt">' + t.t + '<small>срок: ' + t.due + '</small></span>' + (no ? '<span class="pill brand">Задача #' + no + '</span>' : '<button class="btn" data-act="sea-task" data-k="' + t.k + '">Создать задачу</button>') + '</li>'; }).join('') +
+    '</ul><p class="note">Прогноз сезона используется в <a href="#" data-act="go" data-view="stock">«Остатки и подсорт»</a> (продажи в день) и в черновике <a href="#" data-act="plan-nov">плана на ноябрь</a>.</p></div></div>';
+  $('#v-season').innerHTML = h;
+}
+function seasonDetail(r){
+  var w = 600, hh = 150, x = function(i){ return 30 + i * (w - 50) / 11; }, y = function(v){ return 10 + (200 - v) / 170 * (hh - 30); };
+  var shade = r.lost.map(function(i){ return '<rect x="' + (x(i) - 18) + '" y="8" width="36" height="' + (hh - 28) + '" fill="#B1453A" opacity=".12"/><text x="' + x(i) + '" y="20" font-size="9" text-anchor="middle" fill="#B1453A">упущено</text>'; }).join('');
+  var line = function(a, c, dash){ return '<polyline points="' + a.map(function(v, i){ return x(i).toFixed(1) + ',' + y(v).toFixed(1); }).join(' ') + '" fill="none" stroke="' + c + '" stroke-width="2"' + (dash ? ' stroke-dasharray="5 4"' : '') + '/>'; };
+  var lbl = MON12.map(function(m, i){ return '<text x="' + x(i) + '" y="' + (hh - 4) + '" font-size="10" text-anchor="middle" fill="#7A847E">' + m + '</text>'; }).join('');
+  var now = '<line x1="' + x(NOW_M) + '" x2="' + x(NOW_M) + '" y1="6" y2="' + (hh - 18) + '" stroke="#C4823A" stroke-dasharray="3 3"/>';
+  return '<div class="sdet"><div><svg viewBox="0 0 ' + w + ' ' + hh + '" style="width:100%;height:auto;display:block">' + shade + now + line(r.mkt, '#7D93A8', true) + line(r.co, '#1D3A30') + lbl + '</svg><div class="legend"><span><i style="background:#7D93A8"></i>рынок (индекс ниши)</span><span><i style="background:#1D3A30"></i>Натур Пласт</span>' + (r.lost.length ? '<span><i style="background:#F2D6D2"></i>упущено: рынок рос, у вас не было товара</span>' : '') + '</div></div>' +
+    '<div><p style="margin:0 0 8px">' + r.gap + '</p>' + (r.warn ? '<div class="alert" style="margin:0"><span>' + r.warn + '</span></div>' : '') + '<p class="note">Срок производства и поставки: ' + r.lead + ' недель. Товары: ' + r.skus.map(function(s){ return (PRODUCTS.filter(function(p){ return p.sku === s; })[0] || {}).n; }).join(', ') + '.</p></div></div>';
+}
+
+/* ---------------- funnel plan ---------------- */
+function fpBase(sku){
+  var c = RNP_SKU.filter(function(x){ return x.sku === sku; })[0], D = rnpCalc(c, 14).slice(7), sum = function(k){ return D.reduce(function(s, o){ return s + o[k]; }, 0) / 7; };
+  var cur = {shows:sum('shows'), ctr:sum('clicks') / sum('shows') * 100, cConv:sum('carts') / sum('clicks') * 100, oConv:sum('orders') / sum('carts') * 100, buy:sum('buy'), price:D[6].price, margin:sum('margin')};
+  return cur;
+}
+function fpCalc(x, days){
+  var o = {}; o.shows = x.shows * days; o.ctr = x.ctr; o.clicks = o.shows * x.ctr / 100; o.cConv = x.cConv; o.carts = o.clicks * x.cConv / 100; o.oConv = x.oConv; o.cro = x.cConv * x.oConv / 100;
+  o.orders = o.carts * x.oConv / 100; o.buy = x.buy; o.buyouts = o.orders * x.buy / 100; o.rev = o.buyouts * x.price; o.profit = o.rev * (x.margin || 20) / 100; return o;
+}
+function renderFunnelPlan(){
+  var sku = S.fp.sku, M = S.role === 'mp', list = RNP_SKU.filter(function(c){ return !M || c.mgr === 'olga'; });
+  if (!list.some(function(c){ return c.sku === sku; })) sku = S.fp.sku = list[0].sku;
+  var cur = fpBase(sku), L = S.fp.lev[sku] || (S.fp.lev[sku] = {shows:cur.shows, ctr:cur.ctr, cConv:cur.cConv, oConv:cur.oConv, buy:cur.buy});
+  var P = PLAN[sku].oct, target = P.rev, days = MONTH_DAYS;
+  var now = fpCalc({shows:cur.shows, ctr:cur.ctr, cConv:cur.cConv, oConv:cur.oConv, buy:cur.buy, price:cur.price, margin:P.margin}, days);
+  var lev = fpCalc({shows:L.shows, ctr:L.ctr, cConv:L.cConv, oConv:L.oConv, buy:L.buy, price:cur.price, margin:P.margin}, days);
+  // need: keep current rates, scale shows to hit target
+  var need = fpCalc({shows:cur.shows * target / now.rev, ctr:cur.ctr, cConv:cur.cConv, oConv:cur.oConv, buy:cur.buy, price:cur.price, margin:P.margin}, days);
+  var rows = [['shows','Показы','n'],['ctr','CTR','%'],['clicks','Переходы','n'],['cConv','Конверсия в корзину','%'],['carts','Корзины','n'],['oConv','Конверсия в заказ','%'],['cro','CRO (клик → заказ)','%'],['orders','Заказы','n'],['buy','Выкуп','%'],['buyouts','Выкупы','n'],['rev','Выручка, ₽','n'],['profit','Прибыль (маржа), ₽','n']];
+  var f = function(v, t){ return t === '%' ? nf(v, 1) + '%' : nf(Math.round(v)); };
+  var h = '<div class="rnp-bar"><div class="rnp-chips">' + list.map(function(c){ return '<button class="chip' + (c.sku === sku ? ' on' : '') + '" data-act="fp-sku" data-s="' + c.sku + '">' + c.short + '</button>'; }).join('') + '</div><span class="muted" style="font-size:13px">цель октября: выручка ' + nf(target / 1e6, 2) + ' млн ₽</span></div>';
+  h += '<div class="fp"><div class="card"><div class="tbl-wrap"><table class="tbl fpt"><thead><tr><th>Шаг воронки</th><th class="n">Нужно для плана</th><th class="n">Сейчас (темп)</th><th class="n">Разрыв</th><th class="n">С рычагами</th></tr></thead><tbody>' +
+    rows.map(function(r){ var gap = r[2] === '%' ? now[r[0]] - need[r[0]] : (need[r[0]] ? (now[r[0]] / need[r[0]] - 1) * 100 : 0); var gcls = Math.abs(gap) < .5 ? '' : (gap < 0 ? 'neg' : 'pos');
+      return '<tr class="' + (r[0] === 'rev' ? 'hl' : '') + '"><td>' + r[1] + '</td><td class="n">' + f(need[r[0]], r[2]) + '</td><td class="n">' + f(now[r[0]], r[2]) + '</td><td class="n ' + (gcls === 'neg' ? 'gapc' : '') + '"><b class="' + gcls + '">' + (Math.abs(gap) < .5 ? '—' : sg(Math.round(gap * 10) / 10, r[2] === '%' ? 1 : 0) + (r[2] === '%' ? ' п.п.' : '%')) + '</b></td><td class="n"><b>' + f(lev[r[0]], r[2]) + '</b></td></tr>'; }).join('') +
+    '</tbody></table></div><p class="note" style="padding:0 16px 12px">С рычагами: выручка ' + nf(lev.rev / 1e6, 2) + ' млн ₽ — <b class="' + fcCls(Math.round(lev.rev / target * 100)) + '">' + Math.round(lev.rev / target * 100) + '% плана</b>.</p></div>';
+  var sl = [['shows','Показы в день', cur.shows * .6, cur.shows * 1.8, 100, 0],['ctr','CTR, %', 1.5, 5, .1, 1],['cConv','Конверсия в корзину, %', 8, 18, .1, 1],['oConv','Конверсия в заказ, %', 30, 50, .5, 1],['buy','Выкуп, %', 60, 92, 1, 0]];
+  h += '<div class="card"><div class="card-h"><h3>Рычаги</h3></div><div class="card-b">' + sl.map(function(s){ return '<div class="lev"><label>' + s[1] + ' <b>' + nf(L[s[0]], s[5]) + '</b> <span class="muted">сейчас ' + nf(cur[s[0]], s[5]) + '</span></label><input type="range" data-act="fp-lev" data-k="' + s[0] + '" min="' + s[2] + '" max="' + s[3] + '" step="' + s[4] + '" value="' + L[s[0]] + '"></div>'; }).join('') +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn" data-act="fp-reset">Сбросить</button><button class="btn primary" data-act="fp-accept">Принять как план</button></div></div></div></div>';
+  var cheap = sku === 'NP-1405' ? [['Поднять CTR 2,3 → 3,5% (новое главное фото, сравнение размеров)','+52% переходов — то же, что +52% показов за ~+60 тыс ₽ рекламы в неделю','без затрат на рекламу','pos'],['Выкуп 71 → 80% (исправить объём в карточке)','+13% выручки при тех же заказах','без затрат','pos'],['Добавить показы +30% ставками','+30% переходов','~+45 тыс ₽/нед рекламы, ДРР растёт','warn']]
+    : (sku === 'NP-3103' ? [['Вернуть главное фото: CTR 2,4 → 3,8%','+58% переходов','без затрат','pos'],['Конверсия в корзину 13,2 → 14,1%','+7% заказов','слайд «что в комплекте»','pos'],['Показы +20% ставками','+20% переходов','~+12 тыс ₽/нед','warn']]
+    : [['Удержать остатки (поставка 2 400 шт)','без дефицита — план перевыполняется','закупка в себестоимости ~0,5 млн ₽','pos'],['Показы +10%','+10% выручки','~+5 тыс ₽/нед','warn']]);
+  h += '<div class="sec-h"><h2>Самый дешёвый путь к плану' + ex('Система сравнивает рычаги по цене эффекта: что даёт тот же прирост выручки дешевле.') + '</h2></div><div class="card"><div class="card-b"><ul class="list">' + cheap.map(function(c, i){ return '<li><span><b>' + (i + 1) + '. ' + c[0] + '</b><small style="display:block;color:var(--ink-2)">' + c[1] + '</small></span><span class="r ' + c[3] + '">' + c[2] + '</span></li>'; }).join('') + '</ul>' + (sku === 'NP-1405' ? '<p class="note">Рекомендация: начать с фото и размера в карточке — это закрывает большую часть разрыва без роста ДРР.</p>' : '') + '</div></div>';
+  return h;
+}
+
+FIN_LINES.forEach(function(l){ if (l[3] != null) S.fin.norm[l[0]] = l[3]; });
 /* ---------------- popover & folds ---------------- */
 var POP = document.createElement('div'); POP.className = 'pop'; POP.setAttribute('role', 'tooltip'); document.body.appendChild(POP);
 var popFor = null, popPinned = false;
@@ -1797,12 +2824,13 @@ new MutationObserver(function(){ postRender(); }).observe(document.body, {childL
 /* ---------------- routing ---------------- */
 function renderAll(){
   document.body.classList.toggle('no-ex', !S.ex); var tg = $('#exTog'); tg.classList.toggle('on', S.ex); tg.setAttribute('aria-pressed', S.ex); $('#exTogL').textContent = S.ex ? 'вкл' : 'выкл';
-  renderOverview(); renderRnp(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderDepartments(); renderSources();
-  $('#navDep').style.display = S.role === 'ceo' ? '' : 'none';
+  renderOverview(); renderRnp(); renderStock(); renderSeason(); renderFinance(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderDepartments(); renderSources();
+  $('#navDep').style.display = S.role === 'ceo' ? '' : 'none'; $('#navFin').style.display = S.role === 'ceo' ? '' : 'none';
   if ($('#chat').classList.contains('on')) renderChat();
   document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id === 'v-' + S.view); });
   document.querySelectorAll('#nav button').forEach(function(b){ b.classList.toggle('active', b.dataset.view === S.view); });
-  var rw = $('#v-rnp .rnp-wrap'); if (S.view === 'rnp' && rw && S.rnp.mode === 'days') rw.scrollLeft = rw.scrollWidth;
+  var rw = $('#v-rnp .rnp-wrap'); if (S.view === 'rnp' && rw) rw.scrollLeft = cfgNow().newest ? 0 : rw.scrollWidth;
+  $('#phTop').innerHTML = photoSeg();
   document.querySelectorAll('#roleSeg button').forEach(function(b){ b.classList.toggle('on', b.dataset.role === S.role); });
 }
 function go(view){ S.view = view; try { localStorage.setItem('np-demo-view', view); } catch(e) {} renderAll(); window.scrollTo(0, 0); }
@@ -1811,9 +2839,57 @@ function closeModal(){ $('#modal').classList.remove('on'); }
 document.addEventListener('click', function(e){
   var t = e.target.closest('[data-act]'); if (!t) return;
   var a = t.dataset.act;
-  if (a === 'go') return go(t.dataset.view);
-  if (a === 'role'){ S.role = t.dataset.role; S.rejectOpen = false; S.chat = []; renderAll(); return toast(S.role === 'ceo' ? 'Роль: руководитель — вся компания, согласование решений' : 'Роль: Ольга, менеджер WB — свои товары и задачи'); }
+  if (a === 'go'){ if (t.dataset.view === 'rnp' && S.rnpFocus){ S.rnpFocus = null; RNP_SKU.forEach(function(x){ S.rnp.off[x.sku] = false; }); } return go(t.dataset.view); }
+  if (a === 'role'){ S.role = t.dataset.role; S.rejectOpen = false; S.chat = []; S.planDraft = {}; renderAll(); return toast(S.role === 'ceo' ? 'Роль: руководитель — вся компания, согласование решений' : 'Роль: Ольга, менеджер WB — свои товары и задачи'); }
   if (a === 'apply') return applySelf(t.dataset.p);
+  if (a === 'zoom') return zoomPhoto(t.dataset.sku);
+  if (a === 'photo'){ S.photo[S.role] = t.dataset.v; try { localStorage.setItem('np-photo-' + S.role, t.dataset.v); } catch(err) {} renderAll(); if (S.rnpPanel) renderRnpCfg(); return; }
+  if (a === 'rnp-cfg'){ S.rnpPanel = !S.rnpPanel; $('#rnpCfg').classList.toggle('on', S.rnpPanel); if (S.rnpPanel) renderRnpCfg(); return; }
+  if (a === 'rnp-cfg-close'){ S.rnpPanel = false; return $('#rnpCfg').classList.remove('on'); }
+  if (a === 'rnp-tab'){ S.rnpTab = t.dataset.t; return renderRnp(); }
+  if (a === 'rnp-preset'){ var old = cfgNow(), np = t.dataset.p === 'my' ? JSON.parse(JSON.stringify(RNP_MY[S.role])) : rnpPreset(t.dataset.p); if (t.dataset.p !== 'my'){ np.period = old.period; np.newest = old.newest; } np.preset = t.dataset.p; RNP_CFG[S.role] = np; return renderRnp(); }
+  if (a === 'rnp-period'){ cfgNow().period = +t.dataset.n; return renderRnp(); }
+  if (a === 'rnp-newest'){ cfgNow().newest = t.dataset.v === '1'; return renderRnp(); }
+  if (a === 'rnp-pin'){ var cp = cfgNow(), pk = t.dataset.k, pi = cp.pinned.indexOf(pk); if (pi >= 0) cp.pinned.splice(pi, 1); else { if (cp.pinned.length >= 3) return toast('Можно закрепить до 3 показателей'); cp.pinned.push(pk); delete cp.hidden[pk]; } return rnpChanged(); }
+  if (a === 'rnp-mv') return rnpMove(t.dataset.l, t.dataset.k, +t.dataset.d);
+  if (a === 'rnp-reset'){ RNP_CFG[S.role] = rnpPreset('full'); renderRnp(); return toast('Вид сброшен до «Полный»'); }
+  if (a === 'rnp-save'){ var sv = JSON.parse(JSON.stringify(cfgNow())); sv.preset = 'my'; RNP_MY[S.role] = sv; cfgNow().preset = 'my'; rnpStore(S.role, sv); renderRnp(); return toast('Вид сохранён — виден только вам'); }
+  if (a === 'plan-month'){ S.planMonth = t.dataset.m; return renderRnp(); }
+  if (a === 'plan-prop'){ var sk = t.dataset.s, nv = S.planDraft && S.planDraft[sk + '|rev'], pr = PLAN[sk].oct.rev, pn = PRODUCTS.filter(function(x){ return x.sku === sk; })[0].n; if (nv == null) nv = Math.round(pr * .85 / 10000) * 10000; S.planProp.push({sku:sk, name:pn, from:pr, to:nv}); renderRnp(); return toast('Передано Андрею Викторовичу на согласование'); }
+  if (a === 'plan-ok'){ var pp = S.planProp.splice(+t.dataset.i, 1)[0]; PLAN[pp.sku].oct.rev = pp.to; DECISIONS.unshift({d:'09.10', prod:pp.name, ch:'WB', prob:'Корректировка плана месяца', act:'План выручки ' + nf(pp.from / 1e6, 2) + ' → ' + nf(pp.to / 1e6, 2) + ' млн ₽', who:'А. Морозов', task:'—', ts:'none', fc:0, fact:null, v:'pending', owner:'mp', mine:1, check:'план обновлён', isNew:true}); renderAll(); return toast('План обновлён'); }
+  if (a === 'plan-no'){ S.planProp.splice(+t.dataset.i, 1); renderRnp(); return toast('Предложение отклонено'); }
+  if (a === 'to-rnp'){ e.preventDefault(); return toRnp(t.dataset.sku, t.dataset.row, t.dataset.from, t.dataset.label); }
+  if (a === 'to-chain'){ e.preventDefault(); return toChain(t.dataset.case, t.dataset.node); }
+  if (a === 'crumb-x'){ S.rnpFocus = null; RNP_SKU.forEach(function(x){ S.rnp.off[x.sku] = false; }); return renderRnp(); }
+  if (a === 'stk-f'){ S.stk.f = t.dataset.f; return renderStock(); }
+  if (a === 'stk-sort'){ var sk2 = t.dataset.k; S.stk.d = S.stk.k === sk2 ? -S.stk.d : (sk2 === 'n' || sk2 === 'ch' ? 1 : -1); if (sk2 === 'days' && S.stk.k !== sk2) S.stk.d = 1; S.stk.k = sk2; return renderStock(); }
+  if (a === 'stk-exp'){ S.stk.open[t.dataset.s] = !S.stk.open[t.dataset.s]; return renderStock(); }
+  if (a === 'stk-by'){ S.stk.by[t.dataset.s] = t.dataset.v; return renderStock(); }
+  if (a === 'stk-one') return stkSupply([t.dataset.s]);
+  if (a === 'stk-mass'){ var ss = Object.keys(S.stk.sel).filter(function(k){ return S.stk.sel[k]; }); if (!ss.length) ss = stkVisible().filter(function(it){ return it.status === 'red' && it.rec && !S.stk.done[it.sku]; }).map(function(it){ return it.sku; }); return stkSupply(ss); }
+  if (a === 'go-fin'){ S.fin.tab = t.dataset.t; if (t.dataset.w){ S.fin.why = t.dataset.w; S.fin.mo = 'oct'; } return go('finance'); }
+  if (a === 'fin-tab'){ S.fin.tab = t.dataset.t; return renderFinance(); }
+  if (a === 'fin-mo'){ S.fin.mo = t.dataset.m; return renderFinance(); }
+  if (a === 'fin-seg'){ S.fin.seg = t.dataset.s; return renderFinance(); }
+  if (a === 'fin-why'){ S.fin.why = S.fin.why === t.dataset.k ? null : t.dataset.k; return renderFinance(); }
+  if (a === 'fin-dds'){ e.preventDefault(); S.fin.tab = 'dds'; S.fin.art = t.dataset.a; renderFinance(); return window.scrollTo(0, 0); }
+  if (a === 'fin-art'){ e.preventDefault(); S.fin.art = t.dataset.a; return renderFinance(); }
+  if (a === 'fin-sort'){ var fk = t.dataset.k; S.fin.sd = S.fin.sk === fk ? -S.fin.sd : -1; S.fin.sk = fk; return renderFinance(); }
+  if (a === 'dds-add'){
+    var sv2 = parseFloat(String($('#ddsS').value).replace(/[\s\u00a0]/g, '').replace(',', '.')); if (!sv2) return toast('Укажите сумму');
+    var tp = +$('#ddsT').value, ar = $('#ddsA').value;
+    S.fin.added.unshift({d:$('#ddsD').value || '09.10', art:ar, sum:tp * sv2 / 1e6, acc:$('#ddsC').value, cp:$('#ddsP').value || '—', com:$('#ddsM').value || '', src:'manual', isNew:true});
+    renderAll(); return toast('Операция добавлена: ' + ar + ' ' + sg(tp * sv2 / 1000, 0) + ' тыс ₽ — дашборд и ОПиУ пересчитаны');
+  }
+  if (a === 'sea-mode'){ S.season.mode = t.dataset.m; return renderSeason(); }
+  if (a === 'sea-row'){ S.season.open = S.season.open === t.dataset.k ? null : t.dataset.k; return renderSeason(); }
+  if (a === 'sea-task'){ var ns = S.taskNo++; S.recoTask['sea' + t.dataset.k] = ns; renderSeason(); return toast('Задача #' + ns + ' создана в Битрикс24'); }
+  if (a === 'plan-nov'){ e.preventDefault(); S.rnpTab = 'plan'; S.planMonth = 'nov'; return go('rnp'); }
+  if (a === 'fp-sku'){ S.fp.sku = t.dataset.s; return renderRnp(); }
+  if (a === 'fp-reset'){ delete S.fp.lev[S.fp.sku]; return renderRnp(); }
+  if (a === 'fp-accept'){ var fl = S.fp.lev[S.fp.sku], fpo = PLAN[S.fp.sku].oct, cb = fpBase(S.fp.sku); var r2 = fpCalc({shows:fl.shows, ctr:fl.ctr, cConv:fl.cConv, oConv:fl.oConv, buy:fl.buy, price:cb.price, margin:fpo.margin}, MONTH_DAYS);
+    fpo.rev = Math.round(r2.rev / 10000) * 10000; fpo.ctr = Math.round(fl.ctr * 10) / 10; fpo.cConv = Math.round(fl.cConv * 10) / 10; fpo.oConv = Math.round(fl.oConv * 10) / 10; fpo.buy = Math.round(fl.buy);
+    Object.keys(S.rnp.plan).forEach(function(k){ if (k.indexOf(S.fp.sku + '|') === 0) delete S.rnp.plan[k]; }); renderAll(); return toast('Записано в план месяца и колонку «План» РНП'); }
   if (a === 'rnp-mode'){ S.rnp.mode = t.dataset.m; return renderRnp(); }
   if (a === 'rnp-ch'){ S.rnp.ch = t.dataset.c; return renderRnp(); }
   if (a === 'rnp-sku'){ S.rnp.off[t.dataset.s] = !S.rnp.off[t.dataset.s]; return renderRnp(); }
@@ -1829,7 +2905,7 @@ document.addEventListener('click', function(e){
   if (a === 'chat-how'){ S.chatHow = !S.chatHow; return renderChat(); }
   if (a === 'ask') return ask(t.dataset.t, t.dataset.q);
   if (a === 'chat-go'){ if (window.innerWidth < 1280) closeChat(); return go(t.dataset.view); }
-  if (a === 'chat-supply'){ var n2 = S.taskNo++; S.supplyTask = n2; TASKS.push({no:n2, title:'Кашпо 3 л: поставка 600 шт на WB Казань', due:'11.10', dueTxt:'новая · срок 11.10', from:ROLES[S.role].short, isNew:true}); S.chat.forEach(function(m){ if (m.html.indexOf('chat-supply') >= 0) m.html = answer('stock'); }); renderAll(); renderChat(); return toast('Поставка создана: задача #' + n2 + ' в Битрикс24'); }
+  if (a === 'chat-supply'){ var n2 = S.taskNo++; S.supplyTask = n2; TASKS.push({no:n2, sku:'NP-3103', title:'Кашпо 3 л: поставка 600 шт на WB Казань', due:'11.10', dueTxt:'новая · срок 11.10', from:ROLES[S.role].short, isNew:true}); S.chat.forEach(function(m){ if (m.html.indexOf('chat-supply') >= 0) m.html = answer('stock'); }); renderAll(); renderChat(); return toast('Поставка создана: задача #' + n2 + ' в Битрикс24'); }
   if (a === 'sendup') return sendUp(t.dataset.p);
   if (a === 'taskdone') return taskDone(parseInt(t.dataset.t, 10));
   if (a === 'extog'){ S.ex = !S.ex; if (S.ex) S.intro = true; try { localStorage.setItem('np-demo-ex', S.ex ? '1' : '0'); localStorage.setItem('np-demo-intro', '1'); } catch(e) {} return renderAll(); }
@@ -1850,7 +2926,15 @@ document.addEventListener('click', function(e){
 });
 document.addEventListener('change', function(e){
   var t = e.target;
-  if (t.dataset.act === 'rnp-plan'){ var v = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(v)) S.rnp.plan[t.dataset.k] = v; var sl = $('#v-rnp .rnp-wrap').scrollLeft; renderRnp(); $('#v-rnp .rnp-wrap').scrollLeft = sl; return; }
+  if (t.dataset.act === 'rnp-plan'){ var v = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(v)){ var kp = t.dataset.k.split('|'); if (kp[1] === 'rev'){ PLAN[kp[0]].oct.rev = Math.round(v * MONTH_DAYS); delete S.rnp.plan[t.dataset.k]; } else S.rnp.plan[t.dataset.k] = v; } var sl = $('#v-rnp .rnp-wrap').scrollLeft; renderRnp(); $('#v-rnp .rnp-wrap').scrollLeft = sl; return; }
+  if (t.dataset.act === 'fin-norm'){ var nv2 = parseFloat(String(t.value).replace(',', '.')); if (!isNaN(nv2)) S.fin.norm[t.dataset.k] = nv2; return renderAll(); }
+  if (t.dataset.act === 'dds-live') return ddsLive();
+  if (t.dataset.act === 'stk-sel'){ S.stk.sel[t.dataset.s] = t.checked; return renderStock(); }
+  if (t.dataset.act === 'rnp-vis'){ var cf = cfgNow(); if (t.checked) delete cf.hidden[t.dataset.k]; else cf.hidden[t.dataset.k] = true; return rnpChanged(); }
+  if (t.dataset.act === 'plan-in'){ var pv = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (isNaN(pv)) return;
+    if (t.dataset.k === 'rev' && pv < 1000) pv = Math.round(pv * 1e6);
+    if (S.role === 'mp'){ S.planDraft = S.planDraft || {}; S.planDraft[t.dataset.s + '|' + t.dataset.k] = pv; return toast('Изменение подготовлено — нажмите «Предложить изменение плана»'); }
+    PLAN[t.dataset.s][S.planMonth][t.dataset.k] = pv; if (S.planMonth === 'oct') delete S.rnp.plan[t.dataset.s + '|' + t.dataset.k]; return renderRnp(); }
   if (t.dataset.act === 'rnp-ads'){ S.rnp.adsOff = t.checked; return renderRnp(); }
   if (t.dataset.act === 'sel'){
     var c = CASES[S.caseId];
@@ -1861,6 +2945,8 @@ document.addEventListener('change', function(e){
 });
 document.addEventListener('input', function(e){
   var t = e.target;
+  if (t.dataset.act === 'dds-live') ddsLive();
+  if (t.dataset.act === 'fp-lev'){ S.fp.lev[S.fp.sku][t.dataset.k] = parseFloat(t.value); var k3 = t.dataset.k; renderRnp(); var el3 = document.querySelector('[data-act=fp-lev][data-k=' + k3 + ']'); if (el3) el3.focus(); return; }
   if (t.dataset.act === 'edit'){ S.edits[t.dataset.p] = parseFloat(t.value); renderAnalysis(); var el = document.querySelector('[data-act="edit"][data-p="' + t.dataset.p + '"]'); if (el) el.focus(); }
 });
 document.addEventListener('focusout', function(e){ var c = e.target.getAttribute && e.target.getAttribute('data-com'); if (c != null) S.rnp.com[c] = e.target.textContent.trim(); });
@@ -1874,7 +2960,12 @@ document.addEventListener('keydown', function(e){
 });
 $('#modal').addEventListener('click', function(e){ if (e.target.id === 'modal') closeModal(); });
 
+(function(){ var hs = location.hash || '';
+  if (/plan/.test(hs)) S.rnpTab = 'plan'; if (/funnel/.test(hs)) S.rnpTab = 'funnel'; if (/dds/.test(hs)) S.fin.tab = 'dds';
+  if (/exp/.test(hs)){ S.stk.open['NP-3103'] = true; } if (/whyfot/.test(hs)) S.fin.why = 'fot'; if (/seaopen/.test(hs)) S.season.open = 'kash';
+})();
 renderAll();
+if (/cfg/.test(location.hash)){ S.rnpPanel = true; $('#rnpCfg').classList.add('on'); renderRnpCfg(); }
 if (/chat/.test(location.hash)){ openChat(); S.chat.push({who:'u', html:'Сколько кашпо 3 л на складах'}, {who:'b', html:answer('stock')}); renderChat(); var dd = document.querySelector('#chatBody details'); if (dd) dd.open = true; }
 })();
 </script>
