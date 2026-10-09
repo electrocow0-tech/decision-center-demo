@@ -688,6 +688,35 @@ body.no-ex .whyline{display:none}
 @media (max-width:900px){ .fp,.why-g{grid-template-columns:minmax(0,1fr)} }
 @media (max-width:640px){ .bars li{grid-template-columns:100px minmax(0,1fr) 90px} .ddsf-g .wide{grid-column:auto} }
 
+/* ---------- intro v2 / effect ---------- */
+.intro-t{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em}
+.intro-p{list-style:none;margin:0 0 8px;padding:0;display:flex;gap:10px 22px;flex-wrap:wrap}
+.intro-p li{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink-2)}
+.intro-p svg{width:18px;height:18px;color:var(--accent);flex:none}
+.eff-tile{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 20px;margin-top:22px;border-left:3px solid var(--pos)}
+.eff-tile .l{font-size:14px;color:var(--ink-2)}
+.eff-tile .v{font-size:28px;font-weight:700;color:var(--pos);letter-spacing:-.02em}
+.eff-tile a{color:var(--brand);font-weight:500}
+@media (max-width:640px){ .intro-p{flex-direction:column} }
+
+/* ---------- year plan ---------- */
+.yp-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:14px;margin-bottom:14px}
+.yp-goal{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.yp-goal .l{font-size:14px;font-weight:600}
+.yp-goal label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.yp-goal .pin{width:100px}
+.yp-goal .s{font-size:13px;color:var(--ink-3)}
+.yp-cmp{padding:16px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ypc .l{font-size:13px;color:var(--ink-2)} .ypc .v{font-size:22px;font-weight:600;letter-spacing:-.02em;margin-top:2px}
+.ypc.gap{background:var(--neg-bg);border-radius:9px;padding:8px 12px}
+.yp-gap{grid-column:1/-1;font-size:13.5px}
+.yp-gap ul{list-style:none;margin:6px 0 0;padding:0}
+.yp-gap li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--line-2)}
+.yp-gap li a{color:var(--brand);font-size:13px;white-space:nowrap}
+.yp-gap li.tot{border-bottom:0;font-weight:600}
+@media (max-width:900px){ .yp-top{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:640px){ .yp-cmp{grid-template-columns:1fr} .yp-gap li{grid-template-columns:1fr auto} .yp-gap li a{grid-column:1/-1} }
+
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .side{padding-right:58px}
@@ -1065,7 +1094,7 @@ var PRODUCTS = [
 var MP_TEAM = ['Ковалёва О.'];
 
 /* ---------------- state ---------------- */
-var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, rnpPanel:false, rnpTab:'days', rnpFocus:null, chainFocus:null, stk:{f:'all', k:'urg', d:1, open:{}, sel:{}, done:{}, by:{}}, fin:{tab:'pl', mo:'oct', seg:'all', why:null, art:'', added:[], norm:{}, sk:'marR', sd:-1}, season:{mode:'mkt', open:null}, fp:{sku:'NP-1405', lev:{}}, planMonth:'oct', planProp:[], photo:{ceo:'big', mp:'big'}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
+var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, rnpPanel:false, rnpTab:'days', planLvl:'year', yp:{rev:1000, net:45, proposed:false, approved:false}, yq:'q1', ym:null, rnpFocus:null, chainFocus:null, stk:{f:'all', k:'urg', d:1, open:{}, sel:{}, done:{}, by:{}}, fin:{tab:'pl', mo:'oct', seg:'all', why:null, art:'', added:[], norm:{}, sk:'marR', sd:-1}, season:{mode:'mkt', open:null}, fp:{sku:'NP-1405', lev:{}}, planMonth:'oct', planProp:[], photo:{ceo:'big', mp:'big'}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
 try { ['ceo','mp'].forEach(function(r){ var v = localStorage.getItem('np-photo-' + r); if (v) S.photo[r] = v; }); } catch(e) {}
 try { if (localStorage.getItem('np-demo-ex') === '0') S.ex = false; if (localStorage.getItem('np-demo-intro') === '0') S.intro = false; } catch(e) {}
 CASE_ORDER.forEach(function(id){ var c = CASES[id]; S.sel[id] = {}; c.props.forEach(function(p, i){ S.sel[id][p.id] = c.exclusive ? i === 1 : true; }); });
@@ -1125,7 +1154,11 @@ function renderOverview(){
   if (M) K = KPI_MGR[S.kpi];
   var tiles = K.tiles;
   var h = '';
-  if (S.intro) h += '<div class="intro"><button class="x" data-act="intro-x" aria-label="Скрыть">×</button><p style="margin:0"><b>Центр решений</b> находит причины изменений продаж и маржи в рублях, предлагает действие, ставит задачу в Битрикс24 и через 7 дней проверяет эффект. <a href="#" data-act="intro-steps" style="color:var(--brand);white-space:nowrap">' + (S.introSteps ? 'Скрыть шаги' : 'Как пройти демо') + '</a></p>' +
+  if (S.intro) h += '<div class="intro"><button class="x" data-act="intro-x" aria-label="Скрыть">×</button><div class="intro-t">Не что произошло, а почему и что делать</div><ul class="intro-p">' +
+    '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h4l3-7 4 14 3-7h2"/></svg>Причина в рублях за минуты — цепочка от первопричины до потери</li>' +
+    '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3"/></svg>Цифры считает код, ИИ объясняет — каждое звено проверяется в РНП</li>' +
+    '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.3l2.7 2.7L16.2 9.5"/></svg>Через 7 дней — проверка: сработало ли решение</li></ul>' +
+    '<a href="#" data-act="intro-steps" style="color:var(--brand);font-size:13px">' + (S.introSteps ? 'Скрыть шаги' : 'Как пройти демо') + '</a>' +
     (S.introSteps ? '<ol class="steps"><li>Нажмите «Разобрать» на первой карточке.</li><li>Согласуйте предложение — задача уйдёт в Битрикс24.</li><li>Переключите роль вверху — увидите экран менеджера и её права.</li><li>Откройте «Ассистент» справа или раздел «Отделы».</li></ol>' : '') + '</div>';
   var lateN = TASKS.filter(function(t){ return t.late && !t.done; }).length, openT = TASKS.filter(function(t){ return !t.done; }).length;
   var waitN = vc.filter(function(id){ return S.pending[id] && caseStatus(id) === 'new'; }).length;
@@ -1165,6 +1198,9 @@ function renderOverview(){
     h += '<article class="card case task"><div class="case-top"><span class="pill">Финансы</span><span class="pill warn">Контроль</span></div><div class="case-t"><div><h3>ФОТ ' + nf(fs, 1) + '% выручки при норме ' + nf(S.fin.norm.fot, 0) + '%</h3><div class="headline">выручка ниже плана на 11% + премии и сезонный персонал</div></div></div><div class="case-foot"><span class="impact neg">+' + nf(Math.abs(fv.fot) - fv.rev * S.fin.norm.fot / 100, 1) + '<small>млн ₽/мес сверх нормы</small></span><button class="btn primary" data-act="go-fin" data-t="pl" data-w="fot">Почему →</button></div></article>';
   }
   h += '</div>';
+  var effRows = DECISIONS.filter(function(d){ return S.role === 'ceo' || d.mine; }).filter(function(d){ return d.fact != null; });
+  var effM = effRows.reduce(function(q, d){ return q + d.fact; }, 0) * 4.33 / 1000;
+  h += '<div class="card eff-tile"><div><div class="l">Подтверждённый эффект решений за месяц' + (S.role === 'mp' ? ' · ваши товары' : '') + '</div><div class="v">+' + nf(effM, 2) + ' млн ₽</div></div><a href="#" data-act="go" data-view="decisions">все решения →</a></div>';
   h += '<div class="sec-h" data-fold="closed"><h2>Что ещё сделала система</h2><span class="hint">2 решения проверены · 1 предупреждение</span></div>' + ex('Сверка эффекта прошлых решений и ночная проверка данных.') + '<div class="two">' +
     '<div class="card"><div class="card-h"><h3>Проверила эффект решений</h3><span class="pill pos">2 сработали</span></div><div class="card-b"><ul class="list">' +
     '<li><span>Кашпо 5 л, WB — снижение ставок</span><span class="r pos">+38 тыс ₽/нед <small class="muted">прогноз +41</small></span></li>' +
@@ -1477,7 +1513,7 @@ function renderSources(){
     ['Ozon API','ok','Seller и Performance API: продажи, остатки, поставки, реклама','сегодня 07:15','21 640 строк за сутки'],
     ['1С: Управление торговлей','warn','Себестоимость партий, остатки на складе, номенклатура','сегодня 06:40','312 из 318 артикулов сопоставлено'],
     ['Битрикс24','ok','Задачи, ответственные, статусы, протоколы планёрок — в обе стороны','сегодня 07:20','12 открытых задач системы'],
-    ['TrueStats','ok','Финансы: ОПиУ, расходы, ROI — уже используется компанией','сегодня 06:10','сверка с ОПиУ платформы'],
+    ['TrueStats','ok','Финансы: ОПиУ, расходы, ROI — уже используется компанией','сегодня 06:10','сверка с ОПиУ платформы: расхождение 0,3% ✓'],
     ['MPStats (или аналог)','ok','Рынок: ниши, цены и позиции конкурентов, оценки продаж, отзывы','сегодня 06:10','3 ниши · 214 карточек конкурентов']
   ];
   var h = '<div class="page-h"><div><h1>Источники данных</h1>' + why('доверять цифрам: видно, откуда данные и всё ли загрузилось') + '<p>Данные компании, проверка полноты и сверка источников перед каждым расчётом.</p></div></div>' + ex('Откуда данные и когда обновлялись. Если источник не загрузился, это видно сразу.') + '<div class="srcs">';
@@ -1642,7 +1678,7 @@ function routerHtml(){
     '<table class="cost"><tr><td>Облачные модели по API</td><td>от ~10–30 тыс ₽/мес</td></tr><tr><td>Свой сервер с GPU</td><td>от ~150–250 тыс ₽ разово</td></tr><tr><td>Аренда GPU-сервера</td><td>~40–80 тыс ₽/мес</td></tr></table><p class="note" style="margin-top:6px">Оценка при текущем объёме, уточняется по ТЗ.</p>';
 }
 var CHIPS = {
-  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне'],['netsep','Какая чистая прибыль за сентябрь'],['spent','На что ушли деньги в октябре'],['norms','Какие статьи расходов выше нормы и почему']],
+  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне'],['netsep','Какая чистая прибыль за сентябрь'],['spent','На что ушли деньги в октябре'],['norms','Какие статьи расходов выше нормы и почему'],['cashspring','Хватит ли нам денег на весенний сезон']],
   mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне']]
 };
 function matchQ(t){
@@ -1651,6 +1687,7 @@ function matchQ(t){
   if (/чистая прибыль|прибыль за/.test(t)) return mp ? 'deny' : 'netsep';
   if (/ушли деньги|на что ушл|траты/.test(t)) return mp ? 'deny' : 'spent';
   if (/выше нормы|норматив|статьи расход/.test(t)) return mp ? 'deny' : 'norms';
+  if (/хватит ли|денег на/.test(t)) return mp ? 'deny' : 'cashspring';
   if (/весн|сезон/.test(t)) return 'spring';
   if (/сафин|белов|морозов|сотрудник|коллег/.test(t)) return mp ? 'deny' : (/сафин/.test(t) ? 'other' : 'olga');
   if (/выручк|финанс|прибыл|маржа компании|оборот/.test(t)) return mp ? 'deny' : 'fin';
@@ -1672,7 +1709,7 @@ function tbl(head, rows){ return '<table><tr>' + head.map(function(x, i){ return
 function answer(id){
   var mp = S.role === 'mp', A;
   if (id === 'fin' && mp) id = 'deny';
-  if ((id === 'olga' || id === 'nov' || id === 'other' || id === 'plan' || id === 'dept' || id === 'netsep' || id === 'spent' || id === 'norms') && mp) id = 'deny';
+  if ((id === 'olga' || id === 'nov' || id === 'other' || id === 'plan' || id === 'dept' || id === 'netsep' || id === 'spent' || id === 'norms' || id === 'cashspring') && mp) id = 'deny';
   var tasksOpen = TASKS.filter(function(t){ return !t.done; });
   switch (id){
   case 'sku':
@@ -1730,6 +1767,12 @@ function answer(id){
   case 'deny':
     A = {tier:'light', text:'<p><b>Нет доступа для вашей роли.</b> Ассистент отвечает по вашим товарам и задачам; финансы компании и работа других сотрудников доступны руководителю.</p>', body:'', acts:'',
       tools:['Проверка прав: роль «Менеджер маркетплейса» — запрос отклонён до обращения к данным'], deny:true};
+    break;
+  case 'cashspring':
+    var yr = ypCalc(), mcs = yr.cash[yr.minI];
+    A = {tier:'strong', text:'<p>По плану 2027 — <b>впритык</b>: пик потребности в оборотных деньгах — ' + MON_FULL[yr.minI] + ', <b>' + MINUS + nf(Math.abs(mcs), 1) + ' млн ₽</b>. Закупка кашпо и органайзеров к весне оплачивается раньше, чем придут выплаты маркетплейсов.</p>',
+      body: tbl(['Месяц','Закупка','Остаток денег'], [0,1,2,3].map(function(i){ return [MON_FULL[i], nf(yr.need[i].buy, 1) + ' млн', '<b class="' + (yr.cash[i] < 0 ? 'neg' : '') + '">' + sg(Math.round(yr.cash[i] * 10) / 10, 1) + ' млн</b>']; })) + '<p>Варианты: кредитная линия ~5 млн ₽ на 2 месяца, предоплата поставщику частями, досрочный вывод средств WB.</p>',
+      acts:'<button class="btn" data-act="chat-go" data-view="rnp">Планирование 2027 →</button>', tools:['План 2027 (сезонность рынка + своя история)','1С: себестоимость и сроки производства','ДДС: остатки на счетах и график выплат']};
     break;
   case 'netsep':
     var vs = finCalc('sep', 'all');
@@ -2079,8 +2122,8 @@ function renderRnp(){
   var h = '<div class="page-h"><div><h1>РНП — рука на пульсе' + ex('Ежедневный контроль воронки по каждому артикулу: отклонения от плана видны сразу, а аномалии ведут в разбор причины.') + '</h1>' + why('видеть каждый день по каждой карточке, где воронка отклонилась от плана, без ручных таблиц') + '<p>Заполняется автоматически каждую ночь из WB/Ozon API, 1С и рекламного кабинета — вместо ручной таблицы.</p></div>' +
     '<button class="btn" data-act="rnp-export">Выгрузить в Google Sheets / Excel</button></div>';
   if (S.rnpFocus) h += '<div class="crumb">Из разбора: <b>' + S.rnpFocus.name + ' · ' + S.rnpFocus.label + '</b><a href="#" data-act="to-chain" data-case="' + S.rnpFocus.caseId + '">← вернуться к разбору</a><button class="x" data-act="crumb-x" aria-label="Закрыть">×</button></div>';
-  h += '<div class="tabs"><button data-act="rnp-tab" data-t="days" class="' + (S.rnpTab === 'days' ? 'on' : '') + '">Таблица по дням</button><button data-act="rnp-tab" data-t="plan" class="' + (S.rnpTab === 'plan' ? 'on' : '') + '">План месяца' + ex('План задаётся по каждой карточке на месяц; система считает темп и прогноз выполнения и предупреждает заранее, а не в конце месяца.') + '</button><button data-act="rnp-tab" data-t="funnel" class="' + (S.rnpTab === 'funnel' ? 'on' : '') + '">План по воронке' + ex('Обычно планируют только выручку и прибыль. Здесь план раскладывается на воронку: показы, CTR, конверсии, выкуп — и видно, какой рычаг дешевле.') + '</button></div>';
-  if (S.rnpTab === 'plan'){ $('#v-rnp').innerHTML = h + why('план по каждой карточке и прогноз выполнения уже в начале месяца, а не по итогам') + renderPlanTab(); if (S.rnpPanel) renderRnpCfg(); return; }
+  h += '<div class="tabs"><button data-act="rnp-tab" data-t="days" class="' + (S.rnpTab === 'days' ? 'on' : '') + '">Таблица по дням</button><button data-act="rnp-tab" data-t="plan" class="' + (S.rnpTab === 'plan' ? 'on' : '') + '">Планирование' + ex('План года → квартала → месяца: цель сверху вниз против прогноза снизу вверх. Месячный план задаётся по каждой карточке; система считает темп и прогноз выполнения и предупреждает заранее.') + '</button><button data-act="rnp-tab" data-t="funnel" class="' + (S.rnpTab === 'funnel' ? 'on' : '') + '">План по воронке' + ex('Обычно планируют только выручку и прибыль. Здесь план раскладывается на воронку: показы, CTR, конверсии, выкуп — и видно, какой рычаг дешевле.') + '</button></div>';
+  if (S.rnpTab === 'plan'){ $('#v-rnp').innerHTML = h + (S.planLvl === 'month' ? why('план по каждой карточке и прогноз выполнения уже в начале месяца, а не по итогам') : '') + renderPlanning(); if (S.rnpPanel) renderRnpCfg(); return; }
   if (S.rnpTab === 'funnel'){ $('#v-rnp').innerHTML = h + why('понять не только сколько продать, а за счёт чего — какие показы, CTR и конверсии нужны, и какой рычаг дешевле') + renderFunnelPlan(); return; }
   h += '<div class="rnp-bar"><button class="btn primary" data-act="rnp-cfg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>Настроить вид</button><span class="muted rnp-vn">Вид: ' + presetName + ' · ' + n + ' дн.</span>' +
     '<div class="seg"><button data-act="rnp-mode" data-m="days" class="' + (!weeks ? 'on' : '') + '">Дни</button><button data-act="rnp-mode" data-m="weeks" class="' + (weeks ? 'on' : '') + '">Недели</button></div>' +
@@ -2588,7 +2631,7 @@ function finPlan(mo, key, v){
 }
 function normCls(fact, norm){ return fact > norm + 1 ? 'neg' : (fact > norm ? 'warn' : 'pos'); }
 function renderFinance(){
-  var h = '<div class="page-h"><div><h1>Финансы' + ex('ОПиУ сверяется с TrueStats; нормативы статей, раскладка причин и связь с решениями — своё. Операционные расходы из ДДС попадают в ОПиУ автоматически.') + '</h1>' + why('видеть реальную прибыль и какие расходы выходят за норму и почему') + '</div></div>';
+  var h = '<div class="page-h"><div><h1>Финансы' + ex('ОПиУ считается платформой из данных WB/Ozon, 1С и ДДС и каждую ночь сверяется с вашим TrueStats — если цифры разойдутся, вы увидите где и почему. Своё поверх: нормативы статей, раскладка причин, связь с решениями.') + '</h1>' + why('видеть реальную прибыль и какие расходы выходят за норму и почему') + '</div></div>';
   if (S.role !== 'ceo'){ $('#v-finance').innerHTML = h + '<div class="banner rej">Нет доступа для вашей роли: раздел доступен руководителю компании.</div>'; return; }
   h += '<div class="tabs"><button data-act="fin-tab" data-t="pl" class="' + (S.fin.tab === 'pl' ? 'on' : '') + '">ОПиУ</button><button data-act="fin-tab" data-t="dds" class="' + (S.fin.tab === 'dds' ? 'on' : '') + '">ДДС</button></div>';
   h += S.fin.tab === 'pl' ? finPL() : finDDS();
@@ -2804,6 +2847,83 @@ function renderFunnelPlan(){
 }
 
 FIN_LINES.forEach(function(l){ if (l[3] != null) S.fin.norm[l[0]] = l[3]; });
+/* ---------------- planning: year / quarter / month ---------------- */
+var YP_IDX = [96,92,98,104,98,92,96,108,110,100,102,104];
+var YP_LY = [68.8,66.0,70.3,74.6,70.3,66.0,68.8,77.4,78.9,74.8,73.1,74.6];
+var YP_PLAN26 = [70,68,72,76,72,68,70,79,80,84,80,82];
+var YP_MGR = [['О. Ковалёва · WB','.38'],['О. Сафин · Ozon','.34'],['А. Белова · категории','.20'],['М. Зайцев · опт','.08']];
+var YP_CAT = [['Контейнеры и хранение',.28],['Хозяйственные (корзины, вёдра, тазы)',.22],['Органайзеры',.18],['Кашпо и садовое',.12],['Кухня',.12],['Детское',.08]];
+var YP_GAP = [['Кашпо к весне: выйти на склады к старту рынка (опаздываем на 5 недель)',4.1,'season','Сезонность'],['Запуск 6 SKU на Ozon (органайзеры, хранение)',3.8,'market','Рынок'],['Выкуп контейнера 71 → 80%: размер и фото в карточке',2.2,'analysis','Разбор']];
+var MON_FULL = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+function ypCalc(){
+  var Y = S.yp, sumI = YP_IDX.reduce(function(a, b){ return a + b; }, 0);
+  var td = YP_IDX.map(function(v){ return Y.rev * v / sumI; });
+  var buTotal = Y.rev - 9.6 * Y.rev / 1000, lyT = YP_LY.reduce(function(a, b){ return a + b; }, 0);
+  var bu = YP_LY.map(function(v, i){ return v * buTotal / lyT * (i === 2 || i === 3 ? .985 : 1.003); });
+  var k = buTotal / bu.reduce(function(a, b){ return a + b; }, 0); bu = bu.map(function(v){ return v * k; });
+  var plan = Y.proposed ? bu.map(function(v, i){ return v + (td[i] - bu[i]); }) : td;
+  var need = plan.map(function(r, i){ var r2 = plan[(i + 2) % 12]; return {buy:r2 * .31, units:Math.round(r2 * .31 * 1e6 / 310 / 1000), ads:r * .13, opex:12.6 + (i === 11 ? 1.2 : 0), tax:r * .015}; });
+  var shB = need[0].buy * .3; need[0].buy -= shB; need[1].buy += shB;
+  var cash = [], c = 8.05, stock = [], st = 43.5;
+  plan.forEach(function(r, i){ c += r * .534 - need[i].buy - need[i].opex - need[i].tax; cash.push(c); st += need[i].buy - r * .31; stock.push(st); });
+  var mi = 0; cash.forEach(function(v, i){ if (v < cash[mi]) mi = i; }); var sh = -4.2 - cash[mi]; cash = cash.map(function(v){ return v + sh; });
+  return {td:td, bu:bu, plan:plan, need:need, cash:cash, minI:mi, stock:stock, gap:Y.rev - buTotal, buTotal:buTotal};
+}
+function renderPlanning(){
+  var lv = S.planLvl, M = S.role === 'mp';
+  var h = '<div class="rnp-bar"><div class="seg">' + [['year','Год 2027'],['q','Квартал'],['month','Месяц']].map(function(x){ return '<button data-act="plan-lvl" data-l="' + x[0] + '" class="' + (lv === x[0] ? 'on' : '') + '">' + x[1] + '</button>'; }).join('') + '</div>' +
+    (lv === 'year' ? (M ? '<button class="btn" data-act="yp-prop-m">Предложить корректировку</button>' : '<button class="btn" data-act="yp-propose">Предложить план</button><button class="btn primary" data-act="yp-approve">Утвердить</button>') : '') +
+    (S.yp.approved ? '<span class="pill pos">план 2027 утверждён</span>' : (S.yp.proposed ? '<span class="pill accent">черновик: предложено системой</span>' : '')) + '</div>';
+  if (lv === 'month') return h + (S.yp.approved ? '<div class="banner role">План месяца получен из годового плана 2027 и разложен по карточкам.</div>' : '') + renderPlanTab();
+  if (lv === 'q') return h + renderQuarter();
+  return h + renderYear();
+}
+function renderYear(){
+  var Y = S.yp, R = ypCalc(), M = S.role === 'mp', mln = function(v, d){ return nf(v, d == null ? 1 : d); };
+  var h = why('собрать план года из цели и реального прогноза, увидеть разрыв и чем его закрыть, и сразу понять, сколько закупить, сколько денег и бюджета нужно по месяцам');
+  h += '<div class="yp-top"><div class="card yp-goal"><div class="l">Цель 2027' + ex('Цель вводит руководитель. «Сверху вниз» — цель, разложенная по сезонности рынка и своей истории; «снизу вверх» — прогноз системы по товарам из истории, сезонности и трендов ниши.') + '</div>' +
+    '<label>Выручка, млн ₽<input class="pin" data-act="yp-in" data-k="rev" value="' + mln(Y.rev, 0) + '"' + (M ? ' disabled' : '') + '></label><label>Чистая прибыль, млн ₽<input class="pin" data-act="yp-in" data-k="net" value="' + mln(Y.net, 0) + '"' + (M ? ' disabled' : '') + '></label>' +
+    '<div class="s">2026: ~' + mln(YP_LY.reduce(function(a, b){ return a + b; }, 0), 0) + ' млн ₽ выручки (с прогнозом на IV кв.) · цель ' + sg(Math.round((Y.rev / YP_LY.reduce(function(a, b){ return a + b; }, 0) - 1) * 100)) + '%</div></div>' +
+    '<div class="card yp-cmp"><div class="ypc"><div class="l">Сверху вниз (цель)</div><div class="v">' + mln(Y.rev, 0) + ' млн ₽</div></div><div class="ypc"><div class="l">Снизу вверх (прогноз системы)</div><div class="v">' + mln(R.buTotal, 1) + ' млн ₽</div></div><div class="ypc gap"><div class="l">Разрыв</div><div class="v neg">' + MINUS + mln(R.gap, 1) + ' млн ₽</div></div>' +
+    '<div class="yp-gap"><b>Чем закрыть разрыв:</b><ul>' + YP_GAP.map(function(g){ return '<li><span>' + g[0] + '</span><b class="pos">+' + mln(g[1]) + ' млн ₽</b><a href="#" data-act="' + (g[2] === 'analysis' ? 'open" data-case="a' : 'go" data-view="' + g[2]) + '">' + g[3] + ' →</a></li>'; }).join('') + '<li class="tot"><span>Итого</span><b class="pos">+' + mln(YP_GAP.reduce(function(a, g){ return a + g[1]; }, 0)) + ' млн ₽</b><span></span></li></ul></div></div></div>';
+  // bars
+  var mx = Math.max.apply(null, R.plan.concat(YP_LY, R.bu)) * 1.08, w = 720, hh = 190, bw = (w - 40) / 12;
+  var y = function(v){ return 14 + (mx - v) / mx * (hh - 44); };
+  var g = '';
+  [0,1,2,3].forEach(function(q){ g += '<rect x="' + (30 + q * 3 * bw) + '" y="0" width="' + (3 * bw) + '" height="' + (hh - 22) + '" fill="' + (q % 2 ? '#F7F6F2' : '#FFFFFF') + '" data-act="yp-q" data-q="' + q + '" style="cursor:pointer"/><text x="' + (30 + q * 3 * bw + 6) + '" y="11" font-size="10" fill="#7A847E">' + (q + 1) + ' кв.</text>'; });
+  R.plan.forEach(function(v, i){ var x = 30 + i * bw;
+    g += '<rect x="' + (x + bw * .14) + '" y="' + y(YP_LY[i]) + '" width="' + (bw * .3) + '" height="' + (hh - 30 - y(YP_LY[i])) + '" fill="#C9C6BB" rx="2" data-act="yp-m" data-m="' + i + '" style="cursor:pointer"><title>' + MON_FULL[i] + ' 2026: ' + mln(YP_LY[i]) + ' млн</title></rect>';
+    g += '<rect x="' + (x + bw * .46) + '" y="' + y(v) + '" width="' + (bw * .36) + '" height="' + (hh - 30 - y(v)) + '" fill="#1D3A30" rx="2" data-act="yp-m" data-m="' + i + '" style="cursor:pointer"><title>План ' + MON_FULL[i] + ': ' + mln(v) + ' млн</title></rect>';
+    g += '<text x="' + (x + bw / 2) + '" y="' + (hh - 14) + '" font-size="10" text-anchor="middle" fill="#7A847E">' + MON12[i] + '</text>';
+  });
+  g += '<polyline points="' + R.bu.map(function(v, i){ return (30 + i * bw + bw * .64).toFixed(1) + ',' + y(v).toFixed(1); }).join(' ') + '" fill="none" stroke="#C4823A" stroke-width="2"/>' + R.bu.map(function(v, i){ return '<circle cx="' + (30 + i * bw + bw * .64) + '" cy="' + y(v) + '" r="2.5" fill="#C4823A"/>'; }).join('');
+  h += '<div class="card"><div class="card-h"><h3>План 2027 по месяцам, млн ₽' + ex('Клик по месяцу или кварталу открывает уровень ниже.') + '</h3></div><div class="card-b"><svg viewBox="0 0 ' + w + ' ' + hh + '" style="width:100%;height:auto;display:block">' + g + '</svg><div class="legend"><span><i style="background:#1D3A30"></i>план 2027</span><span><i style="background:#C9C6BB"></i>2026</span><span><i style="background:#C4823A"></i>прогноз системы (снизу вверх)</span></div></div></div>';
+  h += '<div class="two"><div class="card"><div class="card-h"><h3>По каналам</h3></div><div class="card-b"><ul class="list">' + [['WB',.66],['Ozon',.26],['Опт',.08]].map(function(c){ return '<li><span>' + c[0] + '</span><span class="r"><b>' + mln(Y.rev * c[1], 0) + '</b> млн ₽ · ' + Math.round(c[1] * 100) + '%</span></li>'; }).join('') + '</ul></div></div>' +
+    '<div class="card"><div class="card-h"><h3>По категориям</h3></div><div class="card-b"><ul class="list">' + YP_CAT.map(function(c){ return '<li><span>' + c[0] + '</span><span class="r"><b>' + mln(Y.rev * c[1], 0) + '</b> млн ₽</span></li>'; }).join('') + '</ul></div></div></div>';
+  // what is needed
+  var mc = R.cash[R.minI];
+  h += '<div class="sec-h"><h2>Что нужно, чтобы выполнить' + ex('Из плана выручки: закупка за 2 месяца до продаж (по себестоимости), реклама по норме ДРР, денежный поток с учётом выплат маркетплейсов и загрузка склада.') + '</h2><span class="hint">по месяцам 2027</span></div>';
+  h += '<div class="alert"><span><b>Пик потребности в оборотных деньгах — ' + MON_FULL[R.minI] + ', ' + MINUS + mln(Math.abs(mc)) + ' млн ₽:</b> закупка к весеннему сезону раньше, чем придут выплаты. Нужен кредит или предоплата частями? <a href="#" data-act="go-fin" data-t="dds" style="color:#6E4512">кассовый прогноз в ДДС →</a></span></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:980px"><thead><tr><th>Месяц</th><th class="n">План выручки</th><th class="n">Закупка, тыс шт</th><th class="n">Закупка по себест.</th><th class="n">Реклама</th><th class="n">Остаток денег</th><th class="n">Запас в себест.</th><th class="n">Загрузка склада</th></tr></thead><tbody>' +
+    R.plan.map(function(v, i){ var load = Math.round(R.stock[i] / 52 * 100); return '<tr><td>' + MON_FULL[i] + '</td><td class="n">' + mln(v) + '</td><td class="n">' + nf(R.need[i].units) + '</td><td class="n">' + mln(R.need[i].buy) + '</td><td class="n">' + mln(R.need[i].ads) + '</td><td class="n"><b class="' + (R.cash[i] < 0 ? 'neg' : '') + '">' + sg(Math.round(R.cash[i] * 10) / 10, 1) + '</b></td><td class="n">' + mln(R.stock[i]) + '</td><td class="n"><span class="cell-flag ' + (load > 90 ? 'r' : (load > 80 ? 'a' : '')) + '">' + load + '%</span></td></tr>'; }).join('') +
+    '</tbody></table></div></div><p class="note">Все суммы — млн ₽. Связь: закупка — с <a href="#" data-act="go" data-view="stock">«Остатки и подсорт»</a> и <a href="#" data-act="go" data-view="season">«Сезонностью»</a>, деньги — с <a href="#" data-act="go-fin" data-t="dds">ДДС</a>.</p>';
+  return h;
+}
+function renderQuarter(){
+  var R = ypCalc(), qs = [['q326','III кв. 2026',[6,7,8],26],['q426','IV кв. 2026',[9,10,11],26],['q1','I кв. 2027',[0,1,2],27],['q2','II кв. 2027',[3,4,5],27],['q3','III кв. 2027',[6,7,8],27],['q4','IV кв. 2027',[9,10,11],27]];
+  var cur = qs.filter(function(q){ return q[0] === S.yq; })[0] || qs[2];
+  var h = '<div class="rnp-chips" style="margin-bottom:10px">' + qs.map(function(q){ return '<button class="chip' + (q[0] === cur[0] ? ' on' : '') + '" data-act="yp-qsel" data-q="' + q[0] + '">' + q[1] + '</button>'; }).join('') + '</div>';
+  var is26 = cur[3] === 26;
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:720px"><thead><tr><th>Месяц</th><th class="n">План, млн ₽</th><th class="n">' + (is26 ? 'Факт / прогноз' : 'Прошлый год') + '</th><th class="n">' + (is26 ? 'Выполнение' : 'Прогноз системы') + '</th><th></th></tr></thead><tbody>' +
+    cur[2].map(function(m){ var pl = is26 ? YP_PLAN26[m] : R.plan[m], f = YP_LY[m], pct = Math.round(f / pl * 100), st = is26 ? (m < 9 ? 'факт' : (m === 9 ? 'прогноз' : 'план')) : '';
+      return '<tr class="' + (S.ym === m && !is26 ? 'new' : '') + '"><td>' + MON_FULL[m] + (st ? ' <span class="muted">· ' + st + '</span>' : '') + '</td><td class="n">' + nf(pl, 1) + '</td><td class="n">' + (is26 && m > 9 ? '—' : nf(f, 1)) + '</td><td class="n">' + (is26 ? (m > 9 ? '—' : '<b class="' + fcCls(pct) + '">' + pct + '%</b>') : nf(R.bu[m], 1)) + '</td><td>' + (is26 && m === 9 ? '<a href="#" data-act="plan-lvl" data-l="month">по карточкам →</a>' : '') + '</td></tr>'; }).join('') +
+    '</tbody></table></div></div>';
+  var tot = cur[2].reduce(function(a, m){ return a + (is26 ? YP_PLAN26[m] : R.plan[m]); }, 0);
+  h += '<div class="two"><div class="card"><div class="card-h"><h3>По менеджерам</h3></div><div class="card-b"><ul class="list">' + YP_MGR.map(function(m){ return '<li><span>' + m[0] + '</span><span class="r"><b>' + nf(tot * m[1], 1) + '</b> млн ₽</span></li>'; }).join('') + '</ul></div></div>' +
+    '<div class="card"><div class="card-h"><h3>По категориям</h3></div><div class="card-b"><ul class="list">' + YP_CAT.map(function(c){ return '<li><span>' + c[0] + '</span><span class="r"><b>' + nf(tot * c[1], 1) + '</b> млн ₽</span></li>'; }).join('') + '</ul></div></div></div>';
+  return h;
+}
+
 /* ---------------- popover & folds ---------------- */
 var POP = document.createElement('div'); POP.className = 'pop'; POP.setAttribute('role', 'tooltip'); document.body.appendChild(POP);
 var popFor = null, popPinned = false;
@@ -2885,7 +3005,7 @@ document.addEventListener('click', function(e){
   if (a === 'plan-prop'){ var sk = t.dataset.s, nv = S.planDraft && S.planDraft[sk + '|rev'], pr = PLAN[sk].oct.rev, pn = PRODUCTS.filter(function(x){ return x.sku === sk; })[0].n; if (nv == null) nv = Math.round(pr * .85 / 10000) * 10000; S.planProp.push({sku:sk, name:pn, from:pr, to:nv}); renderRnp(); return toast('Передано Андрею Викторовичу на согласование'); }
   if (a === 'plan-ok'){ var pp = S.planProp.splice(+t.dataset.i, 1)[0]; PLAN[pp.sku].oct.rev = pp.to; DECISIONS.unshift({d:'09.10', prod:pp.name, ch:'WB', prob:'Корректировка плана месяца', act:'План выручки ' + nf(pp.from / 1e6, 2) + ' → ' + nf(pp.to / 1e6, 2) + ' млн ₽', who:'А. Морозов', task:'—', ts:'none', fc:0, fact:null, v:'pending', owner:'mp', mine:1, check:'план обновлён', isNew:true}); renderAll(); return toast('План обновлён'); }
   if (a === 'plan-no'){ S.planProp.splice(+t.dataset.i, 1); renderRnp(); return toast('Предложение отклонено'); }
-  if (a === 'to-plan'){ e.preventDefault(); S.rnpTab = 'plan'; S.planMonth = 'oct'; S.planHl = t.dataset.sku; renderRnp(); setTimeout(function(){ var r = document.getElementById('pl-' + S.planHl); if (r) r.scrollIntoView({block:'center'}); }, 50); return; }
+  if (a === 'to-plan'){ e.preventDefault(); S.rnpTab = 'plan'; S.planLvl = 'month'; S.planMonth = 'oct'; S.planHl = t.dataset.sku; renderRnp(); setTimeout(function(){ var r = document.getElementById('pl-' + S.planHl); if (r) r.scrollIntoView({block:'center'}); }, 50); return; }
   if (a === 'to-rnp'){ e.preventDefault(); return toRnp(t.dataset.sku, t.dataset.row, t.dataset.from, t.dataset.label); }
   if (a === 'to-chain'){ e.preventDefault(); return toChain(t.dataset.case, t.dataset.node); }
   if (a === 'crumb-x'){ S.rnpFocus = null; RNP_SKU.forEach(function(x){ S.rnp.off[x.sku] = false; }); return renderRnp(); }
@@ -2912,12 +3032,19 @@ document.addEventListener('click', function(e){
   if (a === 'sea-mode'){ S.season.mode = t.dataset.m; return renderSeason(); }
   if (a === 'sea-row'){ S.season.open = S.season.open === t.dataset.k ? null : t.dataset.k; return renderSeason(); }
   if (a === 'sea-task'){ var ns = S.taskNo++; S.recoTask['sea' + t.dataset.k] = ns; renderSeason(); return toast('Задача #' + ns + ' создана в Битрикс24'); }
-  if (a === 'plan-nov'){ e.preventDefault(); S.rnpTab = 'plan'; S.planMonth = 'nov'; return go('rnp'); }
+  if (a === 'plan-nov'){ e.preventDefault(); S.rnpTab = 'plan'; S.planLvl = 'month'; S.planMonth = 'nov'; return go('rnp'); }
   if (a === 'fp-sku'){ S.fp.sku = t.dataset.s; return renderRnp(); }
   if (a === 'fp-reset'){ delete S.fp.lev[S.fp.sku]; return renderRnp(); }
   if (a === 'fp-accept'){ var fl = S.fp.lev[S.fp.sku], fpo = PLAN[S.fp.sku].oct, cb = fpBase(S.fp.sku); var r2 = fpCalc({shows:fl.shows, ctr:fl.ctr, cConv:fl.cConv, oConv:fl.oConv, buy:fl.buy, price:cb.price, margin:fpo.margin}, MONTH_DAYS);
     fpo.rev = Math.round(r2.rev / 10000) * 10000; fpo.ctr = Math.round(fl.ctr * 10) / 10; fpo.cConv = Math.round(fl.cConv * 10) / 10; fpo.oConv = Math.round(fl.oConv * 10) / 10; fpo.buy = Math.round(fl.buy);
     Object.keys(S.rnp.plan).forEach(function(k){ if (k.indexOf(S.fp.sku + '|') === 0) delete S.rnp.plan[k]; }); renderAll(); return toast('Записано в план месяца и колонку «План» РНП'); }
+  if (a === 'plan-lvl'){ e.preventDefault(); S.planLvl = t.dataset.l; if (t.dataset.l === 'month') S.planMonth = 'oct'; return renderRnp(); }
+  if (a === 'yp-propose'){ S.yp.proposed = true; renderRnp(); return toast('Черновик заполнен системой снизу вверх; разрыв распределён по месяцам — проверьте'); }
+  if (a === 'yp-approve'){ S.yp.approved = true; renderAll(); return toast('План 2027 утверждён: месяцы разложены на планы карточек и колонку «План» РНП'); }
+  if (a === 'yp-prop-m') return toast('Корректировка плана передана Андрею Викторовичу');
+  if (a === 'yp-q'){ S.yq = 'q' + (+t.dataset.q + 1); S.ym = null; S.planLvl = 'q'; return renderRnp(); }
+  if (a === 'yp-m'){ var mm = +t.dataset.m; S.yq = 'q' + (Math.floor(mm / 3) + 1); S.ym = mm; S.planLvl = 'q'; return renderRnp(); }
+  if (a === 'yp-qsel'){ S.yq = t.dataset.q; S.ym = null; return renderRnp(); }
   if (a === 'rnp-mode'){ S.rnp.mode = t.dataset.m; return renderRnp(); }
   if (a === 'rnp-ch'){ S.rnp.ch = t.dataset.c; return renderRnp(); }
   if (a === 'rnp-sku'){ S.rnp.off[t.dataset.s] = !S.rnp.off[t.dataset.s]; return renderRnp(); }
@@ -2957,6 +3084,7 @@ document.addEventListener('change', function(e){
   if (t.dataset.act === 'rnp-plan'){ var v = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(v)){ var kp = t.dataset.k.split('|'); if (kp[1] === 'rev'){ PLAN[kp[0]].oct.rev = Math.round(v * MONTH_DAYS); delete S.rnp.plan[t.dataset.k]; } else S.rnp.plan[t.dataset.k] = v; } var sl = $('#v-rnp .rnp-wrap').scrollLeft; renderRnp(); $('#v-rnp .rnp-wrap').scrollLeft = sl; return; }
   if (t.dataset.act === 'fin-norm'){ var nv2 = parseFloat(String(t.value).replace(',', '.')); if (!isNaN(nv2)) S.fin.norm[t.dataset.k] = nv2; return renderAll(); }
   if (t.dataset.act === 'dds-live') return ddsLive();
+  if (t.dataset.act === 'yp-in'){ var yv = parseFloat(String(t.value).replace(/[\s\u00a0]/g, '').replace(',', '.')); if (!isNaN(yv)) S.yp[t.dataset.k] = yv; return renderRnp(); }
   if (t.dataset.act === 'stk-sel'){ S.stk.sel[t.dataset.s] = t.checked; return renderStock(); }
   if (t.dataset.act === 'rnp-vis'){ var cf = cfgNow(); if (t.checked) delete cf.hidden[t.dataset.k]; else cf.hidden[t.dataset.k] = true; return rnpChanged(); }
   if (t.dataset.act === 'plan-in'){ var pv = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (isNaN(pv)) return;
@@ -2989,7 +3117,7 @@ document.addEventListener('keydown', function(e){
 $('#modal').addEventListener('click', function(e){ if (e.target.id === 'modal') closeModal(); });
 
 (function(){ var hs = location.hash || '';
-  if (/plan/.test(hs)) S.rnpTab = 'plan'; if (/funnel/.test(hs)) S.rnpTab = 'funnel'; if (/dds/.test(hs)) S.fin.tab = 'dds';
+  if (/plan/.test(hs)) S.rnpTab = 'plan'; if (/planm/.test(hs)) S.planLvl = 'month'; if (/funnel/.test(hs)) S.rnpTab = 'funnel'; if (/dds/.test(hs)) S.fin.tab = 'dds';
   if (/exp/.test(hs)){ S.stk.open['NP-3103'] = true; } if (/whyfot/.test(hs)) S.fin.why = 'fot'; if (/seaopen/.test(hs)) S.season.open = 'kash';
 })();
 renderAll();
