@@ -300,6 +300,30 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
 .toast.on{opacity:1;transform:translateX(-50%)}
 .demo{position:fixed;right:14px;bottom:14px;background:rgba(22,32,28,.88);color:#E6ECE8;font-size:11.5px;padding:5px 10px;border-radius:6px;z-index:90;letter-spacing:.01em;pointer-events:none}
 
+/* ---------- explanations ---------- */
+.ex{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:var(--ink-3);margin:0 0 12px;max-width:860px}
+.ex i{flex:none;width:16px;height:16px;border-radius:50%;background:var(--accent-bg);color:#8A5517;font-style:normal;font-weight:700;font-size:10.5px;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
+.ex b{color:var(--ink-2);font-weight:600}
+.ex.in{margin:8px 20px 0}
+.sec-h + .ex{margin-top:-6px}
+body.no-ex .ex, body.no-ex .intro, body.no-ex .tip{display:none!important}
+.intro{position:relative;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:14px 44px 12px 18px;margin-bottom:22px;font-size:13.5px;color:var(--ink-2);box-shadow:var(--shadow)}
+.intro b{color:var(--ink)}
+.intro p{margin:0 0 6px}
+.intro .hint2{color:var(--ink)}
+.intro .fine{font-size:11.5px;color:var(--ink-3);margin:6px 0 0}
+.intro .x{position:absolute;right:8px;top:8px;border:0;background:none;cursor:pointer;color:var(--ink-3);font-size:18px;line-height:1;padding:6px 8px;border-radius:6px}
+.intro .x:hover{background:var(--surface-2);color:var(--ink)}
+.tip{position:relative;display:inline-flex;width:17px;height:17px;border-radius:50%;background:var(--accent-bg);color:#8A5517;font-size:11px;font-weight:700;align-items:center;justify-content:center;cursor:help;outline:none;flex:none}
+.tip span{display:none;position:absolute;top:24px;right:-10px;width:270px;background:var(--ink);color:#EEF2EF;font-weight:400;font-size:12.5px;line-height:1.45;padding:10px 12px;border-radius:8px;z-index:60;box-shadow:0 8px 24px rgba(0,0,0,.2);text-align:left}
+.tip:hover span,.tip:focus span{display:block}
+.ex-tog{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-3);border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:6px 10px;cursor:pointer}
+.ex-tog .sw{width:28px;height:16px;border-radius:9px;background:#CFCBC0;position:relative;transition:.15s}
+.ex-tog .sw::after{content:"";position:absolute;left:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#fff;transition:.15s}
+.ex-tog.on .sw{background:var(--accent)}
+.ex-tog.on .sw::after{left:14px}
+.ex-tog b{color:var(--ink);font-weight:500}
+
 /* ---------- responsive ---------- */
 @media (max-width:1180px){
   .an-grid{grid-template-columns:1fr}
@@ -340,7 +364,9 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
   .top-right .seg button{flex:1;white-space:normal;line-height:1.2}
   .task-grid{grid-template-columns:1fr}
   .task-grid dt{margin-top:6px}
-  .demo{font-size:10.5px;right:8px;bottom:8px}
+  .demo{font-size:10px;right:8px;bottom:8px;left:8px;text-align:center}
+  .ex.in{margin:8px 16px 0}
+  .tip span{right:auto;left:-120px;width:250px}
 }
 </style>
 </head>
@@ -366,7 +392,9 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
     <header class="top">
       <div class="top-date"><b>Пятница, 9 октября 2026</b> · неделя 2–8 октября</div>
       <div class="top-right">
+        <button class="ex-tog on" id="exTog" data-act="extog" aria-pressed="true"><span class="sw"></span><span>Пояснения: <b id="exTogL">вкл</b></span></button>
         <label>Роль</label>
+        <span class="tip" tabindex="0">?<span>Разграничение доступа. Руководитель видит всю компанию и финансовые итоги; руководитель отдела маркетплейсов — только товары и задачи своего отдела, без выручки и маржи компании в рублях.</span></span>
         <div class="seg" id="roleSeg">
           <button data-act="role" data-role="ceo" class="on">Руководитель</button>
           <button data-act="role" data-role="mp">Руководитель отдела маркетплейсов</button>
@@ -384,13 +412,14 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
 
 <div class="modal-bg" id="modal"><div class="modal" role="dialog" aria-modal="true" id="modalBody"></div></div>
 <div class="toast" id="toast"></div>
-<div class="demo">Демо-прототип · данные условные</div>
+<div class="demo">Демо-прототип · данные условные · состав расширяется по ТЗ</div>
 
 <script>
 (function(){
 'use strict';
 var MINUS = '−';
 function nf(v, d){ d = d||0; return Number(v).toLocaleString('ru-RU',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function ex(t, inCard){ return '<p class="ex' + (inCard ? ' in' : '') + '"><i>?</i><span>' + t + '</span></p>'; }
 function nfm(v){ return nf(v, Number.isInteger(v) ? 0 : 1); }
 function sg(v, d){ var a = nf(Math.abs(v), d); return v < 0 ? MINUS + a : (v > 0 ? '+' + a : a); }
 function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -612,7 +641,8 @@ var PRODUCTS = [
 var MP_TEAM = ['Ковалёва И.','Сафин О.'];
 
 /* ---------------- state ---------------- */
-var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231 };
+var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true };
+try { if (localStorage.getItem('np-demo-ex') === '0') S.ex = false; if (localStorage.getItem('np-demo-intro') === '0') S.intro = false; } catch(e) {}
 CASE_ORDER.forEach(function(id){ var c = CASES[id]; S.sel[id] = {}; c.props.forEach(function(p, i){ S.sel[id][p.id] = c.exclusive ? i === 1 : true; }); });
 try { var saved = localStorage.getItem('np-demo-view'); if (saved && document.getElementById('v-' + saved)) S.view = saved; } catch(e) {}
 (function(){ var hv = (location.hash || '').slice(1).split('-'); if (hv[0] && document.getElementById('v-' + hv[0])) S.view = hv[0]; if (hv[1] && CASES[hv[1]]) S.caseId = hv[1]; if (hv[2] === 'mp') S.role = 'mp'; })();
@@ -651,11 +681,13 @@ function renderOverview(){
   var opp = open.filter(function(id){ return CASES[id].impact > 0; }).reduce(function(s, id){ return s + CASES[id].impact; }, 0);
   var tiles = K.tiles.filter(function(t){ return S.role === 'ceo' ? !t.mp : !t.fin; });
   var h = '';
+  if (S.intro) h += '<div class="intro"><button class="x" data-act="intro-x" aria-label="Скрыть">×</button><p><b>Центр решений</b> — система каждую ночь собирает данные WB, Ozon и 1С, находит отклонения и возможности, раскладывает причину в рублях и предлагает действие. Руководитель согласует — задача уходит в Битрикс24 — через 7 дней система проверяет эффект.</p><p class="hint2">→ Нажмите «Разобрать» на первой карточке, чтобы пройти весь сценарий.</p><p class="fine">* Тестовый вариант: данные условные, набор показателей, источников и экранов расширяется по ТЗ.</p></div>';
   h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1><p>За ночь система проверила 318 артикулов в двух каналах. ' +
        (open.length ? open.length + ' ' + plural(open.length, 'вопрос требует', 'вопроса требуют', 'вопросов требуют') + ' решения' +
        (risk ? ': риски ' + sg(risk) + ' тыс ₽/нед к марже' : '') + (opp ? (risk ? ', возможность +' : ': возможность +') + opp + ' тыс ₽' : '') + '.' : 'Все вопросы разобраны — новых отклонений нет.') + '</p></div>' +
        '<div class="seg" id="kpiSeg"><button data-act="kpi" data-k="day" class="' + (S.kpi==='day'?'on':'') + '">Вчера</button><button data-act="kpi" data-k="week" class="' + (S.kpi==='week'?'on':'') + '">Неделя</button></div></div>';
   if (S.role === 'mp') h += '<div class="banner role">Показаны товары и задачи отдела маркетплейсов. Финансовые итоги компании скрыты для этой роли.</div>';
+  h += ex('<b>Ключевые показатели</b> за вчера или неделю с изменением к прошлому периоду и году. <b>Маржа после выкупа</b> — что остаётся с выкупленных заказов после комиссии, логистики, рекламы и себестоимости. <b>ДРР</b> — доля рекламных расходов в выручке. <b>Процент выкупа</b> — какая доля заказов выкуплена, а не возвращена.');
   h += '<div class="kpis">';
   tiles.forEach(function(t){
     var col = t.dpc === 'neg' ? '#B1453A' : (t.dpc === 'pos' ? '#2C7A55' : '#5E6B64');
@@ -663,7 +695,7 @@ function renderOverview(){
       '<div class="kpi-d"><b class="' + t.dpc + '">' + t.dp + '</b> ' + K.cmp + '</div><div class="kpi-d"><b class="' + t.dyc + '">' + t.dy + '</b> г/г</div>' + spark(t.s, col) + '</div>';
   });
   h += '</div>';
-  h += '<div class="sec-h"><h2>Требует решения</h2><span class="hint">отсортировано по влиянию на маржу, ₽</span></div><div class="cases">';
+  h += '<div class="sec-h"><h2>Требует решения</h2><span class="hint">отсортировано по влиянию на маржу, ₽</span></div>' + ex('Вопросы, где нужно решение руководителя. Сортировка по рублям, а не по процентам: сначала то, что больше всего влияет на деньги. <b>Риск</b> — маржа теряется, <b>возможность</b> — можно заработать больше, <b>контроль задачи</b> — согласованное действие не выполнено вовремя.') + '<div class="cases">';
   vc.slice().sort(function(x, y){ return Math.abs(CASES[y].impact) - Math.abs(CASES[x].impact); }).forEach(function(id){
     var c = CASES[id], st = caseStatus(id);
     var cls = st !== 'new' ? 'done' : c.kind;
@@ -675,7 +707,7 @@ function renderOverview(){
       '<div class="case-foot"><span class="meta">' + (st === 'work' ? 'Проверка эффекта через 7 дней' : c.found) + '</span><button class="btn ' + (st === 'new' ? 'primary' : '') + '" data-act="open" data-case="' + id + '">' + (st === 'new' ? 'Разобрать' : 'Открыть разбор') + ' →</button></div></article>';
   });
   h += '</div>';
-  h += '<div class="sec-h"><h2>Сегодня система также</h2></div><div class="two">' +
+  h += '<div class="sec-h"><h2>Сегодня система также</h2></div>' + ex('Фоновая работа: сверка факта с прогнозом по прошлым решениям и проверка полноты данных перед расчётами.') + '<div class="two">' +
     '<div class="card"><div class="card-h"><h3>Проверила эффект решений</h3><span class="pill pos">2 сработали</span></div><div class="card-b"><ul class="list">' +
     '<li><span>Кашпо 5 л, WB — снижение ставок</span><span class="r pos">+38 тыс ₽/нед <small class="muted">прогноз +41</small></span></li>' +
     '<li><span>Набор банок, Ozon — инфографика размеров</span><span class="r pos">+25 тыс ₽/нед <small class="muted">прогноз +22</small></span></li>' +
@@ -784,24 +816,24 @@ function renderAnalysis(){
 
   h += '<div class="an-grid"><div class="an-main">';
   if (P){
-    h += '<div class="card"><div class="card-h"><h3>Дерево факторов маржи, тыс ₽</h3><span class="hint muted" style="font-size:12.5px">нажмите на фактор со стрелкой, чтобы раскрыть</span></div>' + waterfall(c, P, dec) + '</div>';
+    h += '<div class="card"><div class="card-h"><h3>Дерево факторов маржи, тыс ₽</h3><span class="hint muted" style="font-size:12.5px">нажмите на фактор со стрелкой, чтобы раскрыть</span></div>' + ex('Как читать: верхняя полоса — маржа прошлого периода, нижняя — текущего, между ними вклад каждого фактора в рублях. Сумма вкладов равна изменению маржи. Посчитано кодом по данным маркетплейса и 1С, а не языковой моделью.', 1) + waterfall(c, P, dec) + '</div>';
   } else if (c.id === 'b'){
-    h += '<div class="card"><div class="card-h"><h3>Прогноз остатка на складах Ozon, шт</h3></div><div class="card-b">' + stockChart() + '</div></div>';
+    h += '<div class="card"><div class="card-h"><h3>Прогноз остатка на складах Ozon, шт</h3></div>' + ex('Сколько товара останется на складах Ozon по дням при текущем темпе продаж — с поставкой и без неё.', 1) + '<div class="card-b">' + stockChart() + '</div></div>';
   } else {
-    h += '<div class="card"><div class="card-h"><h3>Цена задержки</h3></div><div class="card-b"><ul class="list"><li><span>06.10 — срок задачи</span><span class="r">0</span></li><li><span>07.10</span><span class="r neg">' + MINUS + '4 тыс ₽</span></li><li><span>08.10</span><span class="r neg">' + MINUS + '8 тыс ₽</span></li><li><span>09.10 — сегодня</span><span class="r neg"><b>' + MINUS + '12 тыс ₽</b></span></li><li><span>При выполнении 10.10</span><span class="r neg">' + MINUS + '16 тыс ₽ всего</span></li></ul></div></div>';
+    h += '<div class="card"><div class="card-h"><h3>Цена задержки</h3></div>' + ex('Сколько маржи теряется за каждый день, пока согласованное действие не выполнено.', 1) + '<div class="card-b"><ul class="list"><li><span>06.10 — срок задачи</span><span class="r">0</span></li><li><span>07.10</span><span class="r neg">' + MINUS + '4 тыс ₽</span></li><li><span>08.10</span><span class="r neg">' + MINUS + '8 тыс ₽</span></li><li><span>09.10 — сегодня</span><span class="r neg"><b>' + MINUS + '12 тыс ₽</b></span></li><li><span>При выполнении 10.10</span><span class="r neg">' + MINUS + '16 тыс ₽ всего</span></li></ul></div></div>';
   }
   if (c.funnel){
-    h += '<div class="card"><div class="card-h"><h3>Воронка за период</h3><span class="muted" style="font-size:12.5px">' + P.label + '</span></div><div class="card-b">' + funnel(c, P) + '</div></div>';
+    h += '<div class="card"><div class="card-h"><h3>Воронка за период</h3><span class="muted" style="font-size:12.5px">' + P.label + '</span></div>' + ex('Путь покупателя от показа карточки до выкупа: текущий период, прошлый и год назад. Показывает, на каком шаге теряются покупатели.', 1) + '<div class="card-b">' + funnel(c, P) + '</div></div>';
   }
   h += '<div class="calc-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex:none;margin-top:1px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h2M12 18h2"/></svg><span>Все суммы считает факторная модель на сервере компании по данным маркетплейсов и 1С — до рубля и воспроизводимо. Языковая модель не считает: она выбирает, что проверить дальше, и формулирует объяснение.</span></div>';
   h += '</div>';
-  h += '<div class="card"><div class="card-h"><h3>Ход расследования</h3><span class="muted" style="font-size:12.5px">' + c.log.length + ' шагов</span></div><div class="card-b"><ol class="log">' +
+  h += '<div class="card"><div class="card-h"><h3>Ход расследования</h3><span class="muted" style="font-size:12.5px">' + c.log.length + ' шагов</span></div>' + ex('Шаги, которые прошла система, с источником данных у каждого — чтобы любой вывод можно было проверить, а не принимать на веру.', 1) + '<div class="card-b"><ol class="log">' +
     c.log.map(function(l){ return '<li><span class="mk ' + l.m + '"></span><span class="tm">' + l.t + '</span><div class="tx">' + l.tx + '</div><div class="lsrc">' + l.src.map(function(s){ return '<span>' + s + '</span>'; }).join('') + '</div></li>'; }).join('') +
     '</ol></div></div></div>';
 
   // proposals
   var sum = 0;
-  h += '<div class="sec-h"><h2>Предложение</h2><span class="hint">' + (c.exclusive ? 'выберите один вариант' : 'отметьте действия, которые согласуете') + '</span></div><div class="props">';
+  h += '<div class="sec-h"><h2>Предложение</h2><span class="hint">' + (c.exclusive ? 'выберите один вариант' : 'отметьте действия, которые согласуете') + '</span></div>' + ex('Варианты действий: <b>прогноз эффекта</b> в рублях, <b>уверенность</b> системы и чем закончились <b>похожие случаи</b> из базы решений компании. Руководитель согласует, меняет параметры или отклоняет с причиной.') + '<div class="props">';
   c.props.forEach(function(p){
     var on = !!S.sel[c.id][p.id], eff = propEffect(c, p);
     if (on) sum += eff;
@@ -841,7 +873,7 @@ function approve(){
   }); });
   checks.push('Через 7 дней система сверит факт с прогнозом');
   var h = '<div class="modal-h"><div class="ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><h3>Задача создана в Битрикс24</h3><p>Ответственный получил уведомление. Карточка в «Обзоре дня» переведена в статус «В работе».</p></div></div>' +
-    '<div class="tcard"><div class="tcard-top"><span>Задача #' + no + ' · проект «Маркетплейсы»</span><span>создана 09.10.2026, ' + new Date().toTimeString().slice(0,5) + '</span></div><div class="tcard-b"><h4>' + c.taskTitle + '</h4>' +
+    ex('Так задача выглядит в Битрикс24: ответственный, срок, чек-лист и ссылка на разбор. Дата проверки эффекта ставится автоматически.', 1) + '<div class="tcard"><div class="tcard-top"><span>Задача #' + no + ' · проект «Маркетплейсы»</span><span>создана 09.10.2026, ' + new Date().toTimeString().slice(0,5) + '</span></div><div class="tcard-b"><h4>' + c.taskTitle + '</h4>' +
     '<dl class="task-grid"><dt>Ответственный</dt><dd>' + c.resp + ', ' + c.respPos + '</dd><dt>Постановщик</dt><dd>' + R.full + ', ' + R.pos.toLowerCase() + '</dd>' +
     (S.role === 'ceo' ? '<dt>Наблюдатель</dt><dd>Дмитрий Орлов, руководитель отдела маркетплейсов</dd>' : '') +
     '<dt>Срок</dt><dd>' + c.due + '</dd><dt>Прогноз эффекта</dt><dd class="pos"><b>+' + eff + ' тыс ₽' + (c.kind === 'opp' ? '' : '/нед') + '</b></dd><dt>Проверка эффекта</dt><dd>16.10.2026, автоматически</dd><dt>Разбор</dt><dd><a href="#" data-act="closemodal" style="color:var(--brand)">Разбор «' + c.title + '» →</a></dd></dl>' +
@@ -871,6 +903,7 @@ function renderDecisions(){
   var V = {ok:['pos','Сработало'], part:['warn','Частично'], fail:['neg','Не сработало'], pending:['','Ждём 7 дней'], rej:['','Отклонено']};
   var TS = {done:'pos', late:'neg', work:'brand', none:''};
   var h = '<div class="page-h"><div><h1>Решения и эффект</h1><p>Каждое согласованное действие становится задачей, а через 7 дней система сравнивает факт с прогнозом. Так видно, какие решения действительно возвращают деньги.</p></div></div>';
+  h += ex('<b>База решений</b>: каждое предложение, решение и его фактический результат. Из неё система берёт «похожие случаи» и учится, какие действия работают именно у этой компании.');
   h += '<div class="stats">' +
     '<div class="card stat"><div class="l">Принято предложений</div><div class="v">' + acc + ' из ' + rows.length + '</div><div class="s">с 13 сентября</div></div>' +
     '<div class="card stat"><div class="l">Подтверждённый эффект</div><div class="v pos">' + sg(factSum) + ' тыс ₽/нед</div><div class="s">≈ ' + nf(factSum*4.33/1000, 2) + ' млн ₽ за месяц · по ' + checked.length + ' проверенным</div></div>' +
@@ -909,6 +942,7 @@ function renderProducts(){
   var cols = [['n','Товар',''],['rev','Выручка, тыс ₽/нед','n'],['wb','Маржа WB','n'],['oz','Маржа Ozon','n'],['drr','ДРР','n'],['buy','Выкуп','n'],['stk','Остаток, дн','n'],['t','Тренд маржи, 8 нед',''],['mgr','Ответственный','']];
   var h = '<div class="page-h"><div><h1>Товары</h1><p>' + rows.length + ' ключевых артикулов — ' + nf(tot/18400*100, 0) + '% выручки недели (' + nf(tot/1000, 1) + ' из 18,4 млн ₽). Маржа — после выкупа, с учётом рекламы, логистики, хранения и себестоимости из 1С.</p></div></div>';
   if (S.role === 'mp') h = h.replace(/ \(.*? млн ₽\)/, '') + '<div class="banner role">Показаны только товары вашего отдела: И. Ковалёва и О. Сафин.</div>';
+  h += ex('Основные артикулы с маржой по каналам, рекламой, выкупом и запасом. Цветом выделено то, что требует внимания; нажмите на заголовок столбца, чтобы отсортировать.');
   h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:900px"><thead><tr>' + cols.map(function(c){
     var on = S.sort.k === c[0];
     return '<th class="sort ' + c[2] + (on ? ' on' : '') + '" data-act="sort" data-k="' + c[0] + '">' + c[1] + '<span class="ar">' + (on ? (d > 0 ? '↑' : '↓') : '') + '</span></th>';
@@ -936,19 +970,19 @@ function renderSources(){
     ['1С: Управление торговлей','warn','Себестоимость партий, остатки на складе, номенклатура','сегодня 06:40','312 из 318 артикулов сопоставлено'],
     ['Битрикс24','ok','Задачи, ответственные, статусы — в обе стороны','сегодня 07:20','12 открытых задач системы']
   ];
-  var h = '<div class="page-h"><div><h1>Источники данных</h1><p>Система работает только на данных компании. Перед каждым расчётом — проверка полноты и сверка между источниками; при расхождении выше порога разбор помечается как предварительный.</p></div></div><div class="srcs">';
+  var h = '<div class="page-h"><div><h1>Источники данных</h1><p>Система работает только на данных компании. Перед каждым расчётом — проверка полноты и сверка между источниками; при расхождении выше порога разбор помечается как предварительный.</p></div></div>' + ex('Откуда система берёт данные и когда они обновлялись. Если источник не загрузился, руководитель видит это сразу, а не получает выводы по устаревшим цифрам.') + '<div class="srcs">';
   src.forEach(function(s){
     h += '<div class="card src"><div class="src-h"><b>' + s[0] + '</b><span class="pill ' + (s[1] === 'ok' ? 'pos' : 'warn') + '">' + (s[1] === 'ok' ? 'Подключено' : 'Требует проверки') + '</span></div><p>' + s[2] + '</p><div class="kv"><span>Загрузка: ' + s[3] + '</span><span>' + s[4] + '</span></div></div>';
   });
   h += '</div>';
-  h += '<div class="sec-h"><h2>Проверки качества</h2><span class="hint">ночной прогон 07:20</span></div><div class="card"><div class="card-b"><ul class="list checks">' +
+  h += '<div class="sec-h"><h2>Проверки качества</h2><span class="hint">ночной прогон 07:20</span></div>' + ex('Контроль качества данных: сверка источников между собой и поиск артикулов, которые не удалось сопоставить с 1С.') + '<div class="card"><div class="card-b"><ul class="list checks">' +
     '<li><span class="ic pos">✓</span><span style="flex:1">Выручка WB по API vs еженедельный отчёт реализации</span><span class="r">расхождение 0,3%</span></li>' +
     '<li><span class="ic pos">✓</span><span style="flex:1">Остатки Ozon vs 1С (товары в пути)</span><span class="r">сходится</span></li>' +
     '<li><span class="ic warn">!</span><span style="flex:1">Сопоставлено 312 из 318 артикулов с номенклатурой 1С — 6 требуют проверки<details><summary>Показать 6 артикулов</summary><ul><li>NP-1405-G — Контейнер 5 л, серый: новый цвет, нет в 1С</li><li>NP-7015 — Горшки для рассады, 15 шт: нет в 1С</li><li>WB 183422710 — дубль карточки NP-4045</li><li>NP-4203-B — Подставка для обуви, чёрная: другой код в 1С</li><li>Ozon 902114581 — склейка с NP-6104</li><li>NP-6104-S — набор 3 шт: нет комплекта в 1С</li></ul></details></span><span class="r warn">6 шт</span></li>' +
     '<li><span class="ic warn">!</span><span style="flex:1">Себестоимость: у 4 артикулов нет партии за 60 дней — используется последняя известная</span><span class="r warn">4 шт</span></li>' +
     '<li><span class="ic pos">✓</span><span style="flex:1">Отзывы за неделю загружены и размечены по причинам</span><span class="r">1 284 из 1 284</span></li></ul></div></div>';
   var cloud = S.where === 'cloud';
-  h += '<div class="sec-h"><h2>Где работают модели</h2></div><div class="card"><div class="card-b"><div class="seg"><button data-act="where" data-w="cloud" class="' + (cloud ? 'on' : '') + '">Облако</button><button data-act="where" data-w="local" class="' + (!cloud ? 'on' : '') + '">Сервер компании</button></div>' +
+  h += '<div class="sec-h"><h2>Где работают модели</h2></div>' + ex('Модели, которые ведут расследование, могут работать в облаке или на сервере компании — тогда данные не покидают её контур.') + '<div class="card"><div class="card-b"><div class="seg"><button data-act="where" data-w="cloud" class="' + (cloud ? 'on' : '') + '">Облако</button><button data-act="where" data-w="local" class="' + (!cloud ? 'on' : '') + '">Сервер компании</button></div>' +
     '<div class="where"><div class="' + (cloud ? 'on' : '') + '"><b>Облако</b>Модель вызывается по API. Наружу уходят только агрегаты и тексты отзывов — без персональных данных покупателей и без себестоимости по партиям. Быстрый старт, оплата за использование.</div>' +
     '<div class="' + (!cloud ? 'on' : '') + '"><b>Сервер компании</b>Открытая модель на собственном сервере с GPU: данные не покидают контур компании. Выше стоимость владения, расследование идёт медленнее (≈ 2–3 мин вместо 40 сек).</div></div>' +
     '<p class="note">В обоих режимах расчёты (факторная модель, прогноз эффекта, проверка через 7 дней) выполняются кодом на сервере компании. Переключение не меняет цифры — только то, где формулируется объяснение.</p></div></div>';
@@ -957,6 +991,7 @@ function renderSources(){
 
 /* ---------------- routing ---------------- */
 function renderAll(){
+  document.body.classList.toggle('no-ex', !S.ex); var tg = $('#exTog'); tg.classList.toggle('on', S.ex); tg.setAttribute('aria-pressed', S.ex); $('#exTogL').textContent = S.ex ? 'вкл' : 'выкл';
   renderOverview(); renderAnalysis(); renderDecisions(); renderProducts(); renderSources();
   document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id === 'v-' + S.view); });
   document.querySelectorAll('#nav button').forEach(function(b){ b.classList.toggle('active', b.dataset.view === S.view); });
@@ -970,6 +1005,8 @@ document.addEventListener('click', function(e){
   var a = t.dataset.act;
   if (a === 'go') return go(t.dataset.view);
   if (a === 'role'){ S.role = t.dataset.role; S.rejectOpen = false; renderAll(); return toast(S.role === 'ceo' ? 'Роль: руководитель — все товары и финансы' : 'Роль: руководитель отдела маркетплейсов'); }
+  if (a === 'extog'){ S.ex = !S.ex; if (S.ex) S.intro = true; try { localStorage.setItem('np-demo-ex', S.ex ? '1' : '0'); localStorage.setItem('np-demo-intro', '1'); } catch(e) {} return renderAll(); }
+  if (a === 'intro-x'){ S.intro = false; try { localStorage.setItem('np-demo-intro', '0'); } catch(e) {} return renderOverview(); }
   if (a === 'kpi'){ S.kpi = t.dataset.k; return renderOverview(); }
   if (a === 'open'){ S.caseId = t.dataset.case; S.rejectOpen = false; if (S.caseId !== 'a') S.period = 'week'; return go('analysis'); }
   if (a === 'period'){ S.period = t.dataset.p; return renderAnalysis(); }
