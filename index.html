@@ -461,6 +461,51 @@ body.no-ex .qt{display:none!important}
 .log-more{border:0;background:none;color:var(--brand);cursor:pointer;padding:0;font-size:13px;margin-left:26px}
 
 @media (min-width:901px){ main{padding-right:64px} }
+/* ---------- RNP ---------- */
+.rnp-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.rnp-chips{display:flex;gap:6px;flex-wrap:wrap}
+.rnp-chips .chip{border-color:var(--line);color:var(--ink-3)}
+.rnp-chips .chip.on{border-color:var(--brand);color:var(--brand);background:#EEF3F0}
+.rnp-chips .chip:hover{border-color:var(--brand);color:var(--brand)}
+.rnp-tg{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--ink-2);cursor:pointer}
+.rnp-tg input{accent-color:var(--brand)}
+.rnp-wrap{overflow:auto;max-height:72vh;--w1:84px;--w2:230px;--w3:90px}
+table.rnp{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-numeric:tabular-nums;width:max-content;min-width:100%}
+.rnp th,.rnp td{padding:4px 10px;border-bottom:1px solid var(--line-2);white-space:nowrap;height:28px;background:var(--surface)}
+.rnp thead th{position:sticky;top:0;z-index:3;font-weight:500;color:var(--ink-3);font-size:12px;text-align:left;border-bottom:1px solid var(--line)}
+.rnp thead th small{display:block;font-size:12px;color:var(--accent);line-height:1}
+.rnp .n,.rnp td.cm{text-align:right;width:84px;min-width:84px;max-width:84px}
+.rnp td.cm{text-align:left}
+.rnp .c-sku{position:sticky;left:0;z-index:2;width:var(--w1);min-width:var(--w1);color:var(--ink-3)}
+.rnp .c-met{position:sticky;left:var(--w1);z-index:2;width:var(--w2);min-width:var(--w2);color:var(--ink-2)}
+.rnp .c-plan{position:sticky;left:calc(var(--w1) + var(--w2));z-index:2;width:var(--w3);min-width:var(--w3);border-right:1px solid var(--line);text-align:right}
+.rnp thead .c-sku,.rnp thead .c-met,.rnp thead .c-plan{z-index:4}
+.rnp .c-plan input{width:76px;height:22px;border:1px solid transparent;background:transparent;font:inherit;text-align:right;padding:0 4px;border-radius:5px;color:var(--ink);-moz-appearance:textfield}
+.rnp .c-plan input::-webkit-outer-spin-button,.rnp .c-plan input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.rnp .c-plan input:hover,.rnp .c-plan input:focus{border-color:var(--line);background:var(--surface-2);outline:none}
+.rnp tr.g td{border-top:1px solid #D5D2C8}
+.rnp tr.rnp-head td{background:var(--surface-2);height:34px;border-top:2px solid var(--line)}
+.rnp tr.rnp-head td.c-sku{color:var(--ink);z-index:2}
+.rnp tr.rnp-head a{color:var(--brand);font-size:13px}
+.rnp tr.hl td{font-weight:600;color:var(--ink)}
+.rnp tr.hl .c-met{color:var(--ink)}
+.rnp td.bad{background:#F8E9E6}
+.rnp td.good{background:#E7F2EB}
+.rnp td.cm span{display:inline-block;min-width:60px;max-width:72px;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink-2);outline:none;border-radius:4px;padding:0 3px}
+.rnp td.cm span:focus{background:var(--accent-bg);white-space:normal}
+.rnp td.cm span:empty::before{content:"—";color:#C9C6BB}
+.anm{color:var(--accent);font-weight:700;cursor:pointer;margin-right:5px;outline:none}
+.anm:hover,.anm:focus{color:var(--neg)}
+.pop a{color:#F2C58E}
+@media (max-width:640px){
+  .rnp-wrap{--w1:0px;--w2:150px;--w3:80px}
+  .rnp .c-plan input{width:66px}
+  .rnp .c-met{white-space:normal;line-height:1.2}
+  .rnp .c-sku{display:none}
+  .rnp tr.rnp-head td.c-sku{display:table-cell}
+  .rnp tr.rnp-head td.c-sku{width:auto;min-width:0}
+}
+
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .side{padding-right:58px}
@@ -534,6 +579,7 @@ body.no-ex .qt{display:none!important}
     <nav class="nav" id="nav">
       <div class="nav-cap">Работа</div>
       <button data-act="go" data-view="overview" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Обзор дня<span class="cnt" id="navCnt">4</span></button>
+      <button data-act="go" data-view="rnp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg>РНП</button>
       <button data-act="go" data-view="analysis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>Разбор</button>
       <button data-act="go" data-view="decisions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.3l2.7 2.7L16.2 9.5"/></svg>Решения и эффект</button>
       <button data-act="go" data-view="products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5L12 12l8.5-4.5M12 12v9"/></svg>Товары</button>
@@ -560,6 +606,7 @@ body.no-ex .qt{display:none!important}
     </header>
 
     <section class="view on" id="v-overview"></section>
+    <section class="view" id="v-rnp"></section>
     <section class="view" id="v-analysis"></section>
     <section class="view" id="v-decisions"></section>
     <section class="view" id="v-products"></section>
@@ -828,7 +875,7 @@ var PRODUCTS = [
 var MP_TEAM = ['Ковалёва О.'];
 
 /* ---------------- state ---------------- */
-var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
+var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
 try { if (localStorage.getItem('np-demo-ex') === '0') S.ex = false; if (localStorage.getItem('np-demo-intro') === '0') S.intro = false; } catch(e) {}
 CASE_ORDER.forEach(function(id){ var c = CASES[id]; S.sel[id] = {}; c.props.forEach(function(p, i){ S.sel[id][p.id] = c.exclusive ? i === 1 : true; }); });
 try { var saved = localStorage.getItem('np-demo-view'); if (saved && document.getElementById('v-' + saved)) S.view = saved; } catch(e) {}
@@ -1378,8 +1425,8 @@ function routerHtml(){
     '<table class="cost"><tr><td>Облачные модели по API</td><td>от ~10–30 тыс ₽/мес</td></tr><tr><td>Свой сервер с GPU</td><td>от ~150–250 тыс ₽ разово</td></tr><tr><td>Аренда GPU-сервера</td><td>~40–80 тыс ₽/мес</td></tr></table><p class="note" style="margin-top:6px">Оценка при текущем объёме, уточняется по ТЗ.</p>';
 }
 var CHIPS = {
-  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана']],
-  mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц']]
+  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю']],
+  mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц'],['rnp','РНП по контейнеру за неделю']]
 };
 function matchQ(t){
   t = t.toLowerCase();
@@ -1387,6 +1434,7 @@ function matchQ(t){
   if (/сафин|белов|морозов|сотрудник|коллег/.test(t)) return mp ? 'deny' : (/сафин/.test(t) ? 'other' : 'olga');
   if (/выручк|финанс|прибыл|маржа компании|оборот/.test(t)) return mp ? 'deny' : 'fin';
   if (/ольг|ковал/.test(t)) return mp ? 'late' : 'olga';
+  if (/рнп|пульс/.test(t)) return 'rnp';
   if (/планёрк|планерк|протокол|совещан/.test(t)) return mp ? 'deny' : 'plan';
   if (/отдел|отста|план /.test(t)) return mp ? 'deny' : 'dept';
   if (/ноябр|прогноз|терять|будущ/.test(t)) return mp ? 'deny' : 'nov';
@@ -1459,6 +1507,14 @@ function answer(id){
   case 'deny':
     A = {tier:'light', text:'<p><b>Нет доступа для вашей роли.</b> Ассистент отвечает по вашим товарам и задачам; финансы компании и работа других сотрудников доступны руководителю.</p>', body:'', acts:'',
       tools:['Проверка прав: роль «Менеджер маркетплейса» — запрос отклонён до обращения к данным'], deny:true};
+    break;
+  case 'rnp':
+    var W = rnpWeeks(rnpCalc(RNP_SKU[0])), a0 = W[0], a1 = W[1];
+    function dl(x, y, pct){ var d = pct ? Math.round((y - x) * 10) / 10 : Math.round((y / x - 1) * 100); return '<b class="' + (d < 0 ? 'neg' : (d > 0 ? 'pos' : '')) + '">' + sg(d, pct ? 1 : 0) + (pct ? ' п.п.' : '%') + '</b>'; }
+    A = {tier:'light', text:'<p><b>РНП, контейнер 5 л</b> (WB), неделя 02–08.10 к прошлой: показы выросли за счёт рекламы, но CTR и выкуп упали — заказов столько же, маржа ниже.</p>',
+      body: tbl(['Показатель','Неделя','Изм.'], [['Показы', nf(a1.shows), dl(a0.shows, a1.shows)],['Переходы', nf(a1.clicks), dl(a0.clicks, a1.clicks)],['CTR', nf(a1.ctr, 1) + '%', dl(a0.ctr, a1.ctr, 1)],['Затраты на рекламу, ₽', nf(a1.cost), dl(a0.cost, a1.cost)],['Заказы', nf(a1.orders), dl(a0.orders, a1.orders)],['% выкупа', nf(a1.buy, 1) + '%', dl(a0.buy, a1.buy, 1)],['Маржа после выкупа', nf(a1.margin, 1) + '%', dl(a0.margin, a1.margin, 1)]]),
+      acts:'<button class="btn" data-act="chat-go" data-view="rnp">Открыть РНП →</button>',
+      tools:['РНП: NP-1405 за 14 дней (WB API, рекламный кабинет, 1С)']};
     break;
   case 'plan':
     var it = meetingItems(), nd2 = it.filter(function(i){ return i[4][0] !== 'pos'; });
@@ -1572,6 +1628,128 @@ function renderDepartments(){
   $('#v-departments').innerHTML = h;
 }
 
+/* ---------------- RNP ---------------- */
+var RNP_DAYS = ['25.09','26.09','27.09','28.09','29.09','30.09','01.10','02.10','03.10','04.10','05.10','06.10','07.10','08.10'];
+function rep(v, n){ var a = []; for (var i = 0; i < n; i++) a.push(v); return a; }
+function cat(a, b){ return a.concat(b); }
+var RNP_SKU = [
+  {sku:'NP-1405', short:'Контейнер 5 л', name:'Контейнер для хранения 5 л', ch:'WB', mgr:'olga', price:1290, case:'a',
+   shows:[100,102,104,103,101,105,105,118,152,170,172,176,178,182], ctr:[4.2,4.1,4.0,4.1,4.1,4.1,4.1,3.6,2.9,2.6,2.5,2.4,2.3,2.3],
+   cConv:cat(rep(13.5,7), rep(13.1,7)), oConv:cat(rep(38.4,7), rep(39.0,7)), adShare:cat(rep(.82,7), [.80,.76,.72,.70,.69,.68,.68]),
+   bid:[9.7,9.8,9.8,9.9,9.8,9.8,9.8,12.6,15.1,16.4,17.0,17.3,17.5,17.6], spp:cat(rep(22,7), rep(23,7)), buy:cat(rep(84,7), [79,75,72,70,69,67,66]),
+   margin:[22,22,23,22,21,22,22,19,14,10,8,6,4,3], stockEnd:7400, co:5200,
+   plan:{shows:110000, clicks:4400, ctr:4.0, bid:10, cost:35000, drr:18, cConv:13, carts:570, oConv:38, orders:220, days:30, buy:82, margin:20},
+   anom:{'ctr|9':'CTR ниже нормы на 37%: позиция по главному запросу 6 → 19, конкурент Б снизил цену на 12%.', 'drr|11':'ДРР выше плана в 1,8 раза: ставка растёт, заказы те же.', 'buy|12':'Выкуп упал до 67%: 63% возвратов — «не соответствует размеру».'},
+   com:{8:'конкурент Б −12% к цене', 11:'негатив в отзывах: «меньше объём»'}},
+  {sku:'NP-3103', short:'Кашпо 3 л', name:'Кашпо 3 л с поддоном', ch:'WB', mgr:'olga', price:690, case:'c',
+   shows:[38.5,39,39.2,38.8,39.5,39.1,40.2,41.5,42.4,43.1,43.6,44.0,44.2,44.5], ctr:[3.9,3.9,4.0,3.9,3.8,3.9,2.6,2.4,2.4,2.3,2.4,2.4,2.4,2.4],
+   cConv:cat(rep(14.1,6), rep(13.2,8)), oConv:cat(rep(41,6), rep(43,8)), adShare:rep(.55,14),
+   bid:[8.4,8.5,8.5,8.4,8.6,8.5,8.9,9.3,9.6,9.8,9.9,10.1,10.2,10.2], spp:rep(25,14), buy:rep(86,14),
+   margin:[21,21,22,21,20,21,18,16,15,15,14,15,15,15], stockEnd:1430, co:2150,
+   plan:{shows:39000, clicks:1500, ctr:3.8, bid:9, cost:8000, drr:12, cConv:14, carts:210, oConv:41, orders:87, days:30, buy:85, margin:20},
+   anom:{'ctr|7':'CTR ниже нормы на 38% после смены главного фото 01.10.'},
+   com:{6:'смена главного фото'}},
+  {sku:'NP-2210', short:'Органайзер', name:'Органайзер для ящика, 6 секций', ch:'Ozon', mgr:'oleg', price:790, case:'b',
+   shows:[40,41.6,43.3,45,46.8,48.7,50.6,52.6,54.7,56.9,59.2,61.6,64,66.6], ctr:rep(4.5,14),
+   cConv:rep(17,14), oConv:rep(45,14), adShare:rep(.35,14), bid:rep(7.2,14), spp:rep(24,14), buy:rep(88,14),
+   margin:[23,23,24,23,23,24,23,23,24,23,23,24,23,23], stockEnd:1140, co:3600,
+   plan:{shows:45000, clicks:2000, ctr:4.4, bid:8, cost:6000, drr:10, cConv:16, carts:330, oConv:44, orders:150, days:14, buy:85, margin:22},
+   anom:{'days|13':'Остатка хватит на 6 дней при растущем спросе: поставка на Ozon не создана.'},
+   com:{9:'запрос «для ящика стола» в топ-5'}},
+  {sku:'NP-1412', short:'Контейнер 1,2 л', name:'Контейнер 1,2 л, набор 3 шт', ch:'WB', mgr:'olga', price:640, case:null,
+   shows:[57,58.2,58.8,57.5,58.1,59,58.4,57.9,58.6,59.3,61.8,62.4,58.8,58.2], ctr:[3.6,3.6,3.7,3.6,3.5,3.6,3.6,3.7,3.6,3.6,3.9,3.9,3.6,3.6],
+   cConv:rep(12.4,14), oConv:rep(40,14), adShare:rep(.5,14), bid:rep(8,14), spp:cat(rep(22,10), [27,27,22,22]), buy:rep(90,14),
+   margin:[25,25,26,25,25,25,25,25,25,25,22,22,25,25], stockEnd:5400, co:3000,
+   plan:{shows:57000, clicks:2050, ctr:3.6, bid:8.5, cost:8500, drr:11, cConv:12, carts:250, oConv:40, orders:100, days:30, buy:88, margin:24},
+   anom:{}, com:{10:'акция −5% на выходные'}}
+];
+var RNP_ROWS = [
+  ['traffic','shows','Общие показы','n',0], ['traffic','clicks','Общие переходы','n',0], ['traffic','ctr','Общий CTR','%',0],
+  ['ads','arkShows','Показы АРК','n',0], ['ads','arkClicks','Клики АРК','n',0], ['ads','manShows','Показы ручн.','n',0], ['ads','manClicks','Клики ручн.','n',0],
+  ['ads','ctrArk','CTR РК (АРК)','%',0], ['ads','ctrMan','CTR РК (ручн.)','%',0], ['ads','bid','Ставка, ₽','r1',1], ['ads','cost','Затраты на рекламу, ₽','n',1], ['ads','drr','ДРР','%',1],
+  ['conv','cConv','Конверсия в корзину','%',0], ['conv','carts','Корзины','n',0], ['conv','oConv','Конверсия в заказ','%',0], ['conv','orders','Заказы','n',0],
+  ['price','spp','СПП','%',0], ['price','price','Цена с СПП, ₽','n',0],
+  ['stock','stWB','Остатки на складах WB','n',0], ['stock','stTot','Итого с учётом склада компании','n',0], ['stock','days','Хватит на дней','n',0],
+  ['buy','buy','% выкупа','%',0], ['buy','margin','Маржа после выкупа, %','%',0],
+  ['com','com','Комментарий','c',0]
+];
+function rnpCalc(c){
+  var D = [], i;
+  for (i = 0; i < 14; i++){
+    var o = {}, shows = Math.round(c.shows[i] * 1000), ctr = c.ctr[i];
+    o.shows = shows; o.ctr = ctr; o.clicks = Math.round(shows * ctr / 100);
+    o.cConv = c.cConv[i]; o.carts = Math.round(o.clicks * o.cConv / 100); o.oConv = c.oConv[i]; o.orders = Math.round(o.carts * o.oConv / 100);
+    var ad = Math.round(o.clicks * c.adShare[i]); o.arkClicks = Math.round(ad * .4); o.manClicks = ad - o.arkClicks;
+    o.ctrArk = Math.round(ctr * 1.08 * 10) / 10; o.ctrMan = Math.round(ctr * 1.15 * 10) / 10;
+    o.arkShows = Math.round(o.arkClicks / o.ctrArk * 100); o.manShows = Math.round(o.manClicks / o.ctrMan * 100);
+    o.bid = c.bid[i]; o.cost = Math.round(ad * o.bid); o.spp = c.spp[i]; o.price = Math.round(c.price * (1 - o.spp / 100));
+    o.buy = c.buy[i]; o.margin = c.margin[i];
+    o.drr = Math.round(o.cost / (o.orders * o.buy / 100 * o.price) * 1000) / 10;
+    D.push(o);
+  }
+  D[13].stWB = c.stockEnd; for (i = 13; i > 0; i--) D[i - 1].stWB = D[i].stWB + D[i].orders;
+  D.forEach(function(o, k){ o.stTot = o.stWB + c.co; var from = Math.max(0, k - 6), s = 0, n = 0; for (var j = from; j <= k; j++){ s += D[j].orders; n++; } o.days = Math.round(o.stWB / (s / n)); });
+  return D;
+}
+function rnpWeeks(D){
+  return [D.slice(0, 7), D.slice(7)].map(function(W){
+    function sum(k){ return W.reduce(function(s, o){ return s + o[k]; }, 0); }
+    function avg(k){ return Math.round(sum(k) / W.length * 10) / 10; }
+    var o = {}; ['shows','clicks','arkShows','arkClicks','manShows','manClicks','cost','carts','orders'].forEach(function(k){ o[k] = sum(k); });
+    o.ctr = Math.round(o.clicks / o.shows * 1000) / 10; o.ctrArk = Math.round(o.arkClicks / o.arkShows * 1000) / 10; o.ctrMan = Math.round(o.manClicks / o.manShows * 1000) / 10;
+    o.cConv = Math.round(o.carts / o.clicks * 1000) / 10; o.oConv = Math.round(o.orders / o.carts * 1000) / 10;
+    ['bid','spp','price','buy','margin','drr'].forEach(function(k){ o[k] = avg(k); }); o.price = Math.round(o.price);
+    var L = W[W.length - 1]; o.stWB = L.stWB; o.stTot = L.stTot; o.days = L.days;
+    return o;
+  });
+}
+var RNP_WEEKPLAN = {shows:7, clicks:7, cost:7, carts:7, orders:7};
+function rnpFmt(v, f){ if (v == null || v === '') return ''; if (f === '%') return nf(v, 1) + '%'; if (f === 'r1') return nf(v, 1); return nf(v); }
+function renderRnp(){
+  var R = S.rnp, M = S.role === 'mp';
+  if (M) R.ch = 'all';
+  var list = RNP_SKU.filter(function(c){ return !M || c.mgr === 'olga'; });
+  var shown = list.filter(function(c){ return (R.ch === 'all' || c.ch === R.ch) && !R.off[c.sku]; });
+  var weeks = R.mode === 'weeks', cols = weeks ? ['25.09–01.10','02.10–08.10'] : RNP_DAYS;
+  var h = '<div class="page-h"><div><h1>РНП — рука на пульсе' + ex('Ежедневный контроль воронки по каждому артикулу: отклонения от плана видны сразу, а аномалии ведут в разбор причины.') + '</h1><p>Заполняется автоматически каждую ночь из WB/Ozon API, 1С и рекламного кабинета — вместо ручной таблицы.</p></div>' +
+    '<button class="btn" data-act="rnp-export">Выгрузить в Google Sheets / Excel</button></div>';
+  h += '<div class="rnp-bar"><div class="seg"><button data-act="rnp-mode" data-m="days" class="' + (!weeks ? 'on' : '') + '">Дни</button><button data-act="rnp-mode" data-m="weeks" class="' + (weeks ? 'on' : '') + '">Недели</button></div>' +
+    (M ? '' : '<div class="seg">' + [['all','Все'],['WB','WB'],['Ozon','Ozon']].map(function(x){ return '<button data-act="rnp-ch" data-c="' + x[0] + '" class="' + (R.ch === x[0] ? 'on' : '') + '">' + x[1] + '</button>'; }).join('') + '</div>') +
+    '<div class="rnp-chips">' + list.map(function(c){ return '<button class="chip' + (R.off[c.sku] ? '' : ' on') + '" data-act="rnp-sku" data-s="' + c.sku + '">' + c.short + '</button>'; }).join('') + '</div>' +
+    '<label class="rnp-tg"><input type="checkbox" data-act="rnp-ads"' + (R.adsOff ? ' checked' : '') + '> Свернуть рекламу</label></div>';
+  h += '<div class="card rnp-wrap"><table class="rnp"><thead><tr><th class="c-sku">Артикул</th><th class="c-met">Показатель</th><th class="c-plan">План</th>' +
+    cols.map(function(d, i){ return '<th class="n">' + d + (!weeks && i === cols.length - 1 ? '<small>вчера</small>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>';
+  if (!shown.length) h += '<tr><td colspan="' + (cols.length + 3) + '" class="muted" style="padding:16px">Выберите артикулы</td></tr>';
+  shown.forEach(function(c){
+    var D = rnpCalc(c), V = weeks ? rnpWeeks(D) : D, prevG = null, first = true;
+    h += '<tr class="rnp-head"><td class="c-sku" colspan="3"><b>' + c.name + '</b> ' + chTag(c.ch) + ' <span class="muted">' + c.sku + '</span>' + (c.case && (!M || CASES[c.case].mgr === 'olga') ? ' <a href="#" data-act="open" data-case="' + c.case + '">разбор →</a>' : '') + '</td><td colspan="' + cols.length + '"></td></tr>';
+    RNP_ROWS.forEach(function(r){
+      if (r[0] === 'ads' && R.adsOff) return;
+      var g = r[0] !== prevG; prevG = r[0];
+      var key = c.sku + '|' + r[1], pl = R.plan[key] != null ? R.plan[key] : c.plan[r[1]];
+      var plV = pl != null && weeks && RNP_WEEKPLAN[r[1]] ? pl * 7 : pl;
+      h += '<tr class="' + (g ? 'g ' : '') + (r[1] === 'orders' ? 'hl ' : '') + (r[1] === 'com' ? 'com' : '') + '"><td class="c-sku">' + (first ? c.sku : '') + '</td><td class="c-met">' + r[2] + '</td>';
+      first = false;
+      if (r[1] === 'com'){
+        h += '<td class="c-plan"></td>' + V.map(function(o, i){ var t = weeks ? '' : (R.com[c.sku + i] != null ? R.com[c.sku + i] : (c.com[i] || '')); return '<td class="cm">' + (weeks ? '' : '<span contenteditable="true" title="' + esc(t) + '" data-com="' + c.sku + i + '">' + esc(t) + '</span>') + '</td>'; }).join('') + '</tr>';
+        return;
+      }
+      h += '<td class="c-plan">' + (c.plan[r[1]] != null ? '<input type="text" inputmode="decimal" data-act="rnp-plan" data-k="' + key + '" value="' + nf(pl, r[3] === '%' || r[3] === 'r1' ? 1 : 0) + '" aria-label="План: ' + r[2] + '">' : '') + '</td>';
+      V.forEach(function(o, i){
+        var v = o[r[1]], cls = '';
+        if (plV != null && v != null){ var dv = (v - plV) / plV; if (r[4]) dv = -dv; if (r[1] === 'days') dv = v < plV * .5 ? -1 : 0; cls = dv < -.1 ? 'bad' : (dv > .1 ? 'good' : ''); }
+        var an = !weeks && c.anom[r[1] + '|' + i];
+        h += '<td class="n ' + cls + '">' + (an ? '<span class="anm" tabindex="0" role="button" data-tip="' + esc(an + (c.case && (!M || CASES[c.case].mgr === 'olga') ? ' <a href="#" data-act="open" data-case="' + c.case + '">Открыть разбор →</a>' : '')) + '">⚠</span>' : '') + rnpFmt(v, r[3]) + '</td>';
+      });
+      h += '</tr>';
+    });
+  });
+  h += '</tbody></table></div>';
+  h += '<div class="legend"><span><i style="background:#F6E5E2"></i>хуже плана больше чем на 10%</span><span><i style="background:#E4F1E9"></i>лучше плана</span><span>⚠ — аномалия, нажмите для пояснения</span><span>План и комментарии можно редактировать</span></div>';
+  $('#v-rnp').innerHTML = h;
+  var w = $('#v-rnp .rnp-wrap'); if (w && !weeks) w.scrollLeft = w.scrollWidth;
+}
+
 /* ---------------- popover & folds ---------------- */
 var POP = document.createElement('div'); POP.className = 'pop'; POP.setAttribute('role', 'tooltip'); document.body.appendChild(POP);
 var popFor = null, popPinned = false;
@@ -1587,7 +1765,8 @@ var HOVER = window.matchMedia && window.matchMedia('(hover: hover)').matches;
 document.addEventListener('mouseover', function(e){ var q = e.target.closest && e.target.closest('.qt'); if (q && HOVER && !popPinned) showPop(q); });
 document.addEventListener('mouseout', function(e){ var q = e.target.closest && e.target.closest('.qt'); if (q && !popPinned) hidePop(); });
 document.addEventListener('click', function(e){
-  var q = e.target.closest('.qt');
+  var q = e.target.closest('.qt,.anm');
+  if (e.target.closest('.pop [data-act]')) setTimeout(hidePop, 0);
   if (q){ e.preventDefault(); e.stopPropagation(); if (popFor === q && popPinned) hidePop(); else showPop(q, true); return; }
   if (popFor && !e.target.closest('.pop')) hidePop();
   var sh = e.target.closest('.sec-h.foldable');
@@ -1618,11 +1797,12 @@ new MutationObserver(function(){ postRender(); }).observe(document.body, {childL
 /* ---------------- routing ---------------- */
 function renderAll(){
   document.body.classList.toggle('no-ex', !S.ex); var tg = $('#exTog'); tg.classList.toggle('on', S.ex); tg.setAttribute('aria-pressed', S.ex); $('#exTogL').textContent = S.ex ? 'вкл' : 'выкл';
-  renderOverview(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderDepartments(); renderSources();
+  renderOverview(); renderRnp(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderDepartments(); renderSources();
   $('#navDep').style.display = S.role === 'ceo' ? '' : 'none';
   if ($('#chat').classList.contains('on')) renderChat();
   document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id === 'v-' + S.view); });
   document.querySelectorAll('#nav button').forEach(function(b){ b.classList.toggle('active', b.dataset.view === S.view); });
+  var rw = $('#v-rnp .rnp-wrap'); if (S.view === 'rnp' && rw && S.rnp.mode === 'days') rw.scrollLeft = rw.scrollWidth;
   document.querySelectorAll('#roleSeg button').forEach(function(b){ b.classList.toggle('on', b.dataset.role === S.role); });
 }
 function go(view){ S.view = view; try { localStorage.setItem('np-demo-view', view); } catch(e) {} renderAll(); window.scrollTo(0, 0); }
@@ -1634,6 +1814,10 @@ document.addEventListener('click', function(e){
   if (a === 'go') return go(t.dataset.view);
   if (a === 'role'){ S.role = t.dataset.role; S.rejectOpen = false; S.chat = []; renderAll(); return toast(S.role === 'ceo' ? 'Роль: руководитель — вся компания, согласование решений' : 'Роль: Ольга, менеджер WB — свои товары и задачи'); }
   if (a === 'apply') return applySelf(t.dataset.p);
+  if (a === 'rnp-mode'){ S.rnp.mode = t.dataset.m; return renderRnp(); }
+  if (a === 'rnp-ch'){ S.rnp.ch = t.dataset.c; return renderRnp(); }
+  if (a === 'rnp-sku'){ S.rnp.off[t.dataset.s] = !S.rnp.off[t.dataset.s]; return renderRnp(); }
+  if (a === 'rnp-export') return toast('Выгрузка сформирована: РНП, ' + (S.rnp.mode === 'weeks' ? '2 недели' : '14 дней'));
   if (a === 'intro-steps'){ e.preventDefault(); S.introSteps = !S.introSteps; return renderOverview(); }
   if (a === 'logall'){ S.logAll[S.caseId] = !S.logAll[S.caseId]; return renderAnalysis(); }
   if (a === 'niche'){ S.niche = t.dataset.n; return renderMarket(); }
@@ -1666,6 +1850,8 @@ document.addEventListener('click', function(e){
 });
 document.addEventListener('change', function(e){
   var t = e.target;
+  if (t.dataset.act === 'rnp-plan'){ var v = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(v)) S.rnp.plan[t.dataset.k] = v; var sl = $('#v-rnp .rnp-wrap').scrollLeft; renderRnp(); $('#v-rnp .rnp-wrap').scrollLeft = sl; return; }
+  if (t.dataset.act === 'rnp-ads'){ S.rnp.adsOff = t.checked; return renderRnp(); }
   if (t.dataset.act === 'sel'){
     var c = CASES[S.caseId];
     if (c.exclusive) c.props.forEach(function(p){ S.sel[c.id][p.id] = p.id === t.dataset.p; });
@@ -1677,6 +1863,7 @@ document.addEventListener('input', function(e){
   var t = e.target;
   if (t.dataset.act === 'edit'){ S.edits[t.dataset.p] = parseFloat(t.value); renderAnalysis(); var el = document.querySelector('[data-act="edit"][data-p="' + t.dataset.p + '"]'); if (el) el.focus(); }
 });
+document.addEventListener('focusout', function(e){ var c = e.target.getAttribute && e.target.getAttribute('data-com'); if (c != null) S.rnp.com[c] = e.target.textContent.trim(); });
 document.addEventListener('submit', function(e){
   if (e.target.id !== 'chatForm') return;
   e.preventDefault(); var i = $('#chatInput'), v = i.value.trim(); if (!v) return; i.value = ''; ask(v);
