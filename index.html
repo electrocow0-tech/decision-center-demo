@@ -338,6 +338,82 @@ body.no-ex .ex, body.no-ex .intro, body.no-ex .tip{display:none!important}
 .ex-tog.on .sw::after{left:14px}
 .ex-tog b{color:var(--ink);font-weight:500}
 
+/* ---------- assistant ---------- */
+.ask-fab{position:fixed;right:16px;bottom:48px;z-index:95;display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;border:0;border-radius:24px;padding:11px 18px 11px 14px;font-weight:600;font-size:14px;cursor:pointer;box-shadow:0 6px 20px rgba(22,32,28,.28)}
+.ask-fab:hover{background:var(--brand-2)}
+.ask-fab svg{width:18px;height:18px}
+.chat{position:fixed;top:0;right:0;bottom:0;width:440px;max-width:100%;background:var(--surface);border-left:1px solid var(--line);box-shadow:-12px 0 40px rgba(0,0,0,.12);z-index:110;display:flex;flex-direction:column;transform:translateX(105%);transition:transform .22s ease}
+.chat.on{transform:none}
+.chat-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.chat-h b{font-size:15px;font-weight:600;display:block}
+.chat-h small{color:var(--ink-3)}
+.chat-h .lnk{border:0;background:none;color:var(--brand);font-size:12.5px;cursor:pointer;text-decoration:underline;padding:0}
+.chat-h .x{border:0;background:none;font-size:22px;line-height:1;cursor:pointer;color:var(--ink-3);padding:4px 8px;border-radius:6px}
+.chat-b{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px;background:var(--surface-2)}
+.msg{display:flex}
+.msg.u{justify-content:flex-end}
+.bub{max-width:92%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:13.5px;line-height:1.45;min-width:0}
+.msg.u .bub{background:var(--brand);color:#fff;border-color:var(--brand)}
+.bub p{margin:0 0 8px}
+.bub table{font-size:12.5px;margin:6px 0 8px}
+.bub table td,.bub table th{padding:5px 6px;border-bottom:1px solid var(--line-2);text-align:left}
+.bub table th{color:var(--ink-3);font-weight:500;font-size:11.5px}
+.bub table .n{text-align:right;white-space:nowrap}
+.bub .acts{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
+.bub .acts .btn{padding:6px 11px;font-size:12.5px;white-space:normal}
+.how{margin-top:8px;font-size:12px;color:var(--ink-2)}
+.how summary{color:var(--ink-3);font-size:12px;margin:0}
+.how ul{margin:6px 0 4px;padding-left:16px}
+.how li{margin:2px 0}
+.mdl{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:11.5px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line-2);border-radius:20px;padding:2px 9px}
+.mdl i{width:7px;height:7px;border-radius:50%;background:var(--pos);display:inline-block}
+.mdl.strong i{background:var(--accent)}
+.typing{display:inline-flex;gap:4px;align-items:center;color:var(--ink-3);font-size:12.5px}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--ink-3);animation:bl 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,100%{opacity:.25}50%{opacity:1}}
+.chips{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px 0;border-top:1px solid var(--line)}
+.chips .chip:hover{border-color:var(--brand);color:var(--brand)}
+.chat-f{display:flex;gap:8px;padding:10px 16px 14px}
+.chat-f input{flex:1;min-width:0;border:1px solid var(--line);border-radius:9px;padding:9px 12px;font:inherit;font-size:14px;background:var(--surface)}
+.chat-f input:focus{outline:2px solid #C9D8D0;border-color:var(--brand)}
+.route{display:flex;gap:6px;align-items:stretch;flex-wrap:wrap;margin:6px 0 12px}
+.route div{flex:1 1 92px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 9px;font-size:12px;color:var(--ink-2);position:relative}
+.route div b{display:block;color:var(--ink);font-size:12.5px;margin-bottom:2px}
+.route div.hl{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.route .ar{flex:0 0 auto;align-self:center;color:var(--accent);font-weight:700;border:0;background:none;padding:0}
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tier{border:1px solid var(--line);border-radius:10px;padding:12px 13px;font-size:12.5px;color:var(--ink-2);background:var(--surface)}
+.tier b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:4px}
+.tier .mdl{margin-top:6px}
+.rt-list{margin:10px 0 0;padding-left:18px;font-size:12.5px;color:var(--ink-2)}
+.rt-list li{margin:3px 0}
+.cost{margin-top:10px;font-size:12.5px}
+.cost td{padding:6px 8px;border-bottom:1px solid var(--line-2)}
+.cost td:last-child{text-align:right;white-space:nowrap;font-weight:500}
+
+/* ---------- market ---------- */
+.alert{display:flex;gap:10px;align-items:flex-start;background:var(--accent-bg);color:#6E4512;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:14px 0}
+.alert b{color:#5A3810}
+.seas{width:100%;height:170px;display:block}
+.seas-top{display:flex;font-size:11.5px;color:var(--ink-3);margin-bottom:4px}.seas-top span{flex:1}
+.seas-m{display:flex;font-size:10.5px;color:var(--ink-3);margin-top:4px}.seas-m span{flex:1;text-align:center}
+tr.us td{background:#F1F6F3}
+tr.us td:first-child{box-shadow:inset 3px 0 0 var(--brand)}
+.nopos{color:var(--neg);font-weight:600}
+.audit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:14px}
+.score{display:flex;align-items:baseline;gap:6px;margin-bottom:10px}
+.score b{font-size:40px;font-weight:600;letter-spacing:-.03em}
+.ab{display:grid;grid-template-columns:minmax(0,1fr) 54px;gap:3px 10px;align-items:center;font-size:12.5px;padding:6px 0;border-bottom:1px solid var(--line-2)}
+.ab .bar{grid-column:1/-1;height:5px;border-radius:3px;background:var(--line-2);overflow:hidden}
+.ab .bar i{display:block;height:100%;background:var(--brand)}
+.ab .bar i.lo{background:var(--neg)} .ab .bar i.mid{background:var(--accent)}
+.ab small{color:var(--ink-3);grid-column:1/-1}
+.reco li{align-items:center;flex-wrap:wrap}
+.reco .tt{flex:1 1 220px;min-width:0}
+.reco .tt small{display:block;color:var(--ink-3)}
+.quote{font-size:12.5px;color:var(--ink-2);font-style:italic}
+
 /* ---------- responsive ---------- */
 @media (max-width:1180px){
   .an-grid{grid-template-columns:1fr}
@@ -379,6 +455,14 @@ body.no-ex .ex, body.no-ex .intro, body.no-ex .tip{display:none!important}
   .task-grid{grid-template-columns:1fr}
   .task-grid dt{margin-top:6px}
   .demo{font-size:10px;right:8px;bottom:8px;left:8px;text-align:center}
+  .ask-fab{right:12px;bottom:38px;padding:10px 15px 10px 12px}
+  .chat{width:100%;border-left:0}
+  .tiers,.audit{grid-template-columns:1fr}
+  .route .ar{transform:none}
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+  .chips .chip{white-space:nowrap}
+  .page-h > .seg{flex-wrap:wrap}
+  .page-h > .seg button{flex:1 1 auto}
   .ex.in{margin:8px 16px 0}
   .tip span{right:auto;left:-120px;width:250px}
 }
@@ -397,6 +481,7 @@ body.no-ex .ex, body.no-ex .intro, body.no-ex .tip{display:none!important}
       <button data-act="go" data-view="analysis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>Разбор</button>
       <button data-act="go" data-view="decisions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.3l2.7 2.7L16.2 9.5"/></svg>Решения и эффект</button>
       <button data-act="go" data-view="products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3.5 7.5L12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5L12 12l8.5-4.5M12 12v9"/></svg>Товары</button>
+      <button data-act="go" data-view="market"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3.5 20.5h17"/><path d="M5 16l4.5-5 3.5 3 6-7"/><path d="M15 7h4v4"/></svg>Рынок</button>
       <button data-act="go" data-view="sources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></svg>Источники данных</button>
     </nav>
     <div class="side-foot"><span class="dot"></span>Данные актуальны на 07:20<br>Следующая загрузка в 13:00</div>
@@ -420,12 +505,20 @@ body.no-ex .ex, body.no-ex .intro, body.no-ex .tip{display:none!important}
     <section class="view" id="v-analysis"></section>
     <section class="view" id="v-decisions"></section>
     <section class="view" id="v-products"></section>
+    <section class="view" id="v-market"></section>
     <section class="view" id="v-sources"></section>
   </main>
 </div>
 
 <div class="modal-bg" id="modal"><div class="modal" role="dialog" aria-modal="true" id="modalBody"></div></div>
 <div class="toast" id="toast"></div>
+<button class="ask-fab" data-act="chat-open" aria-label="Спросить ассистента"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 5.5h16v10H9l-5 4z" stroke-linejoin="round"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-linecap="round" stroke-width="2.6"/></svg>Спросить</button>
+<aside class="chat" id="chat" aria-hidden="true" aria-label="Ассистент">
+  <div class="chat-h"><div><b>Ассистент</b><small id="chatSub"></small><br><button class="lnk" id="chatHowBtn" data-act="chat-how">Как это работает</button></div><button class="x" data-act="chat-close" aria-label="Закрыть">×</button></div>
+  <div class="chat-b" id="chatBody"></div>
+  <div class="chips" id="chatChips"></div>
+  <form class="chat-f" id="chatForm" autocomplete="off"><input id="chatInput" type="text" placeholder="Спросите о товаре, складе, задаче…" aria-label="Вопрос"><button class="btn primary" type="submit">Спросить</button></form>
+</aside>
 <div class="demo">Демо-прототип · данные условные · состав расширяется по ТЗ</div>
 
 <script>
@@ -534,7 +627,7 @@ var CASES = {
       {m:'ok', t:'06:41', tx:'Проверила цену и комиссию: розничная цена 1 290 ₽ не менялась, СПП 22% → 23%, комиссия 24,5% — существенного влияния нет.', src:['WB API · цены','WB API · тарифы']},
       {m:'next', t:'06:42', tx:'Реклама: расход +41% (237 → 334 тыс ₽) при тех же заказах (1 530 → 1 524) → смотрю CTR и позицию.', src:['WB API · реклама']},
       {m:'find', t:'06:44', tx:'CPC вырос 9,8 → 16,4 ₽, CTR снизился 4,1% → 2,6%. Позиция по запросу «контейнер для хранения» 6 → 19.', src:['WB API · реклама','WB API · поисковые запросы']},
-      {m:'find', t:'06:46', tx:'С 29.09 в выдаче выше нас карточка конкурента: 1 135 ₽ против 1 290 ₽ (дешевле на 12%), рейтинг 4,8.', src:['мониторинг выдачи']},
+      {m:'find', t:'06:46', tx:'Рынок: конкурент Б снизил цену на 12% 3 октября (1 290 → 1 135 ₽ против наших 1 290 ₽), рейтинг 4,8 — с этого дня наша позиция падает.', src:['сервис аналитики маркетплейсов'], link:'cont'},
       {m:'next', t:'06:49', tx:'Выкуп 84% → 71% при неизменных заказах → смотрю причины возвратов и отзывы.', src:['WB API · продажи']},
       {m:'find', t:'06:51', tx:'Возвраты: 63% причин — «не соответствует размеру». В отзывах 17 из 41 новых — «меньше, чем ожидал».', src:['WB API · возвраты','отзывы WB']},
       {m:'find', t:'06:53', tx:'Расхождение: в карточке указан объём 5 л, в характеристиках номенклатуры полезный объём 4,3 л.', src:['карточка WB','1С · номенклатура']},
@@ -676,7 +769,7 @@ var PRODUCTS = [
 var MP_TEAM = ['Ковалёва О.'];
 
 /* ---------------- state ---------------- */
-var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{} };
+var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
 try { if (localStorage.getItem('np-demo-ex') === '0') S.ex = false; if (localStorage.getItem('np-demo-intro') === '0') S.intro = false; } catch(e) {}
 CASE_ORDER.forEach(function(id){ var c = CASES[id]; S.sel[id] = {}; c.props.forEach(function(p, i){ S.sel[id][p.id] = c.exclusive ? i === 1 : true; }); });
 try { var saved = localStorage.getItem('np-demo-view'); if (saved && document.getElementById('v-' + saved)) S.view = saved; } catch(e) {}
@@ -729,7 +822,7 @@ function renderOverview(){
   if (M) K = KPI_MGR[S.kpi];
   var tiles = K.tiles;
   var h = '';
-  if (S.intro) h += '<div class="intro"><button class="x" data-act="intro-x" aria-label="Скрыть">×</button><p><b>Центр решений</b> — система каждую ночь собирает данные WB, Ozon и 1С, находит отклонения и возможности, раскладывает причину в рублях и предлагает действие. Руководитель согласует — задача уходит в Битрикс24 — через 7 дней система проверяет эффект.</p><p class="hint2">→ Нажмите «Разобрать» на первой карточке, чтобы пройти весь сценарий. Переключите роль вверху, чтобы увидеть экран менеджера.</p><p>Роли различаются данными и правами: руководитель видит финансы компании и согласует крупные решения (цена, бюджет, закупка). Менеджер видит свои товары и задачи и сам применяет действия в пределах полномочий, остальное передаёт на согласование. Полномочия настраиваются под компанию.</p><p class="fine">* Тестовый вариант: данные условные, набор показателей, источников и экранов расширяется по ТЗ.</p></div>';
+  if (S.intro) h += '<div class="intro"><button class="x" data-act="intro-x" aria-label="Скрыть">×</button><p><b>Центр решений</b> — система каждую ночь собирает данные WB, Ozon и 1С, находит отклонения и возможности, раскладывает причину в рублях и предлагает действие. Руководитель согласует — задача уходит в Битрикс24 — через 7 дней система проверяет эффект.</p><p class="hint2">→ Нажмите «Разобрать» на первой карточке, чтобы пройти весь сценарий. Переключите роль вверху, чтобы увидеть экран менеджера.</p><p>Кнопка «Спросить» справа внизу — ассистент, который отвечает по данным платформы с учётом прав роли; раздел «Рынок» — ниша, конкуренты, аудит карточки и отзывы.</p><p>Роли различаются данными и правами: руководитель видит финансы компании и согласует крупные решения (цена, бюджет, закупка). Менеджер видит свои товары и задачи и сам применяет действия в пределах полномочий, остальное передаёт на согласование. Полномочия настраиваются под компанию.</p><p class="fine">* Тестовый вариант: данные условные, набор показателей, источников и экранов расширяется по ТЗ.</p></div>';
   var lateN = TASKS.filter(function(t){ return t.late && !t.done; }).length, openT = TASKS.filter(function(t){ return !t.done; }).length;
   var waitN = vc.filter(function(id){ return S.pending[id] && caseStatus(id) === 'new'; }).length;
   if (M) h += '<div class="page-h greet"><div><h1>Доброе утро, ' + R.name + '</h1><p>Мой день · менеджер маркетплейса WB, 6 товаров. ' + (open.length ? open.length + ' ' + plural(open.length, 'отклонение', 'отклонения', 'отклонений') + ' по вашим товарам' : 'Новых отклонений по вашим товарам нет') + ', ' + openT + ' ' + plural(openT, 'задача', 'задачи', 'задач') + (lateN ? ', из них ' + lateN + ' просрочена' : '') + '.</p></div>';
@@ -888,7 +981,7 @@ function renderAnalysis(){
   h += '<div class="calc-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex:none;margin-top:1px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h2M12 18h2"/></svg><span>Все суммы считает факторная модель на сервере компании по данным маркетплейсов и 1С — до рубля и воспроизводимо. Языковая модель не считает: она выбирает, что проверить дальше, и формулирует объяснение.</span></div>';
   h += '</div>';
   h += '<div class="card"><div class="card-h"><h3>Ход расследования</h3><span class="muted" style="font-size:12.5px">' + c.log.length + ' шагов</span></div>' + ex('Шаги, которые прошла система, с источником данных у каждого — чтобы любой вывод можно было проверить, а не принимать на веру.', 1) + '<div class="card-b"><ol class="log">' +
-    c.log.map(function(l){ return '<li><span class="mk ' + l.m + '"></span><span class="tm">' + l.t + '</span><div class="tx">' + l.tx + '</div><div class="lsrc">' + l.src.map(function(s){ return '<span>' + s + '</span>'; }).join('') + '</div></li>'; }).join('') +
+    c.log.map(function(l){ return '<li><span class="mk ' + l.m + '"></span><span class="tm">' + l.t + '</span><div class="tx">' + l.tx + (l.link ? ' <a href="#" data-act="go-market" data-n="' + l.link + '" style="color:var(--brand)">Открыть в разделе «Рынок» →</a>' : '') + '</div><div class="lsrc">' + l.src.map(function(s){ return '<span>' + s + '</span>'; }).join('') + '</div></li>'; }).join('') +
     '</ol></div></div></div>';
 
   // proposals
@@ -1084,6 +1177,7 @@ function renderSources(){
     '<li><span class="ic warn">!</span><span style="flex:1">Себестоимость: у 4 артикулов нет партии за 60 дней — используется последняя известная</span><span class="r warn">4 шт</span></li>' +
     '<li><span class="ic pos">✓</span><span style="flex:1">Отзывы за неделю загружены и размечены по причинам</span><span class="r">1 284 из 1 284</span></li></ul></div></div>';
   var cloud = S.where === 'cloud';
+  h += '<div class="sec-h"><h2>Как устроен ассистент</h2><span class="hint">маршрутизатор моделей</span></div>' + ex('Ассистент не держит данные в себе: он выбирает модель по сложности вопроса и обращается к данным через инструменты — те же запросы, что строят отчёты. Поэтому цифры в ответах сходятся с экранами.') + '<div class="card"><div class="card-b">' + routerHtml() + '</div></div>';
   if (S.role === 'mp'){ h += '<p class="note">Где работают модели (облако или сервер компании) — настройка руководителя.</p>'; $('#v-sources').innerHTML = h; return; }
   h += '<div class="sec-h"><h2>Где работают модели</h2></div>' + ex('Модели, которые ведут расследование, могут работать в облаке или на сервере компании — тогда данные не покидают её контур.') + '<div class="card"><div class="card-b"><div class="seg"><button data-act="where" data-w="cloud" class="' + (cloud ? 'on' : '') + '">Облако</button><button data-act="where" data-w="local" class="' + (!cloud ? 'on' : '') + '">Сервер компании</button></div>' +
     '<div class="where"><div class="' + (cloud ? 'on' : '') + '"><b>Облако</b>Модель вызывается по API. Наружу уходят только агрегаты и тексты отзывов — без персональных данных покупателей и без себестоимости по партиям. Быстрый старт, оплата за использование.</div>' +
@@ -1092,10 +1186,251 @@ function renderSources(){
   $('#v-sources').innerHTML = h;
 }
 
+/* ---------------- market data ---------------- */
+var MONTHS = ['н','д','я','ф','м','а','м','и','и','а','с','о','н','д','я','ф','м','а','м','и','и','а','с','о'];
+var MARKET = {
+  cont: { label:'Контейнер 5 л', niche:'Контейнеры для хранения 4–6 л', vol:'58,2 млн ₽', units:'61 800 шт', dyn:'+8%', dync:'pos', share:'11,0%', shareWas:'было 12,6%', sellers:'214', sellersSub:'96 с продажами', case:'a',
+    seas:[38,41,58,49,44,40,37,35,38,45,54,49,43,46,66,56,50,46,42,40,44,51,61,58.2],
+    seasNote:'Пики — январь (уборка после праздников) и сентябрь (переезды, учёба).',
+    alert:'<b>Конкурент Б снизил цену на 12% 3 октября</b> (1 290 → 1 135 ₽) — это совпадает с падением нашей позиции по «контейнер для хранения» 6 → 19 и ростом цены клика.',
+    comp:[
+      {n:'Натурпласт · Контейнер для хранения 5 л', us:1, p:1290, d:23, r:'4,6', rv:2140, s:6500, rev:'6,4', pos:19, dp:0},
+      {n:'Конкурент А · Контейнер 5,5 л с крышкой', p:1390, d:20, r:'4,8', rv:3870, s:7900, rev:'8,4', pos:3, dp:0},
+      {n:'Конкурент Б · Контейнер 5 л', p:1135, d:25, r:'4,8', rv:1020, s:5600, rev:'5,1', pos:4, dp:-12},
+      {n:'Конкурент В · Набор 3 контейнера по 5 л', p:1790, d:18, r:'4,7', rv:5410, s:4300, rev:'6,1', pos:7, dp:3},
+      {n:'Конкурент Г · Контейнер 6 л', p:990, d:22, r:'4,5', rv:860, s:3100, rev:'2,4', pos:11, dp:0},
+      {n:'Конкурент Д · Контейнер 5 л прозрачный', p:1240, d:20, r:'4,4', rv:410, s:1900, rev:'1,9', pos:15, dp:-4}
+    ],
+    q:[['контейнер для хранения',412000,19,'А · 3',-13],['контейнер для хранения вещей',96000,12,'В · 1',-5],['контейнер с крышкой 5 л',38000,4,'Б · 2',0],['контейнер пластиковый 5 л',21000,8,'А · 5',2],['органайзер для кладовки',17500,null,'А · 6',0],['контейнер для круп 5 л',12400,null,'Г · 9',0]],
+    audit:[['Фото','7 шт, инфографики 2',12,15],['Видео','нет',0,10],['Rich-контент','есть',8,10],['Характеристики','заполнено 86%',13,15],['SEO-покрытие запросов','4 из 6 ключевых',10,15],['Рейтинг','4,6',8,10],['Ответы на отзывы','71% отвечено',7,10],['Объём соответствует описанию','5 л в карточке, 4,3 л полезного',1,15]],
+    reco:[['Указать полезный объём 4,3 л, добавить фото с линейкой и сравнение размеров','выкуп +6–9 п.п.','+34 тыс ₽/нед'],['Добавить видео 15 сек: что помещается в контейнер','CTR +0,3–0,5 п.п.','+9 тыс ₽/нед'],['Добавить в описание запросы «органайзер для кладовки», «контейнер для круп»','+2 запроса в топ-30','+6 тыс ₽/нед'],['Ответить на 38 неотвеченных отзывов','рейтинг устойчивее','+3 тыс ₽/нед']],
+    rev:[['neg','Меньше заявленного объёма',63,0,18,'«Думала, будет больше — на фото выглядит крупнее. Влезло меньше, чем в старый на 5 литров»'],['neg','Сколы и трещины при доставке',14,9,22,'«Пришёл с трещиной на углу, упаковка — просто пакет»'],['pos','Плотная крышка — плюс',41,35,12,'«Крышка закрывается плотно, пыль не попадает»'],['pos','Удобно ставить друг на друга',28,30,19,'«Ставлю в три яруса в шкафу — устойчиво»']],
+    revOut:'У конкурента А жалоб на объём нет — в карточке фото с линейкой и указан полезный объём. Это и есть рекомендация №1 из аудита.'
+  },
+  kash: { label:'Кашпо 3 л', niche:'Кашпо и горшки 2–4 л', vol:'31,4 млн ₽', units:'74 200 шт', dyn:MINUS+'6%', dync:'neg', share:'10,5%', shareWas:'было 13,9%', sellers:'388', sellersSub:'171 с продажами', case:'c',
+    seas:[18,15,17,24,36,44,41,33,28,27,30,26,21,17,20,28,41,50,46,37,31,30,33.4,31.4],
+    seasNote:'Ярко выраженная весна: пик в апреле, осенью ниша сжимается — это нормально.',
+    alert:'<b>После смены главного фото 1 октября</b> наша позиция по «кашпо для цветов» упала 5 → 14. Конкурент А (интерьерное фото с видимым поддоном) — №1 по запросу.',
+    comp:[
+      {n:'Натурпласт · Кашпо 3 л с поддоном', us:1, p:690, d:25, r:'4,7', rv:1380, s:4400, rev:'3,3', pos:14, dp:0},
+      {n:'Конкурент А · Кашпо 3 л с поддоном', p:749, d:20, r:'4,8', rv:6120, s:8900, rev:'5,9', pos:1, dp:5},
+      {n:'Конкурент Б · Горшок 3 л с автополивом', p:990, d:18, r:'4,6', rv:2040, s:3800, rev:'3,4', pos:6, dp:0},
+      {n:'Конкурент В · Кашпо 2,5 л, набор 2 шт', p:590, d:22, r:'4,5', rv:980, s:5200, rev:'2,8', pos:9, dp:-3},
+      {n:'Конкурент Г · Кашпо 3 л матовое', p:640, d:24, r:'4,7', rv:3300, s:4100, rev:'2,4', pos:3, dp:0}
+    ],
+    q:[['кашпо для цветов',186000,14,'А · 1',-9],['горшок для цветов 3 л',64000,21,'Г · 4',-4],['кашпо с поддоном',42000,3,'А · 1',0],['кашпо пластиковое',38000,9,'В · 5',1],['горшок с автополивом',31000,null,'Б · 2',0],['кашпо для орхидей',27000,null,'Б · 7',0]],
+    audit:[['Фото','9 шт, но на главном не виден поддон',9,15],['Видео','есть',8,10],['Rich-контент','есть',8,10],['Характеристики','заполнено 94%',14,15],['SEO-покрытие запросов','4 из 6 ключевых',10,15],['Рейтинг','4,7',9,10],['Ответы на отзывы','88% отвечено',9,10],['Объём соответствует описанию','совпадает',15,15]],
+    reco:[['Вернуть главное фото с видимым поддоном, новое — в A/B-тест','CTR 2,4% → ~3,8%','+55 тыс ₽/нед'],['Добавить «для орхидей» в название и характеристики','+1 запрос в топ-20','+7 тыс ₽/нед'],['Слайд «что в комплекте»: кашпо + поддон','меньше вопросов покупателей','+3 тыс ₽/нед']],
+    rev:[['neg','Не понятно, есть ли поддон',24,3,6,'«По фото не поняла, будет ли поддон, пришлось спрашивать»'],['neg','Тонкий пластик',18,22,9,'«Стенки тонковаты, но для 3 литров нормально»'],['pos','Цвет как на фото — плюс',37,31,26,'«Цвет точно как на фото, смотрится дороже своей цены»']],
+    revOut:'У конкурента А на главном фото виден поддон — вопросов о комплектации почти нет (3%). После нашей смены фото такие вопросы выросли до 24%.'
+  },
+  org: { label:'Органайзер для ящика', niche:'Органайзеры для ящиков', vol:'22,8 млн ₽', units:'61 300 шт', dyn:'+21%', dync:'pos', share:'26%', shareWas:'было 22%', sellers:'156', sellersSub:'74 с продажами', case:'b',
+    seas:[9,11,13,11,10,10,10,10,11,14,16,14,13,15,17,15,14,14,14,15,16,18.8,18.8,22.8],
+    seasNote:'Ниша растёт второй год; осенний рост сильнее прошлогоднего.',
+    alert:'<b>Конкурент В вывел новую карточку органайзера 6 секций 5 октября</b> по цене на 8% ниже нашей. Пока продажи небольшие — следим, но наш спрос продолжает расти.',
+    comp:[
+      {n:'Натурпласт · Органайзер для ящика, 6 секций', us:1, p:790, d:24, r:'4,8', rv:2960, s:5900, rev:'5,9', pos:3, dp:0},
+      {n:'Конкурент А · Органайзер 8 ячеек', p:890, d:20, r:'4,8', rv:4400, s:6300, rev:'6,7', pos:1, dp:0},
+      {n:'Конкурент Б · Набор лотков 4 шт', p:650, d:25, r:'4,6', rv:1730, s:4800, rev:'3,6', pos:5, dp:-2},
+      {n:'Конкурент В · Органайзер 6 секций', p:727, d:20, r:'4,9', rv:42, s:600, rev:'0,5', pos:24, dp:0},
+      {n:'Конкурент Г · Органайзер для приборов', p:540, d:22, r:'4,7', rv:2210, s:5100, rev:'3,1', pos:2, dp:0}
+    ],
+    q:[['органайзер для ящика',88000,3,'А · 1',2],['органайзер для столовых приборов',61000,null,'Г · 3',0],['органайзер для ящика стола',54000,4,'В · 2',7],['лоток в ящик',22000,7,'Б · 4',1],['органайзер для косметики в ящик',19000,null,'А · 8',0]],
+    audit:[['Фото','10 шт, инфографики 4',12,15],['Видео','нет',0,10],['Rich-контент','есть',10,10],['Характеристики','заполнено 92%',14,15],['SEO-покрытие запросов','3 из 5 ключевых',9,15],['Рейтинг','4,8',9,10],['Ответы на отзывы','80% отвечено',8,10],['Размеры соответствуют описанию','совпадают',14,15]],
+    reco:[['Таблица совместимости с размерами популярных ящиков','возвратов «не подошёл» вдвое меньше','+12 тыс ₽/нед'],['Видео 10 сек: органайзер в ящике','CTR +0,4 п.п.','+8 тыс ₽/нед'],['Карточка-вариант «для столовых приборов»','новый запрос 61 тыс/мес','+15 тыс ₽/нед']],
+    rev:[['neg','Не подошёл по размеру ящика',31,12,27,'«Не влез в ящик стола на 2 см, хотя мерила»'],['pos','Прочный, не гнётся',44,38,21,'«Плотный пластик, не прогибается под ножами»']],
+    revOut:'У конкурента А в карточке таблица совместимости с ящиками — жалоб на размер в 2,5 раза меньше.'
+  }
+};
+
+function seasChart(N){
+  var w = 600, h = 160, n = N.seas.length, mx = Math.max.apply(null, N.seas) * 1.08, bw = w / n;
+  var g = '<line x1="' + (12 * bw) + '" x2="' + (12 * bw) + '" y1="0" y2="' + h + '" stroke="#C9C6BB" stroke-dasharray="3 3" vector-effect="non-scaling-stroke"/>';
+  N.seas.forEach(function(v, i){
+    var bh = v / mx * h;
+    g += '<rect x="' + (i * bw + bw * 0.14).toFixed(1) + '" y="' + (h - bh).toFixed(1) + '" width="' + (bw * 0.72).toFixed(1) + '" height="' + bh.toFixed(1) + '" fill="' + (i === n - 1 ? '#C4823A' : (i >= 12 ? '#33493F' : '#B9C6BF')) + '"><title>' + nf(v, 1) + ' млн ₽</title></rect>';
+  });
+  return '<div class="seas-top"><span>2024–25</span><span>2025–26</span></div><svg class="seas" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none" role="img" aria-label="Сезонность ниши, млн ₽ в месяц">' + g + '</svg>' +
+    '<div class="seas-m">' + MONTHS.map(function(m){ return '<span>' + m + '</span>'; }).join('') + '</div>';
+}
+function renderMarket(){
+  var M = S.role === 'mp', keys = M ? ['cont','kash'] : ['cont','kash','org'];
+  if (keys.indexOf(S.niche) < 0) S.niche = 'cont';
+  var N = MARKET[S.niche];
+  var h = '<div class="page-h"><div><h1>Рынок и конкуренты</h1><p>Данные сервиса аналитики маркетплейсов (MPStats и аналоги) и открытые данные WB/Ozon, обновление раз в сутки. Оценки продаж конкурентов — расчётные.</p></div>' +
+    '<div class="seg">' + keys.map(function(k){ return '<button data-act="niche" data-n="' + k + '" class="' + (S.niche === k ? 'on' : '') + '">' + MARKET[k].label + '</button>'; }).join('') + '</div></div>';
+  if (M) h += '<div class="banner role">Показаны ниши ваших товаров. Органайзер (другой менеджер) для этой роли скрыт.</div>';
+  h += ex('Ниша — все карточки маркетплейсов с похожим товаром. Объём и доля показывают, растём ли мы вместе с рынком или теряем позиции; сезонность — когда ждать спроса и закупаться.');
+  h += '<div class="card metrics">' +
+    '<div class="metric"><div class="l">Объём ниши за 30 дней</div><div class="v">' + N.vol + '</div><div class="s">' + N.units + ' · ' + N.niche + '</div></div>' +
+    '<div class="metric"><div class="l">Динамика к прошлым 30 дням</div><div class="v ' + N.dync + '">' + N.dyn + '</div><div class="s">WB + Ozon</div></div>' +
+    '<div class="metric"><div class="l">Наша доля</div><div class="v">' + N.share + '</div><div class="s">' + N.shareWas + '</div></div>' +
+    '<div class="metric"><div class="l">Продавцов в нише</div><div class="v">' + N.sellers + '</div><div class="s">' + N.sellersSub + '</div></div></div>';
+  h += '<div class="card"><div class="card-h"><h3>Сезонность ниши, млн ₽ в месяц</h3><span class="muted" style="font-size:12.5px">ноябрь 2024 — октябрь 2026</span></div><div class="card-b">' + seasChart(N) + '<p class="note" style="margin-top:6px">' + N.seasNote + '</p></div></div>';
+  h += '<div class="alert"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;margin-top:1px"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4.5M12 17.5v.01"/></svg><span>' + N.alert + (N.case && (!M || CASES[N.case].mgr === 'olga') ? ' <a href="#" data-act="open" data-case="' + N.case + '" style="color:#6E4512">Открыть разбор →</a>' : '') + '</span></div>';
+
+  h += '<div class="sec-h"><h2>Конкуренты</h2><span class="hint">топ карточек ниши</span></div>' + ex('Наша карточка выделена. Продажи и выручка конкурентов — оценка сервиса аналитики по динамике остатков; цена — с учётом скидки продавца. Изменение цены за неделю помогает увидеть ценовые атаки.');
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:920px"><thead><tr><th>Карточка</th><th class="n">Цена, ₽</th><th class="n">Скидка</th><th class="n">Рейтинг</th><th class="n">Отзывы</th><th class="n">Продажи, шт/мес</th><th class="n">Выручка, млн ₽</th><th class="n">Позиция по главному запросу</th><th class="n">Цена за неделю</th></tr></thead><tbody>';
+  N.comp.forEach(function(c){
+    h += '<tr class="' + (c.us ? 'us' : '') + '"><td style="min-width:260px">' + (c.us ? '<b style="font-weight:600">' + c.n + '</b>' : c.n) + '</td><td class="n">' + nf(c.p) + '</td><td class="n">' + c.d + '%</td><td class="n">' + c.r + '</td><td class="n">' + nf(c.rv) + '</td><td class="n">~' + nf(c.s) + '</td><td class="n">~' + c.rev + '</td><td class="n">' + c.pos + '</td><td class="n">' + (c.dp ? '<b class="' + (c.dp < 0 ? 'neg' : 'pos') + '">' + sg(c.dp) + '%</b>' : '<span class="muted">0%</span>') + '</td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+
+  h += '<div class="sec-h"><h2>Позиции по ключевым запросам</h2><span class="hint">органическая выдача WB</span></div>' + ex('Где карточку находят покупатели. Частотность — сколько раз в месяц ищут запрос. Красным отмечены запросы, где конкуренты есть, а нас нет — это недополученный трафик.');
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:640px"><thead><tr><th>Запрос</th><th class="n">Частотность, в мес</th><th class="n">Наша позиция</th><th class="n">Лучший конкурент</th><th class="n">Тренд за неделю</th></tr></thead><tbody>';
+  N.q.forEach(function(q){
+    h += '<tr><td>«' + q[0] + '»</td><td class="n">' + nf(q[1]) + '</td><td class="n">' + (q[2] == null ? '<span class="nopos">нас нет</span>' : q[2]) + '</td><td class="n">' + q[3] + '</td><td class="n">' + (q[2] == null ? '<span class="muted">—</span>' : (q[4] ? '<b class="' + (q[4] > 0 ? 'pos' : 'neg') + '">' + (q[4] > 0 ? '↑ ' : '↓ ') + Math.abs(q[4]) + '</b>' : '<span class="muted">→</span>')) + '</td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+
+  var sc = N.audit.reduce(function(s, a){ return s + a[2]; }, 0);
+  h += '<div class="sec-h"><h2>Аудит карточки</h2><span class="hint">наша карточка, ' + N.label.toLowerCase() + '</span></div>' + ex('Оценка карточки по 8 критериям, которые влияют на клик и выкуп. Рекомендации отсортированы по ожидаемому эффекту; любую можно сразу превратить в задачу в Битрикс24.');
+  h += '<div class="audit"><div class="card card-b"><div class="score"><b class="' + (sc < 65 ? 'warn' : 'pos') + '">' + sc + '</b><span class="muted">из 100</span></div>' +
+    N.audit.map(function(a){ var r = a[2] / a[3]; return '<div class="ab"><span>' + a[0] + '</span><span class="n" style="text-align:right">' + a[2] + ' / ' + a[3] + '</span><div class="bar"><i class="' + (r < .4 ? 'lo' : (r < .75 ? 'mid' : '')) + '" style="width:' + (r * 100) + '%"></i></div><small>' + a[1] + '</small></div>'; }).join('') + '</div>';
+  h += '<div class="card"><div class="card-h"><h3>Рекомендации</h3></div><div class="card-b"><ul class="list reco">' + N.reco.map(function(r, i){
+    var key = S.niche + i, no = S.recoTask[key];
+    return '<li><span class="tt">' + r[0] + '<small>' + r[1] + '</small></span><span class="r pos" style="margin-right:6px">' + r[2] + '</span>' + (no ? '<span class="pill brand">Задача #' + no + '</span>' : '<button class="btn" data-act="reco" data-k="' + key + '">Создать задачу</button>') + '</li>';
+  }).join('') + '</ul></div></div></div>';
+
+  h += '<div class="sec-h"><h2>Анализ отзывов</h2><span class="hint">наши и конкурентов, 90 дней</span></div>' + ex('Темы, которые система выделила из отзывов: доля — от негативных (или позитивных) отзывов карточки. Сравнение с конкурентами показывает, что именно они делают лучше.');
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:760px"><thead><tr><th>Тема</th><th class="n">Наша карточка</th><th class="n">Конкурент А</th><th class="n">Конкурент Б</th><th>Пример из наших отзывов</th></tr></thead><tbody>';
+  N.rev.forEach(function(r){
+    h += '<tr><td><span class="pill ' + (r[0] === 'neg' ? 'neg' : 'pos') + '">' + (r[0] === 'neg' ? 'минус' : 'плюс') + '</span> ' + r[1] + '</td><td class="n"><b>' + r[2] + '%</b></td><td class="n">' + r[3] + '%</td><td class="n">' + r[4] + '%</td><td class="quote" style="min-width:240px">' + r[5] + '</td></tr>';
+  });
+  h += '</tbody></table></div></div><div class="calc-note" style="margin-top:12px"><span><b>Вывод:</b> ' + N.revOut + '</span></div>';
+  $('#v-market').innerHTML = h;
+}
+
+/* ---------------- assistant ---------------- */
+function mdlBadge(tier){
+  var local = S.where === 'local';
+  if (tier === 'light') return '<span class="mdl"><i></i>Qwen2.5-14B · сервер компании · простой запрос</span>';
+  return '<span class="mdl strong"><i></i>' + (local ? 'Qwen2.5-72B · GPU-сервер компании' : 'YandexGPT Pro · API, данные в РФ') + ' · сложный анализ</span>';
+}
+function routerHtml(){
+  var local = S.where === 'local';
+  return '<div class="route"><div><b>Вопрос</b>текстом, как коллеге</div><span class="ar">→</span><div class="hl"><b>Маршрутизатор</b>определяет сложность и права роли</div><span class="ar">→</span><div><b>Модель</b>компактная или сильная</div><span class="ar">→</span><div><b>Инструменты</b>запросы к хранилищу, 1С, Битрикс24</div><span class="ar">→</span><div><b>Ответ</b>с цифрами и источниками</div></div>' +
+    '<div class="tiers"><div class="tier"><b>Простые вопросы</b>Остатки, сводки, поиск по задачам. Компактная открытая модель на сервере компании — быстро, дёшево, данные не выходят наружу.' + mdlBadge('light') + '</div>' +
+    '<div class="tier"><b>Сложный анализ</b>Разбор причин, прогнозы, сравнение с рынком. ' + (local ? 'Сейчас: крупная открытая модель на своём GPU-сервере.' : 'Сейчас: облачная модель по API — российские YandexGPT / GigaChat (данные остаются в РФ) или зарубежные по API.') + mdlBadge('strong') + '</div></div>' +
+    '<ul class="rt-list"><li>В облако уходят только агрегаты без персональных данных; сырые данные остаются на сервере компании.</li><li>Цифры в ответах считает код запросами к данным; модель выбирает, какой запрос сделать, и формулирует ответ.</li><li>Открытые модели берутся с Hugging Face и при необходимости дообучаются на базе решений компании.</li><li>Режим переключается в «Источниках данных»: облако / сервер компании' + (local ? ' — сейчас все модели локальные.' : '.') + '</li></ul>' +
+    '<table class="cost"><tr><td>Облачные модели по API</td><td>от ~10–30 тыс ₽/мес</td></tr><tr><td>Свой сервер с GPU</td><td>от ~150–250 тыс ₽ разово</td></tr><tr><td>Аренда GPU-сервера</td><td>~40–80 тыс ₽/мес</td></tr></table><p class="note" style="margin-top:6px">Оценка при текущем объёме, уточняется по ТЗ.</p>';
+}
+var CHIPS = {
+  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании']],
+  mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц']]
+};
+function matchQ(t){
+  t = t.toLowerCase();
+  var mp = S.role === 'mp';
+  if (/сафин|белов|морозов|сотрудник|коллег/.test(t)) return mp ? 'deny' : (/сафин/.test(t) ? 'other' : 'olga');
+  if (/выручк|финанс|прибыл|маржа компании|оборот/.test(t)) return mp ? 'deny' : 'fin';
+  if (/ольг|ковал/.test(t)) return mp ? 'late' : 'olga';
+  if (/ноябр|прогноз|терять|будущ/.test(t)) return mp ? 'deny' : 'nov';
+  if (/конкурент|рынок|ниш/.test(t)) return 'comp';
+  if (/ctr|фото|клик/.test(t)) return 'ctr';
+  if (/склад|остат|сколько|поставк/.test(t)) return 'stock';
+  if (/просроч|задач/.test(t)) return 'late';
+  if (/контейнер|сводк/.test(t)) return 'sku';
+  return 'none';
+}
+function tbl(head, rows){ return '<table><tr>' + head.map(function(x, i){ return '<th' + (i ? ' class="n"' : '') + '>' + x + '</th>'; }).join('') + '</tr>' + rows.map(function(r){ return '<tr>' + r.map(function(x, i){ return '<td' + (i ? ' class="n"' : '') + '>' + x + '</td>'; }).join('') + '</tr>'; }).join('') + '</table>'; }
+function answer(id){
+  var mp = S.role === 'mp', A;
+  if (id === 'fin' && mp) id = 'deny';
+  if ((id === 'olga' || id === 'nov' || id === 'other') && mp) id = 'deny';
+  var tasksOpen = TASKS.filter(function(t){ return !t.done; });
+  switch (id){
+  case 'sku':
+    var st = caseStatus('a');
+    A = {tier:'light', text:'<p><b>Контейнер для хранения 5 л</b> (NP-1405) за неделю 2–8 октября: маржа после выкупа на WB упала с 22,0% до 9,0% — основные причины реклама и невыкуп.</p>',
+      body: tbl(['Показатель','WB','Ozon'], [['Выручка, тыс ₽/нед','1 082','410'],['Маржа после выкупа','9,0%','19,4%'],['Заказы, шт','1 524','566'],['Выкуп','71%','84%'],['Остаток, дней','34','41']]) +
+        '<p>Открытые задачи: ' + (st === 'work' ? 'задача #' + S.status.a_task + ' (ответственный О. Ковалёва)' : (S.pending.a ? 'действие по карточке ждёт согласования руководителя' : 'нет — предложения ждут решения')) + (S.pst.a1 === 'applied' ? '; ставка уже снижена менеджером' : '') + '.</p>',
+      acts:'<button class="btn" data-act="open" data-case="a">Открыть разбор →</button>',
+      tools:['Хранилище: продажи и маржа SKU NP-1405 за 7 дней (WB, Ozon)','1С: остатки по складам','Битрикс24: задачи по NP-1405']};
+    break;
+  case 'olga':
+    var late = TASKS.filter(function(t){ return t.late && !t.done; }).length;
+    A = {tier:'strong', text:'<p><b>Ольга Ковалёва</b>, менеджер WB, за 30 дней: задачи в основном закрывает вовремя, одна просрочка' + (late ? ' висит сейчас' : ' закрыта сегодня') + '. Решения по её товарам дают подтверждённый эффект; маржа её товаров просела из-за контейнера 5 л.</p>',
+      body: tbl(['Показатель','За 30 дней'], [['Задач закрыто','23'],['Из них вовремя','19 (83%)'],['Просрочено сейчас', String(late)],['Решений по её товарам','6, из них 2 применила сама'],['Подтверждённый эффект','+68 тыс ₽/нед'],['Маржа её товаров','19,8% → 15,9%'],['То же без контейнера 5 л','19,6% → 18,9%']]),
+      acts:'<button class="btn" data-act="chat-go" data-view="decisions">Решения и эффект →</button>',
+      tools:['Битрикс24: задачи О. Ковалёвой за 30 дней','База решений: решения по товарам О. Ковалёвой','Хранилище: маржа после выкупа по 6 SKU за 8 недель']};
+    break;
+  case 'other':
+    A = {tier:'light', text:'<p><b>Олег Сафин</b>, менеджер Ozon: 17 задач за 30 дней, 16 вовремя, просрочек нет. Решения по его товарам: +25 тыс ₽/нед подтверждённого эффекта (набор банок), одно не сработало (корзина 45 л, повышение цены).</p>', body:'',
+      tools:['Битрикс24: задачи О. Сафина за 30 дней','База решений: решения по товарам О. Сафина']};
+    break;
+  case 'stock':
+    A = {tier:'light', text:'<p><b>Кашпо 3 л с поддоном</b> (NP-3103): всего 4 190 шт. На WB Казань остатка хватит на 8 дней — это узкое место.</p>',
+      body: tbl(['Склад','шт','дней продаж'], [['Склад компании (1С)','2 150','—'],['WB Коледино','1 240','31'],['WB Казань','190','<b class="neg">8</b>'],['Ozon Хоругвино','610','44'],['Итого на маркетплейсах','2 040','≈ 27']]) +
+        '<p>Казань закончится через 8 дней — создать поставку 600 шт со склада компании?</p>',
+      acts: S.supplyTask ? '<span class="pill brand">Поставка создана · задача #' + S.supplyTask + '</span>' : '<button class="btn primary" data-act="chat-supply">Создать поставку в Казань · 600 шт</button>',
+      tools:['1С: остатки по складам, NP-3103','WB API: остатки и продажи по складам за 14 дней','Ozon API: остатки']};
+    break;
+  case 'comp':
+    A = {tier:'strong', text:'<p>За неделю по ' + (mp ? 'вашим товарам' : 'нашим нишам') + ' три заметных изменения:</p>',
+      body: tbl(['Событие','Влияние'], [['Конкурент Б снизил цену на контейнер 5 л на 12% (03.10)','наша позиция 6 → 19'],['Конкурент А поднял цену на кашпо 3 л на 5%','его позиция №1 удержана фото'],].concat(mp ? [] : [['Конкурент В вывел органайзер 6 секций на 8% дешевле (05.10)','пока продаж мало']])),
+      acts:'<button class="btn" data-act="chat-go" data-view="market">Открыть «Рынок» →</button>',
+      tools:['Сервис аналитики маркетплейсов: цены и позиции конкурентов за 7 дней','Хранилище: наши позиции по ключевым запросам']};
+    break;
+  case 'nov':
+    A = {tier:'strong', text:'<p>Прогноз на ноябрь по сезонности двух лет, текущим тарифам и остаткам: под риском четыре товара.</p>',
+      body: tbl(['Товар','Маржа сейчас','Прогноз ноябрь'], [['Горшки для рассады, 10 шт','11,0%','<b class="neg">~6%</b> · не сезон, остаток 120 дн'],['Контейнер 5 л','9,0%','<b class="neg">~8%</b> · если не вернуть ставки'],['Таз 12 л','12,4%','<b class="neg">~10%</b> · затоварка'],['Сушилка для посуды','16,3%','<b class="warn">~14%</b> · зимний коэффициент логистики']]),
+      acts:'', tools:['Хранилище: продажи по месяцам за 24 месяца (сезонность)','Тарифы WB/Ozon: коэффициенты складов на ноябрь','1С: остатки','Прогнозная модель (код): маржа по SKU на 30 дней']};
+    break;
+  case 'late':
+    var rows = mp ? TASKS.filter(function(t){ return t.late; }).map(function(t){ return ['#' + t.no + ' ' + t.title, t.done ? 'выполнена сегодня' : t.dueTxt]; })
+                  : [['#48102 Подставка для обуви: снизить ставки · О. Ковалёва', S.status.d === 'done' ? 'выполнена сегодня' : 'просрочено на 3 дня'],['#48071 Таз 12 л: вернуть цену после акции · О. Сафин','просрочено на 1 день']];
+    A = {tier:'light', text:'<p>' + (mp ? 'Ваши просроченные задачи в Битрикс24:' : 'Просроченные задачи по компании в Битрикс24:') + '</p>', body: tbl(['Задача','Статус'], rows), acts:'',
+      tools:[mp ? 'Битрикс24: задачи О. Ковалёвой со сроком < сегодня' : 'Битрикс24: задачи проекта «Маркетплейсы» со сроком < сегодня']};
+    break;
+  case 'ctr':
+    A = {tier:'strong', text:'<p>CTR кашпо 3 л упал с 3,9% до 2,4% (−38%) после смены главного фото 1 октября: на новом фото не видно поддон. Показы те же, заказы −27%.</p>', body:'',
+      acts:'<button class="btn" data-act="open" data-case="c">Открыть разбор →</button>',
+      tools:['WB API: история контента карточки NP-3103','WB API: CTR и показы за 22 дня','Отзывы и вопросы покупателей за 14 дней']};
+    break;
+  case 'fin':
+    A = {tier:'light', text:'<p>Выручка после выкупа за 30 дней — <b>78,9 млн ₽</b> (+4% к прошлым 30 дням), маржа после выкупа — 17,0 млн ₽ (21,5%).</p>', body:'',
+      acts:'<button class="btn" data-act="chat-go" data-view="overview">Обзор дня →</button>', tools:['Хранилище: выручка и маржа по всем SKU за 30 дней']};
+    break;
+  case 'deny':
+    A = {tier:'light', text:'<p><b>Нет доступа для вашей роли.</b> Ассистент отвечает по вашим товарам и задачам; финансы компании и работа других сотрудников доступны руководителю.</p>', body:'', acts:'',
+      tools:['Проверка прав: роль «Менеджер маркетплейса» — запрос отклонён до обращения к данным'], deny:true};
+    break;
+  default:
+    A = {tier:'light', text:'<p>В прототипе доступны примеры запросов ниже — выберите один из них.</p>', body:'', acts:'', tools:[], none:true};
+  }
+  var how = A.none ? '' : '<details class="how"><summary>Как получен ответ</summary><ul>' + A.tools.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul>' + (A.deny ? '<p style="margin:4px 0 0">Данные не запрашивались.</p>' : '<p style="margin:4px 0 0">Цифры посчитаны запросом к данным, модель только сформулировала ответ.</p>') + '</details>';
+  return A.text + (A.body || '') + (A.acts ? '<div class="acts">' + A.acts + '</div>' : '') + how + (A.none ? '' : mdlBadge(A.tier));
+}
+function chatGreeting(){ return S.role === 'mp' ? '<p>Здравствуйте, Ольга. Спросите о своих товарах, складах и задачах — отвечу по данным платформы.</p>' : '<p>Здравствуйте, Андрей Викторович. Спросите о товарах, складах, задачах, сотрудниках или рынке — отвечу по данным платформы.</p>'; }
+function renderChat(){
+  var b = $('#chatBody');
+  var h = S.chatHow ? '<div class="msg b"><div class="bub" style="max-width:100%"><p><b>Как устроен ассистент</b></p>' + ex('Маршрутизатор отправляет простые вопросы компактной модели на сервере компании, сложные — сильной модели. Права роли проверяются до обращения к данным.') + routerHtml() + '</div></div>' : '';
+  h += '<div class="msg b"><div class="bub">' + chatGreeting() + '</div></div>';
+  S.chat.forEach(function(m){ h += '<div class="msg ' + m.who + '"><div class="bub">' + m.html + '</div></div>'; });
+  b.innerHTML = h;
+  $('#chatChips').innerHTML = CHIPS[S.role].map(function(c){ return '<button class="chip" data-act="ask" data-q="' + c[0] + '" data-t="' + esc(c[1]) + '">' + c[1] + '</button>'; }).join('');
+  $('#chatSub').textContent = S.role === 'mp' ? 'Ольга · менеджер WB · свои товары и задачи' : 'Андрей Викторович · вся компания';
+  $('#chatHowBtn').textContent = S.chatHow ? 'Скрыть схему' : 'Как это работает';
+  b.scrollTop = S.chatHow && !S.chat.length ? 0 : b.scrollHeight;
+}
+function ask(text, id){
+  if (S.chatBusy) return;
+  S.chat.push({who:'u', html:esc(text)});
+  var q = id || matchQ(text);
+  S.chat.push({who:'b', html:'<span class="typing"><span></span><span></span><span></span> думаю…</span>'});
+  S.chatBusy = true; renderChat();
+  var slow = q === 'olga' || q === 'nov' || q === 'comp' || q === 'ctr';
+  setTimeout(function(){ S.chat[S.chat.length - 1].html = answer(q); S.chatBusy = false; renderChat(); }, slow ? 1000 : 600);
+}
+function openChat(){ $('#chat').classList.add('on'); $('#chat').setAttribute('aria-hidden', 'false'); renderChat(); setTimeout(function(){ var i = $('#chatInput'); if (i && window.innerWidth > 640) i.focus(); }, 250); }
+function closeChat(){ $('#chat').classList.remove('on'); $('#chat').setAttribute('aria-hidden', 'true'); }
+
 /* ---------------- routing ---------------- */
 function renderAll(){
   document.body.classList.toggle('no-ex', !S.ex); var tg = $('#exTog'); tg.classList.toggle('on', S.ex); tg.setAttribute('aria-pressed', S.ex); $('#exTogL').textContent = S.ex ? 'вкл' : 'выкл';
-  renderOverview(); renderAnalysis(); renderDecisions(); renderProducts(); renderSources();
+  renderOverview(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderSources();
+  if ($('#chat').classList.contains('on')) renderChat();
   document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id === 'v-' + S.view); });
   document.querySelectorAll('#nav button').forEach(function(b){ b.classList.toggle('active', b.dataset.view === S.view); });
   document.querySelectorAll('#roleSeg button').forEach(function(b){ b.classList.toggle('on', b.dataset.role === S.role); });
@@ -1107,14 +1442,23 @@ document.addEventListener('click', function(e){
   var t = e.target.closest('[data-act]'); if (!t) return;
   var a = t.dataset.act;
   if (a === 'go') return go(t.dataset.view);
-  if (a === 'role'){ S.role = t.dataset.role; S.rejectOpen = false; renderAll(); return toast(S.role === 'ceo' ? 'Роль: руководитель — вся компания, согласование решений' : 'Роль: Ольга, менеджер WB — свои товары и задачи'); }
+  if (a === 'role'){ S.role = t.dataset.role; S.rejectOpen = false; S.chat = []; renderAll(); return toast(S.role === 'ceo' ? 'Роль: руководитель — вся компания, согласование решений' : 'Роль: Ольга, менеджер WB — свои товары и задачи'); }
   if (a === 'apply') return applySelf(t.dataset.p);
+  if (a === 'niche'){ S.niche = t.dataset.n; return renderMarket(); }
+  if (a === 'go-market'){ e.preventDefault(); S.niche = t.dataset.n; return go('market'); }
+  if (a === 'reco'){ var no = S.taskNo++; S.recoTask[t.dataset.k] = no; renderMarket(); return toast('Задача #' + no + ' создана в Битрикс24 · ответственный О. Ковалёва'); }
+  if (a === 'chat-open') return openChat();
+  if (a === 'chat-close') return closeChat();
+  if (a === 'chat-how'){ S.chatHow = !S.chatHow; return renderChat(); }
+  if (a === 'ask') return ask(t.dataset.t, t.dataset.q);
+  if (a === 'chat-go'){ closeChat(); return go(t.dataset.view); }
+  if (a === 'chat-supply'){ var n2 = S.taskNo++; S.supplyTask = n2; TASKS.push({no:n2, title:'Кашпо 3 л: поставка 600 шт на WB Казань', due:'11.10', dueTxt:'новая · срок 11.10', from:ROLES[S.role].short, isNew:true}); S.chat.forEach(function(m){ if (m.html.indexOf('chat-supply') >= 0) m.html = answer('stock'); }); renderAll(); renderChat(); return toast('Поставка создана: задача #' + n2 + ' в Битрикс24'); }
   if (a === 'sendup') return sendUp(t.dataset.p);
   if (a === 'taskdone') return taskDone(parseInt(t.dataset.t, 10));
   if (a === 'extog'){ S.ex = !S.ex; if (S.ex) S.intro = true; try { localStorage.setItem('np-demo-ex', S.ex ? '1' : '0'); localStorage.setItem('np-demo-intro', '1'); } catch(e) {} return renderAll(); }
   if (a === 'intro-x'){ S.intro = false; try { localStorage.setItem('np-demo-intro', '0'); } catch(e) {} return renderOverview(); }
   if (a === 'kpi'){ S.kpi = t.dataset.k; return renderOverview(); }
-  if (a === 'open'){ S.caseId = t.dataset.case; S.rejectOpen = false; if (S.caseId !== 'a') S.period = 'week'; return go('analysis'); }
+  if (a === 'open'){ e.preventDefault(); closeChat(); S.caseId = t.dataset.case; S.rejectOpen = false; if (S.caseId !== 'a') S.period = 'week'; return go('analysis'); }
   if (a === 'period'){ S.period = t.dataset.p; return renderAnalysis(); }
   if (a === 'wf'){ S.open[t.dataset.id] = !S.open[t.dataset.id]; return renderAnalysis(); }
   if (a === 'editp'){ CASES[S.caseId].props.forEach(function(p){ if (p.edit) S.edits['_open_' + p.id] = !S.edits['_open_' + p.id]; }); if (!CASES[S.caseId].props.some(function(p){ return p.edit; })) toast('Отметьте нужные действия галочками — состав предложения изменится'); return renderAnalysis(); }
@@ -1140,13 +1484,18 @@ document.addEventListener('input', function(e){
   var t = e.target;
   if (t.dataset.act === 'edit'){ S.edits[t.dataset.p] = parseFloat(t.value); renderAnalysis(); var el = document.querySelector('[data-act="edit"][data-p="' + t.dataset.p + '"]'); if (el) el.focus(); }
 });
+document.addEventListener('submit', function(e){
+  if (e.target.id !== 'chatForm') return;
+  e.preventDefault(); var i = $('#chatInput'), v = i.value.trim(); if (!v) return; i.value = ''; ask(v);
+});
 document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape'){ closeModal(); closeChat(); }
   if ((e.key === 'Enter' || e.key === ' ') && e.target.dataset && e.target.dataset.act === 'wf'){ e.preventDefault(); e.target.click(); }
 });
 $('#modal').addEventListener('click', function(e){ if (e.target.id === 'modal') closeModal(); });
 
 renderAll();
+if (/chat/.test(location.hash)){ openChat(); S.chat.push({who:'u', html:'Сколько кашпо 3 л на складах'}, {who:'b', html:answer('stock')}); renderChat(); var dd = document.querySelector('#chatBody details'); if (dd) dd.open = true; }
 })();
 </script>
 </body>
