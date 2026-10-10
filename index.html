@@ -687,6 +687,17 @@ tr.new td{background:#F3F8F5}
 .sens .rank{display:inline-block;min-width:22px;text-align:center;border-radius:6px;background:var(--surface-2);font-weight:600}
 .tbl.unit td{vertical-align:middle}
 .tbl.wc td{vertical-align:middle}
+.tbl.nich td{vertical-align:middle}
+.tbl.nich th{white-space:normal;line-height:1.2;max-width:90px}
+.tbl.nich tr.whyr td{vertical-align:top}
+.nich-g{grid-template-columns:1fr 1fr 1.2fr;min-width:0}
+.nich-g > div{min-width:0;overflow-wrap:anywhere}
+.tbl.nich tr.whyr td .why{max-width:100%;overflow:hidden}
+.nich-ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
+.nich-ul li{margin:3px 0}
+.nich-foot{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.nich-foot a{display:inline-flex;align-items:center;gap:4px}
+@media (max-width:1180px){ .nich-g{grid-template-columns:1fr} }
 .tbl.wc .pn-name{gap:8px;min-width:200px}
 table.heat{border-collapse:separate;border-spacing:3px;width:100%;min-width:900px;font-size:13px;table-layout:fixed}
 .heat th:first-child{width:220px}
@@ -820,6 +831,7 @@ body.no-ex .whyline{display:none}
       <button data-act="go" data-view="stock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9l9-5 9 5v11H3z"/><path d="M8 20v-6h8v6M8 14h8"/></svg>Остатки и подсорт</button>
       <button data-act="go" data-view="season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Сезонность</button>
       <button data-act="go" data-view="market"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3.5 20.5h17"/><path d="M5 16l4.5-5 3.5 3 6-7"/><path d="M15 7h4v4"/></svg>Рынок</button>
+      <button data-act="go" data-view="niches"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>Новые товары</button>
       <div class="nav-grp" id="navGrpMgmt">Управление</div>
       <button data-act="go" data-view="finance" id="navFin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V9M10 19V5M16 19v-7M21 19H3"/></svg>Финансы</button>
       <button data-act="go" data-view="departments" id="navDep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="11" width="5" height="9" rx="1"/><rect x="9.5" y="6" width="5" height="14" rx="1"/><rect x="16" y="3" width="5" height="17" rx="1"/></svg>Отделы</button>
@@ -852,6 +864,7 @@ body.no-ex .whyline{display:none}
     <section class="view" id="v-decisions"></section>
     <section class="view" id="v-products"></section>
     <section class="view" id="v-market"></section>
+    <section class="view" id="v-niches"></section>
     <section class="view" id="v-departments"></section>
     <section class="view" id="v-season"></section>
     <section class="view" id="v-finance"></section>
@@ -1135,7 +1148,7 @@ var PRODUCTS = [
 var MP_TEAM = ['Ковалёва О.'];
 
 /* ---------------- state ---------------- */
-var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, rnpPanel:false, rnpTab:'days', planLvl:'year', yp:{rev:1000, net:45, proposed:false, approved:false}, yq:'q1', ym:null, rnpFocus:null, chainFocus:null, stk:{f:'all', k:'urg', d:1, open:{}, sel:{}, done:{}, by:{}}, fin:{tab:'pl', mo:'oct', seg:'all', why:null, art:'', added:[], norm:{}, sk:'marR', sd:-1, fy:'fact', scn:'base', unit:{tax:null, vat:0, tgt:15}, n27:{}, task:{}}, verdict:{}, verdictNote:{}, own:{}, ownDraft:{}, ownMode:true, season:{mode:'mkt', open:null}, fp:{sku:'NP-1405', lev:{}}, planMonth:'oct', planProp:[], photo:{ceo:'big', mp:'big'}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
+var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, rnpPanel:false, rnpTab:'days', planLvl:'year', yp:{rev:1000, net:45, proposed:false, approved:false}, yq:'q1', ym:null, rnpFocus:null, chainFocus:null, stk:{f:'all', k:'urg', d:1, open:{}, sel:{}, done:{}, by:{}}, fin:{tab:'pl', mo:'oct', seg:'all', why:null, art:'', added:[], norm:{}, sk:'marR', sd:-1, fy:'fact', scn:'base', unit:{tax:null, vat:0, tgt:15}, n27:{}, task:{}}, verdict:{}, verdictNote:{}, own:{}, ownDraft:{}, ownMode:true, nich:{budget:6, mat:'any', tgt:15, maxSel:150, minVol:10, pay:12, open:null, task:{}, sent:{}}, season:{mode:'mkt', open:null}, fp:{sku:'NP-1405', lev:{}}, planMonth:'oct', planProp:[], photo:{ceo:'big', mp:'big'}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
 try { ['ceo','mp'].forEach(function(r){ var v = localStorage.getItem('np-photo-' + r); if (v) S.photo[r] = v; }); } catch(e) {}
 try { if (localStorage.getItem('np-demo-ex') === '0') S.ex = false; if (localStorage.getItem('np-demo-intro') === '0') S.intro = false; } catch(e) {}
 CASE_ORDER.forEach(function(id){ var c = CASES[id]; S.sel[id] = {}; c.props.forEach(function(p, i){ S.sel[id][p.id] = c.exclusive ? i === 1 : true; }); });
@@ -1250,7 +1263,8 @@ function renderOverview(){
     '<div class="card"><div class="card-h"><h3>Ночная проверка данных</h3><span class="pill warn">1 предупреждение</span></div><div class="card-b"><ul class="list">' +
     '<li><span>Wildberries, Ozon, Битрикс24</span><span class="r pos">загружено 07:12–07:20</span></li>' +
     '<li><span>Сопоставление артикулов с 1С</span><span class="r warn">312 из 318</span></li>' +
-    '<li><span>Отклонений ниже порога 25 тыс ₽</span><span class="r muted">17 · в отчёт не вынесены</span></li></ul></div></div></div>';
+    '<li><span>Отклонений ниже порога 25 тыс ₽</span><span class="r muted">17 · в отчёт не вынесены</span></li>' +
+    (M ? '' : '<li><span>Проверила ' + nf(NICH_TOTAL) + ' ниш: ' + nichCalc().cand + ' новых кандидата под ваш бюджет оснастки</span><span class="r"><a href="#" data-act="go" data-view="niches" style="color:var(--brand)">Новые товары →</a></span></li>') + '</ul></div></div></div>';
   $('#v-overview').innerHTML = h;
   var nc = open.length; $('#navCnt').textContent = nc; $('#navCnt').style.display = nc ? '' : 'none';
 }
@@ -1565,7 +1579,7 @@ function renderSources(){
     ['1С: Управление торговлей','warn','Себестоимость партий, остатки на складе, номенклатура','сегодня 06:40','312 из 318 артикулов сопоставлено'],
     ['Битрикс24','ok','Задачи, ответственные, статусы, протоколы планёрок — в обе стороны','сегодня 07:20','12 открытых задач системы'],
     ['TrueStats','ok','Финансы: ОПиУ, расходы, ROI — уже используется компанией','сегодня 06:10','сверка с ОПиУ платформы: расхождение 0,3% ✓'],
-    ['MPStats (или аналог)','ok','Рынок: ниши, цены и позиции конкурентов, оценки продаж, отзывы. Режим экономии запросов: конкуренты по категории одним запросом, позиции 2 раза в неделю, отзывы раз в неделю — ≈ 1 700 запросов в месяц','сегодня 06:10','3 ниши · 214 карточек конкурентов']
+    ['MPStats (или аналог)','ok','Рынок: ниши, цены и позиции конкурентов, оценки продаж, отзывы. Режим экономии запросов: конкуренты по категории одним запросом, позиции 2 раза в неделю, отзывы раз в неделю — ≈ 1 700 запросов в месяц. Разведка ниш: полный скан 9 240 ниш раз в неделю — отдельный фид данных ниш','сегодня 06:10','3 ниши · 214 карточек конкурентов']
   ];
   var h = '<div class="page-h"><div><h1>Источники данных</h1>' + why('доверять цифрам: видно, откуда данные и всё ли загрузилось') + '<p>Данные компании, проверка полноты и сверка источников перед каждым расчётом.</p></div></div>' + ex('Откуда данные и когда обновлялись. Если источник не загрузился, это видно сразу.') + '<div class="srcs">';
   src.forEach(function(s){
@@ -1732,7 +1746,7 @@ function routerHtml(){
     '<table class="cost"><tr><td>Облачные модели по API (Qwen3-32B в РФ-облаке, YandexGPT Pro)</td><td>от ~10–30 тыс ₽/мес</td></tr><tr><td>Свой сервер с GPU под Qwen3.5-9B и Qwen3-32B</td><td>от ~150–250 тыс ₽ разово</td></tr><tr><td>Аренда GPU-сервера</td><td>~40–80 тыс ₽/мес</td></tr></table><p class="note" style="margin-top:6px">Оценка при текущем объёме, уточняется по ТЗ.</p>';
 }
 var CHIPS = {
-  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне'],['netsep','Какая чистая прибыль за сентябрь'],['spent','На что ушли деньги в октябре'],['norms','Какие статьи расходов выше нормы и почему'],['cashspring','Хватит ли нам денег на весенний сезон']],
+  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне'],['netsep','Какая чистая прибыль за сентябрь'],['spent','На что ушли деньги в октябре'],['norms','Какие статьи расходов выше нормы и почему'],['niches','Что выпускать следующим'],['cashspring','Хватит ли нам денег на весенний сезон']],
   mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне']]
 };
 function matchQ(t){
@@ -1752,7 +1766,8 @@ function matchQ(t){
   if (/планёрк|планерк|протокол|совещан/.test(t)) return mp ? 'deny' : 'plan';
   if (/отдел|отста|план /.test(t)) return mp ? 'deny' : 'dept';
   if (/ноябр|прогноз|терять|будущ/.test(t)) return mp ? 'deny' : 'nov';
-  if (/конкурент|рынок|ниш/.test(t)) return 'comp';
+  if (/выпускать|новые товар|ниш/.test(t)) return mp ? 'deny' : 'niches';
+  if (/конкурент|рынок/.test(t)) return 'comp';
   if (/ctr|фото|клик/.test(t)) return 'ctr';
   if (/склад|остат|сколько|поставк/.test(t)) return 'stock';
   if (/просроч|задач/.test(t)) return 'late';
@@ -1791,6 +1806,12 @@ function answer(id){
         '<p>Казань закончится через 8 дней — создать поставку 600 шт со склада компании?</p>',
       acts: S.supplyTask ? '<span class="pill brand">Поставка создана · задача #' + S.supplyTask + '</span>' : '<button class="btn primary" data-act="chat-supply">Создать поставку в Казань · 600 шт</button>',
       tools:['1С: остатки по складам, NP-3103','WB API: остатки и продажи по складам за 14 дней','Ozon API: остатки']};
+    break;
+  case 'niches':
+    var NR = nichCalc(), t3 = NR.top.slice(0, 3);
+    A = {tier:'strong', text:'<p>Из ' + nf(NICH_TOTAL) + ' ниш под ваши параметры (бюджет оснастки ' + nf(S.nich.budget, 1) + ' млн ₽, маржа от ' + nf(S.nich.tgt, 0) + '%) подходят <b>' + NR.pass.length + '</b>. Лучшие три по скорингу: ' + t3.map(function(r){ return '<b>' + r.x.n.toLowerCase() + '</b>'; }).join(', ') + '. Оценки продаж по нишам приблизительные — точность в колонке «уверенность».</p>',
+      body: tbl(['Ниша','Объём, млн/мес','Ваша маржа','Окупаемость'], t3.map(function(r){ return [r.x.n, nf(r.x.vol, 0), nf(r.marP, 0) + '%', Math.round(r.pay) + ' мес']; })),
+      acts:'<button class="btn" data-act="chat-go" data-view="niches">Новые товары →</button>', tools:['Фид ниш MPStats: ' + nf(NICH_TOTAL) + ' ниш, скан понедельника','Юнит-экономика: комиссия, логистика по габариту, невыкуп, себестоимость по весу','Параметры разведки: бюджет оснастки, материал, окупаемость']};
     break;
   case 'comp':
     A = {tier:'strong', text:'<p>За неделю по ' + (mp ? 'вашим товарам' : 'нашим нишам') + ' три заметных изменения:</p>',
@@ -3151,6 +3172,156 @@ function ddsLive(){
   w.innerHTML = share > nrm ? '<span class="' + normCls(share, nrm) + '">⚠ После этой операции ' + a.value + ' — ' + nf(share, 1) + '% выручки при норме ' + nf(nrm, 1) + '%.</span>' : '<span class="pos">В пределах нормы: ' + a.value + ' — ' + nf(share, 1) + '% при норме ' + nf(nrm, 1) + '%.</span>';
 }
 
+/* ---------------- niches: what to produce next ---------------- */
+var NICH_TOTAL = 9240, NICH_NEW_TOTAL = 12;
+var NICH_RATE = {pp:380, pe:350}; // полная себестоимость литья, ₽/кг: материал, машинное время, труд, накладные
+var NICH_LOG = {S:48, M:80, L:150}, NICH_STOR = {S:9, M:16, L:35}; // логистика и хранение по габариту, ₽/шт (из юнит-экономики)
+var NICH_MAT = {pp:'полипропилен', pe:'полиэтилен', any:'любой', steel:'нержавеющая сталь', glass:'стекло'};
+// ниша: объём млн ₽/мес, рост за год %, продавцов с продажами, доля ТОП-3 %, средний чек ₽, материал, вес г, габарит, ДРР %, выкуп %, оснастка млн ₽, уверенность %
+var NICHES = [
+  {id:'n01', n:'Органайзер для косметики с ящиками', cat:'Органайзеры', vol:38, gr:41, sel:64, top3:29, chk:1190, mat:'pp', w:700, size:'M', drr:11, buy:88, tool:4.2, conf:78, like:['NP-2210','NP-6301'],
+   why:['спрос +41% за год при росте продавцов всего +12%','ТОП-3 держат 29% — нет монополии','средний чек 1 190 ₽ выше нашего среднего (780 ₽)','запрос «органайзер для косметики с ящиками» +63% за год'],
+   risks:['сезонность: пик перед 8 марта и Новым годом (×1,8)','крупный игрок с ценой −20% на FBO Ozon','зависимость от одного запроса: 54% трафика']},
+  {id:'n02', n:'Контейнер для обуви с прозрачной крышкой', cat:'Хранение', vol:52, gr:27, sel:97, top3:24, chk:690, mat:'pp', w:420, size:'M', drr:12, buy:90, tool:2.9, conf:82, like:['NP-1405','NP-4203'],
+   why:['объём 52 млн ₽/мес при доле ТОП-3 всего 24%','наш контейнер 5 л — та же пресс-форма с доработкой крышки (оснастка 2,9 млн)','рост 27% при росте продавцов +4%','выкуп в категории 90%'],
+   risks:['демпинг: 3 продавца с ценой ниже 500 ₽','наборы по 6 шт — крупногабаритная логистика']},
+  {id:'n03', n:'Дозатор для стирального порошка', cat:'Хозяйственные', vol:14, gr:58, sel:38, top3:41, chk:540, mat:'pp', w:300, size:'S', drr:13, buy:91, tool:2.4, conf:71, like:['NP-6104','NP-6020'],
+   why:['рост 58% за год — самый быстрый в выборке','38 продавцов, из них 20 продают меньше 50 шт/мес','мелкий габарит: логистика 48 ₽/шт'],
+   risks:['ТОП-3 41% — лидер может снизить цену','мода: рост может оказаться волной','зависимость от одного запроса: 61%']},
+  {id:'n04', n:'Горшок с автополивом', cat:'Сад', vol:31, gr:36, sel:72, top3:33, chk:760, mat:'pp', w:410, size:'M', drr:14, buy:85, tool:5.1, conf:69, like:['NP-3103','NP-7010'],
+   why:['ниша растёт 36% при сезонности как у кашпо','наше кашпо 3 л в ТОП-20 ниши — есть трафик и отзывы','чек 760 ₽ против 518 ₽ у простого кашпо'],
+   risks:['сезонность: 70% продаж февраль–май','нужен тест фитиля автополива до запуска','крупный игрок держит 18% ниши']},
+  {id:'n05', n:'Складная сушилка для посуды', cat:'Кухня', vol:34, gr:19, sel:88, top3:35, chk:1290, mat:'pp', w:900, size:'M', drr:12, buy:83, tool:4.9, conf:66, like:['NP-6210'],
+   why:['наша сушилка в ТОП-30 ниши; запрос «сушилка в шкаф» +44% за год','чек 1 290 ₽ покрывает дорогую оснастку','ТОП-3 35%'],
+   risks:['сложная оснастка: 3 пресс-формы, 4,9 млн ₽','невыкуп 17% — хрупкие защёлки у конкурентов','рост замедляется: 19% против 31% годом ранее']},
+  {id:'n06', n:'Коробка для хранения 50 л на колёсах', cat:'Хранение', vol:62, gr:22, sel:110, top3:27, chk:1490, mat:'pp', w:1100, size:'L', drr:11, buy:86, tool:6.0, conf:74, like:['NP-4130','NP-4045'],
+   why:['объём 62 млн ₽/мес, 110 продавцов','наш ящик 30 л — та же конструкция колёс и крышки','чек 1 490 ₽ покрывает крупногабаритную логистику'],
+   risks:['крупногабарит: логистика 150 ₽ + хранение 35 ₽/шт','оснастка на пределе бюджета (6,0 млн)','сезонность: пик август–сентябрь']},
+  {id:'n07', n:'Подставка под крышки', cat:'Кухня', vol:11, gr:48, sel:41, top3:38, chk:420, mat:'pp', w:220, size:'S', drr:10, buy:92, tool:1.6, conf:73, like:['NP-6020','NP-6104'],
+   why:['дешёвая оснастка 1,6 млн ₽ — быстрая окупаемость','рост 48% за год','мелкий габарит: логистика 48 ₽/шт'],
+   risks:['маленькая ниша 11 млн — потолок выручки','ТОП-3 38%','цена 420 ₽ чувствительна к демпингу']},
+  {id:'n08', n:'Раздвижной лоток для приборов', cat:'Кухня', vol:23, gr:31, sel:79, top3:30, chk:650, mat:'pp', w:330, size:'M', drr:11, buy:89, tool:3.2, conf:80, like:['NP-2210','NP-6301'],
+   why:['наш органайзер для ящика — тот же покупатель и те же запросы','рост 31% за год','ТОП-3 30%'],
+   risks:['размерная сетка: 3 ширины — возвраты «не подошёл»','демпинг в сегменте до 400 ₽']},
+  {id:'n09', n:'Складная корзина для белья 60 л', cat:'Хозяйственные', vol:36, gr:24, sel:95, top3:31, chk:1590, mat:'pe', w:1250, size:'L', drr:12, buy:84, tool:7.5, conf:70, like:['NP-4045'],
+   why:['наша корзина 45 л — ТОП-10 ниши, складная версия закрывает запрос «корзина складная»','чек 1 590 ₽','ТОП-3 31%'],
+   risks:['оснастка 7,5 млн ₽ — выше бюджета','полиэтилен: отдельная линия литья','крупногабарит']},
+  {id:'n10', n:'Набор банок для круп 1,5 л', cat:'Кухня', vol:42, gr:17, sel:134, top3:26, chk:890, mat:'pp', w:600, size:'M', drr:10, buy:90, tool:3.9, conf:74, like:['NP-6104'],
+   why:['наш набор банок 4 шт в ТОП-15 — расширение линейки без новой аудитории','ТОП-3 26%','выкуп 90%'],
+   risks:['рост всего 17% — зрелая ниша','134 продавца — конкуренция по цене']},
+  {id:'n11', n:'Ящик для инструментов', cat:'Хозяйственные', vol:48, gr:21, sel:210, top3:22, chk:1190, mat:'pp', w:980, size:'L', drr:12, buy:88, tool:5.4, conf:72, like:['NP-4130'],
+   why:['объём 48 млн ₽/мес','ТОП-3 22%'], risks:['210 продавцов — выше лимита','крупногабарит']},
+  {id:'n12', n:'Крышки-дозаторы для банок', cat:'Кухня', vol:12, gr:72, sel:29, top3:44, chk:350, mat:'pe', w:90, size:'S', drr:12, buy:93, tool:1.2, conf:62, like:['NP-6104'],
+   why:['рост 72% за год','29 продавцов','оснастка 1,2 млн ₽'],
+   risks:['оценка продаж приблизительная: уверенность 62%','ТОП-3 44%','полиэтилен: отдельная линия литья']},
+  {id:'r01', n:'Термокружки', cat:'Кухня', vol:120, gr:15, sel:340, top3:35, chk:890, mat:'steel', w:0, size:'M', drr:12, buy:90, tool:0, conf:80, like:[], why:[], risks:[]},
+  {id:'r02', n:'Детские горшки', cat:'Детское', vol:26, gr:9, sel:58, top3:68, chk:690, mat:'pp', w:420, size:'M', drr:11, buy:89, tool:3.0, conf:60, like:['NP-4130'], why:[], risks:[], note:'сертификация ЕАС для детских товаров'},
+  {id:'r03', n:'Кашпо 30 л', cat:'Сад', vol:19, gr:12, sel:44, top3:71, chk:1090, mat:'pp', w:1300, size:'L', drr:12, buy:86, tool:4.8, conf:70, like:['NP-3103'], why:[], risks:[], note:'демпинг: средняя цена −18% за квартал'},
+  {id:'r04', n:'Стеклянные контейнеры', cat:'Кухня', vol:85, gr:24, sel:260, top3:30, chk:790, mat:'glass', w:0, size:'M', drr:11, buy:91, tool:0, conf:80, like:[], why:[], risks:[]}
+];
+// новинки с ростом в смежных категориях
+var NICH_NEW = [
+  {n:'Органайзер для косметики, 3 ящика', cat:'Органайзеры', days:46, sales:2140, gr:134, price:1290, like:'NP-2210', sig:'спрос растёт быстрее предложения: 4 продавца'},
+  {n:'Дозатор для порошка с мерной крышкой', cat:'Хозяйственные', days:38, sales:1680, gr:112, price:590, like:'NP-6104', sig:'запрос «дозатор для порошка» ×2,4 за месяц'},
+  {n:'Контейнер для обуви, набор 6 шт', cat:'Хранение', days:61, sales:3210, gr:88, price:2190, like:'NP-1405', sig:'выкуп 92% при цене выше средней'},
+  {n:'Кашпо с автополивом 2 л', cat:'Сад', days:54, sales:980, gr:76, price:690, like:'NP-3103', sig:'рост вне сезона — спрос не сезонный'},
+  {n:'Лоток для приборов раздвижной 32–50 см', cat:'Кухня', days:72, sales:1420, gr:64, price:640, like:'NP-2210', sig:'ТОП-5 выдачи за 10 недель'},
+  {n:'Контейнер 10 л с клипсами', cat:'Хранение', days:29, sales:860, gr:58, price:890, like:'NP-1405', sig:'новая форма крышки — 41 отзыв о надёжности'},
+  {n:'Сушилка складная над раковиной', cat:'Кухня', days:83, sales:1120, gr:52, price:1490, like:'NP-6210', sig:'цена выше средней на 23%, продажи растут'},
+  {n:'Ведро 12 л с отжимом', cat:'Хозяйственные', days:95, sales:1890, gr:37, price:1190, like:'NP-5110', sig:'рост замедляется — вход поздний'}
+];
+var NICH_ANOM = [
+  {n:'Органайзеры для косметики', head:'продажи +140% за 2 недели, продавцов не прибавилось', tx:'Спрос опережает предложение: окно для входа 2–3 месяца.', act:'в кандидатах'},
+  {n:'Складные сушилки', head:'из ниши ушли 2 из 5 крупных продавцов', tx:'Остатки у лидеров сокращаются, позиции освобождаются.', act:'проверить причину ухода'},
+  {n:'Корзины для белья 60 л', head:'средняя цена −18% за месяц: ценовая война', tx:'Три продавца снижают цену по очереди — не входить до стабилизации.', act:'не входить'},
+  {n:'Запрос «подставка под крышки кастрюль»', head:'вырос ×3 за месяц, товаров под него мало', tx:'14 карточек на запрос с 120 тыс показов в неделю.', act:'в кандидатах'}
+];
+var NICH_LAUNCH = [
+  {n:'Органайзер для холодильника', sku:'NP-6301', start:'март 2026', fcRev:12.0, mon:7, fact:6.3, fcM:17, fM:16, v:'ok', why:'темп 90% прогноза, маржа в пределах 1 п.п.'},
+  {n:'Кашпо 3 л с поддоном', sku:'NP-3103', start:'февраль 2026', fcRev:7.5, mon:8, fact:4.4, fcM:18, fM:14, v:'part', why:'невыкуп выше прогноза: выкуп 86% при прогнозе 91%'},
+  {n:'Кашпо 30 л', sku:null, start:'не вошли (март 2026)', fcRev:null, mon:0, fact:null, fcM:null, fM:null, v:'skip', why:'система отклонила: монополизация 71%; за полгода лидер снизил цену на 15% — вход не окупился бы'}
+];
+function nClamp(v){ return Math.max(0, Math.min(1, v)); }
+function nichCalc(){
+  // фильтр и скоринг ниш по параметрам S.nich; экономика единицы — по долям ОПиУ октября и габариту
+  var N = S.nich, v = finCalc('oct', 'all'), commS = -v.comm / v.rev, retS = -v.ret / v.rev, taxS = -v.tax / v.rev;
+  var rows = NICHES.map(function(x){
+    var r = {x:x, rej:[]}, ours = !!NICH_RATE[x.mat];
+    if (!ours) r.rej.push('материал — ' + NICH_MAT[x.mat] + ': не наше литьё');
+    else if (N.mat !== 'any' && x.mat !== N.mat) r.rej.push('материал — ' + NICH_MAT[x.mat] + ' при фильтре «' + NICH_MAT[N.mat] + '»');
+    if (x.top3 > 60) r.rej.push('монополизация: доля ТОП-3 ' + x.top3 + '%');
+    if (x.sel > N.maxSel) r.rej.push('продавцов с продажами ' + x.sel + ' > ' + nf(N.maxSel, 0));
+    if (x.vol < N.minVol) r.rej.push('объём ниши ' + nf(x.vol, 0) + ' млн < ' + nf(N.minVol, 0));
+    if (ours){
+      var u = {price:x.chk, comm:x.chk * commS, log:NICH_LOG[x.size], stor:NICH_STOR[x.size], ads:x.chk * x.drr / 100, ret:x.chk * retS * (100 - x.buy) / 15, cogs:x.w / 1000 * NICH_RATE[x.mat] + 15, tax:x.chk * taxS};
+      r.u = u; r.marU = u.price - u.comm - u.log - u.stor - u.ads - u.ret - u.cogs - u.tax; r.marP = r.marU / x.chk * 100;
+      r.share = Math.min(.12, 4 / x.sel); r.revM = x.vol * r.share; r.units = Math.round(r.revM * 1e6 / x.chk); r.marM = r.revM * r.marP / 100;
+      r.pay = r.marM > 0 ? x.tool / r.marM : Infinity;
+      if (x.tool > N.budget) r.rej.push('оснастка ' + nf(x.tool, 1) + ' млн > бюджета ' + nf(N.budget, 1));
+      if (r.pay > N.pay) r.rej.push('окупаемость ' + (isFinite(r.pay) ? Math.round(r.pay) + ' мес' : 'не достигается') + ' > ' + nf(N.pay, 0));
+      r.score = 100 * (.3 * nClamp(1 - r.pay / (2 * N.pay)) + .25 * nClamp(r.marP / (2 * N.tgt)) + .2 * nClamp(x.gr / 60) + .15 * nClamp(1 - x.top3 / 60) + .1 * nClamp(1 - x.sel / N.maxSel));
+      r.st = r.marP < N.tgt ? 'risk' : (x.conf >= 75 && x.top3 <= 35 ? 'cand' : 'check');
+    }
+    if (x.note && r.rej.length) r.rej.push(x.note);
+    r.pass = !r.rej.length; return r;
+  });
+  var pass = rows.filter(function(r){ return r.pass; }).sort(function(a, b){ return b.score - a.score; }), rej = rows.filter(function(r){ return !r.pass; });
+  var best = pass.slice().sort(function(a, b){ return a.pay - b.pay; })[0];
+  return {rows:rows, pass:pass, top:pass.slice(0, 10), rej:rej, best:best, cand:pass.filter(function(r){ return r.st === 'cand'; }).length, commS:commS};
+}
+var NICH_ST = {cand:['pos','кандидат'], check:['warn','проверить'], risk:['neg','риск']};
+function prodName(sku){ var p = PRODUCTS.filter(function(x){ return x.sku === sku; })[0]; return p ? p.n : sku; }
+function renderNiches(){
+  var N = S.nich, M = S.role === 'mp', R = nichCalc();
+  var h = '<div class="page-h"><div><h1>Что выпускать следующим' + ex('Данные ниш — MPStats и площадки, отдельный еженедельный фид; экономика считается по вашим фактическим расходам из юнит-экономики (комиссия, логистика по габариту, невыкуп, себестоимость по материалу и весу).') + '</h1>' + why('ниши перебирают вручную месяцами; система проверяет все ' + nf(NICH_TOTAL) + ' ниш WB и Ozon и считает вашу экономику в каждой. Решение и ответственность — за вами') + '</div></div>';
+  var pin = function(k, lbl, val, d){ return '<label>' + lbl + '<input class="pin nrm" data-act="nich-set" data-k="' + k + '" value="' + nf(val, d) + '" aria-label="' + lbl + '"></label>'; };
+  h += '<div class="rnp-bar"><div class="unit-set">' + pin('budget', 'Бюджет на оснастку, млн ₽', N.budget, 1) + '<span class="seg">' + [['pp','Полипропилен'],['pe','Полиэтилен'],['any','Любой']].map(function(m){ return '<button data-act="nich-mat" data-m="' + m[0] + '" class="' + (N.mat === m[0] ? 'on' : '') + '">' + m[1] + '</button>'; }).join('') + '</span>' + pin('tgt', 'Целевая маржа, %', N.tgt, 0) + pin('maxSel', 'Макс. продавцов с продажами', N.maxSel, 0) + pin('minVol', 'Мин. объём ниши, млн ₽/мес', N.minVol, 0) + pin('pay', 'Окупаемость, мес', N.pay, 0) +
+    '<button class="btn primary" data-act="nich-calc">Пересчитать</button>' + ex('Скоринг = 30% × окупаемость (1 − мес / 2×лимит) + 25% × маржа (маржа / 2×цель) + 20% × рост за год (/60%) + 15% × (1 − доля ТОП-3 / 60%) + 10% × (1 − продавцов / максимум). Фильтры: материал, бюджет оснастки, продавцы, объём, окупаемость, доля ТОП-3 ≤ 60%. Ожидаемая доля новичка — до 12% ниши (четыре «средних» продавца). Статус «кандидат» — маржа не ниже цели, уверенность ≥ 75%, доля ТОП-3 ≤ 35%. Всё считается кодом из массива ниш по этим параметрам.') + '</div></div>';
+  var kpi = function(k){ return '<div class="card kpi"><div class="kpi-l">' + k[0] + '</div><div class="kpi-v" style="font-size:18px;white-space:normal;line-height:1.25">' + k[1] + '</div><div class="kpi-d" style="flex-wrap:wrap">' + k[2] + '</div></div>'; };
+  h += '<div class="kpis fin-k">' + [
+    ['Ниш проверено', nf(NICH_TOTAL), 'подходят под параметры: <b>' + R.pass.length + '</b> · кандидатов ' + R.cand],
+    ['Лучшая по окупаемости', R.best ? R.best.x.n : '—', R.best ? Math.round(R.best.pay) + ' мес · маржа ' + nf(R.best.marP, 0) + '%' : 'нет ниш под параметры'],
+    ['Новинки с ростом > 50% за 30 дней', nf(NICH_NEW_TOTAL), 'в смежных категориях · ' + NICH_NEW.filter(function(x){ return x.gr > 50; }).length + ' ближайших к нашему ассортименту ниже'],
+    ['Последний скан', 'сегодня 06:30', 'следующий — понедельник · фид ниш MPStats']
+  ].map(kpi).join('') + '</div>';
+  // ТОП-10
+  h += '<div class="sec-h"><h2>ТОП-10 ниш под ваши параметры' + ex('Объём, рост, продавцы и доля ТОП-3 — из фида ниш (оценки продаж приблизительные, см. уверенность). Ваша маржа, оснастка и окупаемость считаются по экономике компании. Клик по строке — почему, риски, экономика единицы.') + '</h2><span class="hint">скоринг — в строке · нажмите на нишу</span></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl sub pl nich" style="min-width:1000px;width:100%"><thead><tr><th>Ниша</th><th class="n">Объём, млн ₽/мес</th><th class="n">Рост за год</th><th class="n">Продавцов с продажами</th><th class="n">Доля ТОП-3</th><th class="n">Средний чек, ₽</th><th class="n">Ваша маржа</th><th class="n">Оснастка, млн ₽</th><th class="n">Окупаемость, мес</th><th class="n">Уверенность</th><th>Статус</th></tr></thead><tbody>';
+  R.top.forEach(function(r){
+    var x = r.x, open = N.open === x.id, st = NICH_ST[r.st];
+    h += '<tr class="' + (open ? 'open' : '') + '" data-act="nich-open" data-id="' + x.id + '"><td style="min-width:200px"><b>' + x.n + '</b><div class="muted" style="font-size:12px">' + x.cat + ' · скоринг ' + Math.round(r.score) + '</div></td><td class="n">' + nf(x.vol, 0) + '</td><td class="n"><span class="' + (x.gr >= 30 ? 'pos' : '') + '">+' + x.gr + '%</span></td><td class="n">' + x.sel + '</td><td class="n">' + x.top3 + '%</td><td class="n">' + nf(x.chk) + '</td><td class="n"><span class="cell-flag ' + (r.marP < N.tgt ? 'r' : (r.marP < N.tgt + 5 ? 'a' : 'g')) + '">' + nf(r.marP, 0) + '%</span></td><td class="n">' + nf(x.tool, 1) + '</td><td class="n"><b>' + Math.round(r.pay) + ' мес</b></td><td class="n">' + x.conf + '%</td><td style="white-space:nowrap"><span class="pill ' + st[0] + '">' + st[1] + '</span></td></tr>';
+    if (open){
+      var u = r.u, ttl = 'чек ' + nf(u.price) + ' − комиссия ' + nf(u.comm, 0) + ' − логистика ' + nf(u.log, 0) + ' − хранение ' + nf(u.stor, 0) + ' − реклама ' + nf(u.ads, 0) + ' − невыкуп ' + nf(u.ret, 0) + ' − себестоимость ' + nf(u.cogs, 0) + ' − налог ' + nf(u.tax, 0) + ' = ' + nf(r.marU, 0) + ' ₽/шт';
+      h += '<tr class="whyr"><td colspan="11"><div class="why"><div class="why-g nich-g">' +
+        '<div class="why-c"><b>Почему</b><ul class="nich-ul">' + x.why.map(function(t){ return '<li>' + t + '</li>'; }).join('') + '</ul></div>' +
+        '<div class="why-c"><b>Что может пойти не так</b><ul class="nich-ul">' + x.risks.map(function(t){ return '<li>' + t + '</li>'; }).join('') + '</ul></div>' +
+        '<div class="why-c"><b>Экономика единицы</b><table class="tbl sub" style="width:100%"><tbody>' + [['Средний чек', u.price, ''],['Комиссия площадки', -u.comm, nf(R.commS * 100, 1) + '%'],['Логистика (габарит ' + x.size + ')', -u.log, ''],['Хранение', -u.stor, ''],['Реклама (ДРР ' + x.drr + '%)', -u.ads, ''],['Невыкуп (выкуп ' + x.buy + '%)', -u.ret, ''],['Себестоимость', -u.cogs, x.w + ' г × ' + NICH_RATE[x.mat] + ' ₽/кг + упаковка'],['Налог', -u.tax, '']].map(function(q){ return '<tr><td>' + q[0] + (q[2] ? ' <small class="muted">' + q[2] + '</small>' : '') + '</td><td class="n">' + sg(Math.round(q[1]), 0) + '</td></tr>'; }).join('') +
+          '<tr class="pls"><td title="' + ttl + '"><b>Маржа, ₽/шт</b> · ' + nf(r.marP, 1) + '%</td><td class="n" title="' + ttl + '"><b class="' + (r.marU < 0 ? 'neg' : 'pos') + '">' + nf(r.marU, 0) + '</b></td></tr></tbody></table>' +
+          '<div class="muted" style="font-size:12px;margin-top:6px">Ожидаемо ' + nf(r.units) + ' шт/мес (доля ниши ' + nf(r.share * 100, 1) + '%) → маржа ' + nf(r.marM * 1000, 0) + ' тыс ₽/мес → оснастка ' + nf(x.tool, 1) + ' млн окупается за ' + Math.round(r.pay) + ' мес</div></div></div>' +
+        '<div class="nich-foot"><span><b>Похожие наши товары:</b> ' + x.like.map(function(sk){ return '<a href="#" data-act="go" data-view="products" style="color:var(--brand)">' + ph(sk, 'wc') + ' ' + prodName(sk) + ' <small class="muted">' + sk + '</small></a>'; }).join(' · ') + '</span>' +
+        (M ? (N.sent[x.id] ? '<span class="pill accent">Отправлено руководителю · ждёт решения</span>' : '<button class="btn" data-act="nich-send" data-id="' + x.id + '">Отправить руководителю</button>') : (N.task[x.id] ? '<span class="pill brand">Задача #' + N.task[x.id] + ' · расчёт оснастки и образца</span>' : '<button class="btn primary" data-act="nich-task" data-id="' + x.id + '">Создать задачу: расчёт оснастки и образца</button>')) + '</div></div></td></tr>';
+    }
+  });
+  if (!R.top.length) h += '<tr><td colspan="11" class="muted">Под текущие параметры ниш нет — ослабьте фильтры.</td></tr>';
+  h += '</tbody></table></div></div>';
+  h += '<div class="sec-h" data-fold="open"><h2>Отклонено по параметрам' + ex('Причина отклонения считается кодом: материал, бюджет оснастки, лимит продавцов, объём, окупаемость, доля ТОП-3 выше 60%.') + '</h2><span class="hint">' + R.rej.length + ' ниш из выборки · остальные ' + nf(NICH_TOTAL - NICHES.length) + ' не прошли первичный отбор</span></div>';
+  h += '<div class="card"><div class="card-b"><ul class="list">' + R.rej.map(function(r){ return '<li><span><b>' + r.x.n + '</b> <span class="muted">· ' + r.x.cat + ' · ' + nf(r.x.vol, 0) + ' млн ₽/мес</span></span><span class="r muted" style="font-size:13px;text-align:right;max-width:60%">' + r.rej.join('; ') + '</span></li>'; }).join('') + '</ul></div></div>';
+  // новинки
+  h += '<div class="sec-h"><h2>Новинки с ростом' + ex('Карточки младше 100 дней в смежных категориях с ростом продаж за 30 дней. Ранний сигнал: спрос появился раньше, чем ниша попала в ТОП.') + '</h2><span class="hint">смежные категории · за 30 дней</span></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:980px"><thead><tr><th>Товар</th><th>Категория</th><th class="n">Дней на рынке</th><th class="n">Продажи, шт/мес</th><th class="n">Рост за 30 дн</th><th class="n">Цена, ₽</th><th>Похож на наш</th><th>Сигнал</th></tr></thead><tbody>' +
+    NICH_NEW.map(function(x){ return '<tr><td><b>' + x.n + '</b></td><td class="muted">' + x.cat + '</td><td class="n">' + x.days + '</td><td class="n">' + nf(x.sales) + '</td><td class="n"><span class="' + (x.gr > 50 ? 'pos' : '') + '">+' + x.gr + '%</span></td><td class="n">' + nf(x.price) + '</td><td>' + ph(x.like, 'wc') + ' ' + prodName(x.like) + ' <small class="muted">' + x.like + '</small></td><td class="muted" style="white-space:normal;font-size:13px">' + x.sig + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
+  // аномалии
+  h += '<div class="sec-h"><h2>Аномалии в нишах' + ex('Резкие изменения спроса, предложения и цен за 2–4 недели: где открывается окно и куда не входить.') + '</h2><span class="hint">за 2 недели</span></div>';
+  h += '<div class="kpis fin-k">' + NICH_ANOM.map(function(a){ return '<div class="card kpi"><div class="kpi-l">' + a.n + '</div><div class="kpi-v" style="font-size:15px;line-height:1.3">' + a.head + '</div><div class="kpi-d" style="flex-wrap:wrap">' + a.tx + ' <span class="pill ' + (a.act === 'не входить' ? 'neg' : (a.act === 'в кандидатах' ? 'pos' : 'warn')) + '">' + a.act + '</span></div></div>'; }).join('') + '</div>';
+  // результат запусков
+  var VL = {ok:['pos','сработало'], part:['warn','частично'], skip:['','не входили']};
+  h += '<div class="sec-h"><h2>Запущено по разведке — результат' + ex('Каждый запуск проверяется через 3 месяца: факт продаж и маржи против прогноза разведки. Результат уточняет веса скоринга.') + '</h2><span class="hint">проверка через 3 месяца</span></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:900px"><thead><tr><th>Товар</th><th>Запуск</th><th class="n">Прогноз выручки, млн ₽/год</th><th class="n">Факт</th><th class="n">Маржа: прогноз / факт</th><th>Вердикт</th><th>Причина</th></tr></thead><tbody>' +
+    NICH_LAUNCH.map(function(x){ var pace = x.fcRev ? Math.round(x.fact / (x.fcRev / 12 * x.mon) * 100) : null; return '<tr><td>' + (x.sku ? ph(x.sku, 'wc') + ' ' : '') + '<b>' + x.n + '</b>' + (x.sku ? ' <small class="muted">' + x.sku + '</small>' : '') + '</td><td>' + x.start + '</td><td class="n">' + (x.fcRev != null ? nf(x.fcRev, 1) : '—') + '</td><td class="n">' + (x.fact != null ? nf(x.fact, 1) + ' за ' + x.mon + ' мес <span class="' + fcCls(pace) + '">(' + pace + '% темпа)</span>' : '—') + '</td><td class="n">' + (x.fcM != null ? x.fcM + '% / <b class="' + (x.fM >= x.fcM - 1 ? 'pos' : 'neg') + '">' + x.fM + '%</b>' : '—') + '</td><td>' + (VL[x.v][0] ? '<span class="pill ' + VL[x.v][0] + '">' + VL[x.v][1] + '</span>' : '<span class="muted">' + VL[x.v][1] + '</span>') + '</td><td class="muted" style="white-space:normal;font-size:13px">' + x.why + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
+  h += '<p class="note">Каждый запуск проверяется через 3 месяца; результат уточняет веса скоринга. <b>Правило:</b> разведка предлагает и показывает риски; решение о запуске принимает руководитель. Система не скрывает, что оценки продаж по нишам приблизительные: точность указана в уверенности.</p>';
+  $('#v-niches').innerHTML = h;
+}
+
 /* ---------------- seasonality ---------------- */
 var MON12 = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'], NOW_M = 9;
 var SEASON = [
@@ -3380,7 +3551,7 @@ new MutationObserver(function(){ postRender(); }).observe(document.body, {childL
 /* ---------------- routing ---------------- */
 function renderAll(){
   document.body.classList.toggle('no-ex', !S.ex); var tg = $('#exTog'); tg.classList.toggle('on', S.ex); tg.setAttribute('aria-pressed', S.ex); $('#exTogL').textContent = S.ex ? 'вкл' : 'выкл';
-  renderOverview(); renderRnp(); renderStock(); renderSeason(); renderFinance(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderDepartments(); renderSources();
+  renderOverview(); renderRnp(); renderStock(); renderSeason(); renderFinance(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderNiches(); renderDepartments(); renderSources();
   $('#navDep').style.display = S.role === 'ceo' ? '' : 'none'; $('#navFin').style.display = S.role === 'ceo' ? '' : 'none'; $('#navGrpMgmt').style.display = S.role === 'ceo' ? '' : 'none';
   if ($('#chat').classList.contains('on')) renderChat();
   document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id === 'v-' + S.view); });
@@ -3487,6 +3658,11 @@ document.addEventListener('click', function(e){
   if (a === 'kpi'){ S.kpi = t.dataset.k; return renderOverview(); }
   if (a === 'open'){ e.preventDefault(); if (window.innerWidth < 1280) closeChat(); S.caseId = t.dataset.case; S.rejectOpen = false; if (S.caseId !== 'a') S.period = 'week'; return go('analysis'); }
   if (a === 'period'){ S.period = t.dataset.p; return renderAnalysis(); }
+  if (a === 'nich-open'){ S.nich.open = S.nich.open === t.dataset.id ? null : t.dataset.id; return renderNiches(); }
+  if (a === 'nich-mat'){ S.nich.mat = t.dataset.m; return renderNiches(); }
+  if (a === 'nich-calc'){ document.querySelectorAll('[data-act="nich-set"]').forEach(function(el){ var nv = parseFloat(String(el.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(nv)) S.nich[el.dataset.k] = nv; }); S.nich.open = null; renderNiches(); var NR = nichCalc(); return toast('Пересчитано: под параметры подходят ' + NR.pass.length + ' ниш из ' + nf(NICH_TOTAL) + (NR.best ? ', лучшая по окупаемости — ' + NR.best.x.n.toLowerCase() : '')); }
+  if (a === 'nich-task'){ var nx = NICHES.filter(function(x){ return x.id === t.dataset.id; })[0]; if (!nx || S.nich.task[nx.id]) return; S.nich.task[nx.id] = S.taskNo++; renderNiches(); return toast('Задача #' + S.nich.task[nx.id] + ' создана в Битрикс24: расчёт оснастки и образца — ' + nx.n + ' · ответственный: технолог'); }
+  if (a === 'nich-send'){ var ns2 = NICHES.filter(function(x){ return x.id === t.dataset.id; })[0]; if (!ns2) return; S.nich.sent[ns2.id] = true; renderNiches(); return toast('Передано Андрею Викторовичу: кандидат «' + ns2.n + '» на расчёт оснастки'); }
   if (a === 'verdict'){ S.verdict[S.caseId] = t.dataset.v || null; renderAnalysis(); if (t.dataset.v) toast('Спасибо, вердикт учтён: система использует его при следующих разборах'); return; }
   if (a === 'own-mode'){ S.ownMode = !S.ownMode; renderAnalysis(); return toast(S.ownMode ? 'Режим «Сначала своя версия» включён' : 'Режим «Сначала своя версия» выключен — разбор показывается сразу'); }
   if (a === 'own-open'){ var ot = $('#ownTxt'), ov = ot ? ot.value.trim() : ''; if (!ov) return toast('Напишите вашу версию — хотя бы одно предложение'); S.own[S.caseId] = ov; delete S.ownDraft[S.caseId]; renderAnalysis(); return toast('Ваша версия сохранена — сравните её с разбором системы'); }
@@ -3506,6 +3682,7 @@ document.addEventListener('change', function(e){
   if (t.dataset.act === 'rnp-plan'){ var v = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(v)){ var kp = t.dataset.k.split('|'); if (kp[1] === 'rev'){ PLAN[kp[0]].oct.rev = Math.round(v * MONTH_DAYS); delete S.rnp.plan[t.dataset.k]; } else S.rnp.plan[t.dataset.k] = v; } var sl = $('#v-rnp .rnp-wrap').scrollLeft; renderRnp(); $('#v-rnp .rnp-wrap').scrollLeft = sl; return; }
   if (t.dataset.act === 'fin-norm'){ var nv2 = parseFloat(String(t.value).replace(',', '.')); if (!isNaN(nv2)) S.fin.norm[t.dataset.k] = nv2; return renderAll(); }
   if (t.dataset.act === 'dds-live') return ddsLive();
+  if (t.dataset.act === 'nich-set'){ var nv2 = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(nv2)) S.nich[t.dataset.k] = nv2; return; }
   if (t.dataset.act === 'fin-unit-set'){ var uv = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(uv)) S.fin.unit[t.dataset.k] = uv; return renderFinance(); }
   if (t.dataset.act === 'yp-in'){ var yv = parseFloat(String(t.value).replace(/[\s\u00a0]/g, '').replace(',', '.')); if (!isNaN(yv)) S.yp[t.dataset.k] = yv; return renderRnp(); }
   if (t.dataset.act === 'stk-sel'){ S.stk.sel[t.dataset.s] = t.checked; return renderStock(); }
