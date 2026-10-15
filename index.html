@@ -697,6 +697,11 @@ tr.new td{background:#F3F8F5}
 .rev-rules{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-top:4px}
 .rev-rules span{display:inline-flex;gap:5px;align-items:center}
 .rev-rules .ic{width:16px;height:16px;border-radius:50%;background:var(--pos-bg);color:var(--pos);font-size:10px;display:inline-flex;align-items:center;justify-content:center;font-style:normal}
+.rev-rules .rev-rule{display:inline-flex;gap:5px;align-items:center;background:none;border:0;padding:2px 4px;border-radius:6px;font:inherit;color:inherit;cursor:pointer}
+.rev-rules .rev-rule:hover{background:var(--pos-bg)}
+.rev-rules .rev-rule.off{color:#9a9a9a;text-decoration:line-through}
+.rev-rules .rev-rule.off .ic{background:#eee;color:#999}
+.rev-rules .rev-rule[disabled]{cursor:default;opacity:.8}
 .tbl .rev-txt{white-space:normal;max-width:320px;font-size:13px}
 .tbl .rev-ans{white-space:normal;max-width:380px;font-size:13px;color:var(--ink-2)}
 .rev-chk{font-size:12px;margin-top:4px}
@@ -3234,13 +3239,16 @@ var REV_Q = [
 ];
 // проверка запрещённого площадками — кодом, перед отправкой
 var REV_RULES = [
-  [/https?:\/\/|www\.|\.ru\b|\.com\b|t\.me/i, 'ссылка'],
-  [/\+7|8[\s(]?9\d\d|@[a-z0-9]/i, 'контакты'],
-  [/промокод|по коду|скидк\w* по/i, 'промокод'],
-  [/измени\w* оценк|поменя\w* оценк|поставь\w* (5|пять)|исправ\w* оценк/i, 'просьба изменить оценку'],
-  [/вернём деньги|компенсац|подарок|бонус|в подарок/i, 'обещание компенсации']
+  [/https?:\/\/|www\.|\.ru\b|\.com\b|t\.me/i, 'ссылка', 'links'],
+  [/\+7|8[\s(]?9\d\d|@[a-z0-9]/i, 'контакты', 'links'],
+  [/промокод|по коду|скидк\w* по/i, 'промокод', 'promo'],
+  [/измени\w* оценк|поменя\w* оценк|поставь\w* (5|пять)|исправ\w* оценк/i, 'просьба изменить оценку', 'rating'],
+  [/вернём деньги|компенсац|подарок|бонус|в подарок/i, 'обещание компенсации', 'comp']
 ];
-function revCheck(text){ return REV_RULES.filter(function(r){ return r[0].test(text); }).map(function(r){ return r[1]; }); }
+// правила площадок — переключаемые; выключенное правило не проверяется перед отправкой
+var REV_RULE_UI = [['links','без ссылок и контактов'],['promo','без промокодов'],['rating','без просьб изменить оценку'],['comp','без обещаний компенсации']];
+function revRules(){ var P = S.rev.policy; if (!P.rules) P.rules = {links:true, promo:true, rating:true, comp:true}; return P.rules; }
+function revCheck(text){ var R = revRules(); return REV_RULES.filter(function(r){ return R[r[2]] !== false && r[0].test(text); }).map(function(r){ return r[1]; }); }
 function revReply(r){ var T = REV_TONE[S.rev.policy.tone] || REV_TONE.friendly; return S.rev.text[r.id] || (T.open + r.body + (r.kind === 'pos' || r.kind === 'q' ? T.pos : T.neg) + ' — ' + S.rev.policy.sign); }
 function revStatus(r){
   // статус по политике: auto — отправлен автоматически, check — черновик на проверку, human — только человек
@@ -3273,7 +3281,7 @@ function renderReviews(){
   h += '<div class="card"><div class="card-h"><h3>Политика автоответов' + ex('Политику задаёт руководитель: что уходит автоматически, что — черновиком на проверку, что отвечает только человек. Изменение сразу пересчитывает статусы очереди ниже.') + '</h3>' + (M ? '<span class="pill">политику меняет руководитель</span>' : '<span class="pill brand">действует с 01.10</span>') + '</div><div class="card-b">' +
     '<div class="rev-pol">' + tg('auto45', '4–5★ без вопроса — отвечать автоматически', 'ошибка не стоит денег') + tg('draft13', '1–3★ — черновик на проверку человеку', 'отправляет менеджер') + tg('human', 'Брак, здоровье, возврат, претензии, вопросы в отзыве — только человек', 'менеджер не может выключить', true) + tg('q', 'Вопросы покупателей — черновик на проверку') + '</div>' +
     '<div class="rnp-bar" style="margin:12px 0 8px"><span class="muted" style="font-size:13px">Тон</span><div class="seg">' + Object.keys(REV_TONE).map(function(k){ return '<button data-act="rev-tone" data-t="' + k + '" class="' + (P.tone === k ? 'on' : '') + '"' + (M ? ' disabled' : '') + '>' + REV_TONE[k].n + '</button>'; }).join('') + '</div><div class="unit-set"><label>Подпись<input class="pin" style="width:180px;text-align:left;font-weight:500" data-act="rev-sign" value="' + esc(P.sign) + '"' + (M ? ' disabled' : '') + '></label><label>Не более ответов в сутки<input class="pin nrm" data-act="rev-limit" value="' + nf(P.limit, 0) + '"' + (M ? ' disabled' : '') + '></label></div></div>' +
-    '<div class="rev-rules">' + ['без ссылок и контактов','без промокодов','без просьб изменить оценку','без обещаний компенсации'].map(function(t){ return '<span><i class="ic pos">✓</i>' + t + '</span>'; }).join('') + '<span class="muted">— проверяется кодом перед отправкой</span></div></div></div>';
+    '<div class="rev-rules">' + REV_RULE_UI.map(function(u){ var on = revRules()[u[0]] !== false; return '<button type="button" class="rev-rule' + (on ? '' : ' off') + '" data-act="rev-rule" data-k="' + u[0] + '"' + (M ? ' disabled' : '') + '><i class="ic">' + (on ? '✓' : '○') + '</i>' + u[1] + '</button>'; }).join('') + '<span class="muted">— проверяется кодом перед отправкой; выключенное правило не проверяется</span></div></div></div>';
   // очередь
   h += '<div class="sec-h"><h2>Очередь за сегодня' + ex('10 отзывов из ' + C.total + ' за сутки: все, что требуют внимания, и примеры автоответов. Статус считается по политике: что ушло автоматически, что ждёт проверки, что отвечает только человек.') + '</h2><span class="hint">остальные ' + (REV_REST.auto + REV_REST.check + REV_REST.manual) + ' — положительные, отвечены автоматически, или в работе у менеджера</span></div>';
   h += '<div class="card"><div class="tbl-wrap"><table class="tbl sub rev" style="min-width:1000px;width:100%"><thead><tr><th>Товар</th><th>Оценка</th><th>Отзыв</th><th>Ответ</th><th>Статус</th></tr></thead><tbody>';
@@ -3797,6 +3805,7 @@ document.addEventListener('click', function(e){
   if (a === 'kpi'){ S.kpi = t.dataset.k; return renderOverview(); }
   if (a === 'open'){ e.preventDefault(); if (window.innerWidth < 1280) closeChat(); S.caseId = t.dataset.case; S.rejectOpen = false; if (S.caseId !== 'a') S.period = 'week'; return go('analysis'); }
   if (a === 'period'){ S.period = t.dataset.p; return renderAnalysis(); }
+  if (a === 'rev-rule'){ if (S.role === 'mp') return; var RR = revRules(), rk = t.dataset.k, rl = (REV_RULE_UI.filter(function(u){ return u[0] === rk; })[0] || [])[1]; RR[rk] = RR[rk] === false; renderReviews(); return toast(RR[rk] ? 'Правило «' + rl + '» включено' : 'Правило «' + rl + '» выключено: проверка перед отправкой его пропустит. Это правило площадок — лучше не отключать'); }
   if (a === 'rev-tone'){ if (S.role === 'mp') return; S.rev.policy.tone = t.dataset.t; return renderReviews(); }
   if (a === 'rev-edit'){ S.rev.edit[t.dataset.id] = !S.rev.edit[t.dataset.id]; return renderReviews(); }
   if (a === 'rev-save'){ var ta = $('#revTa-' + t.dataset.id); if (ta){ S.rev.text[t.dataset.id] = ta.value.trim(); var vs = revCheck(ta.value); S.rev.warn[t.dataset.id] = vs.length ? vs.join(', ') : null; } S.rev.edit[t.dataset.id] = false; renderReviews(); return toast(vs && vs.length ? 'Черновик сохранён, но отправить нельзя: ' + vs.join(', ') : 'Черновик сохранён — проверка кодом: нарушений нет'); }
