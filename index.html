@@ -690,6 +690,21 @@ tr.new td{background:#F3F8F5}
 .tbl.nich td{vertical-align:middle}
 .tbl.nich th{white-space:normal;line-height:1.2;max-width:90px}
 .tbl.nich tr.whyr td{vertical-align:top}
+.rev-pol{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px}
+.rev-tg{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;cursor:pointer}
+.rev-tg input{margin-top:3px;accent-color:var(--brand)}
+.rev-tg.off{cursor:default}
+.rev-rules{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-top:4px}
+.rev-rules span{display:inline-flex;gap:5px;align-items:center}
+.rev-rules .ic{width:16px;height:16px;border-radius:50%;background:var(--pos-bg);color:var(--pos);font-size:10px;display:inline-flex;align-items:center;justify-content:center;font-style:normal}
+.tbl .rev-txt{white-space:normal;max-width:320px;font-size:13px}
+.tbl .rev-ans{white-space:normal;max-width:380px;font-size:13px;color:var(--ink-2)}
+.rev-chk{font-size:12px;margin-top:4px}
+.rev-act{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.rev-act .btn{padding:5px 10px;font-size:12.5px}
+.stars{color:var(--accent);letter-spacing:1px;font-size:13px}
+.tbl.rev td{vertical-align:top}
+@media (max-width:900px){ .rev-pol{grid-template-columns:1fr} }
 .nich-g{grid-template-columns:1fr 1fr 1.2fr;min-width:0}
 .nich-g > div{min-width:0;overflow-wrap:anywhere}
 .tbl.nich tr.whyr td .why{max-width:100%;overflow:hidden}
@@ -831,6 +846,7 @@ body.no-ex .whyline{display:none}
       <button data-act="go" data-view="stock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9l9-5 9 5v11H3z"/><path d="M8 20v-6h8v6M8 14h8"/></svg>Остатки и подсорт</button>
       <button data-act="go" data-view="season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Сезонность</button>
       <button data-act="go" data-view="market"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3.5 20.5h17"/><path d="M5 16l4.5-5 3.5 3 6-7"/><path d="M15 7h4v4"/></svg>Рынок</button>
+      <button data-act="go" data-view="reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg>Отзывы и вопросы</button>
       <button data-act="go" data-view="niches"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>Новые товары</button>
       <div class="nav-grp" id="navGrpMgmt">Управление</div>
       <button data-act="go" data-view="finance" id="navFin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V9M10 19V5M16 19v-7M21 19H3"/></svg>Финансы</button>
@@ -864,6 +880,7 @@ body.no-ex .whyline{display:none}
     <section class="view" id="v-decisions"></section>
     <section class="view" id="v-products"></section>
     <section class="view" id="v-market"></section>
+    <section class="view" id="v-reviews"></section>
     <section class="view" id="v-niches"></section>
     <section class="view" id="v-departments"></section>
     <section class="view" id="v-season"></section>
@@ -1148,7 +1165,7 @@ var PRODUCTS = [
 var MP_TEAM = ['Ковалёва О.'];
 
 /* ---------------- state ---------------- */
-var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, rnpPanel:false, rnpTab:'days', planLvl:'year', yp:{rev:1000, net:45, proposed:false, approved:false}, yq:'q1', ym:null, rnpFocus:null, chainFocus:null, stk:{f:'all', k:'urg', d:1, open:{}, sel:{}, done:{}, by:{}}, fin:{tab:'pl', mo:'oct', seg:'all', why:null, art:'', added:[], norm:{}, sk:'marR', sd:-1, fy:'fact', scn:'base', unit:{tax:null, vat:0, tgt:15}, n27:{}, task:{}}, verdict:{}, verdictNote:{}, own:{}, ownDraft:{}, ownMode:true, nich:{budget:6, mat:'any', tgt:15, maxSel:150, minVol:10, pay:12, open:null, task:{}, sent:{}}, season:{mode:'mkt', open:null}, fp:{sku:'NP-1405', lev:{}}, planMonth:'oct', planProp:[], photo:{ceo:'big', mp:'big'}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
+var S = { view:'overview', role:'ceo', kpi:'week', caseId:'a', period:'week', open:{ads:true}, sel:{}, edits:{}, status:{}, rejectOpen:false, sort:{k:'rev', d:-1}, where:'cloud', taskNo:48231, ex:true, intro:true, pst:{}, pending:{}, sentAt:{}, logAll:{}, fold:{}, introSteps:false, rnp:{mode:'days', ch:'all', off:{}, adsOff:false, plan:{}, com:{}}, rnpPanel:false, rnpTab:'days', planLvl:'year', yp:{rev:1000, net:45, proposed:false, approved:false}, yq:'q1', ym:null, rnpFocus:null, chainFocus:null, stk:{f:'all', k:'urg', d:1, open:{}, sel:{}, done:{}, by:{}}, fin:{tab:'pl', mo:'oct', seg:'all', why:null, art:'', added:[], norm:{}, sk:'marR', sd:-1, fy:'fact', scn:'base', unit:{tax:null, vat:0, tgt:15}, n27:{}, task:{}}, verdict:{}, verdictNote:{}, own:{}, ownDraft:{}, ownMode:true, nich:{budget:6, mat:'any', tgt:15, maxSel:150, minVol:10, pay:12, open:null, task:{}, sent:{}}, rev:{policy:{auto45:true, draft13:true, human:true, q:true, tone:'friendly', sign:'Команда Натур Пласт', limit:200}, done:{}, edit:{}, text:{}, warn:{}, qdone:{}, task:{}}, season:{mode:'mkt', open:null}, fp:{sku:'NP-1405', lev:{}}, planMonth:'oct', planProp:[], photo:{ceo:'big', mp:'big'}, niche:'cont', recoTask:{}, chat:[], chatHow:false, supplyTask:null };
 try { ['ceo','mp'].forEach(function(r){ var v = localStorage.getItem('np-photo-' + r); if (v) S.photo[r] = v; }); } catch(e) {}
 try { if (localStorage.getItem('np-demo-ex') === '0') S.ex = false; if (localStorage.getItem('np-demo-intro') === '0') S.intro = false; } catch(e) {}
 CASE_ORDER.forEach(function(id){ var c = CASES[id]; S.sel[id] = {}; c.props.forEach(function(p, i){ S.sel[id][p.id] = c.exclusive ? i === 1 : true; }); });
@@ -1264,6 +1281,7 @@ function renderOverview(){
     '<li><span>Wildberries, Ozon, Битрикс24</span><span class="r pos">загружено 07:12–07:20</span></li>' +
     '<li><span>Сопоставление артикулов с 1С</span><span class="r warn">312 из 318</span></li>' +
     '<li><span>Отклонений ниже порога 25 тыс ₽</span><span class="r muted">17 · в отчёт не вынесены</span></li>' +
+    (function(){ var rc = revCounts(); return '<li><span>Ответила на ' + rc.auto + ' отзывов, ' + rc.check + ' ждут проверки</span><span class="r"><a href="#" data-act="go" data-view="reviews" style="color:var(--brand)">Отзывы и вопросы →</a></span></li>'; })() +
     (M ? '' : '<li><span>Проверила ' + nf(NICH_TOTAL) + ' ниш: ' + nichCalc().cand + ' новых кандидата под ваш бюджет оснастки</span><span class="r"><a href="#" data-act="go" data-view="niches" style="color:var(--brand)">Новые товары →</a></span></li>') + '</ul></div></div></div>';
   $('#v-overview').innerHTML = h;
   var nc = open.length; $('#navCnt').textContent = nc; $('#navCnt').style.display = nc ? '' : 'none';
@@ -1573,8 +1591,8 @@ function renderProducts(){
 /* ---------------- sources ---------------- */
 function renderSources(){
   var src = [
-    ['Wildberries API','ok','Продажи, заказы, реклама, отзывы, возвраты, тарифы. Воронка по карточкам — до 365 дней, по дням — 7 дней, 3 запроса в минуту; история копится в хранилище платформы бессрочно','сегодня 07:12','48 210 строк за сутки'],
-    ['Ozon API','ok','Seller и Performance API: продажи, остатки, поставки, реклама. Аналитика без Premium — 3 месяца, поэтому история хранится у нас','сегодня 07:15','21 640 строк за сутки'],
+    ['Wildberries API','ok','Продажи, заказы, реклама, отзывы, возвраты, тарифы. Воронка по карточкам — до 365 дней, по дням — 7 дней, 3 запроса в минуту; история копится в хранилище платформы бессрочно. Отзывы и вопросы — отдельный токен с правом ответа','сегодня 07:12','48 210 строк за сутки'],
+    ['Ozon API','ok','Seller и Performance API: продажи, остатки, поставки, реклама. Аналитика без Premium — 3 месяца, поэтому история хранится у нас; отзывы — при подписке Premium Plus','сегодня 07:15','21 640 строк за сутки'],
     ['WB Джем / Ozon Premium','ok','Позиции и поисковые запросы по своим карточкам (подписки компании)','сегодня 07:16','1 240 запросов · 14 карточек'],
     ['1С: Управление торговлей','warn','Себестоимость партий, остатки на складе, номенклатура','сегодня 06:40','312 из 318 артикулов сопоставлено'],
     ['Битрикс24','ok','Задачи, ответственные, статусы, протоколы планёрок — в обе стороны','сегодня 07:20','12 открытых задач системы'],
@@ -1594,7 +1612,8 @@ function renderSources(){
     '<li><span class="ic pos">✓</span><span style="flex:1">Отзывы за неделю загружены и размечены по причинам</span><span class="r">1 284 из 1 284</span></li>' +
     '<li><span class="ic pos">✓</span><span style="flex:1">Числа в разборах — 100% из данных: если модель написала число, которого нет во входе, разбор отклоняется кодом</span><span class="r">0 отклонений за сутки</span></li>' +
     '<li><span class="ic pos">✓</span><span style="flex:1">Библиотека паттернов v0.4 — 18 паттернов, пересмотрена после изменений WB от 19.09.2025</span><span class="r">18 паттернов</span></li>' +
-    '<li><span class="ic pos">✓</span><span style="flex:1">Точность разборов за сентябрь по вердиктам руководителя и менеджеров</span><span class="r">83%</span></li></ul></div></div>';
+    '<li><span class="ic pos">✓</span><span style="flex:1">Точность разборов за сентябрь по вердиктам руководителя и менеджеров</span><span class="r">83%</span></li>' +
+    '<li><span class="ic pos">✓</span><span style="flex:1">Ответы на отзывы: 0 нарушений правил площадок за 30 дней (проверка кодом перед отправкой)</span><span class="r">1 312 ответов</span></li></ul></div></div>';
   var cloud = S.where === 'cloud';
   h += '<div class="sec-h" data-fold="closed"><h2>Как устроен ассистент</h2><span class="hint">маршрутизатор моделей</span></div>' + ex('Ассистент выбирает модель по сложности вопроса и берёт цифры запросами к данным — поэтому они сходятся с экранами.') + '<div class="card"><div class="card-b">' + routerHtml() + '</div></div>';
   if (S.role === 'mp'){ h += '<p class="note">Где работают модели (облако или сервер компании) — настройка руководителя.</p>'; $('#v-sources').innerHTML = h; return; }
@@ -1746,8 +1765,8 @@ function routerHtml(){
     '<table class="cost"><tr><td>Облачные модели по API (Qwen3-32B в РФ-облаке, YandexGPT Pro)</td><td>от ~10–30 тыс ₽/мес</td></tr><tr><td>Свой сервер с GPU под Qwen3.5-9B и Qwen3-32B</td><td>от ~150–250 тыс ₽ разово</td></tr><tr><td>Аренда GPU-сервера</td><td>~40–80 тыс ₽/мес</td></tr></table><p class="note" style="margin-top:6px">Оценка при текущем объёме, уточняется по ТЗ.</p>';
 }
 var CHIPS = {
-  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне'],['netsep','Какая чистая прибыль за сентябрь'],['spent','На что ушли деньги в октябре'],['norms','Какие статьи расходов выше нормы и почему'],['niches','Что выпускать следующим'],['cashspring','Хватит ли нам денег на весенний сезон']],
-  mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне']]
+  ceo: [['sku','Сводка по контейнеру 5 л'],['olga','Как работает Ольга за месяц'],['stock','Сколько кашпо 3 л на складах'],['comp','Что изменилось у конкурентов за неделю'],['nov','Какие товары будут терять маржу в ноябре'],['late','Просроченные задачи по компании'],['plan','Итоги планёрки и что не выполнено'],['dept','Какой отдел отстаёт от плана'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне'],['netsep','Какая чистая прибыль за сентябрь'],['spent','На что ушли деньги в октябре'],['norms','Какие статьи расходов выше нормы и почему'],['reviews','Какие темы в отзывах'],['niches','Что выпускать следующим'],['cashspring','Хватит ли нам денег на весенний сезон']],
+  mp: [['sku','Сводка по контейнеру 5 л'],['late','Мои просроченные задачи'],['stock','Сколько кашпо 3 л на складах'],['ctr','Почему упал CTR у кашпо'],['comp','Конкуренты по моим товарам за неделю'],['fin','Выручка компании за месяц'],['rnp','РНП по контейнеру за неделю'],['restock','Что нужно дозаказать на этой неделе'],['money','Сколько денег в товаре и где'],['spring','Что готовить к весне'],['reviews','Какие темы в отзывах']]
 };
 function matchQ(t){
   t = t.toLowerCase();
@@ -1766,6 +1785,7 @@ function matchQ(t){
   if (/планёрк|планерк|протокол|совещан/.test(t)) return mp ? 'deny' : 'plan';
   if (/отдел|отста|план /.test(t)) return mp ? 'deny' : 'dept';
   if (/ноябр|прогноз|терять|будущ/.test(t)) return mp ? 'deny' : 'nov';
+  if (/отзыв|темы/.test(t)) return 'reviews';
   if (/выпускать|новые товар|ниш/.test(t)) return mp ? 'deny' : 'niches';
   if (/конкурент|рынок/.test(t)) return 'comp';
   if (/ctr|фото|клик/.test(t)) return 'ctr';
@@ -1806,6 +1826,12 @@ function answer(id){
         '<p>Казань закончится через 8 дней — создать поставку 600 шт со склада компании?</p>',
       acts: S.supplyTask ? '<span class="pill brand">Поставка создана · задача #' + S.supplyTask + '</span>' : '<button class="btn primary" data-act="chat-supply">Создать поставку в Казань · 600 шт</button>',
       tools:['1С: остатки по складам, NP-3103','WB API: остатки и продажи по складам за 14 дней','Ozon API: остатки']};
+    break;
+  case 'reviews':
+    var RC = revCounts(), tt = REV_TOPICS.slice().sort(function(a, b){ return b.share - a.share; }).slice(0, 3);
+    A = {tier:'light', text:'<p>За 30 дней главные темы: ' + tt.map(function(x){ return '<b>' + x.t + '</b> (' + x.share + '% отзывов ' + prodName(x.sku).toLowerCase() + ')'; }).join(', ') + '. За сутки ' + RC.total + ' новых отзывов: ' + RC.auto + ' отвечены автоматически, ' + RC.check + ' ждут проверки.</p>',
+      body: tbl(['Тема','Товар','Доля','Связь'], tt.map(function(x){ return [x.t, x.sku, x.share + '%', x.link.type === 'case' ? 'разбор' : (x.link.type === 'task' ? 'задача #' + x.link.no : x.link.txt)]; })),
+      acts:'<button class="btn" data-act="chat-go" data-view="reviews">Отзывы и вопросы →</button>', tools:['Отзывы WB и Ozon за 30 дней, разметка тем','Очередь ответов за сутки и политика автоответов']};
     break;
   case 'niches':
     var NR = nichCalc(), t3 = NR.top.slice(0, 3);
@@ -3172,6 +3198,119 @@ function ddsLive(){
   w.innerHTML = share > nrm ? '<span class="' + normCls(share, nrm) + '">⚠ После этой операции ' + a.value + ' — ' + nf(share, 1) + '% выручки при норме ' + nf(nrm, 1) + '%.</span>' : '<span class="pos">В пределах нормы: ' + a.value + ' — ' + nf(share, 1) + '% при норме ' + nf(nrm, 1) + '%.</span>';
 }
 
+/* ---------------- reviews & questions ---------------- */
+// отзыв: kind — pos (4–5★ без вопроса), neg (1–3★), crit (брак, здоровье, возврат, претензия), q (вопрос в отзыве); body — суть ответа, обёртка по тону
+var REVIEWS = [
+  {id:'v01', sku:'NP-1405', ch:'WB', stars:5, t:'06:48', text:'Отличный контейнер, крышка защёлкивается плотно, в шкафу ничего не рассыпается.', topic:'хвалят', kind:'pos', body:'Рады, что контейнер навёл порядок в шкафу — защёлки на крышке как раз для этого.'},
+  {id:'v02', sku:'NP-6301', ch:'Ozon', stars:5, t:'06:55', text:'Органайзер встал в холодильник как родной, бутылки больше не падают.', topic:'хвалят', kind:'pos', body:'Органайзер рассчитан на стандартную полку холодильника — приятно, что всё встало на место.'},
+  {id:'v03', sku:'NP-2210', ch:'Ozon', stars:4, t:'07:03', text:'Хороший органайзер, но хотелось бы ещё цвет графит в наборе.', topic:'хвалят', kind:'pos', body:'Спасибо за идею с графитом — передали технологам, цвет рассматриваем для следующей партии.'},
+  {id:'v04', sku:'NP-6104', ch:'WB', stars:5, t:'07:10', text:'Банки для круп — то, что нужно: крышки плотные, крупа не отсыревает.', topic:'хвалят', kind:'pos', body:'Крышки с силиконовым уплотнителем как раз держат влагу снаружи — рады, что крупы в порядке.'},
+  {id:'v05', sku:'NP-5110', ch:'WB', stars:5, t:'07:15', text:'Ведро крепкое, ручка не гнётся даже с полным.', topic:'хвалят', kind:'pos', body:'Ручка усилена металлической дугой, поэтому держит полное ведро без прогиба.'},
+  {id:'v06', sku:'NP-1405', ch:'WB', stars:2, t:'07:21', text:'Заказывала 5 литров, а по факту влезает меньше — не тот размер, что ожидала.', topic:'не тот размер', kind:'neg', body:'5 л — это внешний объём, полезный — 4,3 л; мы уточняем это в карточке, чтобы не вводить в заблуждение. Если контейнер не подошёл, оформите возврат через площадку — примем его.'},
+  {id:'v07', sku:'NP-4045', ch:'Ozon', stars:3, t:'07:30', text:'Корзина пришла с царапинами на боку, видимо, при доставке. Пользоваться можно, но осадок.', topic:'царапины при доставке', kind:'neg', body:'Царапины появились при перевозке — с этой недели корзины упаковываем в плотную плёнку. Если внешний вид мешает, товар можно вернуть через площадку.'},
+  {id:'v08', sku:'NP-6020', ch:'WB', stars:2, t:'07:34', text:'Крышка хлебницы закрывается не плотно, щель по краю.', topic:'крышка не плотно', kind:'neg', body:'Щель по краю — признак перекоса крышки, проверяем партию по пресс-форме. Напишите через площадку номер партии с дна хлебницы — разберёмся с конкретным экземпляром.'},
+  {id:'v09', sku:'NP-3103', ch:'WB', stars:1, t:'07:40', text:'Кашпо треснуло по шву через неделю, вода на подоконнике. Хочу вернуть деньги.', topic:'брак, возврат', kind:'crit', body:'Трещина по шву — брак, так быть не должно. Оформите, пожалуйста, возврат по браку через площадку: мы заберём кашпо на проверку партии.'},
+  {id:'v10', sku:'NP-2210', ch:'Ozon', stars:4, t:'07:44', text:'Органайзер хороший. Подойдёт ли в ящик глубиной 40 см?', topic:'вопрос про размер', kind:'q', body:'Органайзер рассчитан на ящики глубиной от 38 см — в 40 см встанет свободно, секции не упираются.'}
+];
+var REV_REST = {auto:33, check:2, manual:2, wb:25, oz:12}; // остальные отзывы за сутки, не показанные в очереди
+var REV_TONE = {
+  friendly:{n:'Дружелюбно', open:'Здравствуйте! ', pos:' Спасибо, что выбрали нас!', neg:' Спасибо, что написали — это помогает делать товар лучше.'},
+  neutral:{n:'Нейтрально', open:'Здравствуйте. ', pos:' Спасибо за отзыв.', neg:' Спасибо за отзыв, мы учли замечание.'},
+  formal:{n:'Официально', open:'Уважаемый покупатель! ', pos:' Благодарим за выбор продукции.', neg:' Благодарим за обращение, замечание передано в производство.'}
+};
+var REV_TOPICS = [
+  {k:'size', t:'не тот размер / объём не совпадает', sku:'NP-1405', share:34, d:9, link:{type:'case', id:'a', txt:'разбор: 63% возвратов «не тот размер» → невыкуп −51 тыс ₽/нед'}},
+  {k:'cap', t:'хвалят вместимость', sku:'NP-4130', share:41, d:3, link:{type:'new', txt:'использовать в карточке: инфографика вместимости'}},
+  {k:'scratch', t:'царапины при доставке', sku:'NP-4045', share:18, d:2, link:{type:'task', no:48150, txt:'упаковка: плотная плёнка для корзин'}},
+  {k:'lid', t:'крышка не плотно', sku:'NP-6020', share:12, d:5, link:{type:'new', txt:'контроль пресс-формы крышки'}},
+  {k:'qsize', t:'вопрос про размер под ящик', sku:'NP-2210', share:9, d:1, link:{type:'new', txt:'добавить в карточку: таблица глубины ящиков'}},
+  {k:'smell', t:'запах пластика', sku:'NP-3103', share:7, d:-11, link:{type:'closed', txt:'закрыто: сменили сырьё, июль'}}
+];
+var REV_Q = [
+  {sku:'NP-4130', ch:'WB', q:'Выдержит ли ящик 30 л вес 10 кг игрушек, если ставить друг на друга?', a:'Да, ящики рассчитаны на штабелирование: нижний держит до 25 кг, крышка усилена рёбрами жёсткости.'},
+  {sku:'NP-6210', ch:'Ozon', q:'Сушилка подходит под мойку 50 см?', a:'Ширина сушилки 46 см — под мойку 50 см встанет с запасом по 2 см с каждой стороны.'},
+  {sku:'NP-7010', ch:'WB', q:'Есть ли дренажные отверстия в горшках для рассады?', a:'Да, в каждом горшке четыре дренажных отверстия на дне; поддон в набор не входит.'},
+  {sku:'NP-1412', ch:'Ozon', q:'Контейнеры 1,2 л можно в микроволновку?', a:'Контейнеры из полипропилена: разогрев без крышки до 100 °C допустим, крышку перед разогревом снимайте.'}
+];
+// проверка запрещённого площадками — кодом, перед отправкой
+var REV_RULES = [
+  [/https?:\/\/|www\.|\.ru\b|\.com\b|t\.me/i, 'ссылка'],
+  [/\+7|8[\s(]?9\d\d|@[a-z0-9]/i, 'контакты'],
+  [/промокод|по коду|скидк\w* по/i, 'промокод'],
+  [/измени\w* оценк|поменя\w* оценк|поставь\w* (5|пять)|исправ\w* оценк/i, 'просьба изменить оценку'],
+  [/вернём деньги|компенсац|подарок|бонус|в подарок/i, 'обещание компенсации']
+];
+function revCheck(text){ return REV_RULES.filter(function(r){ return r[0].test(text); }).map(function(r){ return r[1]; }); }
+function revReply(r){ var T = REV_TONE[S.rev.policy.tone] || REV_TONE.friendly; return S.rev.text[r.id] || (T.open + r.body + (r.kind === 'pos' || r.kind === 'q' ? T.pos : T.neg) + ' — ' + S.rev.policy.sign); }
+function revStatus(r){
+  // статус по политике: auto — отправлен автоматически, check — черновик на проверку, human — только человек
+  var P = S.rev.policy, d = S.rev.done[r.id]; if (d) return d;
+  if (r.kind === 'crit') return P.human ? 'human' : 'check';
+  if (r.kind === 'q') return P.q ? 'check' : 'auto';
+  if (r.stars <= 3) return P.draft13 ? 'check' : 'auto';
+  return P.auto45 ? 'auto' : 'check';
+}
+function revCounts(){
+  var c = {auto:REV_REST.auto, check:REV_REST.check, manual:REV_REST.manual, human:0, wb:REV_REST.wb, oz:REV_REST.oz, total:REV_REST.auto + REV_REST.check + REV_REST.manual + REVIEWS.length};
+  var autoN = 0;
+  REVIEWS.forEach(function(r){ var st = revStatus(r); if (st === 'auto'){ autoN++; if (REV_REST.auto + autoN > S.rev.policy.limit) st = 'check'; } if (st === 'auto') c.auto++; else if (st === 'manual') c.manual++; else if (st === 'skip') return; else { c.check++; if (st === 'human') c.human++; } if (r.ch === 'WB') c.wb++; else c.oz++; });
+  return c;
+}
+var REV_ST = {auto:['pos','отправлен автоматически'], check:['warn','ждёт проверки'], human:['neg','только человек'], manual:['brand','отправлен вручную'], skip:['','пропущен'], up:['accent','отправлен руководителю']};
+function stars(n){ return '<span class="stars" title="' + n + ' из 5">' + '★★★★★'.slice(0, n) + '<span class="muted">' + '★★★★★'.slice(n) + '</span></span>'; }
+function renderReviews(){
+  var M = S.role === 'mp', P = S.rev.policy, C = revCounts();
+  var h = '<div class="page-h"><div><h1>Отзывы и вопросы' + ex('Текст ответа пишет модель по тону компании и фактам товара; перед отправкой код проверяет запрещённое площадками (ссылки, контакты, промокоды, просьбы изменить оценку, обещания компенсации) и лимиты.') + '</h1>' + why('отвечать на все отзывы в день публикации без ручной рутины, а темы отзывов превращать в причины и задачи — автоответ закрывает отзыв, тема закрывает причину') + '</div></div>';
+  var kpi = function(k){ return '<div class="card kpi"><div class="kpi-l">' + k[0] + '</div><div class="kpi-v" style="font-size:19px">' + k[1] + '</div><div class="kpi-d" style="flex-wrap:wrap">' + k[2] + '</div></div>'; };
+  h += '<div class="kpis fin-k">' + [
+    ['Новых за сутки', C.total, 'WB ' + C.wb + ' · Ozon ' + C.oz],
+    ['Отвечено автоматически', '<span class="pos">' + C.auto + '</span>', 'ждут проверки: <b class="warn">' + C.check + '</b> · вручную: ' + C.manual],
+    ['Среднее время ответа', '1,4 ч', 'норма ≤ 24 ч · площадки учитывают скорость ответа'],
+    ['Рейтинг по 14 товарам', '4,7', 'снижается у 2 — <a href="#" data-act="go" data-view="products" style="color:var(--brand)">товары →</a>']
+  ].map(kpi).join('') + '</div>';
+  // политика
+  var tg = function(k, lbl, note, lock){ var dis = M && (lock || true); return '<label class="rev-tg' + (dis ? ' off' : '') + '"><input type="checkbox" data-act="rev-pol" data-k="' + k + '"' + (P[k] ? ' checked' : '') + (dis ? ' disabled' : '') + '><span><b>' + lbl + '</b>' + (note ? '<small class="muted"> — ' + note + '</small>' : '') + '</span></label>'; };
+  h += '<div class="card"><div class="card-h"><h3>Политика автоответов' + ex('Политику задаёт руководитель: что уходит автоматически, что — черновиком на проверку, что отвечает только человек. Изменение сразу пересчитывает статусы очереди ниже.') + '</h3>' + (M ? '<span class="pill">политику меняет руководитель</span>' : '<span class="pill brand">действует с 01.10</span>') + '</div><div class="card-b">' +
+    '<div class="rev-pol">' + tg('auto45', '4–5★ без вопроса — отвечать автоматически', 'ошибка не стоит денег') + tg('draft13', '1–3★ — черновик на проверку человеку', 'отправляет менеджер') + tg('human', 'Брак, здоровье, возврат, претензии, вопросы в отзыве — только человек', 'менеджер не может выключить', true) + tg('q', 'Вопросы покупателей — черновик на проверку') + '</div>' +
+    '<div class="rnp-bar" style="margin:12px 0 8px"><span class="muted" style="font-size:13px">Тон</span><div class="seg">' + Object.keys(REV_TONE).map(function(k){ return '<button data-act="rev-tone" data-t="' + k + '" class="' + (P.tone === k ? 'on' : '') + '"' + (M ? ' disabled' : '') + '>' + REV_TONE[k].n + '</button>'; }).join('') + '</div><div class="unit-set"><label>Подпись<input class="pin" style="width:180px;text-align:left;font-weight:500" data-act="rev-sign" value="' + esc(P.sign) + '"' + (M ? ' disabled' : '') + '></label><label>Не более ответов в сутки<input class="pin nrm" data-act="rev-limit" value="' + nf(P.limit, 0) + '"' + (M ? ' disabled' : '') + '></label></div></div>' +
+    '<div class="rev-rules">' + ['без ссылок и контактов','без промокодов','без просьб изменить оценку','без обещаний компенсации'].map(function(t){ return '<span><i class="ic pos">✓</i>' + t + '</span>'; }).join('') + '<span class="muted">— проверяется кодом перед отправкой</span></div></div></div>';
+  // очередь
+  h += '<div class="sec-h"><h2>Очередь за сегодня' + ex('10 отзывов из ' + C.total + ' за сутки: все, что требуют внимания, и примеры автоответов. Статус считается по политике: что ушло автоматически, что ждёт проверки, что отвечает только человек.') + '</h2><span class="hint">остальные ' + (REV_REST.auto + REV_REST.check + REV_REST.manual) + ' — положительные, отвечены автоматически, или в работе у менеджера</span></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl sub rev" style="min-width:1000px;width:100%"><thead><tr><th>Товар</th><th>Оценка</th><th>Отзыв</th><th>Ответ</th><th>Статус</th></tr></thead><tbody>';
+  var autoN = 0;
+  REVIEWS.forEach(function(r){
+    var st = revStatus(r), over = false; if (st === 'auto'){ autoN++; if (REV_REST.auto + autoN > P.limit){ st = 'check'; over = true; } }
+    var reply = revReply(r), viol = revCheck(reply), ed = S.rev.edit[r.id], L = REV_ST[st], warn = S.rev.warn[r.id];
+    var act = '';
+    if (st === 'check' || st === 'human'){
+      if (ed) act = '<textarea class="own-ta" id="revTa-' + r.id + '" rows="3">' + esc(reply) + '</textarea><div class="rev-act"><button class="btn primary" data-act="rev-save" data-id="' + r.id + '">Сохранить</button><button class="btn" data-act="rev-edit" data-id="' + r.id + '">Отмена</button></div>';
+      else if (st === 'human' && M) act = '<div class="rev-act"><button class="btn" data-act="rev-up" data-id="' + r.id + '">Отправить руководителю</button><button class="btn ghost" data-act="rev-edit" data-id="' + r.id + '">Изменить</button></div><div class="muted" style="font-size:12px;margin-top:4px">брак и возврат — по политике отвечает руководитель</div>';
+      else act = '<div class="rev-act"><button class="btn primary" data-act="rev-send" data-id="' + r.id + '">Отправить</button><button class="btn" data-act="rev-edit" data-id="' + r.id + '">Изменить</button><button class="btn ghost" data-act="rev-skip" data-id="' + r.id + '">Пропустить</button></div>';
+    }
+    h += '<tr' + (st === 'skip' ? ' style="opacity:.55"' : '') + '><td style="min-width:170px"><div class="pn-name">' + ph(r.sku, 'wc') + '<span>' + prodName(r.sku) + '<small>' + r.sku + ' · ' + chTag(r.ch) + '</small></span></div></td><td style="white-space:nowrap">' + stars(r.stars) + '<div class="muted" style="font-size:12px">' + r.t + '</div></td><td class="rev-txt">' + esc(r.text) + '<div style="margin-top:4px"><span class="pill ' + (r.kind === 'pos' ? 'pos' : (r.kind === 'crit' ? 'neg' : (r.kind === 'q' ? 'brand' : 'warn'))) + '">' + r.topic + '</span></div></td>' +
+      '<td class="rev-ans">' + (ed ? '' : esc(reply)) + '<div class="rev-chk ' + (viol.length || warn ? 'neg' : 'pos') + '">' + (viol.length ? '⚠ проверка кодом: ' + viol.join(', ') : (warn ? '⚠ не отправлено: ' + warn : 'проверка кодом: нарушений нет ✓')) + '</div>' + act + '</td>' +
+      '<td style="white-space:nowrap"><span class="pill ' + L[0] + '">' + L[1] + (st === 'auto' ? ' ' + r.t : '') + '</span>' + (over ? '<div class="muted" style="font-size:12px">сверх лимита ' + nf(P.limit, 0) + '/сутки</div>' : '') + '</td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+  // темы
+  h += '<div class="sec-h"><h2>Темы отзывов → причины и задачи' + ex('Темы размечаются по всем отзывам за 30 дней; доля — процент отзывов товара с этой темой. Каждая тема проверяется как причина: ведёт в разбор, в задачу или закрыта с датой.') + '</h2><span class="hint">за 30 дней · ' + REV_TOPICS.length + ' тем</span></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl" style="min-width:900px"><thead><tr><th>Тема</th><th>Товар</th><th class="n">Доля упоминаний</th><th class="n">Динамика за 30 дн</th><th>Связь</th></tr></thead><tbody>' +
+    REV_TOPICS.map(function(x){
+      var l = x.link, cell;
+      if (l.type === 'case') cell = '<a href="#" data-act="open" data-case="' + l.id + '" style="color:var(--brand)">→ ' + l.txt + '</a>';
+      else if (l.type === 'task') cell = '<span class="pill brand">→ задача #' + l.no + '</span> <span class="muted" style="font-size:12px">' + l.txt + '</span>';
+      else if (l.type === 'closed') cell = '<span class="pill pos">' + l.txt + '</span>';
+      else cell = S.rev.task[x.k] ? '<span class="pill brand">→ задача #' + S.rev.task[x.k] + '</span> <span class="muted" style="font-size:12px">' + l.txt + '</span>' : (M ? '<span class="muted" style="font-size:12px">' + l.txt + ' · </span><button class="btn" style="padding:3px 10px;font-size:12px" data-act="rev-task" data-k="' + x.k + '">Отправить руководителю</button>' : '<button class="btn" style="padding:3px 10px;font-size:12px" data-act="rev-task" data-k="' + x.k + '">Создать задачу</button> <span class="muted" style="font-size:12px">' + l.txt + '</span>');
+      return '<tr><td><b>' + x.t + '</b></td><td><div class="pn-name" style="min-width:0">' + ph(x.sku, 'wc') + '<span>' + prodName(x.sku) + '<small>' + x.sku + '</small></span></div></td><td class="n">' + x.share + '%</td><td class="n"><span class="' + (x.d > 0 ? (x.t.indexOf('хвал') === 0 ? 'pos' : 'neg') : 'pos') + '">' + sg(x.d, 0) + ' п.п.</span></td><td style="white-space:normal">' + cell + '</td></tr>';
+    }).join('') + '</tbody></table></div></div>';
+  // вопросы
+  h += '<div class="sec-h"><h2>Вопросы покупателей' + ex('Черновик пишет модель по характеристикам карточки и 1С; отправляет человек, если так задано политикой.') + '</h2><span class="hint">' + REV_Q.filter(function(q, i){ return !S.rev.qdone[i] && P.q; }).length + ' ждут проверки</span></div>';
+  h += '<div class="card"><div class="tbl-wrap"><table class="tbl sub" style="min-width:860px;width:100%"><thead><tr><th>Вопрос</th><th>Товар</th><th>Черновик ответа</th><th>Статус</th></tr></thead><tbody>' +
+    REV_Q.map(function(q, i){ var sent = S.rev.qdone[i] || !P.q; return '<tr><td class="rev-txt">' + esc(q.q) + '</td><td style="white-space:nowrap">' + prodName(q.sku) + ' <small class="muted">' + q.sku + '</small> ' + chTag(q.ch) + '</td><td class="rev-ans">' + esc(q.a) + '</td><td style="white-space:nowrap">' + (sent ? '<span class="pill ' + (S.rev.qdone[i] ? 'brand' : 'pos') + '">' + (S.rev.qdone[i] ? 'отправлен' : 'отправлен автоматически') + '</span>' : '<span class="pill warn">ждёт проверки</span> <button class="btn primary" style="padding:3px 10px;font-size:12px" data-act="rev-qsend" data-i="' + i + '">Отправить</button>') + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
+  h += '<p class="note"><b>Правило:</b> автоответ — только там, где ошибка не стоит денег. Негатив, брак, здоровье и возвраты отвечает человек; каждая тема отзывов проверяется как причина и уходит в задачу.</p>';
+  $('#v-reviews').innerHTML = h;
+}
+
 /* ---------------- niches: what to produce next ---------------- */
 var NICH_TOTAL = 9240, NICH_NEW_TOTAL = 12;
 var NICH_RATE = {pp:380, pe:350}; // полная себестоимость литья, ₽/кг: материал, машинное время, труд, накладные
@@ -3551,7 +3690,7 @@ new MutationObserver(function(){ postRender(); }).observe(document.body, {childL
 /* ---------------- routing ---------------- */
 function renderAll(){
   document.body.classList.toggle('no-ex', !S.ex); var tg = $('#exTog'); tg.classList.toggle('on', S.ex); tg.setAttribute('aria-pressed', S.ex); $('#exTogL').textContent = S.ex ? 'вкл' : 'выкл';
-  renderOverview(); renderRnp(); renderStock(); renderSeason(); renderFinance(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderNiches(); renderDepartments(); renderSources();
+  renderOverview(); renderRnp(); renderStock(); renderSeason(); renderFinance(); renderAnalysis(); renderDecisions(); renderProducts(); renderMarket(); renderNiches(); renderReviews(); renderDepartments(); renderSources();
   $('#navDep').style.display = S.role === 'ceo' ? '' : 'none'; $('#navFin').style.display = S.role === 'ceo' ? '' : 'none'; $('#navGrpMgmt').style.display = S.role === 'ceo' ? '' : 'none';
   if ($('#chat').classList.contains('on')) renderChat();
   document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id === 'v-' + S.view); });
@@ -3658,6 +3797,14 @@ document.addEventListener('click', function(e){
   if (a === 'kpi'){ S.kpi = t.dataset.k; return renderOverview(); }
   if (a === 'open'){ e.preventDefault(); if (window.innerWidth < 1280) closeChat(); S.caseId = t.dataset.case; S.rejectOpen = false; if (S.caseId !== 'a') S.period = 'week'; return go('analysis'); }
   if (a === 'period'){ S.period = t.dataset.p; return renderAnalysis(); }
+  if (a === 'rev-tone'){ if (S.role === 'mp') return; S.rev.policy.tone = t.dataset.t; return renderReviews(); }
+  if (a === 'rev-edit'){ S.rev.edit[t.dataset.id] = !S.rev.edit[t.dataset.id]; return renderReviews(); }
+  if (a === 'rev-save'){ var ta = $('#revTa-' + t.dataset.id); if (ta){ S.rev.text[t.dataset.id] = ta.value.trim(); var vs = revCheck(ta.value); S.rev.warn[t.dataset.id] = vs.length ? vs.join(', ') : null; } S.rev.edit[t.dataset.id] = false; renderReviews(); return toast(vs && vs.length ? 'Черновик сохранён, но отправить нельзя: ' + vs.join(', ') : 'Черновик сохранён — проверка кодом: нарушений нет'); }
+  if (a === 'rev-send'){ var rv = REVIEWS.filter(function(x){ return x.id === t.dataset.id; })[0]; if (!rv) return; var vio = revCheck(revReply(rv)); if (vio.length){ S.rev.warn[rv.id] = vio.join(', '); renderReviews(); return toast('Не отправлено: ' + vio.join(', ') + ' — правила площадки'); } S.rev.done[rv.id] = 'manual'; S.rev.warn[rv.id] = null; renderReviews(); return toast('Ответ отправлен: ' + prodName(rv.sku) + ', ' + rv.ch + ' · проверка правил площадки пройдена'); }
+  if (a === 'rev-skip'){ S.rev.done[t.dataset.id] = 'skip'; renderReviews(); return toast('Пропущено — отзыв вернётся в очередь завтра'); }
+  if (a === 'rev-up'){ var ru = REVIEWS.filter(function(x){ return x.id === t.dataset.id; })[0]; S.rev.done[t.dataset.id] = 'up'; renderReviews(); return toast('Передано Андрею Викторовичу: отзыв о браке — ' + (ru ? prodName(ru.sku) : '')); }
+  if (a === 'rev-qsend'){ S.rev.qdone[t.dataset.i] = true; renderReviews(); return toast('Ответ на вопрос отправлен · проверка правил площадки пройдена'); }
+  if (a === 'rev-task'){ var tk2 = REV_TOPICS.filter(function(x){ return x.k === t.dataset.k; })[0]; if (!tk2 || S.rev.task[tk2.k]) return; S.rev.task[tk2.k] = S.taskNo++; renderReviews(); return toast(S.role === 'mp' ? 'Передано Андрею Викторовичу: ' + tk2.link.txt : 'Задача #' + S.rev.task[tk2.k] + ' создана в Битрикс24: ' + tk2.link.txt); }
   if (a === 'nich-open'){ S.nich.open = S.nich.open === t.dataset.id ? null : t.dataset.id; return renderNiches(); }
   if (a === 'nich-mat'){ S.nich.mat = t.dataset.m; return renderNiches(); }
   if (a === 'nich-calc'){ document.querySelectorAll('[data-act="nich-set"]').forEach(function(el){ var nv = parseFloat(String(el.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(nv)) S.nich[el.dataset.k] = nv; }); S.nich.open = null; renderNiches(); var NR = nichCalc(); return toast('Пересчитано: под параметры подходят ' + NR.pass.length + ' ниш из ' + nf(NICH_TOTAL) + (NR.best ? ', лучшая по окупаемости — ' + NR.best.x.n.toLowerCase() : '')); }
@@ -3682,6 +3829,9 @@ document.addEventListener('change', function(e){
   if (t.dataset.act === 'rnp-plan'){ var v = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(v)){ var kp = t.dataset.k.split('|'); if (kp[1] === 'rev'){ PLAN[kp[0]].oct.rev = Math.round(v * MONTH_DAYS); delete S.rnp.plan[t.dataset.k]; } else S.rnp.plan[t.dataset.k] = v; } var sl = $('#v-rnp .rnp-wrap').scrollLeft; renderRnp(); $('#v-rnp .rnp-wrap').scrollLeft = sl; return; }
   if (t.dataset.act === 'fin-norm'){ var nv2 = parseFloat(String(t.value).replace(',', '.')); if (!isNaN(nv2)) S.fin.norm[t.dataset.k] = nv2; return renderAll(); }
   if (t.dataset.act === 'dds-live') return ddsLive();
+  if (t.dataset.act === 'rev-pol'){ if (S.role === 'mp') return; S.rev.policy[t.dataset.k] = t.checked; renderReviews(); var rc = revCounts(); return toast('Политика обновлена: автоматически — ' + rc.auto + ', на проверку — ' + rc.check); }
+  if (t.dataset.act === 'rev-sign'){ if (S.role === 'mp') return; S.rev.policy.sign = t.value.trim() || 'Команда Натур Пласт'; return renderReviews(); }
+  if (t.dataset.act === 'rev-limit'){ if (S.role === 'mp') return; var rl = parseInt(String(t.value).replace(/[\s\u00a0]/g, ''), 10); if (!isNaN(rl)) S.rev.policy.limit = rl; return renderReviews(); }
   if (t.dataset.act === 'nich-set'){ var nv2 = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(nv2)) S.nich[t.dataset.k] = nv2; return; }
   if (t.dataset.act === 'fin-unit-set'){ var uv = parseFloat(String(t.value).replace(/[\s\u00a0%]/g, '').replace(',', '.')); if (!isNaN(uv)) S.fin.unit[t.dataset.k] = uv; return renderFinance(); }
   if (t.dataset.act === 'yp-in'){ var yv = parseFloat(String(t.value).replace(/[\s\u00a0]/g, '').replace(',', '.')); if (!isNaN(yv)) S.yp[t.dataset.k] = yv; return renderRnp(); }
