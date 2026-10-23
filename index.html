@@ -6101,7 +6101,8 @@ var PR_DATA = {"icons":{"check":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"
   function cta(act, html) { return '<button class="dc-btn dc-btn--primary ov-route__cta" type="button" data-route="' + act + '">' + html + '</button>'; }
   function goHtml(v) {
     if (v.state === 'run') {
-      return '<div class="ov-route__prog"><b>Шаг ' + (v.i + 1) + ' из ' + v.n + '</b><span class="ov-route__bar" aria-hidden="true"><i style="width:' +
+      // номер шага — только в строке шага под остановками (без дубля), здесь — прогресс и сколько осталось
+      return '<div class="ov-route__prog"><span class="ov-route__bar" aria-hidden="true"><i style="width:' +
         Math.round((v.i + 1) / v.n * 100) + '%"></i></span></div>' + sub('осталось ' + S().eta(v.n - v.i));
     }
     if (v.state === 'paused') return cta('resume', 'Продолжить' + PR.icon('arrow')) + sub('с шага ' + (v.i + 1) + ' из ' + v.n);
