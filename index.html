@@ -1389,7 +1389,9 @@ html.pr-lock{overflow:hidden}
 .ov-owner .ov-fold[open] > .ov-fold__s .ov-fold__more::after{content:"свернуть"}
 .ov-owner .ov-fold[open] > .ov-fold__s{border-bottom-left-radius:0;border-bottom-right-radius:0}
 .ov-owner .ov-fold__body{padding:0 16px 16px;background:var(--surface);border:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius-block) var(--radius-block)}
-.ov-owner .ov-fold__body > .dc-sec-h:first-child{margin-top:10px}
+.ov-owner .ov-fold__body > .dc-sec-h:first-child{margin:12px 0 12px;align-items:center}
+/* в раскрытом блоке заголовок уже в строке над ним — внутри остаётся строка настроек: период мелко, чип базы, «?», ссылки */
+.ov-owner .ov-fold__body .dc-sec-h h2{font-size:13.5px;font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:8px;flex-wrap:wrap;letter-spacing:0}
 .ov-owner .ov-fold__body .dc-sec-h .ov-h2t{display:none}   /* заголовок уже в строке; остаются период, чип базы, «?» и ссылки */
 .ov-owner .ov-night{margin-top:0;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-block);box-shadow:var(--shadow-card)}
 .ov-owner .ov-night summary{padding:0;gap:10px}
